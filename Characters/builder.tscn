@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://dx2m410fn5f6t"]
+
+[ext_resource type="Script" path="res://Characters/builder.gd" id="1_0qr7f"]
+[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_ncmoi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtuxa"]
+atlas = ExtResource("2_ncmoi")
+region = Rect2(0, 0, 28, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crmar"]
+atlas = ExtResource("2_ncmoi")
+region = Rect2(28, 0, 28, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ofgha"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtuxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crmar")
+}],
+"loop": true,
+"name": &"Builder",
+"speed": 5.0
+}]
+
+[node name="Character" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_0qr7f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_ofgha")
+animation = &"Builder"
+frame_progress = 0.756804
+
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

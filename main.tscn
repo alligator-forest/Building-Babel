@@ -1,36 +1,88 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=7 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_eqxpj"]
-[ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://floor.tscn" id="2_d85bv"]
+[ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
+[ext_resource type="PackedScene" uid="uid://cya3qx4nm15mm" path="res://Floors/top_floor.tscn" id="3_k0mnk"]
+[ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Marav2.ttf" id="3_qesbo"]
+[ext_resource type="Texture2D" uid="uid://c2nuxdwin3slv" path="res://Assets/brickIcon.png" id="4_l6brj"]
+[ext_resource type="Texture2D" uid="uid://dj3lam7b5ypx" path="res://Assets/goldIcon.png" id="5_x8i3h"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eqxpj")
 tiers = ExtResource("2_d85bv")
 
-[node name="Tower" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(384, 648)
+[node name="TextureRect" type="ColorRect" parent="."]
+offset_right = 384.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect2" type="ColorRect" parent="."]
+offset_left = 768.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Tower" type="ScrollContainer" parent="."]
 offset_left = 384.0
 offset_right = 768.0
 offset_bottom = 648.0
+size_flags_vertical = 8
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Floors" type="VBoxContainer" parent="Tower"]
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 2
+size_flags_vertical = 10
 theme_override_constants/separation = 0
-alignment = 2
+alignment = 1
 
-[node name="VScrollBar" type="VScrollBar" parent="."]
-visible = false
-offset_left = 832.0
-offset_top = 648.0
-offset_right = 896.0
-offset_bottom = 1296.0
-rotation = 3.14159
-page = 1.0
-rounded = true
+[node name="TopFloor" parent="Tower/Floors" instance=ExtResource("3_k0mnk")]
+layout_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 64.0
+[node name="GodBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0.966667, 0, 1)
+offset_left = 16.0
 offset_top = 64.0
-offset_right = 384.0
-offset_bottom = 192.0
+offset_right = 368.0
+offset_bottom = 128.0
 value = 25.0
 show_percentage = false
 
-[connection signal="value_changed" from="VScrollBar" to="." method="_on_v_scroll_bar_value_changed"]
+[node name="BrickLabel" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 192.0
+offset_right = 280.0
+offset_bottom = 320.0
+theme_override_fonts/font = ExtResource("3_qesbo")
+theme_override_font_sizes/font_size = 100
+text = "9999"
+vertical_alignment = 1
+clip_text = true
+
+[node name="GoldLabel" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 320.0
+offset_right = 280.0
+offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("3_qesbo")
+theme_override_font_sizes/font_size = 100
+text = "9999"
+vertical_alignment = 1
+clip_text = true
+
+[node name="BrickIcon" type="Sprite2D" parent="."]
+position = Vector2(80, 256)
+scale = Vector2(2, 2)
+texture = ExtResource("4_l6brj")
+
+[node name="GoldIcon" type="Sprite2D" parent="."]
+position = Vector2(80, 384)
+scale = Vector2(2, 2)
+texture = ExtResource("5_x8i3h")
+
+[node name="ResourceTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]

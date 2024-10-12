@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://br8j0dbxk0gmh"]
+
+[ext_resource type="Texture2D" uid="uid://bvwlkd2t0p7wi" path="res://Assets/floor.png" id="1_wm2fs"]
+[ext_resource type="Script" path="res://Floors/floor.gd" id="2_d1pa7"]
+[ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/builder.tscn" id="3_k8rj1"]
+[ext_resource type="Script" path="res://Characters/character.gd" id="4_nohix"]
+
+[node name="Floor" type="TextureRect"]
+texture = ExtResource("1_wm2fs")
+script = ExtResource("2_d1pa7")
+builders = ExtResource("3_k8rj1")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 24.0
+
+[node name="Characters" type="Node" parent="."]
+script = ExtResource("4_nohix")
+
+[node name="Builder" parent="Characters" instance=ExtResource("3_k8rj1")]
+offset_left = 119.0
+offset_top = 104.0
+offset_right = 119.0
+offset_bottom = 104.0

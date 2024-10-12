@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cya3qx4nm15mm"]
+
+[ext_resource type="Texture2D" uid="uid://bvwlkd2t0p7wi" path="res://Assets/floor.png" id="1_dwplp"]
+
+[node name="TopFloor" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_dwplp")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 208.0
+offset_bottom = 96.0
+text = "BUILD NEW FLOOR"
