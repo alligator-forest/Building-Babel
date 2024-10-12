@@ -4,7 +4,7 @@ extends Node2D
 
 var numGold = 0
 var numBricks = 0
-var godFear = 50
+var godFear = 0
 var newFloorBricks = 10
 
 func _ready():

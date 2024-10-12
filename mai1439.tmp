@@ -98,7 +98,7 @@ texture = ExtResource("5_x8i3h")
 wait_time = 10.0
 autostart = true
 
-[node name="Node2D" parent="." instance=ExtResource("7_j6xbj")]
-position = Vector2(895, 180)
+[node name="CharacterShop" parent="." instance=ExtResource("7_j6xbj")]
+position = Vector2(265.046, 532.802)
 
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
