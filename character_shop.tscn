@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://CharacterShop.gd" id="1_01rhl"]
 [ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_kqt1r"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7s8ix"]
-radius = 24.0
-height = 78.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1077"]
+radius = 30.0
+height = 86.0
 
 [node name="CharacterShop" type="Node2D"]
 script = ExtResource("1_01rhl")
@@ -19,7 +19,6 @@ region_rect = Rect2(2, 0, 26, 40)
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_7s8ix")
+shape = SubResource("CapsuleShape2D_b1077")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

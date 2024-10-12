@@ -1,24 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://xh6tnfb71fbs"]
+[gd_scene load_steps=12 format=3 uid="uid://butxgvvrm7hqp"]
 
-[ext_resource type="Script" path="res://Characters/Mason.gd" id="1_b5g5f"]
-[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_rcnnq"]
-[ext_resource type="Texture2D" uid="uid://ba36h47ll80s5" path="res://Assets/MasonSpritesheet.png" id="3_cguhy"]
+[ext_resource type="Script" path="res://shepherd.gd" id="1_inncs"]
+[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_nwf5y"]
+[ext_resource type="Texture2D" uid="uid://bby6mt3v5xxn6" path="res://Assets/ShepherdSpritesheet.png" id="4_l80li"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtuxa"]
-atlas = ExtResource("2_rcnnq")
+atlas = ExtResource("2_nwf5y")
 region = Rect2(0, 0, 28, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_crmar"]
-atlas = ExtResource("2_rcnnq")
+atlas = ExtResource("2_nwf5y")
 region = Rect2(28, 0, 28, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6efc0"]
-atlas = ExtResource("3_cguhy")
-region = Rect2(0, 0, 24, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u83r8"]
-atlas = ExtResource("3_cguhy")
-region = Rect2(24, 0, 24, 32)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_680mf"]
 
@@ -30,7 +22,15 @@ region = Rect2(0, 0, 32, 36)
 atlas = SubResource("CompressedTexture2D_680mf")
 region = Rect2(32, 0, 32, 36)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_n6h8q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_eo7ag"]
+atlas = ExtResource("4_l80li")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpwfc"]
+atlas = ExtResource("4_l80li")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jrn28"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -45,17 +45,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6efc0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u83r8")
-}],
-"loop": true,
-"name": &"Mason",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_3eu21")
 }, {
 "duration": 1.0,
@@ -64,21 +53,32 @@ animations = [{
 "loop": true,
 "name": &"Merchant",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eo7ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpwfc")
+}],
+"loop": true,
+"name": &"Shepherd",
+"speed": 5.0
 }]
 
-[node name="Mason" type="Control"]
+[node name="Shepherd" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_b5g5f")
+script = ExtResource("1_inncs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_n6h8q")
-animation = &"Mason"
+sprite_frames = SubResource("SpriteFrames_jrn28")
+animation = &"Shepherd"
 
 [node name="MoveTimer" type="Timer" parent="."]
 one_shot = true

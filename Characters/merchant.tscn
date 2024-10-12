@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Characters/merchant.gd" id="1_fxlpp"]
 [ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_eafrh"]
-[ext_resource type="Texture2D" uid="uid://jc6uhvkq8vmp" path="res://Assets/MerchantSpritesheet.png" id="3_nquu6"]
+[ext_resource type="Texture2D" uid="uid://5dcwt5cipwqk" path="res://Assets/MarchantSpritesheet.png" id="3_a2v2s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtuxa"]
 atlas = ExtResource("2_eafrh")
@@ -12,13 +12,13 @@ region = Rect2(0, 0, 28, 40)
 atlas = ExtResource("2_eafrh")
 region = Rect2(28, 0, 28, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3eu21"]
-atlas = ExtResource("3_nquu6")
-region = Rect2(0, 0, 32, 36)
+[sub_resource type="AtlasTexture" id="AtlasTexture_upxag"]
+atlas = ExtResource("3_a2v2s")
+region = Rect2(32, 0, 30, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wwpql"]
-atlas = ExtResource("3_nquu6")
-region = Rect2(32, 0, 32, 36)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpnb2"]
+atlas = ExtResource("3_a2v2s")
+region = Rect2(0, 0, 30, 36)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yshwx"]
 animations = [{
@@ -35,10 +35,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3eu21")
+"texture": SubResource("AtlasTexture_upxag")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wwpql")
+"texture": SubResource("AtlasTexture_vpnb2")
 }],
 "loop": true,
 "name": &"Merchant",
@@ -52,10 +52,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_fxlpp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1.5, 1.5)
+position = Vector2(-0.666666, 0)
+scale = Vector2(1.11111, 1.09259)
 sprite_frames = SubResource("SpriteFrames_yshwx")
 animation = &"Merchant"
 

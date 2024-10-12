@@ -55,6 +55,9 @@ offset_right = 216.0
 offset_bottom = 104.0
 text = "BUILD NEW FLOOR"
 
+[node name="Floor" parent="Tower/Floors" instance=ExtResource("2_d85bv")]
+layout_mode = 2
+
 [node name="GodBar" type="ProgressBar" parent="."]
 modulate = Color(1, 0.966667, 0, 1)
 offset_left = 16.0
@@ -103,7 +106,6 @@ autostart = true
 [node name="Shops" type="Node" parent="."]
 
 [node name="BuilderShop" type="Node2D" parent="Shops"]
-position = Vector2(887, 101)
 script = ExtResource("7_rlwxu")
 
 [node name="Sprite2D" type="Sprite2D" parent="Shops/BuilderShop"]
@@ -118,4 +120,4 @@ region_rect = Rect2(2, 0, 26, 40)
 shape = SubResource("CapsuleShape2D_eldhx")
 
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
-[connection signal="mouse_entered" from="Shops/BuilderShop/Area2D" to="Shops/BuilderShop" method="_on_builder_mouse_entered"]
+[connection signal="mouse_entered" from="Shops/BuilderShop/Area2D" to="." method="_on_area_2d_mouse_entered"]
