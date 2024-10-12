@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=8 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Marav2.ttf" id="3_qesbo"]
 [ext_resource type="Texture2D" uid="uid://c2nuxdwin3slv" path="res://Assets/brickIcon.png" id="4_l6brj"]
 [ext_resource type="Texture2D" uid="uid://dj3lam7b5ypx" path="res://Assets/goldIcon.png" id="5_x8i3h"]
+[ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/builder.tscn" id="7_5gq4r"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eqxpj")
@@ -84,5 +85,11 @@ texture = ExtResource("5_x8i3h")
 [node name="ResourceTimer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="Builder" parent="." instance=ExtResource("7_5gq4r")]
+offset_left = 401.0
+offset_top = 615.0
+offset_right = 714.0
+offset_bottom = 615.0
 
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]

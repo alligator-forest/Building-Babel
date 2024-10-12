@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://xh6tnfb71fbs"]
+
+[ext_resource type="Script" path="res://Characters/Mason.gd" id="1_b5g5f"]
+[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_rcnnq"]
+[ext_resource type="Texture2D" uid="uid://ba36h47ll80s5" path="res://Assets/MasonSpritesheet.png" id="3_cguhy"]
+[ext_resource type="Texture2D" uid="uid://blfntn5rc2bru" path="res://Assets/MerchantSpritesheet.png" id="3_u8lc7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtuxa"]
+atlas = ExtResource("2_rcnnq")
+region = Rect2(0, 0, 28, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crmar"]
+atlas = ExtResource("2_rcnnq")
+region = Rect2(28, 0, 28, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6efc0"]
+atlas = ExtResource("3_cguhy")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u83r8"]
+atlas = ExtResource("3_cguhy")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eu21"]
+atlas = ExtResource("3_u8lc7")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwpql"]
+atlas = ExtResource("3_u8lc7")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6h8q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtuxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crmar")
+}],
+"loop": true,
+"name": &"Builder",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6efc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u83r8")
+}],
+"loop": true,
+"name": &"Mason",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eu21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwpql")
+}],
+"loop": true,
+"name": &"Merchant",
+"speed": 5.0
+}]
+
+[node name="Mason" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b5g5f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_n6h8q")
+animation = &"Mason"
+
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

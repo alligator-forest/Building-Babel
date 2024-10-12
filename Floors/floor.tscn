@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://br8j0dbxk0gmh"]
+[gd_scene load_steps=6 format=3 uid="uid://br8j0dbxk0gmh"]
 
 [ext_resource type="Texture2D" uid="uid://bvwlkd2t0p7wi" path="res://Assets/floor.png" id="1_wm2fs"]
 [ext_resource type="Script" path="res://Floors/floor.gd" id="2_d1pa7"]
 [ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/builder.tscn" id="3_k8rj1"]
 [ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/merchant.tscn" id="4_fseor"]
+[ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/mason.tscn" id="5_ngv8i"]
 
 [node name="Floor" type="TextureRect"]
 texture = ExtResource("1_wm2fs")
@@ -28,3 +29,9 @@ offset_left = 168.0
 offset_top = 95.0
 offset_right = 168.0
 offset_bottom = 95.0
+
+[node name="Mason" parent="Characters" instance=ExtResource("5_ngv8i")]
+offset_left = 45.0
+offset_top = 98.0
+offset_right = 45.0
+offset_bottom = 98.0
