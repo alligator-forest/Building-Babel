@@ -1,15 +1,15 @@
 [gd_scene load_steps=12 format=3 uid="uid://butxgvvrm7hqp"]
 
-[ext_resource type="Script" path="res://shepherd.gd" id="1_inncs"]
-[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_nwf5y"]
-[ext_resource type="Texture2D" uid="uid://bby6mt3v5xxn6" path="res://Assets/ShepherdSpritesheet.png" id="4_l80li"]
+[ext_resource type="Script" path="res://Characters/shepherd.gd" id="1_rjciw"]
+[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_ade4q"]
+[ext_resource type="Texture2D" uid="uid://bby6mt3v5xxn6" path="res://Assets/ShepherdSpritesheet.png" id="3_c53cy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtuxa"]
-atlas = ExtResource("2_nwf5y")
+atlas = ExtResource("2_ade4q")
 region = Rect2(0, 0, 28, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_crmar"]
-atlas = ExtResource("2_nwf5y")
+atlas = ExtResource("2_ade4q")
 region = Rect2(28, 0, 28, 40)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_680mf"]
@@ -23,11 +23,11 @@ atlas = SubResource("CompressedTexture2D_680mf")
 region = Rect2(32, 0, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eo7ag"]
-atlas = ExtResource("4_l80li")
+atlas = ExtResource("3_c53cy")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gpwfc"]
-atlas = ExtResource("4_l80li")
+atlas = ExtResource("3_c53cy")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jrn28"]
@@ -73,7 +73,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_inncs")
+script = ExtResource("1_rjciw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)

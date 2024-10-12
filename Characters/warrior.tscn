@@ -1,16 +1,16 @@
 [gd_scene load_steps=15 format=3 uid="uid://cqf5bqdtxntlp"]
 
-[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="1_2shwy"]
-[ext_resource type="Script" path="res://warrior.gd" id="1_8fn4w"]
-[ext_resource type="Texture2D" uid="uid://bby6mt3v5xxn6" path="res://Assets/ShepherdSpritesheet.png" id="3_h3sqy"]
-[ext_resource type="Texture2D" uid="uid://vqto7mojm8y3" path="res://Assets/WarriorSpritesheet.png" id="4_he5af"]
+[ext_resource type="Script" path="res://Characters/warrior.gd" id="1_f46ni"]
+[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_7uxu8"]
+[ext_resource type="Texture2D" uid="uid://bby6mt3v5xxn6" path="res://Assets/ShepherdSpritesheet.png" id="3_8ueh5"]
+[ext_resource type="Texture2D" uid="uid://vqto7mojm8y3" path="res://Assets/WarriorSpritesheet.png" id="4_63pe5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtuxa"]
-atlas = ExtResource("1_2shwy")
+atlas = ExtResource("2_7uxu8")
 region = Rect2(0, 0, 28, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_crmar"]
-atlas = ExtResource("1_2shwy")
+atlas = ExtResource("2_7uxu8")
 region = Rect2(28, 0, 28, 40)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_680mf"]
@@ -24,19 +24,19 @@ atlas = SubResource("CompressedTexture2D_680mf")
 region = Rect2(32, 0, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eo7ag"]
-atlas = ExtResource("3_h3sqy")
+atlas = ExtResource("3_8ueh5")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gpwfc"]
-atlas = ExtResource("3_h3sqy")
+atlas = ExtResource("3_8ueh5")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ffmul"]
-atlas = ExtResource("4_he5af")
+atlas = ExtResource("4_63pe5")
 region = Rect2(0, 0, 34, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6nuoy"]
-atlas = ExtResource("4_he5af")
+atlas = ExtResource("4_63pe5")
 region = Rect2(34, 0, 34, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g70nr"]
@@ -93,7 +93,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_8fn4w")
+script = ExtResource("1_f46ni")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4.76837e-07, 1.90735e-06)

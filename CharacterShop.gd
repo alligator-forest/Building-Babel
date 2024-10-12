@@ -9,3 +9,4 @@ func is_mouse_within() -> bool:
 
 func _on_builder_mouse_entered():
 	mouseWithin = true
+	print("AA")

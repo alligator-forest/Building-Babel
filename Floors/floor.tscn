@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://br8j0dbxk0gmh"]
+[gd_scene load_steps=8 format=3 uid="uid://br8j0dbxk0gmh"]
 
 [ext_resource type="Texture2D" uid="uid://bvwlkd2t0p7wi" path="res://Assets/floor.png" id="1_wm2fs"]
 [ext_resource type="Script" path="res://Floors/floor.gd" id="2_d1pa7"]
 [ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/builder.tscn" id="3_k8rj1"]
 [ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/mason.tscn" id="5_ngv8i"]
-[ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://warrior.tscn" id="5_wqtkj"]
 [ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/merchant.tscn" id="6_8c1d8"]
+[ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/warrior.tscn" id="6_126tb"]
+[ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/shepherd.tscn" id="7_uo6gc"]
 
 [node name="Floor" type="TextureRect"]
 texture = ExtResource("1_wm2fs")
@@ -20,25 +21,32 @@ offset_bottom = 24.0
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="Builder" parent="Characters" instance=ExtResource("3_k8rj1")]
-offset_left = 95.0
+offset_left = 54.0
 offset_top = 95.0
-offset_right = 95.0
+offset_right = 54.0
 offset_bottom = 95.0
 
 [node name="Mason" parent="Characters" instance=ExtResource("5_ngv8i")]
-offset_left = 45.0
+offset_left = 17.0
 offset_top = 98.0
-offset_right = 45.0
+offset_right = 17.0
 offset_bottom = 98.0
 
 [node name="Merchant" parent="Characters" instance=ExtResource("6_8c1d8")]
-offset_left = 155.0
-offset_top = 93.0
-offset_right = 155.0
-offset_bottom = 93.0
+offset_left = 153.0
+offset_top = 95.0
+offset_right = 153.0
+offset_bottom = 95.0
+scale = Vector2(1.5, 1.5)
 
-[node name="Warrior" parent="Characters" instance=ExtResource("5_wqtkj")]
+[node name="Warrior" parent="Characters" instance=ExtResource("6_126tb")]
 offset_left = 200.0
 offset_top = 98.0
 offset_right = 200.0
+offset_bottom = 98.0
+
+[node name="Shepherd" parent="Characters" instance=ExtResource("7_uo6gc")]
+offset_left = 101.0
+offset_top = 98.0
+offset_right = 101.0
 offset_bottom = 98.0

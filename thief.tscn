@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://c1gfra0m6i3kb"]
+
+[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="1_2cy7w"]
+[ext_resource type="Script" path="res://thief.gd" id="1_xejel"]
+[ext_resource type="Texture2D" uid="uid://bby6mt3v5xxn6" path="res://Assets/ShepherdSpritesheet.png" id="2_jk7us"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtuxa"]
+atlas = ExtResource("1_2cy7w")
+region = Rect2(0, 0, 28, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crmar"]
+atlas = ExtResource("1_2cy7w")
+region = Rect2(28, 0, 28, 40)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_680mf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eu21"]
+atlas = SubResource("CompressedTexture2D_680mf")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwpql"]
+atlas = SubResource("CompressedTexture2D_680mf")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eo7ag"]
+atlas = ExtResource("2_jk7us")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpwfc"]
+atlas = ExtResource("2_jk7us")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_baqft"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtuxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crmar")
+}],
+"loop": true,
+"name": &"Builder",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eu21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwpql")
+}],
+"loop": true,
+"name": &"Merchant",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eo7ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpwfc")
+}],
+"loop": true,
+"name": &"Shepherd",
+"speed": 5.0
+}]
+
+[node name="Thief" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xejel")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_baqft")
+animation = &"Shepherd"
+
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true

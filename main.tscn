@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=7 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
@@ -6,12 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bvwlkd2t0p7wi" path="res://Assets/floor.png" id="3_w2f3j"]
 [ext_resource type="Texture2D" uid="uid://c2nuxdwin3slv" path="res://Assets/brickIcon.png" id="4_l6brj"]
 [ext_resource type="Texture2D" uid="uid://dj3lam7b5ypx" path="res://Assets/goldIcon.png" id="5_x8i3h"]
-[ext_resource type="Script" path="res://CharacterShop.gd" id="7_rlwxu"]
-[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="8_vxec8"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eldhx"]
-radius = 30.0
-height = 86.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eqxpj")
@@ -49,26 +43,39 @@ texture = ExtResource("3_w2f3j")
 
 [node name="Button" type="Button" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 40.0
-offset_right = 216.0
-offset_bottom = 104.0
+offset_left = 18.0
+offset_top = 28.0
+offset_right = 178.0
+offset_bottom = 92.0
 text = "BUILD NEW FLOOR"
+
+[node name="NewFloorLabel" type="Label" parent="Tower/Floors/TopFloor"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 28.0
+offset_right = 344.0
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("3_qesbo")
+theme_override_font_sizes/font_size = 35
+text = "BRICKS NEEDED:
+"
+
+[node name="Floor" parent="Tower/Floors" instance=ExtResource("2_d85bv")]
+layout_mode = 2
 
 [node name="GodBar" type="ProgressBar" parent="."]
 modulate = Color(1, 0.966667, 0, 1)
 offset_left = 16.0
-offset_top = 64.0
+offset_top = 16.0
 offset_right = 368.0
-offset_bottom = 128.0
+offset_bottom = 80.0
 value = 25.0
-show_percentage = false
 
 [node name="BrickLabel" type="Label" parent="."]
 offset_left = 152.0
-offset_top = 192.0
+offset_top = 96.0
 offset_right = 280.0
-offset_bottom = 320.0
+offset_bottom = 224.0
 theme_override_fonts/font = ExtResource("3_qesbo")
 theme_override_font_sizes/font_size = 100
 text = "9999"
@@ -77,9 +84,9 @@ clip_text = true
 
 [node name="GoldLabel" type="Label" parent="."]
 offset_left = 152.0
-offset_top = 320.0
+offset_top = 232.0
 offset_right = 280.0
-offset_bottom = 448.0
+offset_bottom = 360.0
 theme_override_fonts/font = ExtResource("3_qesbo")
 theme_override_font_sizes/font_size = 100
 text = "9999"
@@ -87,12 +94,12 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="BrickIcon" type="Sprite2D" parent="."]
-position = Vector2(80, 256)
+position = Vector2(80, 160)
 scale = Vector2(2, 2)
 texture = ExtResource("4_l6brj")
 
 [node name="GoldIcon" type="Sprite2D" parent="."]
-position = Vector2(80, 384)
+position = Vector2(80, 296)
 scale = Vector2(2, 2)
 texture = ExtResource("5_x8i3h")
 
@@ -100,22 +107,44 @@ texture = ExtResource("5_x8i3h")
 wait_time = 10.0
 autostart = true
 
-[node name="Shops" type="Node" parent="."]
+[node name="BuilderButton" type="Button" parent="."]
+offset_left = 800.0
+offset_top = 64.0
+offset_right = 928.0
+offset_bottom = 128.0
+text = "Builder
+10g"
 
-[node name="BuilderShop" type="Node2D" parent="Shops"]
-position = Vector2(887, 101)
-script = ExtResource("7_rlwxu")
+[node name="MerchantButton" type="Button" parent="."]
+offset_left = 992.0
+offset_top = 64.0
+offset_right = 1120.0
+offset_bottom = 128.0
+text = "Merchant
+15g"
 
-[node name="Sprite2D" type="Sprite2D" parent="Shops/BuilderShop"]
-scale = Vector2(2, 2)
-texture = ExtResource("8_vxec8")
-region_enabled = true
-region_rect = Rect2(2, 0, 26, 40)
+[node name="MasonButton" type="Button" parent="."]
+offset_left = 800.0
+offset_top = 192.0
+offset_right = 928.0
+offset_bottom = 256.0
+text = "Mason
+20g"
 
-[node name="Area2D" type="Area2D" parent="Shops/BuilderShop"]
+[node name="ShepherdButton" type="Button" parent="."]
+offset_left = 992.0
+offset_top = 192.0
+offset_right = 1120.0
+offset_bottom = 256.0
+text = "Shepherd
+30g"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shops/BuilderShop/Area2D"]
-shape = SubResource("CapsuleShape2D_eldhx")
+[node name="WarriorButton" type="Button" parent="."]
+offset_left = 800.0
+offset_top = 320.0
+offset_right = 928.0
+offset_bottom = 384.0
+text = "Warrior
+45g"
 
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
-[connection signal="mouse_entered" from="Shops/BuilderShop/Area2D" to="Shops/BuilderShop" method="_on_builder_mouse_entered"]
