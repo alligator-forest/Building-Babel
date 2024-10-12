@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx2m410fn5f6t"]
+
+[ext_resource type="Texture2D" uid="uid://rvk0g45yi0mn" path="res://Assets/builder.png" id="1_tdduh"]
+
+[node name="Character" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tdduh")
