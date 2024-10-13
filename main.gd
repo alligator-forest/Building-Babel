@@ -32,6 +32,7 @@ func new_floor():
 		$Tower/Floors.move_child(tier,1)
 		newFloorBricks *= 4
 		newFloorBuilders += 1
+		$NewFloorPlayer.play(20)
 		update()
 
 func _input(event):
@@ -44,12 +45,16 @@ func add_resources(gold : int, bricks : int, fear : int):
 	numGold += gold
 	numBricks += bricks
 	godFear += fear
-	if(numGold < 0):
+	if(numGold <= 0):
 		numGold = 0
-	if(numBricks < 0):
+	if(numBricks <= 0):
 		numBricks = 0
 	if(godFear < 0):
 		godFear = 0
+	if(gold > 0):
+		$MoneyPickup.play()
+	if(bricks > 0):
+		$BrickPickup.play(55)
 	update()
 
 func update():
