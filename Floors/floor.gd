@@ -15,12 +15,15 @@ var maxChars = 5
 var hasWarrior = false
 @onready var rng = RandomNumberGenerator.new()
 
-func _ready():
-	add_character("thief")
-
-func theif_appears():
-	if(!hasWarrior and rng.randi_range(1,100) == 64):
+func thief_appears():
+	if(!has_warrior() and rng.randi_range(1,100) <= 5):
 		add_character("thief")
+		print("Thief appeared!")
+		return
+	print("thief did not appear...")
+
+func has_warrior() -> bool:
+	return hasWarrior
 
 func add_character(key : String):
 	key = key.to_lower()

@@ -3,7 +3,7 @@ extends Node2D
 @export var tiers : PackedScene
 @export var draggableCharacters : PackedScene
 
-var numGold = 45 #45 b/c you buy three chars at the start
+var numGold = 450 #45 b/c you buy three chars at the start
 var numBricks = 0
 var godFear = 0
 var newFloorBricks = 10
@@ -45,6 +45,12 @@ func add_resources(gold : int, bricks : int, fear : int):
 	numGold += gold
 	numBricks += bricks
 	godFear += fear
+	if(numGold < 0):
+		numGold = 0
+	if(numBricks < 0):
+		numBricks = 0
+	if(godFear < 0):
+		godFear = 0
 	update()
 
 func update():
@@ -53,6 +59,8 @@ func update():
 	$GodBar.value = godFear
 	$Tower/Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
 	$Tower/Floors/TopFloor/NewFloorLabel2.text = "BUILDERS NEEDED: " + str(newFloorBuilders)
+	if(godFear >= 100):
+		print("GAME OVER LOSER!!!!!")
 
 func _on_resource_timer_timeout():
 	var resources : Array[int] = [0,0,0]
@@ -60,13 +68,8 @@ func _on_resource_timer_timeout():
 		var r : Array[int] = $Tower/Floors.get_child(f).collect_resources()
 		for i in range(r.size()):
 			resources[i] += r[i]
-		
-	for i in range(resources.size()):
-		if resources[i] < 0:
-			resources[i] = 0
+		$Tower/Floors.get_child(f).thief_appears()
 	add_resources(resources[0],resources[1],resources[2])
-	
-	print("Collection Time!")
 
 @onready var rng = RandomNumberGenerator.new()
 func _on_builder_button_pressed():

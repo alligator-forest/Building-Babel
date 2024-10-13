@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=9 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bvwlkd2t0p7wi" path="res://Assets/floor.png" id="3_w2f3j"]
 [ext_resource type="Texture2D" uid="uid://c2nuxdwin3slv" path="res://Assets/brickIcon.png" id="4_l6brj"]
 [ext_resource type="Texture2D" uid="uid://dj3lam7b5ypx" path="res://Assets/goldIcon.png" id="5_x8i3h"]
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://theme.tres" id="8_hphvt"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eqxpj")
@@ -128,46 +129,61 @@ wait_time = 5.0
 autostart = true
 
 [node name="BuilderButton" type="Button" parent="."]
-offset_left = 800.0
+offset_left = 792.0
 offset_top = 64.0
-offset_right = 928.0
-offset_bottom = 128.0
+offset_right = 934.0
+offset_bottom = 144.0
+theme = ExtResource("8_hphvt")
 text = "Builder
-10g"
+10 Gold"
 
 [node name="MerchantButton" type="Button" parent="."]
-offset_left = 992.0
+offset_left = 984.0
 offset_top = 64.0
-offset_right = 1120.0
-offset_bottom = 128.0
+offset_right = 1126.0
+offset_bottom = 144.0
+theme = ExtResource("8_hphvt")
 text = "Merchant
-15g"
+15 Gold"
 
 [node name="MasonButton" type="Button" parent="."]
-offset_left = 800.0
+offset_left = 792.0
 offset_top = 192.0
-offset_right = 928.0
-offset_bottom = 256.0
+offset_right = 934.0
+offset_bottom = 272.0
+theme = ExtResource("8_hphvt")
 text = "Mason
-20g"
+20 Gold"
 
 [node name="ShepherdButton" type="Button" parent="."]
-offset_left = 992.0
+offset_left = 984.0
 offset_top = 192.0
-offset_right = 1120.0
-offset_bottom = 256.0
+offset_right = 1126.0
+offset_bottom = 272.0
+theme = ExtResource("8_hphvt")
 text = "Shepherd
-30g"
+30 Gold"
 
 [node name="WarriorButton" type="Button" parent="."]
-offset_left = 800.0
+offset_left = 792.0
 offset_top = 320.0
-offset_right = 928.0
-offset_bottom = 384.0
+offset_right = 934.0
+offset_bottom = 400.0
+theme = ExtResource("8_hphvt")
 text = "Warrior
-45g"
+45 Gold"
 
 [node name="DraggableCharacters" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 784.0
+offset_top = 472.0
+offset_right = 1135.0
+offset_bottom = 536.0
+theme_override_fonts/font = ExtResource("3_qesbo")
+theme_override_font_sizes/font_size = 50
+text = "Drag me to a floor!"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
 [connection signal="pressed" from="BuilderButton" to="." method="_on_builder_button_pressed"]
