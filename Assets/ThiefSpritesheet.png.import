@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cd3jjrlqppvs"
-path="res://.godot/imported/ThiefSpritesheet.png-b03cd52db66c0f61c5a0a2e850a72d32.ctex"
+path="res://.godot/imported/thiefSpritesheet.png-ef93473340d627713d690249f1782dcd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ThiefSpritesheet.png"
-dest_files=["res://.godot/imported/ThiefSpritesheet.png-b03cd52db66c0f61c5a0a2e850a72d32.ctex"]
+source_file="res://Assets/thiefSpritesheet.png"
+dest_files=["res://.godot/imported/thiefSpritesheet.png-ef93473340d627713d690249f1782dcd.ctex"]
 
 [params]
 

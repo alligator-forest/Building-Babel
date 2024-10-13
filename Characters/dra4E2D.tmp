@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_tcukw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xjy0l"]
-radius = 14.0
-height = 41.0
+radius = 14.5
+height = 46.0
 
 [node name="DraggableCharacter" type="Node2D"]
 scale = Vector2(2, 2)

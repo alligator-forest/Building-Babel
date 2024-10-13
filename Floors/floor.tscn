@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://br8j0dbxk0gmh"]
+[gd_scene load_steps=10 format=3 uid="uid://br8j0dbxk0gmh"]
 
 [ext_resource type="Texture2D" uid="uid://bvwlkd2t0p7wi" path="res://Assets/floor.png" id="1_wm2fs"]
 [ext_resource type="Script" path="res://Floors/floor.gd" id="2_d1pa7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/merchant.tscn" id="6_8c1d8"]
 [ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/warrior.tscn" id="6_126tb"]
 [ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/shepherd.tscn" id="7_uo6gc"]
+[ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Marav2.ttf" id="8_kxt1x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcifm"]
 size = Vector2(384, 128)
@@ -14,47 +15,26 @@ size = Vector2(384, 128)
 [node name="Floor" type="TextureRect"]
 offset_right = 384.0
 offset_bottom = 128.0
+mouse_filter = 2
 texture = ExtResource("1_wm2fs")
 script = ExtResource("2_d1pa7")
 builders = ExtResource("3_k8rj1")
+merchants = ExtResource("6_8c1d8")
+masons = ExtResource("5_ngv8i")
+shepherds = ExtResource("7_uo6gc")
+warriors = ExtResource("6_126tb")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
+offset_left = 8.0
 offset_right = 256.0
-offset_bottom = 24.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_kxt1x")
+theme_override_font_sizes/font_size = 30
+text = "FULL"
 
 [node name="Characters" type="Node2D" parent="."]
-
-[node name="Builder" parent="Characters" instance=ExtResource("3_k8rj1")]
-offset_left = 54.0
-offset_top = 95.0
-offset_right = 54.0
-offset_bottom = 95.0
-
-[node name="Mason" parent="Characters" instance=ExtResource("5_ngv8i")]
-offset_left = 17.0
-offset_top = 98.0
-offset_right = 17.0
-offset_bottom = 98.0
-
-[node name="Merchant" parent="Characters" instance=ExtResource("6_8c1d8")]
-offset_left = 153.0
-offset_top = 95.0
-offset_right = 153.0
-offset_bottom = 95.0
-scale = Vector2(1.5, 1.5)
-
-[node name="Warrior" parent="Characters" instance=ExtResource("6_126tb")]
-offset_left = 200.0
-offset_top = 98.0
-offset_right = 200.0
-offset_bottom = 98.0
-
-[node name="Shepherd" parent="Characters" instance=ExtResource("7_uo6gc")]
-offset_left = 101.0
-offset_top = 98.0
-offset_right = 101.0
-offset_bottom = 98.0
 
 [node name="Area2D" type="Area2D" parent="."]
 

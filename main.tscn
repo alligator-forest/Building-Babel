@@ -31,6 +31,7 @@ offset_left = 384.0
 offset_right = 768.0
 offset_bottom = 648.0
 size_flags_vertical = 8
+mouse_filter = 2
 follow_focus = true
 horizontal_scroll_mode = 0
 
@@ -47,25 +48,40 @@ texture = ExtResource("3_w2f3j")
 
 [node name="Button" type="Button" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 28.0
-offset_right = 178.0
-offset_bottom = 92.0
-text = "BUILD NEW FLOOR"
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 128.0
+offset_bottom = 96.0
+text = "BUILD NEW 
+FLOOR"
 
 [node name="NewFloorLabel" type="Label" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
-offset_left = 188.0
-offset_top = 28.0
-offset_right = 344.0
-offset_bottom = 104.0
+offset_left = 136.0
+offset_top = 24.0
+offset_right = 352.0
+offset_bottom = 72.0
 theme_override_fonts/font = ExtResource("3_qesbo")
 theme_override_font_sizes/font_size = 35
 text = "BRICKS NEEDED:
 "
+vertical_alignment = 1
+
+[node name="NewFloorLabel2" type="Label" parent="Tower/Floors/TopFloor"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 72.0
+offset_right = 352.0
+offset_bottom = 120.0
+theme_override_fonts/font = ExtResource("3_qesbo")
+theme_override_font_sizes/font_size = 35
+text = "BUILDERS NEEDED:
+"
+vertical_alignment = 1
 
 [node name="Floor" parent="Tower/Floors" instance=ExtResource("2_d85bv")]
 layout_mode = 2
+floorName = "Lobby"
 
 [node name="GodBar" type="ProgressBar" parent="."]
 modulate = Color(1, 0.966667, 0, 1)
@@ -108,6 +124,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("5_x8i3h")
 
 [node name="ResourceTimer" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
 
 [node name="BuilderButton" type="Button" parent="."]
@@ -150,9 +167,11 @@ offset_bottom = 384.0
 text = "Warrior
 45g"
 
-[node name="DraggableCharacter" parent="." instance=ExtResource("3_ly3wx")]
-position = Vector2(898, 448)
+[node name="DraggableCharacters" type="Node" parent="."]
 
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
 [connection signal="pressed" from="BuilderButton" to="." method="_on_builder_button_pressed"]
 [connection signal="pressed" from="MerchantButton" to="." method="_on_merchant_button_pressed"]
+[connection signal="pressed" from="MasonButton" to="." method="_on_mason_button_pressed"]
+[connection signal="pressed" from="ShepherdButton" to="." method="_on_shepherd_button_pressed"]
+[connection signal="pressed" from="WarriorButton" to="." method="_on_warrior_button_pressed"]

@@ -3,7 +3,7 @@ extends Node2D
 @export var tiers : PackedScene
 @export var draggableCharacters : PackedScene
 
-var numGold = 0
+var numGold = 45 #45 b/c you buy three chars at the start
 var numBricks = 0
 var godFear = 0
 var newFloorBricks = 10
@@ -12,6 +12,9 @@ var newFloorBuilders = 1
 func _ready():
 	update()
 	$Tower/Floors/TopFloor/Button.pressed.connect(new_floor)
+	_on_builder_button_pressed()
+	_on_merchant_button_pressed()
+	_on_mason_button_pressed()
 
 func check_builders() -> int:
 	var numBuilders = 0
@@ -29,6 +32,7 @@ func new_floor():
 		$Tower/Floors.add_child(tier)
 		$Tower/Floors.move_child(tier,1)
 		newFloorBricks *= 4
+		newFloorBuilders += 1
 		update()
 
 func _input(event):
@@ -47,7 +51,8 @@ func update():
 	$BrickLabel.text = str(numBricks)
 	$GoldLabel.text = str(numGold)
 	$GodBar.value = godFear
-	$Tower/Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED:\n" + str(newFloorBricks)
+	$Tower/Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
+	$Tower/Floors/TopFloor/NewFloorLabel2.text = "BUILDERS NEEDED: " + str(newFloorBuilders)
 
 func _on_resource_timer_timeout():
 	for f in range(1,$Tower/Floors.get_child_count()):
@@ -55,19 +60,68 @@ func _on_resource_timer_timeout():
 		add_resources(resources[0],resources[1],resources[2])
 	print("Collection Time!")
 
-
+@onready var rng = RandomNumberGenerator.new()
 func _on_builder_button_pressed():
 	if(numGold >= 10):
 		numGold -= 10
 		var dChar = draggableCharacters.instantiate()
-		dChar.position = Vector2(898,448)
-		add_child(dChar)
-
+		dChar.position = Vector2(rng.randf_range(832,1088),448)
+		$DraggableCharacters.add_child(dChar)
+		update()
 
 func _on_merchant_button_pressed():
 	if(numGold >= 15):
 		numGold -= 15
 		var dChar = draggableCharacters.instantiate()
 		dChar.change_name("merchant")
-		dChar.position = Vector2(898,448)
-		add_child(dChar)
+		dChar.position = Vector2(rng.randf_range(832,1088),448)
+		$DraggableCharacters.add_child(dChar)
+		update()
+
+
+func _on_mason_button_pressed():
+	if(numGold >= 20):
+		numGold -= 20
+		var dChar = draggableCharacters.instantiate()
+		dChar.change_name("mason")
+		dChar.position = Vector2(rng.randf_range(832,1088),448)
+		$DraggableCharacters.add_child(dChar)
+		update()
+
+
+func _on_shepherd_button_pressed():
+	if(numGold >= 30):
+		numGold -= 30
+		var dChar = draggableCharacters.instantiate()
+		dChar.change_name("shepherd")
+		dChar.position = Vector2(rng.randf_range(832,1088),448)
+		$DraggableCharacters.add_child(dChar)
+		update()
+
+
+func _on_warrior_button_pressed():
+	if(numGold >= 45):
+		numGold -= 45
+		var dChar = draggableCharacters.instantiate()
+		dChar.change_name("warrior")
+		dChar.position = Vector2(rng.randf_range(832,1088),448)
+		$DraggableCharacters.add_child(dChar)
+		update()
+
+var currChar : DraggableCharacter = null
+
+func _process(_delta):
+	if(Input.is_action_just_pressed("click_press")):
+		for d in $DraggableCharacters.get_children():
+			if(d.is_mouse_within()):
+				if(currChar == null or d.get_index() < currChar.get_index()):
+					currChar = d
+					$DraggableCharacters.move_child(currChar,$DraggableCharacters.get_child_count() -1)
+	if(currChar != null):
+		if(Input.is_action_pressed("click_press")):
+			currChar.move()
+			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+		if(Input.is_action_just_released("click_press")):
+			currChar.snap_to_floor()
+			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+			currChar = null

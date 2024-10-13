@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ba36h47ll80s5"
-path="res://.godot/imported/MasonSpritesheet.png-15e4170234eab70868f1c6c45c56de12.ctex"
+path="res://.godot/imported/masonSpritesheet.png-cd84c3446d3da271997b62751fcfe3ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/MasonSpritesheet.png"
-dest_files=["res://.godot/imported/MasonSpritesheet.png-15e4170234eab70868f1c6c45c56de12.ctex"]
+source_file="res://Assets/masonSpritesheet.png"
+dest_files=["res://.godot/imported/masonSpritesheet.png-cd84c3446d3da271997b62751fcfe3ff.ctex"]
 
 [params]
 

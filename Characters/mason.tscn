@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Characters/Mason.gd" id="1_b5g5f"]
 [ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_rcnnq"]
-[ext_resource type="Texture2D" uid="uid://ba36h47ll80s5" path="res://Assets/MasonSpritesheet.png" id="3_cguhy"]
+[ext_resource type="Texture2D" uid="uid://ba36h47ll80s5" path="res://Assets/masonSpritesheet.png" id="3_loj76"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtuxa"]
 atlas = ExtResource("2_rcnnq")
@@ -13,11 +13,11 @@ atlas = ExtResource("2_rcnnq")
 region = Rect2(28, 0, 28, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6efc0"]
-atlas = ExtResource("3_cguhy")
+atlas = ExtResource("3_loj76")
 region = Rect2(0, 0, 24, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u83r8"]
-atlas = ExtResource("3_cguhy")
+atlas = ExtResource("3_loj76")
 region = Rect2(24, 0, 24, 32)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_680mf"]
