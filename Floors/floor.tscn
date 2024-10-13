@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://br8j0dbxk0gmh"]
+[gd_scene load_steps=11 format=3 uid="uid://br8j0dbxk0gmh"]
 
 [ext_resource type="Texture2D" uid="uid://bvwlkd2t0p7wi" path="res://Assets/floor.png" id="1_wm2fs"]
 [ext_resource type="Script" path="res://Floors/floor.gd" id="2_d1pa7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/merchant.tscn" id="6_8c1d8"]
 [ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/warrior.tscn" id="6_126tb"]
 [ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/shepherd.tscn" id="7_uo6gc"]
+[ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/thief.tscn" id="8_0fhis"]
 [ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Marav2.ttf" id="8_kxt1x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcifm"]
@@ -23,6 +24,7 @@ merchants = ExtResource("6_8c1d8")
 masons = ExtResource("5_ngv8i")
 shepherds = ExtResource("7_uo6gc")
 warriors = ExtResource("6_126tb")
+theives = ExtResource("8_0fhis")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

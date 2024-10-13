@@ -55,9 +55,17 @@ func update():
 	$Tower/Floors/TopFloor/NewFloorLabel2.text = "BUILDERS NEEDED: " + str(newFloorBuilders)
 
 func _on_resource_timer_timeout():
+	var resources : Array[int] = [0,0,0]
 	for f in range(1,$Tower/Floors.get_child_count()):
-		var resources : Array[int] = $Tower/Floors.get_child(f).collect_resources()
-		add_resources(resources[0],resources[1],resources[2])
+		var r : Array[int] = $Tower/Floors.get_child(f).collect_resources()
+		for i in range(r.size()):
+			resources[i] += r[i]
+		
+	for i in range(resources.size()):
+		if resources[i] < 0:
+			resources[i] = 0
+	add_resources(resources[0],resources[1],resources[2])
+	
 	print("Collection Time!")
 
 @onready var rng = RandomNumberGenerator.new()
@@ -78,7 +86,6 @@ func _on_merchant_button_pressed():
 		$DraggableCharacters.add_child(dChar)
 		update()
 
-
 func _on_mason_button_pressed():
 	if(numGold >= 20):
 		numGold -= 20
@@ -88,7 +95,6 @@ func _on_mason_button_pressed():
 		$DraggableCharacters.add_child(dChar)
 		update()
 
-
 func _on_shepherd_button_pressed():
 	if(numGold >= 30):
 		numGold -= 30
@@ -97,7 +103,6 @@ func _on_shepherd_button_pressed():
 		dChar.position = Vector2(rng.randf_range(832,1088),448)
 		$DraggableCharacters.add_child(dChar)
 		update()
-
 
 func _on_warrior_button_pressed():
 	if(numGold >= 45):
