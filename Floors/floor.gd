@@ -15,6 +15,13 @@ var maxChars = 5
 var hasWarrior = false
 @onready var rng = RandomNumberGenerator.new()
 
+func _ready():
+	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
+
+func change_name(n : String):
+	floorName = n
+	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
+
 func thief_appears():
 	if(!has_warrior() and rng.randi_range(1,100) <= 5):
 		add_character("thief")

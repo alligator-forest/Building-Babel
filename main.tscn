@@ -15,10 +15,10 @@ tiers = ExtResource("2_d85bv")
 draggableCharacters = ExtResource("3_ly3wx")
 
 [node name="TextureRect" type="ColorRect" parent="."]
-offset_right = 384.0
+offset_right = 768.0
 offset_bottom = 648.0
 mouse_filter = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.160784, 0.678431, 1, 1)
 
 [node name="TextureRect2" type="ColorRect" parent="."]
 offset_left = 768.0
@@ -185,6 +185,7 @@ theme_override_font_sizes/font_size = 50
 text = "Drag me to a floor!"
 horizontal_alignment = 1
 
+[connection signal="pressed" from="Tower/Floors/TopFloor/Button" to="." method="new_floor"]
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
 [connection signal="pressed" from="BuilderButton" to="." method="_on_builder_button_pressed"]
 [connection signal="pressed" from="MerchantButton" to="." method="_on_merchant_button_pressed"]

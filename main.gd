@@ -3,15 +3,14 @@ extends Node2D
 @export var tiers : PackedScene
 @export var draggableCharacters : PackedScene
 
-var numGold = 450 #45 b/c you buy three chars at the start
-var numBricks = 0
+var numGold = 45 #45 b/c you buy three chars at the start
+var numBricks = 100
 var godFear = 0
 var newFloorBricks = 10
 var newFloorBuilders = 1
 
 func _ready():
 	update()
-	$Tower/Floors/TopFloor/Button.pressed.connect(new_floor)
 	_on_builder_button_pressed()
 	_on_merchant_button_pressed()
 	_on_mason_button_pressed()
@@ -19,7 +18,7 @@ func _ready():
 func check_builders() -> int:
 	var numBuilders = 0
 	for f in range(1,$Tower/Floors.get_child_count()):
-		for c in $Tower/Floors.get_child(f).get_child(1).get_children():
+		for c in $Tower/Floors.get_child(f).get_child(2).get_children():
 			if c is Builder:
 				numBuilders+=1
 	return numBuilders
@@ -28,7 +27,7 @@ func new_floor():
 	if(numBricks >= newFloorBricks and check_builders() >= newFloorBuilders):
 		numBricks -= newFloorBricks
 		var tier = tiers.instantiate()
-		tier.get_child(0).text = str($Tower/Floors.get_child_count())
+		tier.change_name("Floor " + str($Tower/Floors.get_child_count()))
 		$Tower/Floors.add_child(tier)
 		$Tower/Floors.move_child(tier,1)
 		newFloorBricks *= 4
@@ -60,7 +59,7 @@ func update():
 	$Tower/Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
 	$Tower/Floors/TopFloor/NewFloorLabel2.text = "BUILDERS NEEDED: " + str(newFloorBuilders)
 	if(godFear >= 100):
-		print("GAME OVER LOSER!!!!!")
+		get_tree().change_scene_to_file("res://game_over.tscn")
 
 func _on_resource_timer_timeout():
 	var resources : Array[int] = [0,0,0]
@@ -68,7 +67,8 @@ func _on_resource_timer_timeout():
 		var r : Array[int] = $Tower/Floors.get_child(f).collect_resources()
 		for i in range(r.size()):
 			resources[i] += r[i]
-		$Tower/Floors.get_child(f).thief_appears()
+		if($Tower/Floors.get_child_count() > 3):
+			$Tower/Floors.get_child(f).thief_appears()
 	add_resources(resources[0],resources[1],resources[2])
 
 @onready var rng = RandomNumberGenerator.new()

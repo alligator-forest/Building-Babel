@@ -11,3 +11,5 @@ default_font_size = 30
 Button/font_sizes/font_size = 40
 Button/fonts/font = ExtResource("1_t72pw")
 Button/styles/normal = SubResource("StyleBoxFlat_sas17")
+Label/font_sizes/font_size = 35
+Label/fonts/font = ExtResource("1_t72pw")

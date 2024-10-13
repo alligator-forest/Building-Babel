@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3 uid="uid://c2fhhh5tia0q2"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_r7w56"]
+[ext_resource type="Texture2D" uid="uid://0d76067wdlcn" path="res://Assets/GameOverSpritesheet.png" id="1_wuxee"]
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://theme.tres" id="3_3w87l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvjjr"]
+atlas = ExtResource("1_wuxee")
+region = Rect2(0, 0, 512, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fntir"]
+atlas = ExtResource("1_wuxee")
+region = Rect2(512, 0, 512, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1ave"]
+atlas = ExtResource("1_wuxee")
+region = Rect2(1024, 0, 512, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4aa0y"]
+atlas = ExtResource("1_wuxee")
+region = Rect2(1536, 0, 512, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7cnj"]
+atlas = ExtResource("1_wuxee")
+region = Rect2(2048, 0, 512, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pn1c2"]
+animations = [{
+"frames": [{
+"duration": 12.0,
+"texture": SubResource("AtlasTexture_bvjjr")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_fntir")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_d1ave")
+}],
+"loop": false,
+"name": &"Game Over Intro",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4aa0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7cnj")
+}],
+"loop": true,
+"name": &"Game Over Loop",
+"speed": 7.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ks7h8"]
+bg_color = Color(0.494118, 0.145098, 0.32549, 1)
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_r7w56")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.25, 2.53125)
+sprite_frames = SubResource("SpriteFrames_pn1c2")
+animation = &"Game Over Loop"
+autoplay = "Game Over Intro"
+
+[node name="BibleQuote" type="Label" parent="."]
+offset_left = 704.0
+offset_top = 296.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme = ExtResource("3_3w87l")
+text = "The LORD said, \"If as one people speaking the same language they have begun to do this, then nothing they plan to do will be impossible for them. 7 Come, let us go down and confuse their language so they will not understand each other.\"
+-Genesis 7:8"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="GameOver" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 336.0
+offset_right = 423.0
+offset_bottom = 464.0
+theme_override_font_sizes/font_size = 75
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = 456.0
+offset_top = 576.0
+offset_right = 638.0
+offset_bottom = 640.0
+theme = ExtResource("3_3w87l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ks7h8")
+text = "TRY AGAIN?"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
