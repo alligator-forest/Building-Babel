@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var tiers : PackedScene
+@export var draggableCharacters : PackedScene
 
 var numGold = 0
 var numBricks = 0
@@ -55,5 +56,5 @@ func _on_resource_timer_timeout():
 	print("Collection Time!")
 
 
-func _on_area_2d_mouse_entered():
-	pass # Replace with function body.
+func _on_builder_button_pressed():
+	pass

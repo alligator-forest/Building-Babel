@@ -16,14 +16,12 @@ draggableCharacters = ExtResource("3_ly3wx")
 [node name="TextureRect" type="ColorRect" parent="."]
 offset_right = 384.0
 offset_bottom = 648.0
-mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="TextureRect2" type="ColorRect" parent="."]
 offset_left = 768.0
 offset_right = 1152.0
 offset_bottom = 648.0
-mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Tower" type="ScrollContainer" parent="."]
@@ -150,9 +148,6 @@ offset_right = 928.0
 offset_bottom = 384.0
 text = "Warrior
 45g"
-
-[node name="DraggableCharacter" parent="." instance=ExtResource("3_ly3wx")]
-position = Vector2(872, 484)
 
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
 [connection signal="pressed" from="BuilderButton" to="." method="_on_builder_button_pressed"]

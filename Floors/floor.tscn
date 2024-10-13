@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://br8j0dbxk0gmh"]
+[gd_scene load_steps=9 format=3 uid="uid://br8j0dbxk0gmh"]
 
 [ext_resource type="Texture2D" uid="uid://bvwlkd2t0p7wi" path="res://Assets/floor.png" id="1_wm2fs"]
 [ext_resource type="Script" path="res://Floors/floor.gd" id="2_d1pa7"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/merchant.tscn" id="6_8c1d8"]
 [ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/warrior.tscn" id="6_126tb"]
 [ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/shepherd.tscn" id="7_uo6gc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcifm"]
+size = Vector2(256, 128)
 
 [node name="Floor" type="TextureRect"]
 texture = ExtResource("1_wm2fs")
@@ -50,3 +53,9 @@ offset_left = 101.0
 offset_top = 98.0
 offset_right = 101.0
 offset_bottom = 98.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(128, 64)
+shape = SubResource("RectangleShape2D_tcifm")
