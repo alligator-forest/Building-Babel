@@ -1,7 +1,10 @@
 extends Node2D
 class_name DraggableCharacter
 
-var chara = "Builder"
+var chara = "builder"
+func change_name(cha):
+	chara = cha
+	$Sprite.set_texture(load("res://Assets/" + chara + "Spritesheet.png"))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var mouseWithin : bool = false
 var offset : Vector2

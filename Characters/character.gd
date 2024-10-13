@@ -16,7 +16,6 @@ func _on_wait_timer_timeout():
 	$MoveTimer.wait_time = time 
 	$MoveTimer.start()
 
-
 func _on_move_timer_timeout():
 	$AnimatedSprite2D.stop()
 	$WaitTimer.wait_time = rng.randf_range(2,7)

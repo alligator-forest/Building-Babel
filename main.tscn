@@ -108,7 +108,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("5_x8i3h")
 
 [node name="ResourceTimer" type="Timer" parent="."]
-wait_time = 10.0
 autostart = true
 
 [node name="BuilderButton" type="Button" parent="."]
@@ -152,7 +151,8 @@ text = "Warrior
 45g"
 
 [node name="DraggableCharacter" parent="." instance=ExtResource("3_ly3wx")]
-position = Vector2(872, 484)
+position = Vector2(898, 448)
 
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
 [connection signal="pressed" from="BuilderButton" to="." method="_on_builder_button_pressed"]
+[connection signal="pressed" from="MerchantButton" to="." method="_on_merchant_button_pressed"]

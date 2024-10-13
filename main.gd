@@ -57,4 +57,17 @@ func _on_resource_timer_timeout():
 
 
 func _on_builder_button_pressed():
-	pass
+	if(numGold >= 10):
+		numGold -= 10
+		var dChar = draggableCharacters.instantiate()
+		dChar.position = Vector2(898,448)
+		add_child(dChar)
+
+
+func _on_merchant_button_pressed():
+	if(numGold >= 15):
+		numGold -= 15
+		var dChar = draggableCharacters.instantiate()
+		dChar.change_name("merchant")
+		dChar.position = Vector2(898,448)
+		add_child(dChar)
