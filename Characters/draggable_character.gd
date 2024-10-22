@@ -27,7 +27,12 @@ func move():
 	global_position = get_global_mouse_position() - offset
 
 func snap_to_floor():
-	if(closestFloor != null and !closestFloor.is_full()):
+	var closestFloor = null
+	for f in floors:
+		var distance = sqrt(pow(f.position.x,2) + pow(f.position.y,2))
+		if(closestFloor == null or distance < sqrt(pow(closestFloor.position.x,2) + pow(closestFloor.position.y,2))):
+			closestFloor = f
+	if(closestFloor != null):
 		closestFloor.add_character(chara)
 		queue_free()
 
@@ -37,12 +42,13 @@ func _on_area_2d_mouse_entered():
 func _on_area_2d_mouse_exited():
 	mouseWithin = false
 
-var closestFloor = null
+var floors : Array[Floor]
 
 func _on_area_2d_area_entered(area):
-	if(area.get_parent() is Floor):
-		closestFloor = area.get_parent()
+	if(area.get_parent() is Floor and !area.get_parent().is_full()):
+		floors.append(area.get_parent())
+	print(floors)
 
 func _on_area_2d_area_exited(area):
-	if(area.get_parent() == closestFloor):
-		closestFloor = null
+	if(area.get_parent() in floors):
+		floors.remove_at(floors.find(area.get_parent()))

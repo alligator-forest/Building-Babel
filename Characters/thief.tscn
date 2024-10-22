@@ -31,13 +31,13 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("2_jk7us")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m3vv1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ja647"]
 atlas = ExtResource("4_fhdx2")
-region = Rect2(0, 0, 30, 32)
+region = Rect2(2, 0, 28, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_71dfv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j3u4"]
 atlas = ExtResource("4_fhdx2")
-region = Rect2(30, 0, 30, 32)
+region = Rect2(32, 0, 28, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_baqft"]
 animations = [{
@@ -76,10 +76,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m3vv1")
+"texture": SubResource("AtlasTexture_ja647")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_71dfv")
+"texture": SubResource("AtlasTexture_7j3u4")
 }],
 "loop": true,
 "name": &"new_animation",
@@ -96,7 +96,7 @@ grow_vertical = 2
 script = ExtResource("1_xejel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_baqft")
 animation = &"new_animation"
 

@@ -13,6 +13,8 @@ class_name Floor
 var numChars = 0
 var maxChars = 5
 var hasWarrior = false
+var hasThief = false
+
 @onready var rng = RandomNumberGenerator.new()
 
 func _ready():
@@ -25,9 +27,7 @@ func change_name(n : String):
 func thief_appears():
 	if(!has_warrior() and rng.randi_range(1,100) <= 5):
 		add_character("thief")
-		print("Thief appeared!")
 		return
-	print("thief did not appear...")
 
 func has_warrior() -> bool:
 	return hasWarrior
@@ -38,33 +38,32 @@ func add_character(key : String):
 		"builder":
 			var builder := builders.instantiate()
 			$Characters.add_child(builder)
-			builder.position = Vector2(rng.randf_range(12,300),95)
+			builder.position = Vector2(rng.randf_range(26,325),86)
 		"merchant":
 			var merchant := merchants.instantiate()
 			$Characters.add_child(merchant)
-			merchant.position = Vector2(rng.randf_range(12,300),95)
-			merchant.scale = Vector2(1.5,1.5)
+			merchant.position = Vector2(rng.randf_range(26,325),86)
 		"mason":
 			var mason := masons.instantiate()
 			$Characters.add_child(mason)
-			mason.position = Vector2(rng.randf_range(12,300),98)
+			mason.position = Vector2(rng.randf_range(26,325),92)
 		"shepherd":
 			var shepherd := shepherds.instantiate()
 			$Characters.add_child(shepherd)
-			shepherd.position = Vector2(rng.randf_range(12,300),98)
+			shepherd.position = Vector2(rng.randf_range(26,325),92)
 		"warrior":
 			hasWarrior = true
 			var warrior := warriors.instantiate()
 			$Characters.add_child(warrior)
-			warrior.position = Vector2(rng.randf_range(12,300),98)
+			warrior.position = Vector2(rng.randf_range(26,325),92)
 		"thief":
+			hasThief = true
 			var thief := theives.instantiate()
 			$Characters.add_child(thief)
-			thief.position = Vector2(rng.randf_range(12,300),98)
+			thief.position = Vector2(rng.randf_range(26,325),92)
 			numChars -= 1
 	numChars += 1
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
-	print(numChars)
 
 func is_full():
 	return (numChars >= maxChars)
@@ -77,4 +76,6 @@ func collect_resources() -> Array[int]:
 		gold += c.getGold()
 		bricks += c.getBricks()
 		godFear += c.getGodFear()
+		if(c is Thief and c.stolen_enough()):
+			c.queue_free()
 	return [gold, bricks, godFear]

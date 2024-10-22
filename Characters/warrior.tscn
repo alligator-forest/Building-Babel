@@ -31,13 +31,13 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("3_8ueh5")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ffmul"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i1po"]
 atlas = ExtResource("4_63pe5")
-region = Rect2(0, 0, 34, 32)
+region = Rect2(2, 2, 32, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6nuoy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_85txa"]
 atlas = ExtResource("4_63pe5")
-region = Rect2(34, 0, 34, 32)
+region = Rect2(36, 2, 32, 30)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g70nr"]
 animations = [{
@@ -76,10 +76,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ffmul")
+"texture": SubResource("AtlasTexture_2i1po")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6nuoy")
+"texture": SubResource("AtlasTexture_85txa")
 }],
 "loop": true,
 "name": &"Warrior",
@@ -97,7 +97,7 @@ script = ExtResource("1_f46ni")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4.76837e-07, 1.90735e-06)
-scale = Vector2(1.41176, 1.5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g70nr")
 animation = &"Warrior"
 

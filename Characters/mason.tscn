@@ -12,13 +12,13 @@ region = Rect2(0, 0, 28, 40)
 atlas = ExtResource("2_rcnnq")
 region = Rect2(28, 0, 28, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6efc0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwx7k"]
 atlas = ExtResource("3_loj76")
-region = Rect2(0, 0, 24, 32)
+region = Rect2(2, 2, 22, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u83r8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_33648"]
 atlas = ExtResource("3_loj76")
-region = Rect2(24, 0, 24, 32)
+region = Rect2(26, 2, 22, 30)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_680mf"]
 
@@ -45,10 +45,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6efc0")
+"texture": SubResource("AtlasTexture_uwx7k")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u83r8")
+"texture": SubResource("AtlasTexture_33648")
 }],
 "loop": true,
 "name": &"Mason",
@@ -76,7 +76,7 @@ grow_vertical = 2
 script = ExtResource("1_b5g5f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_n6h8q")
 animation = &"Mason"
 

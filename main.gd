@@ -4,7 +4,7 @@ extends Node2D
 @export var draggableCharacters : PackedScene
 
 var numGold = 45 #45 b/c you buy three chars at the start
-var numBricks = 100
+var numBricks = 0
 var godFear = 0
 var newFloorBricks = 10
 var newFloorBuilders = 1
@@ -35,26 +35,22 @@ func new_floor():
 		$NewFloorPlayer.play(20)
 		update()
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		new_floor()
-	if(event.is_action_pressed("ui_up")):
-		add_resources(0,5,-1)
-
 func add_resources(gold : int, bricks : int, fear : int):
 	numGold += gold
 	numBricks += bricks
 	godFear += fear
 	if(numGold <= 0):
 		numGold = 0
-	if(numBricks <= 0):
-		numBricks = 0
+	#if(numBricks <= 0):
+		#numBricks = 0
 	if(godFear < 0):
 		godFear = 0
 	if(gold > 0):
 		$MoneyPickup.play()
 	if(bricks > 0):
 		$BrickPickup.play(55)
+	if(gold < 0 or bricks < 0):
+		$Steal.play()
 	update()
 
 func update():
@@ -113,8 +109,8 @@ func _on_shepherd_button_pressed():
 		update()
 
 func _on_warrior_button_pressed():
-	if(numGold >= 45):
-		numGold -= 45
+	if(numGold >= 30):
+		numGold -= 30
 		var dChar = draggableCharacters.instantiate()
 		dChar.change_name("warrior")
 		dChar.position = Vector2(rng.randf_range(832,1088),448)

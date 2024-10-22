@@ -22,13 +22,13 @@ region = Rect2(0, 0, 32, 36)
 atlas = SubResource("CompressedTexture2D_680mf")
 region = Rect2(32, 0, 32, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eo7ag"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljkec"]
 atlas = ExtResource("3_c53cy")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(2, 2, 30, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gpwfc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_27oel"]
 atlas = ExtResource("3_c53cy")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(34, 2, 30, 30)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jrn28"]
 animations = [{
@@ -56,10 +56,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eo7ag")
+"texture": SubResource("AtlasTexture_ljkec")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gpwfc")
+"texture": SubResource("AtlasTexture_27oel")
 }],
 "loop": true,
 "name": &"Shepherd",
@@ -76,7 +76,7 @@ grow_vertical = 2
 script = ExtResource("1_rjciw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_jrn28")
 animation = &"Shepherd"
 

@@ -8,7 +8,7 @@ radius = 14.0
 height = 41.0
 
 [node name="DraggableCharacter" type="Node2D"]
-scale = Vector2(2, 2)
+scale = Vector2(2.5, 2.5)
 script = ExtResource("1_fpejv")
 
 [node name="Sprite" type="Sprite2D" parent="."]

@@ -3,22 +3,22 @@
 [ext_resource type="Script" path="res://Characters/builder.gd" id="1_0qr7f"]
 [ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_ncmoi"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jtuxa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1txo"]
 atlas = ExtResource("2_ncmoi")
-region = Rect2(0, 0, 28, 40)
+region = Rect2(2, 2, 26, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_crmar"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lqth"]
 atlas = ExtResource("2_ncmoi")
-region = Rect2(28, 0, 28, 40)
+region = Rect2(30, 2, 26, 36)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ofgha"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jtuxa")
+"texture": SubResource("AtlasTexture_u1txo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_crmar")
+"texture": SubResource("AtlasTexture_3lqth")
 }],
 "loop": true,
 "name": &"Builder",
@@ -32,7 +32,7 @@ script = ExtResource("1_0qr7f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.54972e-06, 1.19209e-07)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ofgha")
 animation = &"Builder"
 frame_progress = 0.756804

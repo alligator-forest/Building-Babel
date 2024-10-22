@@ -12,13 +12,13 @@ region = Rect2(0, 0, 28, 40)
 atlas = ExtResource("2_eafrh")
 region = Rect2(28, 0, 28, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_spfsi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgiya"]
 atlas = ExtResource("3_0pid1")
-region = Rect2(24, 0, 24, 36)
+region = Rect2(26, 0, 22, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kjhec"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7kpk"]
 atlas = ExtResource("3_0pid1")
-region = Rect2(0, 0, 24, 36)
+region = Rect2(2, 0, 22, 36)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yshwx"]
 animations = [{
@@ -35,10 +35,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_spfsi")
+"texture": SubResource("AtlasTexture_rgiya")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kjhec")
+"texture": SubResource("AtlasTexture_h7kpk")
 }],
 "loop": true,
 "name": &"Merchant",
@@ -55,7 +55,7 @@ grow_vertical = 2
 script = ExtResource("1_fxlpp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-0.666666, 0)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_yshwx")
 animation = &"Merchant"
 

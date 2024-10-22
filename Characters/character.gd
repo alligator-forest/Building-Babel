@@ -6,7 +6,7 @@ class_name Character
 func _on_wait_timer_timeout():
 	var tween = create_tween()
 	$AnimatedSprite2D.play()
-	var newPos = rng.randf_range(12,300)
+	var newPos = rng.randf_range(26,325)
 	if(newPos > position.x):
 		$AnimatedSprite2D.flip_h = true
 	else:
