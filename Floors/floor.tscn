@@ -2,13 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://bvwlkd2t0p7wi" path="res://Assets/floor.png" id="1_wm2fs"]
 [ext_resource type="Script" path="res://Floors/floor.gd" id="2_d1pa7"]
-[ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/builder.tscn" id="3_k8rj1"]
-[ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/mason.tscn" id="5_ngv8i"]
-[ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/merchant.tscn" id="6_8c1d8"]
-[ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/warrior.tscn" id="6_126tb"]
-[ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/shepherd.tscn" id="7_uo6gc"]
-[ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/thief.tscn" id="8_0fhis"]
+[ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/Builder/builder.tscn" id="3_mdsfx"]
+[ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/Merchant/merchant.tscn" id="4_e2g3y"]
+[ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/Mason/mason.tscn" id="5_7tadk"]
+[ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/Shepherd/shepherd.tscn" id="6_k1w4w"]
+[ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/Warrior/warrior.tscn" id="7_pa275"]
 [ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Marav2.ttf" id="8_kxt1x"]
+[ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/Thief/thief.tscn" id="8_xcwqo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcifm"]
 size = Vector2(384, 128)
@@ -19,12 +19,12 @@ offset_bottom = 128.0
 mouse_filter = 2
 texture = ExtResource("1_wm2fs")
 script = ExtResource("2_d1pa7")
-builders = ExtResource("3_k8rj1")
-merchants = ExtResource("6_8c1d8")
-masons = ExtResource("5_ngv8i")
-shepherds = ExtResource("7_uo6gc")
-warriors = ExtResource("6_126tb")
-theives = ExtResource("8_0fhis")
+builders = ExtResource("3_mdsfx")
+merchants = ExtResource("4_e2g3y")
+masons = ExtResource("5_7tadk")
+shepherds = ExtResource("6_k1w4w")
+warriors = ExtResource("7_pa275")
+theives = ExtResource("8_xcwqo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0

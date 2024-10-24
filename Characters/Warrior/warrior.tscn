@@ -1,16 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1gfra0m6i3kb"]
+[gd_scene load_steps=15 format=3 uid="uid://cqf5bqdtxntlp"]
 
-[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="1_2cy7w"]
-[ext_resource type="Script" path="res://Characters/thief.gd" id="1_xejel"]
-[ext_resource type="Texture2D" uid="uid://bby6mt3v5xxn6" path="res://Assets/shepherdSpritesheet.png" id="2_jk7us"]
-[ext_resource type="Texture2D" uid="uid://cd3jjrlqppvs" path="res://Assets/thiefSpritesheet.png" id="4_fhdx2"]
+[ext_resource type="Script" path="res://Characters/Warrior/warrior.gd" id="1_l2iy5"]
+[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_j8tgq"]
+[ext_resource type="Texture2D" uid="uid://bby6mt3v5xxn6" path="res://Assets/shepherdSpritesheet.png" id="3_047lm"]
+[ext_resource type="Texture2D" uid="uid://vqto7mojm8y3" path="res://Assets/warriorSpritesheet.png" id="4_8ao0k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtuxa"]
-atlas = ExtResource("1_2cy7w")
+atlas = ExtResource("2_j8tgq")
 region = Rect2(0, 0, 28, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_crmar"]
-atlas = ExtResource("1_2cy7w")
+atlas = ExtResource("2_j8tgq")
 region = Rect2(28, 0, 28, 40)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_680mf"]
@@ -24,22 +24,22 @@ atlas = SubResource("CompressedTexture2D_680mf")
 region = Rect2(32, 0, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eo7ag"]
-atlas = ExtResource("2_jk7us")
+atlas = ExtResource("3_047lm")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gpwfc"]
-atlas = ExtResource("2_jk7us")
+atlas = ExtResource("3_047lm")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ja647"]
-atlas = ExtResource("4_fhdx2")
-region = Rect2(2, 0, 28, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i1po"]
+atlas = ExtResource("4_8ao0k")
+region = Rect2(2, 2, 32, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7j3u4"]
-atlas = ExtResource("4_fhdx2")
-region = Rect2(32, 0, 28, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_85txa"]
+atlas = ExtResource("4_8ao0k")
+region = Rect2(36, 2, 32, 30)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_baqft"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_g70nr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -76,29 +76,30 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ja647")
+"texture": SubResource("AtlasTexture_2i1po")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7j3u4")
+"texture": SubResource("AtlasTexture_85txa")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"Warrior",
 "speed": 5.0
 }]
 
-[node name="Thief" type="Control"]
+[node name="Warrior" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xejel")
+script = ExtResource("1_l2iy5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.76837e-07, 1.90735e-06)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_baqft")
-animation = &"new_animation"
+sprite_frames = SubResource("SpriteFrames_g70nr")
+animation = &"Warrior"
 
 [node name="MoveTimer" type="Timer" parent="."]
 one_shot = true

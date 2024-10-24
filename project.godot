@@ -19,6 +19,17 @@ config/icon="res://Assets/icon.svg"
 
 window/stretch/mode="viewport"
 
+[file_customization]
+
+folder_colors={
+"res://Characters/Builder/": "orange",
+"res://Characters/Mason/": "blue",
+"res://Characters/Merchant/": "green",
+"res://Characters/Shepherd/": "pink",
+"res://Characters/Thief/": "gray",
+"res://Characters/Warrior/": "yellow"
+}
+
 [input]
 
 click_press={

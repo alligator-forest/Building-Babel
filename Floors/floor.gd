@@ -68,14 +68,16 @@ func add_character(key : String):
 func is_full():
 	return (numChars >= maxChars)
 
-func collect_resources() -> Array[int]:
-	var gold : int = 0
-	var bricks : int = 0
-	var godFear : int = 0
+func collect_resources() -> Dictionary:
+	var resources := {
+		"bricks" : 0,
+		"gold" : 0,
+		"hubris" : 0,
+	}
 	for c in $Characters.get_children():
-		gold += c.getGold()
-		bricks += c.getBricks()
-		godFear += c.getGodFear()
+		resources["gold"] += c.get_gold()
+		resources["bricks"] += c.get_bricks()
+		resources["hubris"] += c.get_hubris()
 		if(c is Thief and c.stolen_enough()):
 			c.queue_free()
-	return [gold, bricks, godFear]
+	return resources

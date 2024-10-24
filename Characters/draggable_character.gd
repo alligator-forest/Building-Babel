@@ -2,7 +2,7 @@ extends Node2D
 class_name DraggableCharacter
 
 var chara = "builder"
-func change_name(cha):
+func change_name(cha : String):
 	chara = cha
 	$Sprite.set_texture(load("res://Assets/" + chara + "Spritesheet.png"))
 	match chara:
@@ -47,8 +47,7 @@ var floors : Array[Floor]
 func _on_area_2d_area_entered(area):
 	if(area.get_parent() is Floor and !area.get_parent().is_full()):
 		floors.append(area.get_parent())
-	print(floors)
 
 func _on_area_2d_area_exited(area):
-	if(area.get_parent() in floors):
+	if(area.get_parent() is Floor and area.get_parent() in floors):
 		floors.remove_at(floors.find(area.get_parent()))
