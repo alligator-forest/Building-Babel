@@ -34,7 +34,7 @@ func has_warrior() -> bool:
 func add_character(key : Character):
 	if(key is Thief):
 		key = thieves.instantiate()
-		$Characters.add_child(key,false,1)
+		$Characters.add_child(key,false,Node.INTERNAL_MODE_BACK)
 	else:
 		key.reparent($Characters)
 	var yPos = 92
@@ -52,9 +52,8 @@ func add_character(key : Character):
 			yPos = 86
 		"warrior":
 			hasWarrior = true
-		"thief":
-			numChars -= 1
 	key.position = Vector2(xPos,yPos)
+	update()
 
 func update():
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
@@ -79,5 +78,4 @@ func collect_resources() -> Dictionary:
 func _on_characters_child_order_changed():
 	if($Characters != null):
 		numChars = $Characters.get_child_count()
-		print(floorName,": ",numChars,"characters")
 		update()

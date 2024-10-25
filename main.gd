@@ -12,8 +12,8 @@ var newFloorBricks = 10
 var newFloorBuilders = 1
 
 var resources : Dictionary = {
-	"bricks" : 100,
-	"gold" : 450,
+	"bricks" : 0,
+	"gold" : 45,
 	"hubris" : 0,
 }
 
