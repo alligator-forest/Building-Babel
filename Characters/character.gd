@@ -2,46 +2,44 @@ extends Control
 class_name Character
 
 @onready var rng := RandomNumberGenerator.new()
-
-func _on_wait_timer_timeout():
-	var tween = create_tween()
-	$AnimatedSprite2D.play()
-	var newPos = rng.randf_range(26,325)
-	if(newPos > position.x):
-		$AnimatedSprite2D.flip_h = true
-	else:
-		$AnimatedSprite2D.flip_h = false
-	var time = abs(newPos-position.x)/rng.randf_range(20,40)
-	tween.tween_property(self, "position", Vector2(newPos, position.y), time)
-	$MoveTimer.wait_time = time 
-	$MoveTimer.start()
-
-func _on_move_timer_timeout():
-	$AnimatedSprite2D.stop()
-	$WaitTimer.wait_time = rng.randf_range(2,7)
-	$WaitTimer.start()
-
-var chara = "builder"
-func change_name(cha : String):
-	chara = cha
-	$Sprite.set_texture(load("res://Assets/" + chara + "Spritesheet.png"))
-	match chara:
-		"merchant":
-			$Sprite.region_rect = Rect2(2,2,22,34)
-		"mason":
-			$Sprite.region_rect = Rect2(2,2,22,30)
-		"shepherd":
-			$Sprite.region_rect = Rect2(2,2,30,30)
-		"warrior":
-			$Sprite.region_rect = Rect2(2,2,32,30)
-			
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+@onready var tween : Tween = null
+var dragging = false
+var onFloor = false
 var mouseWithin : bool = false
 var offset : Vector2
 
+func _on_wait_timer_timeout():
+	if(!dragging and onFloor):
+		tween = create_tween()
+		$AnimatedSprite2D.play()
+		var newPos = rng.randf_range(26,325)
+		if(newPos > position.x):
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.flip_h = false
+		var time = abs(newPos-position.x)/rng.randf_range(20,40)
+		tween.tween_property(self, "position", Vector2(newPos, position.y), time)
+		$MoveTimer.wait_time = time 
+	$MoveTimer.start()
+
+func _on_move_timer_timeout():
+	if(!dragging and onFloor):
+		$AnimatedSprite2D.stop()
+		$WaitTimer.wait_time = rng.randf_range(2,7)
+	$WaitTimer.start()
+	
 func is_mouse_within() -> bool:
-	offset = get_global_mouse_position() - global_position
 	return mouseWithin
+
+#Called when a Character is about to be dragged
+func prepare_drag() -> void:
+	offset = get_global_mouse_position() - global_position
+	$AnimatedSprite2D.play()
+	if(tween != null):
+		tween.pause()
+	dragging = true
+	onFloor = false
+	scale = Vector2(3,3)
 
 func move():
 	global_position = get_global_mouse_position() - offset
@@ -53,8 +51,11 @@ func snap_to_floor():
 		if(closestFloor == null or distance < sqrt(pow(closestFloor.position.x,2) + pow(closestFloor.position.y,2))):
 			closestFloor = f
 	if(closestFloor != null):
-		closestFloor.add_character(chara)
-		queue_free()
+		closestFloor.add_character(self)
+		onFloor = true
+		scale = Vector2(2,2)
+	$AnimatedSprite2D.stop()
+	dragging = false
 
 func _on_area_2d_mouse_entered():
 	mouseWithin = true

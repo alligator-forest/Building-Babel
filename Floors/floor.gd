@@ -26,43 +26,35 @@ func change_name(n : String):
 
 func thief_appears():
 	if(!has_warrior() and rng.randi_range(1,100) <= 5):
-		add_character("thief")
+		add_character(Thief.new())
 		return
 
 func has_warrior() -> bool:
 	return hasWarrior
 
-func add_character(key : String):
-	key = key.to_lower()
-	match key:
+func add_character(key : Character):
+	key.reparent($Characters)
+	var yPos = 92
+	var xPos = key.position.x
+	if(key.position.x > 325):
+		xPos = 325
+	elif(key.position.x < 26):
+		xPos = 26
+	
+	match str(key).to_lower():
 		"builder":
-			var builder := builders.instantiate()
-			$Characters.add_child(builder)
-			builder.position = Vector2(rng.randf_range(26,325),86)
+			yPos = 86
 		"merchant":
-			var merchant := merchants.instantiate()
-			$Characters.add_child(merchant)
-			merchant.position = Vector2(rng.randf_range(26,325),86)
-		"mason":
-			var mason := masons.instantiate()
-			$Characters.add_child(mason)
-			mason.position = Vector2(rng.randf_range(26,325),92)
-		"shepherd":
-			var shepherd := shepherds.instantiate()
-			$Characters.add_child(shepherd)
-			shepherd.position = Vector2(rng.randf_range(26,325),92)
+			yPos = 86
 		"warrior":
 			hasWarrior = true
-			var warrior := warriors.instantiate()
-			$Characters.add_child(warrior)
-			warrior.position = Vector2(rng.randf_range(26,325),92)
 		"thief":
 			hasThief = true
-			var thief := theives.instantiate()
-			$Characters.add_child(thief)
-			thief.position = Vector2(rng.randf_range(26,325),92)
 			numChars -= 1
-	numChars += 1
+	key.position = Vector2(xPos,yPos)
+	print(key.position)
+
+func update():
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
 
 func is_full():
@@ -81,3 +73,8 @@ func collect_resources() -> Dictionary:
 		if(c is Thief and c.stolen_enough()):
 			c.queue_free()
 	return resources
+
+func _on_characters_child_order_changed():
+	if($Characters != null):
+		numChars = $Characters.get_child_count()
+		update()

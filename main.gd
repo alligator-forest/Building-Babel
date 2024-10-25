@@ -1,39 +1,49 @@
 extends Node2D
 
 @export var tiers : PackedScene
-@export var draggableCharacters : PackedScene
+@export var builders: PackedScene
+@export var merchants : PackedScene
+@export var masons: PackedScene
+@export var shepherds: PackedScene
+@export var warriors: PackedScene
+@export var theives: PackedScene
 
 var newFloorBricks = 10
 var newFloorBuilders = 1
 
 var resources : Dictionary = {
 	"bricks" : 0,
-	"gold" : 45,
+	"gold" : 405,
 	"hubris" : 0,
 }
 
 func _ready():
-	buy_character(Builder.new())
-	buy_character(Merchant.new())
-	buy_character(Mason.new())
+	_on_builder_button_pressed()
+	_on_mason_button_pressed()
+	_on_merchant_button_pressed()
 	update()
 
-var currChar : DraggableCharacter = null
+var currChar = null
 func _process(_delta):
 	if(Input.is_action_just_pressed("click_press")):
 		for f in range(1,$Tower/Floors.get_child_count()):
-			print($Tower/Floors.get_child(f).find_child("Characters",false))
-			for c in $Tower/Floors.get_child(f).find_child("Characters",false).get_children():
-				print(c)
+			var charas = $Tower/Floors.get_child(f).find_child("Characters",false)
+			for c in charas.get_children():
 				if(c.is_mouse_within()):
-					if(currChar == null or c.get_index() < currChar.get_index()):
+					if(currChar == null or c.get_index() > currChar.get_index()):
 						currChar = c
-						$Characters.move_child(currChar,$Characters.get_child_count() -1)
-		for d in $DraggableCharacters.get_children():
+		###IMPORTANT!!!!
+		#Make sure that the currChar from below is not interfering with currChar from above
+		#If possible, try to combine these into 1 for loop anyways!
+		for d in $OutOfFloorCharacters.get_children():
 			if(d.is_mouse_within()):
-				if(currChar == null or d.get_index() < currChar.get_index()):
+				if(currChar == null or d.get_index() > currChar.get_index()):
 					currChar = d
-					$DraggableCharacters.move_child(currChar,$DraggableCharacters.get_child_count() -1)
+		if(currChar != null):
+			currChar.prepare_drag()
+			currChar.reparent($OutOfFloorCharacters, true)
+			$OutOfFloorCharacters.move_child(currChar,-1)
+		print(currChar)
 	if(currChar != null):
 		if(Input.is_action_pressed("click_press")):
 			currChar.move()
@@ -104,26 +114,25 @@ func _on_resource_timer_timeout():
 
 @onready var rng = RandomNumberGenerator.new()
 func _on_builder_button_pressed():
-	buy_character(Builder.new())
+	buy_character(Builder.new(), builders)
 
 func _on_merchant_button_pressed():
-	buy_character(Merchant.new())
+	buy_character(Merchant.new(), merchants)
 
 func _on_mason_button_pressed():
-	buy_character(Mason.new())
+	buy_character(Mason.new(), masons)
 
 func _on_shepherd_button_pressed():
-	buy_character(Shepherd.new())
+	buy_character(Shepherd.new(), shepherds)
 
 func _on_warrior_button_pressed():
-	buy_character(Warrior.new())
+	buy_character(Warrior.new(), warriors)
 
-func buy_character(c : Character):
+func buy_character(c : Character, cLoader):
 	if(c.get_price() <= resources["gold"]):
 		resources["gold"] -= c.get_price()
-		var dChar = draggableCharacters.instantiate()
-		dChar.change_name(str(c))
+		var dChar = cLoader.instantiate()
 		dChar.position = Vector2(rng.randf_range(832,1088),448)
-		$DraggableCharacters.add_child(dChar)
+		$OutOfFloorCharacters.add_child(dChar)
 		update()
 

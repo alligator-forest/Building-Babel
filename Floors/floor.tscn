@@ -49,3 +49,5 @@ text = "aaa"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(192, 64)
 shape = SubResource("RectangleShape2D_tcifm")
+
+[connection signal="child_order_changed" from="Characters" to="." method="_on_characters_child_order_changed"]

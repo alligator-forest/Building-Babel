@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqf5bqdtxntlp"]
+[gd_scene load_steps=16 format=3 uid="uid://cqf5bqdtxntlp"]
 
 [ext_resource type="Script" path="res://Characters/Warrior/warrior.gd" id="1_l2iy5"]
 [ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_j8tgq"]
@@ -86,6 +86,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_52i5c"]
+radius = 15.0
+height = 38.0
+
 [node name="Warrior" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -97,7 +101,6 @@ script = ExtResource("1_l2iy5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4.76837e-07, 1.90735e-06)
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g70nr")
 animation = &"Warrior"
 
@@ -108,5 +111,15 @@ one_shot = true
 one_shot = true
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, 0)
+shape = SubResource("CapsuleShape2D_52i5c")
+
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

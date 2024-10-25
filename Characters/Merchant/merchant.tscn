@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://j76tjb32kfks"]
+[gd_scene load_steps=10 format=3 uid="uid://j76tjb32kfks"]
 
 [ext_resource type="Script" path="res://Characters/Merchant/merchant.gd" id="1_fxlpp"]
 [ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_eafrh"]
@@ -45,6 +45,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8a2v7"]
+radius = 13.0
+height = 40.0
+
 [node name="Merchant" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -52,10 +56,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(3, 3)
 script = ExtResource("1_fxlpp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_yshwx")
 animation = &"Merchant"
 
@@ -66,5 +70,14 @@ one_shot = true
 one_shot = true
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_8a2v7")
+
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

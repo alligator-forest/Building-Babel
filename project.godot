@@ -18,6 +18,8 @@ config/icon="res://Assets/icon.svg"
 [display]
 
 window/stretch/mode="viewport"
+window/stretch/scale=1.25
+window/stretch/scale_mode="integer"
 
 [file_customization]
 
@@ -30,6 +32,10 @@ folder_colors={
 "res://Characters/Warrior/": "yellow"
 }
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 click_press={
@@ -41,3 +47,4 @@ click_press={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
+2d/snap/snap_2d_transforms_to_pixel=true
