@@ -6,14 +6,14 @@ extends Node2D
 @export var masons: PackedScene
 @export var shepherds: PackedScene
 @export var warriors: PackedScene
-@export var theives: PackedScene
+@export var thieves: PackedScene
 
 var newFloorBricks = 10
 var newFloorBuilders = 1
 
 var resources : Dictionary = {
-	"bricks" : 0,
-	"gold" : 405,
+	"bricks" : 100,
+	"gold" : 450,
 	"hubris" : 0,
 }
 
@@ -32,9 +32,6 @@ func _process(_delta):
 				if(c.is_mouse_within()):
 					if(currChar == null or c.get_index() > currChar.get_index()):
 						currChar = c
-		###IMPORTANT!!!!
-		#Make sure that the currChar from below is not interfering with currChar from above
-		#If possible, try to combine these into 1 for loop anyways!
 		for d in $OutOfFloorCharacters.get_children():
 			if(d.is_mouse_within()):
 				if(currChar == null or d.get_index() > currChar.get_index()):
@@ -43,14 +40,11 @@ func _process(_delta):
 			currChar.prepare_drag()
 			currChar.reparent($OutOfFloorCharacters, true)
 			$OutOfFloorCharacters.move_child(currChar,-1)
-		print(currChar)
 	if(currChar != null):
 		if(Input.is_action_pressed("click_press")):
 			currChar.move()
-			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 		if(Input.is_action_just_released("click_press")):
 			currChar.snap_to_floor()
-			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 			currChar = null
 
 func update():
@@ -74,13 +68,26 @@ func new_floor():
 	if(resources["bricks"] >= newFloorBricks and check_builders() >= newFloorBuilders):
 		resources["bricks"] -= newFloorBricks
 		var tier = tiers.instantiate()
-		tier.change_name("Floor " + str($Tower/Floors.get_child_count()))
+		tier.change_name("Floor " + str($Tower/Floors.get_child_count() - 1))
 		$Tower/Floors.add_child(tier)
 		$Tower/Floors.move_child(tier,1)
 		newFloorBricks *= 4
 		newFloorBuilders += 1
 		$NewFloorPlayer.play(20)
 		update()
+
+func _on_resource_timer_timeout():
+	var r : Dictionary = {}
+	for f in range(1,$Tower/Floors.get_child_count()):
+		var floorR = $Tower/Floors.get_child(f).collect_resources()
+		for key in floorR:
+			if(key in r):
+				r[key] += floorR[key]
+			else:
+				r[key] = floorR[key]
+		if($Tower/Floors.get_child_count() > 3):
+			$Tower/Floors.get_child(f).thief_appears()
+	add_resources(r)
 
 func add_resources(r : Dictionary):
 	for key in resources:
@@ -103,14 +110,6 @@ func play_effect(n : String):
 			$NewFloorPlayer.play()
 		"steal":
 			$Steal.play()
-
-func _on_resource_timer_timeout():
-	var r : Dictionary
-	for f in range(1,$Tower/Floors.get_child_count()):
-		r = $Tower/Floors.get_child(f).collect_resources()
-		if($Tower/Floors.get_child_count() > 3):
-			$Tower/Floors.get_child(f).thief_appears()
-	add_resources(r)
 
 @onready var rng = RandomNumberGenerator.new()
 func _on_builder_button_pressed():
@@ -135,4 +134,3 @@ func buy_character(c : Character, cLoader):
 		dChar.position = Vector2(rng.randf_range(832,1088),448)
 		$OutOfFloorCharacters.add_child(dChar)
 		update()
-

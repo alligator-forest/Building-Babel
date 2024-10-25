@@ -24,7 +24,7 @@ merchants = ExtResource("4_e2g3y")
 masons = ExtResource("5_7tadk")
 shepherds = ExtResource("6_k1w4w")
 warriors = ExtResource("7_pa275")
-theives = ExtResource("8_xcwqo")
+thieves = ExtResource("8_xcwqo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0

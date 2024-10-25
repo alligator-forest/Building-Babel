@@ -27,7 +27,7 @@ merchants = ExtResource("5_ycq4u")
 masons = ExtResource("6_qu6a5")
 shepherds = ExtResource("7_sbhwi")
 warriors = ExtResource("8_xfuhw")
-theives = ExtResource("9_m3587")
+thieves = ExtResource("9_m3587")
 
 [node name="ColorRectLeft" type="ColorRect" parent="."]
 offset_right = 768.0
@@ -146,6 +146,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_default_cursor_shape = 2
 
 [node name="BuilderButton" type="Button" parent="ShopButtons"]
 layout_mode = 0

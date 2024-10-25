@@ -3,7 +3,7 @@ class_name Thief
 
 var numSteals := 0
 var maxSteals := 5
-func get_hubris() -> int:
+func get_bricks() -> int:
 	if(!get_parent().get_parent().has_warrior()):
 		return rng.randi_range(-10,-1)
 	queue_free()

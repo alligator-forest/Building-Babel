@@ -33,6 +33,7 @@ height = 40.0
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(3, 3)
+mouse_filter = 1
 script = ExtResource("1_ppahy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

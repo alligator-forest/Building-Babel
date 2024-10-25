@@ -66,18 +66,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jvy0l"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_utyqc"]
 radius = 13.0
 height = 40.0
 
 [node name="Mason" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 scale = Vector2(3, 3)
+mouse_filter = 1
 script = ExtResource("1_b5g5f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -92,10 +89,9 @@ one_shot = true
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
-scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_jvy0l")
+shape = SubResource("CapsuleShape2D_utyqc")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

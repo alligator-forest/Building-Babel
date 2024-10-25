@@ -9,7 +9,7 @@ var mouseWithin : bool = false
 var offset : Vector2
 
 func _on_wait_timer_timeout():
-	if(!dragging and onFloor):
+	if(self is Thief or (!dragging and onFloor)):
 		tween = create_tween()
 		$AnimatedSprite2D.play()
 		var newPos = rng.randf_range(26,325)
@@ -23,7 +23,7 @@ func _on_wait_timer_timeout():
 	$MoveTimer.start()
 
 func _on_move_timer_timeout():
-	if(!dragging and onFloor):
+	if(self is Thief or (!dragging and onFloor)):
 		$AnimatedSprite2D.stop()
 		$WaitTimer.wait_time = rng.randf_range(2,7)
 	$WaitTimer.start()
@@ -64,7 +64,6 @@ func _on_area_2d_mouse_exited():
 	mouseWithin = false
 
 var floors : Array[Floor]
-
 func _on_area_2d_area_entered(area):
 	if(area.get_parent() is Floor and !area.get_parent().is_full()):
 		floors.append(area.get_parent())

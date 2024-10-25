@@ -6,14 +6,14 @@ class_name Floor
 @export var masons: PackedScene
 @export var shepherds: PackedScene
 @export var warriors: PackedScene
-@export var theives: PackedScene
+@export var thieves: PackedScene
 
 @export var floorName : String
 
 var numChars = 0
 var maxChars = 5
 var hasWarrior = false
-var hasThief = false
+var numBuilders = 0
 
 @onready var rng = RandomNumberGenerator.new()
 
@@ -25,15 +25,18 @@ func change_name(n : String):
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
 
 func thief_appears():
-	if(!has_warrior() and rng.randi_range(1,100) <= 5):
+	if(!has_warrior() and rng.randi_range(1,100) <= 3):
 		add_character(Thief.new())
-		return
 
 func has_warrior() -> bool:
 	return hasWarrior
 
 func add_character(key : Character):
-	key.reparent($Characters)
+	if(key is Thief):
+		key = thieves.instantiate()
+		$Characters.add_child(key,false,1)
+	else:
+		key.reparent($Characters)
 	var yPos = 92
 	var xPos = key.position.x
 	if(key.position.x > 325):
@@ -44,15 +47,14 @@ func add_character(key : Character):
 	match str(key).to_lower():
 		"builder":
 			yPos = 86
+			numBuilders += 1
 		"merchant":
 			yPos = 86
 		"warrior":
 			hasWarrior = true
 		"thief":
-			hasThief = true
 			numChars -= 1
 	key.position = Vector2(xPos,yPos)
-	print(key.position)
 
 func update():
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
@@ -77,4 +79,5 @@ func collect_resources() -> Dictionary:
 func _on_characters_child_order_changed():
 	if($Characters != null):
 		numChars = $Characters.get_child_count()
+		print(floorName,": ",numChars,"characters")
 		update()
