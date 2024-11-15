@@ -3,16 +3,18 @@ class_name Thief
 
 var numSteals := 0
 var maxSteals := 5
+
+
 func get_bricks() -> int:
 	if(!get_parent().get_parent().has_warrior()):
-		return rng.randi_range(-10,-1)
+		return rng.randi_range(5,10)
 	queue_free()
 	return 0
 
 func get_gold() -> int:
 	if(!get_parent().get_parent().has_warrior()):
 		numSteals += 1
-		return rng.randi_range(-10,-1)
+		return rng.randi_range(5,10)
 	queue_free()
 	return 0
 

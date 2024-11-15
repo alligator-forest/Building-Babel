@@ -25,26 +25,26 @@ func change_name(n : String):
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
 
 func thief_appears():
-	if(!has_warrior() and rng.randi_range(1,100) <= 3):
+	if(!has_warrior() and rng.randi_range(1,100) <= 5):
 		add_character(Thief.new())
 
 func has_warrior() -> bool:
 	return hasWarrior
 
-func add_character(key : Character):
-	if(key is Thief):
-		key = thieves.instantiate()
-		$Characters.add_child(key,false,Node.INTERNAL_MODE_BACK)
+func add_character(c : Character):
+	if(c is Thief):
+		c = thieves.instantiate()
+		$Characters.add_child(c,false,Node.INTERNAL_MODE_BACK)
 	else:
-		key.reparent($Characters)
+		c.reparent($Characters)
 	var yPos = 92
-	var xPos = key.position.x
-	if(key.position.x > 325):
+	var xPos = c.position.x
+	if(c.position.x > 325):
 		xPos = 325
-	elif(key.position.x < 26):
+	elif(c.position.x < 26):
 		xPos = 26
 	
-	match str(key).to_lower():
+	match str(c).to_lower():
 		"builder":
 			yPos = 86
 			numBuilders += 1
@@ -52,7 +52,9 @@ func add_character(key : Character):
 			yPos = 86
 		"warrior":
 			hasWarrior = true
-	key.position = Vector2(xPos,yPos)
+	c.position = Vector2(xPos,yPos)
+	c.land_on_floor(self)
+	c.set_dragging(false)
 	update()
 
 func update():
@@ -61,21 +63,8 @@ func update():
 func is_full():
 	return (numChars >= maxChars)
 
-func collect_resources() -> Dictionary:
-	var resources := {
-		"bricks" : 0,
-		"gold" : 0,
-		"hubris" : 0,
-	}
-	for c in $Characters.get_children():
-		resources["gold"] += c.get_gold()
-		resources["bricks"] += c.get_bricks()
-		resources["hubris"] += c.get_hubris()
-		if(c is Thief and c.stolen_enough()):
-			c.queue_free()
-	return resources
 
 func _on_characters_child_order_changed():
-	if($Characters != null):
+	if(find_child("Characters") != null):
 		numChars = $Characters.get_child_count()
 		update()

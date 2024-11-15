@@ -1,15 +1,29 @@
 extends Control
 class_name Character
 
+signal add_resource(node : Character)
+
 @onready var rng := RandomNumberGenerator.new()
 @onready var tween : Tween = null
+var draggable = true
 var dragging = false
-var onFloor = false
 var mouseWithin : bool = false
 var offset : Vector2
 
+var floors : Array[Node]
+var currentFloor : Node
+
+func set_current_floor(f : Node) -> void:
+	currentFloor = f
+
+func get_current_floor() -> Floor:
+	return currentFloor
+
+func set_dragging(d : bool) -> void:
+	dragging = d
+
 func _on_wait_timer_timeout():
-	if(self is Thief or (!dragging and onFloor)):
+	if(self is Thief or !dragging):
 		tween = create_tween()
 		$AnimatedSprite2D.play()
 		var newPos = rng.randf_range(26,325)
@@ -23,10 +37,11 @@ func _on_wait_timer_timeout():
 	$MoveTimer.start()
 
 func _on_move_timer_timeout():
-	if(self is Thief or (!dragging and onFloor)):
+	if(self is Thief or !dragging):
 		$AnimatedSprite2D.stop()
 		$WaitTimer.wait_time = rng.randf_range(2,7)
 	$WaitTimer.start()
+	add_resource.emit(self)
 	
 func is_mouse_within() -> bool:
 	return mouseWithin
@@ -38,24 +53,16 @@ func prepare_drag() -> void:
 	if(tween != null):
 		tween.pause()
 	dragging = true
-	onFloor = false
 	scale = Vector2(3,3)
 
 func move():
 	global_position = get_global_mouse_position() - offset
 
-func snap_to_floor():
-	var closestFloor = null
-	for f in floors:
-		var distance = sqrt(pow(f.position.x,2) + pow(f.position.y,2))
-		if(closestFloor == null or distance < sqrt(pow(closestFloor.position.x,2) + pow(closestFloor.position.y,2))):
-			closestFloor = f
-	if(closestFloor != null):
-		closestFloor.add_character(self)
-		onFloor = true
-		scale = Vector2(2,2)
+func land_on_floor(f : Floor):
+	scale = Vector2(2,2)
 	$AnimatedSprite2D.stop()
-	dragging = false
+	currentFloor = f
+	draggable = false
 
 func _on_area_2d_mouse_entered():
 	mouseWithin = true
@@ -63,14 +70,16 @@ func _on_area_2d_mouse_entered():
 func _on_area_2d_mouse_exited():
 	mouseWithin = false
 
-var floors : Array[Floor]
-func _on_area_2d_area_entered(area):
-	if(area.get_parent() is Floor and !area.get_parent().is_full()):
-		floors.append(area.get_parent())
+func add_floor(node : Node) -> void:
+	if(!(node in floors)):
+		floors.append(node)
 
-func _on_area_2d_area_exited(area):
-	if(area.get_parent() is Floor and area.get_parent() in floors):
-		floors.remove_at(floors.find(area.get_parent()))
+func remove_floor(node : Node) -> void:
+	if(node in floors):
+		floors.remove_at(floors.find(node))
+
+func get_floors() -> Array[Node]:
+	return floors
 
 func get_price() -> int:
 	return 0

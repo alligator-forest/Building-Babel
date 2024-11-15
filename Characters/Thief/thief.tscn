@@ -89,11 +89,11 @@ animations = [{
 [node name="Thief" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+scale = Vector2(2, 2)
 mouse_filter = 2
 script = ExtResource("1_tj37m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_baqft")
 animation = &"new_animation"
 

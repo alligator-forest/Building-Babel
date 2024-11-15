@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://br8j0dbxk0gmh"]
+[gd_scene load_steps=12 format=3 uid="uid://br8j0dbxk0gmh"]
 
 [ext_resource type="Texture2D" uid="uid://bvwlkd2t0p7wi" path="res://Assets/floor.png" id="1_wm2fs"]
 [ext_resource type="Script" path="res://Floors/floor.gd" id="2_d1pa7"]
@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/Warrior/warrior.tscn" id="7_pa275"]
 [ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Marav2.ttf" id="8_kxt1x"]
 [ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/Thief/thief.tscn" id="8_xcwqo"]
+[ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://drop_component.tscn" id="10_2ipyc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcifm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21dao"]
 size = Vector2(384, 128)
 
 [node name="Floor" type="TextureRect"]
@@ -48,6 +49,8 @@ text = "aaa"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(192, 64)
-shape = SubResource("RectangleShape2D_tcifm")
+shape = SubResource("RectangleShape2D_21dao")
+
+[node name="DropComponent" parent="." instance=ExtResource("10_2ipyc")]
 
 [connection signal="child_order_changed" from="Characters" to="." method="_on_characters_child_order_changed"]

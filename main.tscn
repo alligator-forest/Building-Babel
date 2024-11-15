@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=21 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
@@ -18,6 +18,10 @@
 [ext_resource type="AudioStream" uid="uid://du5co0mbv7ofb" path="res://Music/SFX/stone on stone action.wav" id="11_4l48r"]
 [ext_resource type="AudioStream" uid="uid://h7qk0fhjaaa7" path="res://Music/SFX/187 WOOSH B.wav" id="11_t20f0"]
 [ext_resource type="AudioStream" uid="uid://bshc5yp51en76" path="res://Music/SFX/money-pickup-2-89563.mp3" id="12_diw7j"]
+[ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://drop_component.tscn" id="19_ufc1y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puaxa"]
+size = Vector2(192, 128)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eqxpj")
@@ -44,14 +48,14 @@ color = Color(0, 0, 0, 1)
 
 [node name="Tower" type="ScrollContainer" parent="."]
 offset_left = 384.0
-offset_right = 768.0
+offset_right = 776.0
 offset_bottom = 648.0
 size_flags_vertical = 8
-mouse_filter = 2
 follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="Floors" type="VBoxContainer" parent="Tower"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(384, 0)
 layout_mode = 2
 size_flags_vertical = 10
@@ -95,7 +99,7 @@ text = "BUILDERS NEEDED:
 "
 vertical_alignment = 1
 
-[node name="Floor" parent="Tower/Floors" instance=ExtResource("2_d85bv")]
+[node name="Lobby" parent="Tower/Floors" instance=ExtResource("2_d85bv")]
 layout_mode = 2
 floorName = "Lobby"
 
@@ -227,8 +231,25 @@ volume_db = 2.0
 [node name="BrickPickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_4l48r")
 
+[node name="SellDropbox" type="Button" parent="."]
+offset_left = 64.0
+offset_top = 448.0
+offset_right = 256.0
+offset_bottom = 576.0
+theme = ExtResource("8_hphvt")
+theme_override_font_sizes/font_size = 100
+disabled = true
+text = "SELL"
+
+[node name="DropComponent" parent="SellDropbox" instance=ExtResource("19_ufc1y")]
+
+[node name="Area2D" type="Area2D" parent="SellDropbox"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SellDropbox/Area2D"]
+position = Vector2(96, 64)
+shape = SubResource("RectangleShape2D_puaxa")
+
 [connection signal="pressed" from="Tower/Floors/TopFloor/Button" to="." method="new_floor"]
-[connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
 [connection signal="pressed" from="ShopButtons/BuilderButton" to="." method="_on_builder_button_pressed"]
 [connection signal="pressed" from="ShopButtons/MerchantButton" to="." method="_on_merchant_button_pressed"]
 [connection signal="pressed" from="ShopButtons/MasonButton" to="." method="_on_mason_button_pressed"]
