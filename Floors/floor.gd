@@ -10,6 +10,8 @@ class_name Floor
 
 @export var floorName : String
 
+const LEFT = 26
+const RIGHT = 325
 var numChars = 0
 var maxChars = 5
 var hasWarrior = false
@@ -20,30 +22,21 @@ var numBuilders = 0
 func _ready():
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
 
+func get_global_center() -> Vector2:
+	return global_position + pivot_offset
+
 func change_name(n : String):
 	floorName = n
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
-
-func thief_appears():
-	if(!has_warrior() and rng.randi_range(1,100) <= 5):
-		add_character(Thief.new())
 
 func has_warrior() -> bool:
 	return hasWarrior
 
 func add_character(c : Character):
-	if(c is Thief):
-		c = thieves.instantiate()
-		$Characters.add_child(c,false,Node.INTERNAL_MODE_BACK)
-	else:
-		c.reparent($Characters)
+	c.reparent($Characters)
 	var yPos = 92
 	var xPos = c.position.x
-	if(c.position.x > 325):
-		xPos = 325
-	elif(c.position.x < 26):
-		xPos = 26
-	
+	xPos = clamp(c.position.x,LEFT,RIGHT)
 	match str(c).to_lower():
 		"builder":
 			yPos = 86
@@ -54,7 +47,6 @@ func add_character(c : Character):
 			hasWarrior = true
 	c.position = Vector2(xPos,yPos)
 	c.land_on_floor(self)
-	c.set_dragging(false)
 	update()
 
 func update():
@@ -63,8 +55,10 @@ func update():
 func is_full():
 	return (numChars >= maxChars)
 
-
 func _on_characters_child_order_changed():
 	if(find_child("Characters") != null):
 		numChars = $Characters.get_child_count()
 		update()
+
+func _to_string() -> String:
+	return floorName

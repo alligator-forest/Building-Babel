@@ -8,7 +8,7 @@ signal add_resource(node : Character)
 var draggable = true
 var dragging = false
 var mouseWithin : bool = false
-var offset : Vector2
+var offset := Vector2(0,0)
 
 var floors : Array[Node]
 var currentFloor : Node
@@ -46,9 +46,7 @@ func _on_move_timer_timeout():
 func is_mouse_within() -> bool:
 	return mouseWithin
 
-#Called when a Character is about to be dragged
 func prepare_drag() -> void:
-	offset = get_global_mouse_position() - global_position
 	$AnimatedSprite2D.play()
 	if(tween != null):
 		tween.pause()
@@ -62,7 +60,7 @@ func land_on_floor(f : Floor):
 	scale = Vector2(2,2)
 	$AnimatedSprite2D.stop()
 	currentFloor = f
-	draggable = false
+	dragging = false
 
 func _on_area_2d_mouse_entered():
 	mouseWithin = true
@@ -71,7 +69,7 @@ func _on_area_2d_mouse_exited():
 	mouseWithin = false
 
 func add_floor(node : Node) -> void:
-	if(!(node in floors)):
+	if(!(node in floors and node is Floor and !node.is_full())):
 		floors.append(node)
 
 func remove_floor(node : Node) -> void:

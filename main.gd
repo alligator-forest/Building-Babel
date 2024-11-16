@@ -25,6 +25,7 @@ func _ready():
 	_on_builder_button_pressed()
 	_on_mason_button_pressed()
 	_on_merchant_button_pressed()
+	
 	update()
 
 func _process(_delta):
@@ -49,14 +50,12 @@ func _process(_delta):
 			currChar.move()
 			
 		if(Input.is_action_just_released("click_press")):
-			var closestDrop = null
+			var closestDrop = currChar.get_current_floor()
 			var floors = currChar.get_floors()
 			for f in floors:
-				var distance = currChar.position.distance_to(f.position)
-				if(closestDrop == null or distance < currChar.position.distance_to(closestDrop.position)):
+				var distance = currChar.global_position.distance_to(f.get_global_center())
+				if(distance < currChar.global_position.distance_to(closestDrop.get_global_center())):
 					closestDrop = f
-			if(closestDrop == null):
-				closestDrop = currChar.get_current_floor()
 			if(closestDrop is Floor):
 				closestDrop.add_character(currChar)
 			else:
@@ -100,11 +99,6 @@ func _on_character_timer_timeout(c : Character):
 		"gold" : 0,
 		"hubris" : 0,
 	}
-	if(c is Thief):
-		r["gold"] -= r["gold"]/c.get_gold()
-		r["bricks"] += c.get_bricks() * (%Floors.get_child_count() - 1)
-		if(c.stolen_enough()):
-			c.queue_free()
 	r["gold"] += c.get_gold()
 	r["bricks"] += c.get_bricks()
 	r["hubris"] += c.get_hubris()
@@ -113,8 +107,7 @@ func _on_character_timer_timeout(c : Character):
 func add_resources(r : Dictionary):
 	for key in r:
 		resources[key] += r[key]
-		if(resources[key] < 0):
-			resources[key] = 0
+		resources[key] = clamp(resources[key],0,9999)
 		if(r[key] < 0):
 			play_effect("steal")
 		elif(r[key] > 0):
@@ -161,11 +154,19 @@ func buy_character(c : Character, cLoader):
 		$%Floors/Lobby.add_character(dChar)
 		update()
 
+func spawn_thief(f : Floor):
+	var thief = thieves.instantiate()
+	add_child(thief,true,Node.INTERNAL_MODE_BACK)
+	thief.add_resource.connect(_on_character_timer_timeout)
+	thief.position = Vector2(rng.randf_range(384,768),0)
+	f.add_character(thief)
+	update()
+
 func sell_character(c : Character):
 	var d : Dictionary = {"gold" : round(c.get_price()/2.0)}
 	add_resources(d)
 	c.queue_free()
-	
+
 func on_character_area_2d_enter(area : Area2D) -> void:
 	if(area.get_parent().has_node("DropComponent")):
 		if(currChar != null):
@@ -175,3 +176,9 @@ func on_character_area_2d_exit(area : Area2D) -> void:
 	if(area.get_parent().has_node("DropComponent")):
 		if(currChar != null):
 			currChar.remove_floor(area.get_parent())
+
+func _on_thief_timer_timeout() -> void:
+	if(%Floors.get_child_count() >= 4):
+		for f in range(1,%Floors.get_child_count()):
+			if(rng.randi_range(1,100) <= 3):
+				spawn_thief(%Floors.get_child(f))

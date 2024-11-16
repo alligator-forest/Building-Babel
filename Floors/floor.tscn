@@ -15,8 +15,12 @@
 size = Vector2(384, 128)
 
 [node name="Floor" type="TextureRect"]
-offset_right = 384.0
-offset_bottom = 128.0
+offset_left = -128.0
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+pivot_offset = Vector2(128, 64)
+size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("1_wm2fs")
 script = ExtResource("2_d1pa7")
