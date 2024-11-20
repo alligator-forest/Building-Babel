@@ -110,7 +110,6 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 368.0
 offset_bottom = 80.0
-value = 25.0
 
 [node name="BrickLabel" type="Label" parent="."]
 offset_left = 152.0
@@ -119,7 +118,7 @@ offset_right = 280.0
 offset_bottom = 224.0
 theme_override_fonts/font = ExtResource("3_qesbo")
 theme_override_font_sizes/font_size = 100
-text = "9999"
+text = "0"
 vertical_alignment = 1
 
 [node name="GoldLabel" type="Label" parent="."]
@@ -129,7 +128,7 @@ offset_right = 280.0
 offset_bottom = 360.0
 theme_override_fonts/font = ExtResource("3_qesbo")
 theme_override_font_sizes/font_size = 100
-text = "9999"
+text = "0"
 vertical_alignment = 1
 
 [node name="BrickIcon" type="Sprite2D" parent="."]
@@ -206,14 +205,15 @@ text = "Warrior
 [node name="OutOfFloorCharacters" type="Node" parent="."]
 
 [node name="Label" type="Label" parent="."]
-offset_left = 784.0
+offset_left = 792.0
 offset_top = 480.0
-offset_right = 1135.0
-offset_bottom = 544.0
+offset_right = 1126.0
+offset_bottom = 583.0
 theme_override_fonts/font = ExtResource("3_qesbo")
 theme_override_font_sizes/font_size = 50
-text = "Drag me to a floor!"
+text = "Drag Characters to Other Floors!"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="NewFloorPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_0wmer")

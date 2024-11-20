@@ -32,7 +32,7 @@ func _on_wait_timer_timeout():
 		else:
 			$AnimatedSprite2D.flip_h = false
 		var time = abs(newPos-position.x)/rng.randf_range(20,40)
-		tween.tween_property(self, "position", Vector2(newPos, position.y), time)
+		tween.tween_property(self, "position:x", newPos, time)
 		$MoveTimer.wait_time = time 
 	$MoveTimer.start()
 

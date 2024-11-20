@@ -9,9 +9,10 @@ extends Node2D
 @export var thieves: PackedScene
 
 @onready var rng = RandomNumberGenerator.new()
-
+var tween : Tween
 var newFloorBricks = 10
 var newFloorBuilders = 1
+var numBuilders = 0
 
 var currChar : Character = null
 
@@ -25,7 +26,6 @@ func _ready():
 	_on_builder_button_pressed()
 	_on_mason_button_pressed()
 	_on_merchant_button_pressed()
-	
 	update()
 
 func _process(_delta):
@@ -67,22 +67,17 @@ func _process(_delta):
 func update():
 	$BrickLabel.text = str(resources["bricks"])
 	$GoldLabel.text = str(resources["gold"])
-	$GodBar.value = resources["hubris"]
+	#$GodBar.value = resources["hubris"]
+	tween = get_tree().create_tween()
+	tween.tween_property($GodBar,"value",resources["hubris"],0.5)
+	
 	%Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
 	%Floors/TopFloor/NewFloorLabel2.text = "BUILDERS NEEDED: " + str(newFloorBuilders)
-	if(resources["hubris"] >= 100):
+	if($GodBar.value >= 100):
 		get_tree().change_scene_to_file("res://game_over.tscn")
 
-func check_builders() -> int:
-	var numBuilders = 0
-	for f in range(1,%Floors.get_child_count()):
-		for c in %Floors.get_child(f).get_child(2).get_children():
-			if c is Builder:
-				numBuilders+=1
-	return numBuilders
-
 func new_floor():
-	if(resources["bricks"] >= newFloorBricks and check_builders() >= newFloorBuilders):
+	if(resources["bricks"] >= newFloorBricks and numBuilders >= newFloorBuilders):
 		resources["bricks"] -= newFloorBricks
 		var tier = tiers.instantiate()
 		tier.change_name("Floor " + str(%Floors.get_child_count() - 1))
@@ -141,6 +136,8 @@ func _on_warrior_button_pressed():
 	buy_character(Warrior.new(), warriors)
 
 func buy_character(c : Character, cLoader):
+	if(c is Builder):
+		numBuilders += 1
 	if(c.get_price() <= resources["gold"] and !%Floors/Lobby.is_full()):
 		resources["gold"] -= c.get_price()
 		var dChar = cLoader.instantiate()
@@ -163,6 +160,8 @@ func spawn_thief(f : Floor):
 	update()
 
 func sell_character(c : Character):
+	if(c is Builder):
+		numBuilders -= 1
 	var d : Dictionary = {"gold" : round(c.get_price()/2.0)}
 	add_resources(d)
 	c.queue_free()
