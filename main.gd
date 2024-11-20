@@ -18,14 +18,11 @@ var currChar : Character = null
 
 var resources : Dictionary = {
 	"bricks" : 0,
-	"gold" : 45,
+	"gold" : 30,
 	"hubris" : 0,
 }
 
 func _ready():
-	_on_builder_button_pressed()
-	_on_mason_button_pressed()
-	_on_merchant_button_pressed()
 	update()
 
 func _process(_delta):
@@ -73,6 +70,7 @@ func update():
 	
 	%Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
 	%Floors/TopFloor/NewFloorLabel2.text = "BUILDERS NEEDED: " + str(newFloorBuilders)
+	
 	if($GodBar.value >= 100):
 		get_tree().change_scene_to_file("res://game_over.tscn")
 
@@ -179,5 +177,5 @@ func on_character_area_2d_exit(area : Area2D) -> void:
 func _on_thief_timer_timeout() -> void:
 	if(%Floors.get_child_count() >= 4):
 		for f in range(1,%Floors.get_child_count()):
-			if(rng.randi_range(1,100) <= 3):
+			if(rng.randi_range(1,100) <= 3 and !%Floors.get_child(f).has_warrior()):
 				spawn_thief(%Floors.get_child(f))

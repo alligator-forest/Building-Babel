@@ -14,7 +14,6 @@ const LEFT = 26
 const RIGHT = 325
 var numChars = 0
 var maxChars = 5
-var hasWarrior = false
 var numBuilders = 0
 
 @onready var rng = RandomNumberGenerator.new()
@@ -30,7 +29,10 @@ func change_name(n : String):
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
 
 func has_warrior() -> bool:
-	return hasWarrior
+	for c in $Characters.get_children():
+		if(c is Warrior):
+			return true
+	return false
 
 func add_character(c : Character):
 	c.reparent($Characters)
@@ -43,8 +45,6 @@ func add_character(c : Character):
 			numBuilders += 1
 		"merchant":
 			yPos = 86
-		"warrior":
-			hasWarrior = true
 	c.position = Vector2(xPos,yPos)
 	c.land_on_floor(self)
 	update()

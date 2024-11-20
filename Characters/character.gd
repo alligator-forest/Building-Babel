@@ -69,7 +69,7 @@ func _on_area_2d_mouse_exited():
 	mouseWithin = false
 
 func add_floor(node : Node) -> void:
-	if(!(node in floors and node is Floor and !node.is_full())):
+	if(!(node in floors) and !node.is_full()):
 		floors.append(node)
 
 func remove_floor(node : Node) -> void:
