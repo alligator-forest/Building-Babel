@@ -1,5 +1,6 @@
 extends Node2D
 
+@export_category("Spawners")
 @export var tiers : PackedScene
 @export var builders: PackedScene
 @export var merchants : PackedScene
@@ -7,6 +8,8 @@ extends Node2D
 @export var shepherds: PackedScene
 @export var warriors: PackedScene
 @export var thieves: PackedScene
+@export var resourceEffects : PackedScene
+
 
 @onready var rng = RandomNumberGenerator.new()
 var tween : Tween
@@ -65,7 +68,7 @@ func update():
 	$BrickLabel.text = str(resources["bricks"])
 	$GoldLabel.text = str(resources["gold"])
 	#$GodBar.value = resources["hubris"]
-	tween = get_tree().create_tween()
+	tween = create_tween()
 	tween.tween_property($GodBar,"value",resources["hubris"],0.5)
 	
 	%Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
@@ -95,6 +98,13 @@ func _on_character_timer_timeout(c : Character):
 	r["gold"] += c.get_gold()
 	r["bricks"] += c.get_bricks()
 	r["hubris"] += c.get_hubris()
+	
+	for key in r:
+		if(r[key] != 0):
+			var rE : = resourceEffects.instantiate()
+			rE.set_values(key,r[key])
+			c.add_child(rE)
+			rE.position.y -= 20
 	add_resources(r)
 
 func add_resources(r : Dictionary):

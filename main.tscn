@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=23 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
@@ -13,6 +13,7 @@
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://theme.tres" id="8_hphvt"]
 [ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/Warrior/warrior.tscn" id="8_xfuhw"]
 [ext_resource type="AudioStream" uid="uid://cbr620ywkvhpa" path="res://Music/SFX/layered sound.mp3" id="9_0wmer"]
+[ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://resource_effect.tscn" id="9_eoorw"]
 [ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/Thief/thief.tscn" id="9_m3587"]
 [ext_resource type="AudioStream" uid="uid://bscdbq8e1i213" path="res://Music/bgMusic.mp3" id="10_stmio"]
 [ext_resource type="AudioStream" uid="uid://du5co0mbv7ofb" path="res://Music/SFX/stone on stone action.wav" id="11_4l48r"]
@@ -33,6 +34,7 @@ masons = ExtResource("6_qu6a5")
 shepherds = ExtResource("7_sbhwi")
 warriors = ExtResource("8_xfuhw")
 thieves = ExtResource("9_m3587")
+resourceEffects = ExtResource("9_eoorw")
 
 [node name="ColorRectLeft" type="ColorRect" parent="."]
 offset_right = 768.0
@@ -233,6 +235,7 @@ volume_db = 2.0
 stream = ExtResource("11_4l48r")
 
 [node name="SellDropbox" type="Button" parent="."]
+visible = false
 offset_left = 64.0
 offset_top = 448.0
 offset_right = 256.0

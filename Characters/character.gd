@@ -5,6 +5,7 @@ signal add_resource(node : Character)
 
 @onready var rng := RandomNumberGenerator.new()
 @onready var tween : Tween = null
+const VELOCITY = 30
 var draggable = true
 var dragging = false
 var mouseWithin : bool = false
@@ -31,7 +32,7 @@ func _on_wait_timer_timeout():
 			$AnimatedSprite2D.flip_h = true
 		else:
 			$AnimatedSprite2D.flip_h = false
-		var time = abs(newPos-position.x)/rng.randf_range(20,40)
+		var time = abs(newPos-position.x)/VELOCITY
 		tween.tween_property(self, "position:x", newPos, time)
 		$MoveTimer.wait_time = time 
 	$MoveTimer.start()
@@ -41,7 +42,8 @@ func _on_move_timer_timeout():
 		$AnimatedSprite2D.stop()
 		$WaitTimer.wait_time = rng.randf_range(2,7)
 	$WaitTimer.start()
-	add_resource.emit(self)
+	if(!dragging):
+		add_resource.emit(self)
 	
 func is_mouse_within() -> bool:
 	return mouseWithin

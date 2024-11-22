@@ -1,5 +1,5 @@
 extends Character
-class_name  Mason
+class_name Mason
 
 func get_bricks() -> int:
 	return rng.randi_range(1,7)
