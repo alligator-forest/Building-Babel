@@ -22,7 +22,7 @@ var currChar : Character = null
 
 var resources : Dictionary = {
 	"bricks" : 0,
-	"gold" : 30,
+	"gold" : 300,
 	"hubris" : 0,
 }
 
@@ -44,7 +44,6 @@ func _process(_delta):
 		if(currChar != null):
 			currChar.prepare_drag()
 			currChar.reparent($OutOfFloorCharacters, true)
-			$OutOfFloorCharacters.move_child(currChar,-1)
 			$SellDropbox.visible = true
 			$SellDropbox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
 	if(currChar != null):
@@ -60,7 +59,7 @@ func _process(_delta):
 					closestDrop = f
 			if(closestDrop is Floor):
 				closestDrop.add_character(currChar)
-			else:
+			else: #if closestDrop is not a floor, it (currently) MUST be a SellDropbox
 				sell_character(currChar)
 			currChar = null
 			$SellDropbox.visible = false
@@ -116,7 +115,7 @@ func _on_character_timer_timeout(c : Character):
 	var numREs : int = 0
 	for key in r:
 		if(key != "hubris" and r[key] != 0):
-			var rE : = resourceEffects.instantiate()
+			var rE : ResourceEffect = resourceEffects.instantiate()
 			if(r[key] > 0):
 				rE.set_values(key,r[key])
 				log_in_console(console_logs.GAIN_RESOURCE,c,r[key],key)
@@ -128,9 +127,12 @@ func _on_character_timer_timeout(c : Character):
 				else:
 					rE = null
 			if(rE != null):
-				c.add_child(rE)
+				$ResourceEffects.add_child(rE)
 				rE.global_position.x = c.global_position.x - (60 * numREs)
+				rE.global_position.y = c.global_position.y - 50
+				print(rE.global_position)
 				numREs += 1
+				rE.spawn()
 	add_resources(r)
 
 func add_resources(r : Dictionary):
@@ -180,7 +182,7 @@ func buy_character(c : Character, cLoader):
 		dChar.get_node("Area2D").area_exited.connect(on_character_area_2d_exit)
 		dChar.add_resource.connect(_on_character_timer_timeout)
 		
-		dChar.position = Vector2(rng.randf_range(384,768),0)
+		dChar.position = Vector2(296,0)
 		$%Floors/Lobby.add_character(dChar)
 		update()
 

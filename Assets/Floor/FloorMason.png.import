@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vqto7mojm8y3"
-path="res://.godot/imported/warriorSpritesheet.png-a158603b8973665460fdf1b4c5822813.ctex"
+uid="uid://dwdvjy2slrt8a"
+path="res://.godot/imported/FloorMason.png-6f95b7454dee7cc068dfd9db7c87dd59.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/warriorSpritesheet.png"
-dest_files=["res://.godot/imported/warriorSpritesheet.png-a158603b8973665460fdf1b4c5822813.ctex"]
+source_file="res://Assets/Floor/FloorMason.png"
+dest_files=["res://.godot/imported/FloorMason.png-6f95b7454dee7cc068dfd9db7c87dd59.ctex"]
 
 [params]
 

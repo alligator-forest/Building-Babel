@@ -10,8 +10,8 @@ class_name Floor
 
 @export var floorName : String
 
-const LEFT = 26
-const RIGHT = 325
+const LEFT = 68
+const RIGHT = 356
 var numChars = 0
 var maxChars = 5
 var numBuilders = 0
@@ -23,6 +23,12 @@ func _ready():
 
 func get_global_center() -> Vector2:
 	return global_position + pivot_offset
+
+func get_left_bound() -> int:
+	return LEFT
+
+func get_right_bound() -> int:
+	return RIGHT
 
 func change_name(n : String):
 	floorName = n
@@ -42,15 +48,12 @@ func add_character(c : Character):
 			$Characters.add_child(c)
 	else:
 		c.reparent($Characters)
-	var yPos = 92
+	var yPos = 128
 	var xPos = c.position.x
 	xPos = clamp(c.position.x,LEFT,RIGHT)
 	match str(c).to_lower():
 		"builder":
-			yPos = 86
 			numBuilders += 1
-		"merchant":
-			yPos = 86
 	c.position = Vector2(xPos,yPos)
 	c.land_on_floor(self)
 	update()

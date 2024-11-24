@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd3jjrlqppvs"
-path="res://.godot/imported/thiefSpritesheet.png-ef93473340d627713d690249f1782dcd.ctex"
+uid="uid://bf13ejbuol7vp"
+path="res://.godot/imported/FloorLobby.png-1b2731b932a7e81b65026575106f357a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/thiefSpritesheet.png"
-dest_files=["res://.godot/imported/thiefSpritesheet.png-ef93473340d627713d690249f1782dcd.ctex"]
+source_file="res://Assets/Floor/FloorLobby.png"
+dest_files=["res://.godot/imported/FloorLobby.png-1b2731b932a7e81b65026575106f357a.ctex"]
 
 [params]
 

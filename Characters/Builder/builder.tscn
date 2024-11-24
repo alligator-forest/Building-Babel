@@ -1,29 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx2m410fn5f6t"]
+[gd_scene load_steps=4 format=3 uid="uid://dx2m410fn5f6t"]
 
 [ext_resource type="Script" path="res://Characters/Builder/builder.gd" id="1_ppahy"]
-[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_7jdmu"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u1txo"]
-atlas = ExtResource("2_7jdmu")
-region = Rect2(2, 2, 26, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3lqth"]
-atlas = ExtResource("2_7jdmu")
-region = Rect2(30, 2, 26, 36)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ofgha"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u1txo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3lqth")
-}],
-"loop": true,
-"name": &"Builder",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_k73id"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6bfa"]
 radius = 13.0
@@ -37,10 +15,10 @@ mouse_filter = 1
 script = ExtResource("1_ppahy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.54972e-06, 1.19209e-07)
-sprite_frames = SubResource("SpriteFrames_ofgha")
+position = Vector2(0, -18)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_k73id")
 animation = &"Builder"
-frame_progress = 0.756804
 
 [node name="MoveTimer" type="Timer" parent="."]
 one_shot = true
@@ -52,6 +30,7 @@ autostart = true
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -18.5)
 shape = SubResource("CapsuleShape2D_q6bfa")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]

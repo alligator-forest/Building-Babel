@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2fmc78g4e40s"
-path="res://.godot/imported/ResourseIcons.png-ba64d6968a29194059dce86737fa1692.ctex"
+uid="uid://c2nrwr0qn4vfv"
+path="res://.godot/imported/merchantSpritesheet.png-deceb903641eed032bee3fbd62f649bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ResourseIcons.png"
-dest_files=["res://.godot/imported/ResourseIcons.png-ba64d6968a29194059dce86737fa1692.ctex"]
+source_file="res://Assets/Character/Outdated/merchantSpritesheet.png"
+dest_files=["res://.godot/imported/merchantSpritesheet.png-deceb903641eed032bee3fbd62f649bc.ctex"]
 
 [params]
 

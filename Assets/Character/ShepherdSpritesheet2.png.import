@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coc1lp6u3t3t0"
-path="res://.godot/imported/builderSpritesheet.png-42c264407897c200220a97605d8c4b59.ctex"
+uid="uid://bb1hjt3blpc3n"
+path="res://.godot/imported/ShepherdSpritesheet2.png-6d524cec41a2312e8cb8058dee575296.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/builderSpritesheet.png"
-dest_files=["res://.godot/imported/builderSpritesheet.png-42c264407897c200220a97605d8c4b59.ctex"]
+source_file="res://Assets/Character/ShepherdSpritesheet2.png"
+dest_files=["res://.godot/imported/ShepherdSpritesheet2.png-6d524cec41a2312e8cb8058dee575296.ctex"]
 
 [params]
 

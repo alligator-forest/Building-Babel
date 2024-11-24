@@ -1,49 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://j76tjb32kfks"]
+[gd_scene load_steps=4 format=3 uid="uid://j76tjb32kfks"]
 
 [ext_resource type="Script" path="res://Characters/Merchant/merchant.gd" id="1_fxlpp"]
-[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_eafrh"]
-[ext_resource type="Texture2D" uid="uid://c2nrwr0qn4vfv" path="res://Assets/merchantSpritesheet.png" id="3_0pid1"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jtuxa"]
-atlas = ExtResource("2_eafrh")
-region = Rect2(0, 0, 28, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_crmar"]
-atlas = ExtResource("2_eafrh")
-region = Rect2(28, 0, 28, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rgiya"]
-atlas = ExtResource("3_0pid1")
-region = Rect2(26, 0, 22, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h7kpk"]
-atlas = ExtResource("3_0pid1")
-region = Rect2(2, 0, 22, 36)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_yshwx"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jtuxa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_crmar")
-}],
-"loop": true,
-"name": &"Builder",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rgiya")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h7kpk")
-}],
-"loop": true,
-"name": &"Merchant",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_r8w5k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8a2v7"]
 radius = 13.0
@@ -57,7 +15,9 @@ mouse_filter = 1
 script = ExtResource("1_fxlpp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_yshwx")
+position = Vector2(0, -18)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_r8w5k")
 animation = &"Merchant"
 
 [node name="MoveTimer" type="Timer" parent="."]
@@ -70,6 +30,7 @@ autostart = true
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -17)
 shape = SubResource("CapsuleShape2D_8a2v7")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]

@@ -27,7 +27,7 @@ func _on_wait_timer_timeout():
 	if(self is Thief or !dragging):
 		tween = create_tween()
 		$AnimatedSprite2D.play()
-		var newPos = rng.randf_range(26,325)
+		var newPos = rng.randf_range(currentFloor.get_left_bound(),currentFloor.get_right_bound())
 		if(newPos > position.x):
 			$AnimatedSprite2D.flip_h = true
 		else:
@@ -50,6 +50,7 @@ func is_mouse_within() -> bool:
 
 func prepare_drag() -> void:
 	$AnimatedSprite2D.play()
+	offset = get_global_mouse_position() - global_position
 	if(tween != null):
 		tween.pause()
 	dragging = true

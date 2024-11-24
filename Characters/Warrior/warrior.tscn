@@ -1,94 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqf5bqdtxntlp"]
+[gd_scene load_steps=4 format=3 uid="uid://cqf5bqdtxntlp"]
 
 [ext_resource type="Script" path="res://Characters/Warrior/warrior.gd" id="1_l2iy5"]
-[ext_resource type="Texture2D" uid="uid://coc1lp6u3t3t0" path="res://Assets/builderSpritesheet.png" id="2_j8tgq"]
-[ext_resource type="Texture2D" uid="uid://bby6mt3v5xxn6" path="res://Assets/shepherdSpritesheet.png" id="3_047lm"]
-[ext_resource type="Texture2D" uid="uid://vqto7mojm8y3" path="res://Assets/warriorSpritesheet.png" id="4_8ao0k"]
+[ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_xmyxk"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jtuxa"]
-atlas = ExtResource("2_j8tgq")
-region = Rect2(0, 0, 28, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_crmar"]
-atlas = ExtResource("2_j8tgq")
-region = Rect2(28, 0, 28, 40)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_680mf"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3eu21"]
-atlas = SubResource("CompressedTexture2D_680mf")
-region = Rect2(0, 0, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wwpql"]
-atlas = SubResource("CompressedTexture2D_680mf")
-region = Rect2(32, 0, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eo7ag"]
-atlas = ExtResource("3_047lm")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gpwfc"]
-atlas = ExtResource("3_047lm")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2i1po"]
-atlas = ExtResource("4_8ao0k")
-region = Rect2(2, 2, 32, 30)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_85txa"]
-atlas = ExtResource("4_8ao0k")
-region = Rect2(36, 2, 32, 30)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_g70nr"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jtuxa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_crmar")
-}],
-"loop": true,
-"name": &"Builder",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3eu21")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wwpql")
-}],
-"loop": true,
-"name": &"Merchant",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eo7ag")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gpwfc")
-}],
-"loop": true,
-"name": &"Shepherd",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2i1po")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_85txa")
-}],
-"loop": true,
-"name": &"Warrior",
-"speed": 5.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_52i5c"]
-radius = 15.0
-height = 38.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6qbch"]
+radius = 13.0
+height = 35.0
 
 [node name="Warrior" type="Control"]
 layout_mode = 3
@@ -98,8 +15,9 @@ mouse_filter = 1
 script = ExtResource("1_l2iy5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-4.76837e-07, 1.90735e-06)
-sprite_frames = SubResource("SpriteFrames_g70nr")
+position = Vector2(-6, -16.5)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_xmyxk")
 animation = &"Warrior"
 
 [node name="MoveTimer" type="Timer" parent="."]
@@ -111,9 +29,9 @@ autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(4, 0)
-shape = SubResource("CapsuleShape2D_52i5c")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -16.5)
+shape = SubResource("CapsuleShape2D_6qbch")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

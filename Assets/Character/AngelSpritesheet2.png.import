@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2nuxdwin3slv"
-path="res://.godot/imported/brickIcon.png-3c16a7fbe24b51c89fbbaeeb3d581ef7.ctex"
+uid="uid://d0obfbd4bwdi"
+path="res://.godot/imported/AngelSpritesheet2.png-2a068e0197a0d57bd9b509997ec755d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/brickIcon.png"
-dest_files=["res://.godot/imported/brickIcon.png-3c16a7fbe24b51c89fbbaeeb3d581ef7.ctex"]
+source_file="res://Assets/Character/AngelSpritesheet2.png"
+dest_files=["res://.godot/imported/AngelSpritesheet2.png-2a068e0197a0d57bd9b509997ec755d0.ctex"]
 
 [params]
 

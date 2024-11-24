@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvwlkd2t0p7wi"
-path="res://.godot/imported/floor.png-1e503fdcbfc8415a976a6bbee47dc71e.ctex"
+uid="uid://cw2q13adesfya"
+path="res://.godot/imported/CarpenterSpritesheet2.png-e6ee4b2108b650eb8c2835354f58ce9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/floor.png"
-dest_files=["res://.godot/imported/floor.png-1e503fdcbfc8415a976a6bbee47dc71e.ctex"]
+source_file="res://Assets/Character/CarpenterSpritesheet2.png"
+dest_files=["res://.godot/imported/CarpenterSpritesheet2.png-e6ee4b2108b650eb8c2835354f58ce9f.ctex"]
 
 [params]
 

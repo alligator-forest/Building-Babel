@@ -6,7 +6,6 @@ var amount : int = 0
 func set_values(t : String, a : int) -> void:
 	self.type = t
 	self.amount = a
-	spawn()
 
 func spawn() -> void:
 	if(amount != 0):
@@ -22,8 +21,9 @@ func spawn() -> void:
 		else:
 			$Label.text = "+"
 		$Label.text += str(amount)
+		print("from ",global_position.y," to ",global_position.y - 30)
 		var tween = create_tween()
-		tween.tween_property(self,"position:y",position.y - 30,$Timer.wait_time)
+		tween.tween_property(self,"global_position:y",global_position.y - 30,$Timer.wait_time)
 	else:
 		queue_free()
 

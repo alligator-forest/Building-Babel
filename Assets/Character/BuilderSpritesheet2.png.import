@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj3lam7b5ypx"
-path="res://.godot/imported/goldIcon.png-61a7a5de819ca66869c44810ecf1cb93.ctex"
+uid="uid://cepq7npd3ehuw"
+path="res://.godot/imported/BuilderSpritesheet2.png-1c83a323ecb140140ed77bac0ac6bec1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/goldIcon.png"
-dest_files=["res://.godot/imported/goldIcon.png-61a7a5de819ca66869c44810ecf1cb93.ctex"]
+source_file="res://Assets/Character/BuilderSpritesheet2.png"
+dest_files=["res://.godot/imported/BuilderSpritesheet2.png-1c83a323ecb140140ed77bac0ac6bec1.ctex"]
 
 [params]
 
