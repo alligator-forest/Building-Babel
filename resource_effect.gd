@@ -6,8 +6,9 @@ var amount : int = 0
 func set_values(t : String, a : int) -> void:
 	self.type = t
 	self.amount = a
+	spawn()
 
-func _ready() -> void:
+func spawn() -> void:
 	if(amount != 0):
 		match type:
 			"gold":
@@ -17,12 +18,15 @@ func _ready() -> void:
 			_:
 				queue_free()
 		if(amount < 0):
-			$Label.text = "-"
+			$Label.text = ""
 		else:
 			$Label.text = "+"
 		$Label.text += str(amount)
-	var tween = create_tween()
-	tween.tween_property(self,"position:y",position.y - 30,$Timer.wait_time)
+		var tween = create_tween()
+		tween.tween_property(self,"position:y",position.y - 30,$Timer.wait_time)
+	else:
+		queue_free()
 
 func _on_timer_timeout() -> void:
 	queue_free()
+	

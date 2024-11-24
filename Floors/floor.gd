@@ -35,7 +35,13 @@ func has_warrior() -> bool:
 	return false
 
 func add_character(c : Character):
-	c.reparent($Characters)
+	if(c.get_parent() == null):
+		if(c is Thief):
+			$Characters.add_child(c,false,Node.INTERNAL_MODE_BACK)
+		else:
+			$Characters.add_child(c)
+	else:
+		c.reparent($Characters)
 	var yPos = 92
 	var xPos = c.position.x
 	xPos = clamp(c.position.x,LEFT,RIGHT)

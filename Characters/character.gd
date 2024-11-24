@@ -84,6 +84,9 @@ func get_floors() -> Array[Node]:
 func get_price() -> int:
 	return 0
 
+func get_sell_price() -> int:
+	return round(get_price()/2.0)
+
 func get_bricks() -> int:
 	return 0
 

@@ -16,6 +16,7 @@ var tween : Tween
 var newFloorBricks = 10
 var newFloorBuilders = 1
 var numBuilders = 0
+enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT}
 
 var currChar : Character = null
 
@@ -45,6 +46,7 @@ func _process(_delta):
 			currChar.reparent($OutOfFloorCharacters, true)
 			$OutOfFloorCharacters.move_child(currChar,-1)
 			$SellDropbox.visible = true
+			$SellDropbox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
 	if(currChar != null):
 		if(Input.is_action_pressed("click_press")):
 			currChar.move()
@@ -60,9 +62,21 @@ func _process(_delta):
 				closestDrop.add_character(currChar)
 			else:
 				sell_character(currChar)
-			
 			currChar = null
 			$SellDropbox.visible = false
+
+#console_logs{GAIN_GOLD, GAIN_BRICK, LOSE_GOLD, LOSE_BRICK, THIEF_ENTER, THIEF_EXIT}
+func log_in_console(event : int, c : Character, resourceVal : int = 0, resourceName : String = ""):
+	match event:
+		console_logs.GAIN_RESOURCE:
+			$Console.text += str(str(c).to_pascal_case()," gained ",resourceVal," ",resourceName)
+		console_logs.LOSE_RESOURCE:
+			$Console.text += str(str(c).to_pascal_case(), " stole ",abs(resourceVal), " ",resourceName)
+		console_logs.THIEF_ENTER:
+			$Console.text += str(str(c).to_pascal_case(), " appeared (",c.get_current_floor(),")")
+		console_logs.THIEF_EXIT:
+			$Console.text += str(str(c).to_pascal_case(), " left (",c.get_current_floor(),")")
+	$Console.text += "\n"
 
 func update():
 	$BrickLabel.text = str(resources["bricks"])
@@ -99,22 +113,34 @@ func _on_character_timer_timeout(c : Character):
 	r["bricks"] += c.get_bricks()
 	r["hubris"] += c.get_hubris()
 	
+	var numREs : int = 0
 	for key in r:
-		if(r[key] != 0):
+		if(key != "hubris" and r[key] != 0):
 			var rE : = resourceEffects.instantiate()
-			rE.set_values(key,r[key])
-			c.add_child(rE)
-			rE.position.y -= 20
+			if(r[key] > 0):
+				rE.set_values(key,r[key])
+				log_in_console(console_logs.GAIN_RESOURCE,c,r[key],key)
+			elif(r[key] < 0):
+				var amtStole = clamp(abs(r[key]),0,resources[key])
+				if(amtStole > 0):
+					rE.set_values(key,-1 * clamp(abs(r[key]),0,resources[key]))
+					log_in_console(console_logs.LOSE_RESOURCE,c,amtStole,key)
+				else:
+					rE = null
+			if(rE != null):
+				c.add_child(rE)
+				rE.global_position.x = c.global_position.x - (60 * numREs)
+				numREs += 1
 	add_resources(r)
 
 func add_resources(r : Dictionary):
 	for key in r:
 		resources[key] += r[key]
-		resources[key] = clamp(resources[key],0,9999)
 		if(r[key] < 0):
 			play_effect("steal")
 		elif(r[key] > 0):
 			play_effect(key)
+		resources[key] = clamp(resources[key],0,9999)
 	update()
 
 func play_effect(n : String):
@@ -155,22 +181,26 @@ func buy_character(c : Character, cLoader):
 		dChar.add_resource.connect(_on_character_timer_timeout)
 		
 		dChar.position = Vector2(rng.randf_range(384,768),0)
-		$OutOfFloorCharacters.add_child(dChar)
 		$%Floors/Lobby.add_character(dChar)
 		update()
 
-func spawn_thief(f : Floor):
+func spawn_thief(f : Floor) -> Thief:
 	var thief = thieves.instantiate()
-	add_child(thief,true,Node.INTERNAL_MODE_BACK)
 	thief.add_resource.connect(_on_character_timer_timeout)
+	thief.thief_exited.connect(despawn_thief)
 	thief.position = Vector2(rng.randf_range(384,768),0)
 	f.add_character(thief)
 	update()
+	return thief
+
+func despawn_thief(t : Thief) -> void:
+	log_in_console(console_logs.THIEF_EXIT,t)
+	t.queue_free()
 
 func sell_character(c : Character):
 	if(c is Builder):
 		numBuilders -= 1
-	var d : Dictionary = {"gold" : round(c.get_price()/2.0)}
+	var d : Dictionary = {"gold" : currChar.get_sell_price()}
 	add_resources(d)
 	c.queue_free()
 
@@ -187,5 +217,5 @@ func on_character_area_2d_exit(area : Area2D) -> void:
 func _on_thief_timer_timeout() -> void:
 	if(%Floors.get_child_count() >= 4):
 		for f in range(1,%Floors.get_child_count()):
-			if(rng.randi_range(1,100) <= 3 and !%Floors.get_child(f).has_warrior()):
-				spawn_thief(%Floors.get_child(f))
+			if(rng.randi_range(1,100) <= 2 and !%Floors.get_child(f).has_warrior()):
+				log_in_console(console_logs.THIEF_ENTER,spawn_thief(%Floors.get_child(f)))
