@@ -10,7 +10,7 @@ extends Node2D
 @export var thieves: PackedScene
 @export var resourceEffects : PackedScene
 
-
+@onready var sellBox = $TabContainer/Characters/VBoxContainer/SellDropbox
 @onready var rng = RandomNumberGenerator.new()
 var tween : Tween
 var newFloorBricks = 10
@@ -44,8 +44,8 @@ func _process(_delta):
 		if(currChar != null):
 			currChar.prepare_drag()
 			currChar.reparent($OutOfFloorCharacters, true)
-			$SellDropbox.visible = true
-			$SellDropbox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
+			sellBox.visible = true
+			sellBox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
 	if(currChar != null):
 		if(Input.is_action_pressed("click_press")):
 			currChar.move()
@@ -59,10 +59,10 @@ func _process(_delta):
 					closestDrop = f
 			if(closestDrop is Floor):
 				closestDrop.add_character(currChar)
-			else: #if closestDrop is not a floor, it (currently) MUST be a SellDropbox
+			else: #makes the assumption that if closestDrop is not a floor, it (currently) MUST be a sellBox
 				sell_character(currChar)
 			currChar = null
-			$SellDropbox.visible = false
+			sellBox.visible = false
 
 #console_logs{GAIN_GOLD, GAIN_BRICK, LOSE_GOLD, LOSE_BRICK, THIEF_ENTER, THIEF_EXIT}
 func log_in_console(event : int, c : Character, resourceVal : int = 0, resourceName : String = ""):
@@ -88,7 +88,7 @@ func update():
 	%Floors/TopFloor/NewFloorLabel2.text = "BUILDERS NEEDED: " + str(newFloorBuilders)
 	
 	if($GodBar.value >= 100):
-		get_tree().change_scene_to_file("res://game_over.tscn")
+		get_tree().change_scene_to_file("../Screens/game_over.tscn")
 
 func new_floor():
 	if(resources["bricks"] >= newFloorBricks and numBuilders >= newFloorBuilders):
@@ -221,7 +221,3 @@ func _on_thief_timer_timeout() -> void:
 		for f in range(1,%Floors.get_child_count()):
 			if(rng.randi_range(1,100) <= 2 and !%Floors.get_child(f).has_warrior()):
 				log_in_console(console_logs.THIEF_ENTER,spawn_thief(%Floors.get_child(f)))
-
-
-func _on_pause_button_pressed() -> void:
-	get_tree().paused = !get_tree().paused
