@@ -3,18 +3,19 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bgiywmusee28u"
-path="res://.godot/imported/Marav2.ttf-eea959022a27d9a45abad65ae5bb20cf.fontdata"
+path="res://.godot/imported/Marav2.ttf-d7fc026e3d9aad75776d8b10f8101c5a.fontdata"
 
 [deps]
 
-source_file="res://Marav2.ttf"
-dest_files=["res://.godot/imported/Marav2.ttf-eea959022a27d9a45abad65ae5bb20cf.fontdata"]
+source_file="res://Assets/UI/Marav2.ttf"
+dest_files=["res://.godot/imported/Marav2.ttf-d7fc026e3d9aad75776d8b10f8101c5a.fontdata"]
 
 [params]
 
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

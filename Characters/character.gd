@@ -23,6 +23,9 @@ func get_current_floor() -> Floor:
 func set_dragging(d : bool) -> void:
 	dragging = d
 
+func get_dragging_position() -> Vector2:
+	return global_position + offset
+
 func _on_wait_timer_timeout():
 	if(self is Thief or !dragging):
 		tween = create_tween()

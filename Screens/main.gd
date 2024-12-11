@@ -21,8 +21,8 @@ enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT}
 var currChar : Character = null
 
 var resources : Dictionary = {
-	"bricks" : 0,
-	"gold" : 300,
+	"bricks" : 30,
+	"gold" : 30,
 	"hubris" : 0,
 }
 
@@ -54,8 +54,8 @@ func _process(_delta):
 			var closestDrop = currChar.get_current_floor()
 			var floors = currChar.get_floors()
 			for f in floors:
-				var distance = currChar.global_position.distance_to(f.get_global_center())
-				if(distance < currChar.global_position.distance_to(closestDrop.get_global_center())):
+				var distance = currChar.get_dragging_position().distance_to(f.get_global_center())
+				if(distance < currChar.get_dragging_position().distance_to(closestDrop.get_global_center())):
 					closestDrop = f
 			if(closestDrop is Floor):
 				closestDrop.add_character(currChar)
@@ -130,7 +130,6 @@ func _on_character_timer_timeout(c : Character):
 				$ResourceEffects.add_child(rE)
 				rE.global_position.x = c.global_position.x - (60 * numREs)
 				rE.global_position.y = c.global_position.y - 50
-				print(rE.global_position)
 				numREs += 1
 				rE.spawn()
 	add_resources(r)
@@ -210,6 +209,7 @@ func on_character_area_2d_enter(area : Area2D) -> void:
 	if(area.get_parent().has_node("DropComponent")):
 		if(currChar != null):
 			currChar.add_floor(area.get_parent())
+			print(currChar.floors)
 
 func on_character_area_2d_exit(area : Area2D) -> void:
 	if(area.get_parent().has_node("DropComponent")):
@@ -221,3 +221,7 @@ func _on_thief_timer_timeout() -> void:
 		for f in range(1,%Floors.get_child_count()):
 			if(rng.randi_range(1,100) <= 2 and !%Floors.get_child(f).has_warrior()):
 				log_in_console(console_logs.THIEF_ENTER,spawn_thief(%Floors.get_child(f)))
+
+
+func _on_pause_button_pressed() -> void:
+	get_tree().paused = !get_tree().paused

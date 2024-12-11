@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://c2fhhh5tia0q2"]
 
-[ext_resource type="Script" path="res://game_over.gd" id="1_r7w56"]
-[ext_resource type="Texture2D" uid="uid://0d76067wdlcn" path="res://Assets/GameOverSpritesheet.png" id="1_wuxee"]
-[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://theme.tres" id="3_3w87l"]
+[ext_resource type="Script" path="res://Screens/game_over.gd" id="1_r7w56"]
+[ext_resource type="Texture2D" uid="uid://0d76067wdlcn" path="res://Assets/Screens/GameOverSpritesheet.png" id="1_wuxee"]
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="3_3w87l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bvjjr"]
 atlas = ExtResource("1_wuxee")

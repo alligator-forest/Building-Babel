@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://xn2hdy3rgr76"]
 
-[ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Marav2.ttf" id="1_t72pw"]
+[ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Assets/UI/Marav2.ttf" id="1_t72pw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sas17"]
 bg_color = Color(0.65, 0.494975, 0.3055, 1)

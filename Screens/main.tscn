@@ -1,18 +1,18 @@
-[gd_scene load_steps=24 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=25 format=3 uid="uid://bkyl1jp3lj36v"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_eqxpj"]
+[ext_resource type="Script" path="res://Screens/main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
-[ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Marav2.ttf" id="3_qesbo"]
+[ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Assets/UI/Marav2.ttf" id="3_qesbo"]
 [ext_resource type="Texture2D" uid="uid://c2nuxdwin3slv" path="res://Assets/UI/brickIcon.png" id="4_l6brj"]
 [ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/Builder/builder.tscn" id="4_r1sbw"]
 [ext_resource type="Texture2D" uid="uid://dj3lam7b5ypx" path="res://Assets/UI/goldIcon.png" id="5_x8i3h"]
 [ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/Merchant/merchant.tscn" id="5_ycq4u"]
 [ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/Mason/mason.tscn" id="6_qu6a5"]
 [ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/Shepherd/shepherd.tscn" id="7_sbhwi"]
-[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://theme.tres" id="8_hphvt"]
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="8_hphvt"]
 [ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/Warrior/warrior.tscn" id="8_xfuhw"]
 [ext_resource type="AudioStream" uid="uid://cbr620ywkvhpa" path="res://Music/SFX/layered sound.mp3" id="9_0wmer"]
-[ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://resource_effect.tscn" id="9_eoorw"]
+[ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="9_eoorw"]
 [ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/Thief/thief.tscn" id="9_m3587"]
 [ext_resource type="Texture2D" uid="uid://u8qrlqhbdaes" path="res://Assets/Floor/FloorRoof.png" id="10_3tu5u"]
 [ext_resource type="AudioStream" uid="uid://bscdbq8e1i213" path="res://Music/bgMusic.mp3" id="10_stmio"]
@@ -20,13 +20,15 @@
 [ext_resource type="AudioStream" uid="uid://h7qk0fhjaaa7" path="res://Music/SFX/187 WOOSH B.wav" id="11_t20f0"]
 [ext_resource type="AudioStream" uid="uid://bshc5yp51en76" path="res://Music/SFX/money-pickup-2-89563.mp3" id="12_diw7j"]
 [ext_resource type="Texture2D" uid="uid://bf13ejbuol7vp" path="res://Assets/Floor/FloorLobby.png" id="12_n0vtn"]
-[ext_resource type="Script" path="res://sell_dropbox.gd" id="19_hyppe"]
-[ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://drop_component.tscn" id="19_ufc1y"]
+[ext_resource type="Script" path="res://System/sell_dropbox.gd" id="19_hyppe"]
+[ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="19_ufc1y"]
+[ext_resource type="PackedScene" uid="uid://djulcvjafyb7l" path="res://Screens/pause_menu.tscn" id="23_bv5d6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puaxa"]
 size = Vector2(256, 128)
 
 [node name="Main" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_eqxpj")
 tiers = ExtResource("2_d85bv")
 builders = ExtResource("4_r1sbw")
@@ -116,6 +118,7 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 368.0
 offset_bottom = 80.0
+show_percentage = false
 
 [node name="BrickLabel" type="Label" parent="."]
 offset_left = 152.0
@@ -152,58 +155,64 @@ wait_time = 5.0
 autostart = true
 
 [node name="ShopButtons" type="Control" parent="."]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_default_cursor_shape = 2
+offset_left = 768.0
+offset_right = 1152.0
+offset_bottom = 648.0
 
 [node name="BuilderButton" type="Button" parent="ShopButtons"]
 layout_mode = 0
-offset_left = 888.0
-offset_top = 64.0
-offset_right = 1030.0
-offset_bottom = 144.0
+offset_left = 112.0
+offset_top = 72.0
+offset_right = 272.0
+offset_bottom = 152.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Builder
 10 Gold"
 
 [node name="MerchantButton" type="Button" parent="ShopButtons"]
 layout_mode = 0
-offset_left = 984.0
+offset_left = 208.0
 offset_top = 192.0
-offset_right = 1126.0
+offset_right = 368.0
 offset_bottom = 272.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Merchant
 15 Gold"
 
 [node name="MasonButton" type="Button" parent="ShopButtons"]
 layout_mode = 0
-offset_left = 792.0
+offset_left = 16.0
 offset_top = 192.0
-offset_right = 934.0
+offset_right = 176.0
 offset_bottom = 272.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Mason
 20 Gold"
 
 [node name="ShepherdButton" type="Button" parent="ShopButtons"]
 layout_mode = 0
-offset_left = 984.0
+offset_left = 208.0
 offset_top = 320.0
-offset_right = 1126.0
+offset_right = 368.0
 offset_bottom = 400.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Shepherd
 30 Gold"
 
 [node name="WarriorButton" type="Button" parent="ShopButtons"]
 layout_mode = 0
-offset_left = 792.0
+offset_left = 16.0
 offset_top = 320.0
-offset_right = 934.0
+offset_right = 176.0
 offset_bottom = 400.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Warrior
 30 Gold"
@@ -222,7 +231,6 @@ stream = ExtResource("11_t20f0")
 
 [node name="MoneyPickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_diw7j")
-volume_db = 2.0
 
 [node name="BrickPickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_4l48r")
@@ -257,6 +265,19 @@ bbcode_enabled = true
 scroll_active = false
 scroll_following = true
 
+[node name="PauseMenu" parent="." instance=ExtResource("23_bv5d6")]
+visible = false
+offset = Vector2(288, 162)
+transform = Transform2D(1, 0, 0, 1, 288, 162)
+
+[node name="PauseButton" type="Button" parent="."]
+process_mode = 3
+offset_left = 1080.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 72.0
+text = "||"
+
 [connection signal="pressed" from="Tower/Floors/TopFloor/Button" to="." method="new_floor"]
 [connection signal="timeout" from="ThiefTimer" to="." method="_on_thief_timer_timeout"]
 [connection signal="pressed" from="ShopButtons/BuilderButton" to="." method="_on_builder_button_pressed"]
@@ -264,3 +285,4 @@ scroll_following = true
 [connection signal="pressed" from="ShopButtons/MasonButton" to="." method="_on_mason_button_pressed"]
 [connection signal="pressed" from="ShopButtons/ShepherdButton" to="." method="_on_shepherd_button_pressed"]
 [connection signal="pressed" from="ShopButtons/WarriorButton" to="." method="_on_warrior_button_pressed"]
+[connection signal="pressed" from="PauseButton" to="PauseMenu" method="_on_pause_button_pressed"]

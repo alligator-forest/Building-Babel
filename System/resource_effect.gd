@@ -21,7 +21,6 @@ func spawn() -> void:
 		else:
 			$Label.text = "+"
 		$Label.text += str(amount)
-		print("from ",global_position.y," to ",global_position.y - 30)
 		var tween = create_tween()
 		tween.tween_property(self,"global_position:y",global_position.y - 30,$Timer.wait_time)
 	else:
