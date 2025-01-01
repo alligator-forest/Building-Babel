@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=27 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" path="res://Screens/main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
@@ -23,6 +23,14 @@
 [ext_resource type="Script" path="res://System/sell_dropbox.gd" id="19_hyppe"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="19_ufc1y"]
 [ext_resource type="Script" path="res://Screens/settings.gd" id="24_8qx4t"]
+
+[sub_resource type="Gradient" id="Gradient_h608w"]
+colors = PackedColorArray(0.156863, 0.8, 0.87451, 1, 0.1566, 0.79866, 0.87, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5dr55"]
+gradient = SubResource("Gradient_h608w")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0.0683761, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puaxa"]
 size = Vector2(256, 128)
@@ -180,7 +188,12 @@ offset_right = 384.0
 offset_bottom = 648.0
 bbcode_enabled = true
 scroll_active = false
-scroll_following = true
+
+[node name="ConsoleGradient" type="Sprite2D" parent="."]
+position = Vector2(159.976, 515.878)
+rotation = 1.5708
+scale = Vector2(4.1255, 4.99935)
+texture = SubResource("GradientTexture2D_5dr55")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 offset_left = 768.0

@@ -1,7 +1,7 @@
 extends Control
 
-@onready var musicPercent = $SoundSliders/PercentLabels/MusicPercent
-@onready var sfxPercent = $SoundSliders/PercentLabels/SfxPercent
+@onready var musicPercent = $VolumeSliders/PercentLabels/MusicPercent
+@onready var sfxPercent = $VolumeSliders/PercentLabels/SfxPercent
 @onready var codeLabel = $HBoxContainer/BoxContainer/CodeLabel
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
@@ -10,7 +10,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 		"sans":
 			codeLabel.text = "New skin unlocked!"
 		_:
-			codeLabel.text = "Not a code. Try again!"
+			codeLabel.text = "Invalid code. Try again!"
 
 
 func _on_code_textbox_text_changed(_new_text: String) -> void:

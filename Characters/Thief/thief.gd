@@ -8,7 +8,7 @@ var maxSteals := 5
 func get_bricks() -> int:
 	if(!get_parent().get_parent().has_warrior()):
 		return rng.randi_range(-10,-5)
-	return 0
+	return rng.randi_range(-10,-5)
 
 func get_gold() -> int:
 	if(!get_parent().get_parent().has_warrior()):

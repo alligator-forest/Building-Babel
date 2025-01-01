@@ -68,14 +68,13 @@ func _process(_delta):
 func log_in_console(event : int, c : Character, resourceVal : int = 0, resourceName : String = ""):
 	match event:
 		console_logs.GAIN_RESOURCE:
-			$Console.text += str(str(c).to_pascal_case()," gained ",resourceVal," ",resourceName)
+			$Console.text = str(str(c).to_pascal_case()," gained ",resourceVal," ",resourceName) + "\n" + $Console.text
 		console_logs.LOSE_RESOURCE:
-			$Console.text += str(str(c).to_pascal_case(), " stole ",abs(resourceVal), " ",resourceName)
+			$Console.text = str(str(c).to_pascal_case(), " stole ",abs(resourceVal), " ",resourceName) + "\n" + $Console.text
 		console_logs.THIEF_ENTER:
-			$Console.text += str(str(c).to_pascal_case(), " appeared (",c.get_current_floor(),")")
+			$Console.text = str(str(c).to_pascal_case(), " appeared (",c.get_current_floor(),")") + "\n" + $Console.text
 		console_logs.THIEF_EXIT:
-			$Console.text += str(str(c).to_pascal_case(), " left (",c.get_current_floor(),")")
-	$Console.text += "\n"
+			$Console.text = str(str(c).to_pascal_case(), " left (",c.get_current_floor(),")") + "\n" + $Console.text
 
 func update():
 	$BrickLabel.text = str(resources["bricks"])
@@ -209,7 +208,6 @@ func on_character_area_2d_enter(area : Area2D) -> void:
 	if(area.get_parent().has_node("DropComponent")):
 		if(currChar != null):
 			currChar.add_floor(area.get_parent())
-			print(currChar.floors)
 
 func on_character_area_2d_exit(area : Area2D) -> void:
 	if(area.get_parent().has_node("DropComponent")):
