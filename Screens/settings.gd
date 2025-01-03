@@ -18,8 +18,8 @@ func _on_code_textbox_text_changed(_new_text: String) -> void:
 
 
 func _on_music_slider_value_changed(value: float) -> void:
-	musicPercent.text = str(value) + "%"
+	musicPercent.text = str(value * 200) + "%"
 
 
 func _on_sfx_slider_value_changed(value: float) -> void:
-	sfxPercent.text = str(value) + "%"
+	sfxPercent.text = str(value * 200) + "%"

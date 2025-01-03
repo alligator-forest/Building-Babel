@@ -144,15 +144,16 @@ func add_resources(r : Dictionary):
 	update()
 
 func play_effect(n : String):
-	match n:
-		"gold":
-			$MoneyPickup.play()
-		"bricks":
-			$BrickPickup.play(55)
-		"newFloor":
-			$NewFloorPlayer.play()
-		"steal":
-			$Steal.play()
+	#match n:
+		#"gold":
+			#$MoneyPickup.play()
+		#"bricks":
+			#$BrickPickup.play(55)
+		#"newFloor":
+			#$NewFloorPlayer.play()
+		#"steal":
+			#$Steal.play()
+	pass
 
 func _on_builder_button_pressed():
 	buy_character(Builder.new(), builders)
