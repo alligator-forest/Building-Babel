@@ -3,17 +3,17 @@ extends Node
 var musicVolume : float = 100 #percent, 0 - 200
 var sfxVolume : float = 100 #percent, 0 - 200
 
-func play_sfx(key : String):
+func play_effect(key : String):
 	key = key.to_lower()
 	match key:
-		"brick":
-			$Brick.play()
+		"bricks":
+			$Brick.play(55)
 		"gold":
-			pass
+			$Gold.play()
 		"steal":
-			pass
+			$Steal.play()
 		"new floor":
-			pass
+			$NewFloor.play(24)
 
 func _on_music_slider_value_changed(value: float) -> void:
 	$BGMusic.volume_db = linear_to_db(value)

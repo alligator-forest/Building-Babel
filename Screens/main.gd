@@ -10,7 +10,7 @@ extends Node2D
 @export var thieves: PackedScene
 @export var resourceEffects : PackedScene
 
-@onready var sellBox = $TabContainer/Characters/VBoxContainer/SellDropbox
+@onready var sellBox = $TabContainer/Residents/VBoxContainer/SellDropbox
 @onready var rng = RandomNumberGenerator.new()
 var tween : Tween
 var newFloorBricks = 10
@@ -59,7 +59,7 @@ func _process(_delta):
 					closestDrop = f
 			if(closestDrop is Floor):
 				closestDrop.add_character(currChar)
-			else: #makes the assumption that if closestDrop is not a floor, it (currently) MUST be a sellBox
+			else: #makes the assumption that if closestDrop is not a floor, it (currently) MUST be a SellBox
 				sell_character(currChar)
 			currChar = null
 			sellBox.visible = false
@@ -98,7 +98,7 @@ func new_floor():
 		%Floors.move_child(tier,1)
 		newFloorBricks *= 4
 		newFloorBuilders += 1
-		$NewFloorPlayer.play(20)
+		play_effect("new floor")
 		update()
 
 func _on_character_timer_timeout(c : Character):
@@ -135,25 +135,17 @@ func _on_character_timer_timeout(c : Character):
 
 func add_resources(r : Dictionary):
 	for key in r:
-		resources[key] += r[key]
-		if(r[key] < 0):
-			play_effect("steal")
-		elif(r[key] > 0):
-			play_effect(key)
-		resources[key] = clamp(resources[key],0,9999)
+		if(key != "hubris"): #hubris has no current sound effect
+			resources[key] += r[key]
+			if(r[key] < 0):
+				play_effect("steal")
+			elif(r[key] > 0):
+				play_effect(key)
+			resources[key] = clamp(resources[key],0,9999)
 	update()
 
 func play_effect(n : String):
-	#match n:
-		#"gold":
-			#$MoneyPickup.play()
-		#"bricks":
-			#$BrickPickup.play(55)
-		#"newFloor":
-			#$NewFloorPlayer.play()
-		#"steal":
-			#$Steal.play()
-	pass
+	$SoundManager.play_effect(n)
 
 func _on_builder_button_pressed():
 	buy_character(Builder.new(), builders)

@@ -181,6 +181,7 @@ stream = ExtResource("11_t20f0")
 
 [node name="Gold" type="AudioStreamPlayer" parent="SoundManager"]
 stream = ExtResource("12_diw7j")
+volume_db = 5.0
 
 [node name="Brick" type="AudioStreamPlayer" parent="SoundManager"]
 stream = ExtResource("11_4l48r")
@@ -206,7 +207,7 @@ offset_bottom = 648.0
 tab_alignment = 2
 current_tab = 0
 
-[node name="Characters" type="MarginContainer" parent="TabContainer"]
+[node name="Residents" type="MarginContainer" parent="TabContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -214,46 +215,46 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Characters"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Residents"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="BuilderButton" type="Button" parent="TabContainer/Characters/VBoxContainer"]
+[node name="BuilderButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Builder
 10 Gold"
 
-[node name="MerchantButton" type="Button" parent="TabContainer/Characters/VBoxContainer"]
+[node name="MerchantButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Merchant
 15 Gold"
 
-[node name="MasonButton" type="Button" parent="TabContainer/Characters/VBoxContainer"]
+[node name="MasonButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Mason
 20 Gold"
 
-[node name="ShepherdButton" type="Button" parent="TabContainer/Characters/VBoxContainer"]
+[node name="ShepherdButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Shepherd
 30 Gold"
 
-[node name="WarriorButton" type="Button" parent="TabContainer/Characters/VBoxContainer"]
+[node name="WarriorButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Warrior
 30 Gold"
 
-[node name="SellDropbox" type="Button" parent="TabContainer/Characters/VBoxContainer"]
+[node name="SellDropbox" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 visible = false
 layout_mode = 2
 theme = ExtResource("8_hphvt")
@@ -262,11 +263,11 @@ disabled = true
 text = "SELL"
 script = ExtResource("19_hyppe")
 
-[node name="DropComponent" parent="TabContainer/Characters/VBoxContainer/SellDropbox" instance=ExtResource("19_ufc1y")]
+[node name="DropComponent" parent="TabContainer/Residents/VBoxContainer/SellDropbox" instance=ExtResource("19_ufc1y")]
 
-[node name="Area2D" type="Area2D" parent="TabContainer/Characters/VBoxContainer/SellDropbox"]
+[node name="Area2D" type="Area2D" parent="TabContainer/Residents/VBoxContainer/SellDropbox"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TabContainer/Characters/VBoxContainer/SellDropbox/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TabContainer/Residents/VBoxContainer/SellDropbox/Area2D"]
 position = Vector2(128, 64)
 shape = SubResource("RectangleShape2D_puaxa")
 
@@ -360,11 +361,11 @@ horizontal_alignment = 1
 
 [connection signal="pressed" from="Tower/Floors/TopFloor/Button" to="." method="new_floor"]
 [connection signal="timeout" from="ThiefTimer" to="." method="_on_thief_timer_timeout"]
-[connection signal="pressed" from="TabContainer/Characters/VBoxContainer/BuilderButton" to="." method="_on_builder_button_pressed"]
-[connection signal="pressed" from="TabContainer/Characters/VBoxContainer/MerchantButton" to="." method="_on_merchant_button_pressed"]
-[connection signal="pressed" from="TabContainer/Characters/VBoxContainer/MasonButton" to="." method="_on_mason_button_pressed"]
-[connection signal="pressed" from="TabContainer/Characters/VBoxContainer/ShepherdButton" to="." method="_on_shepherd_button_pressed"]
-[connection signal="pressed" from="TabContainer/Characters/VBoxContainer/WarriorButton" to="." method="_on_warrior_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/BuilderButton" to="." method="_on_builder_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MerchantButton" to="." method="_on_merchant_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MasonButton" to="." method="_on_mason_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/ShepherdButton" to="." method="_on_shepherd_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/WarriorButton" to="." method="_on_warrior_button_pressed"]
 [connection signal="text_changed" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_code_textbox_text_changed"]
 [connection signal="text_submitted" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_line_edit_text_submitted"]
 [connection signal="value_changed" from="TabContainer/Settings/VolumeSliders/Sliders/MusicSlider" to="SoundManager" method="_on_music_slider_value_changed"]
