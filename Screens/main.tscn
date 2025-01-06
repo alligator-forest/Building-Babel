@@ -207,9 +207,10 @@ offset_left = 768.0
 offset_right = 1152.0
 offset_bottom = 648.0
 tab_alignment = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Residents" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -274,7 +275,6 @@ position = Vector2(128, 64)
 shape = SubResource("RectangleShape2D_puaxa")
 
 [node name="Settings" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -303,33 +303,37 @@ custom_minimum_size = Vector2(184, 32)
 layout_mode = 2
 placeholder_text = "Insert Code Here..."
 
-[node name="VolumeSliders" type="VBoxContainer" parent="TabContainer/Settings"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Settings"]
+layout_mode = 2
+alignment = 1
+
+[node name="VolumeSliders" type="VBoxContainer" parent="TabContainer/Settings/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TopLabels" type="HBoxContainer" parent="TabContainer/Settings/VolumeSliders"]
+[node name="TopLabels" type="HBoxContainer" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders"]
 layout_mode = 2
 
-[node name="Music" type="Label" parent="TabContainer/Settings/VolumeSliders/TopLabels"]
-custom_minimum_size = Vector2(64, 0)
+[node name="Music" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/TopLabels"]
+custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 text = "Music"
 horizontal_alignment = 1
 
-[node name="Sfx" type="Label" parent="TabContainer/Settings/VolumeSliders/TopLabels"]
-custom_minimum_size = Vector2(64, 0)
+[node name="Sfx" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/TopLabels"]
+custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 text = "SFX"
 horizontal_alignment = 1
 
-[node name="Sliders" type="HBoxContainer" parent="TabContainer/Settings/VolumeSliders"]
+[node name="Sliders" type="HBoxContainer" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="MusicSlider" type="VSlider" parent="TabContainer/Settings/VolumeSliders/Sliders"]
-custom_minimum_size = Vector2(64, 448)
+[node name="MusicSlider" type="VSlider" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders"]
+custom_minimum_size = Vector2(96, 448)
 layout_mode = 2
 max_value = 1.0
 step = 0.05
@@ -337,8 +341,8 @@ value = 0.5
 tick_count = 5
 ticks_on_borders = true
 
-[node name="SfxSlider" type="VSlider" parent="TabContainer/Settings/VolumeSliders/Sliders"]
-custom_minimum_size = Vector2(64, 448)
+[node name="SfxSlider" type="VSlider" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders"]
+custom_minimum_size = Vector2(96, 448)
 layout_mode = 2
 max_value = 1.0
 step = 0.1
@@ -346,24 +350,63 @@ value = 0.5
 tick_count = 5
 ticks_on_borders = true
 
-[node name="PercentLabels" type="HBoxContainer" parent="TabContainer/Settings/VolumeSliders"]
+[node name="PercentLabels" type="HBoxContainer" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders"]
 layout_mode = 2
 
-[node name="MusicPercent" type="Label" parent="TabContainer/Settings/VolumeSliders/PercentLabels"]
-custom_minimum_size = Vector2(64, 0)
+[node name="MusicPercent" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/PercentLabels"]
+custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 text = "100%"
 horizontal_alignment = 1
 
-[node name="SfxPercent" type="Label" parent="TabContainer/Settings/VolumeSliders/PercentLabels"]
-custom_minimum_size = Vector2(64, 0)
+[node name="SfxPercent" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/PercentLabels"]
+custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 text = "100%"
 horizontal_alignment = 1
+
+[node name="ConsoleNotifications" type="VBoxContainer" parent="TabContainer/Settings/HBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="MerchantConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
+clip_contents = true
+custom_minimum_size = Vector2(160, 128)
+layout_mode = 2
+button_pressed = true
+text = "Notify when a Merchant makes Gold"
+alignment = 1
+autowrap_mode = 2
+
+[node name="MasonConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
+clip_contents = true
+custom_minimum_size = Vector2(160, 128)
+layout_mode = 2
+button_pressed = true
+text = "Notify when a Mason makes Bricks"
+alignment = 1
+autowrap_mode = 2
+
+[node name="ThiefAppear" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
+clip_contents = true
+custom_minimum_size = Vector2(160, 128)
+layout_mode = 2
+button_pressed = true
+text = "Notify when a Thief Enters or Leaves a Floor"
+alignment = 1
+autowrap_mode = 2
+
+[node name="ThiefSteal" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
+clip_contents = true
+custom_minimum_size = Vector2(160, 128)
+layout_mode = 2
+button_pressed = true
+text = "Notify when a Thief steals"
+alignment = 1
+autowrap_mode = 2
 
 [connection signal="pressed" from="Tower/Floors/TopFloor/Button" to="." method="new_floor"]
 [connection signal="timeout" from="ThiefTimer" to="." method="_on_thief_timer_timeout"]
-[connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/BuilderButton" to="." method="_on_builder_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MerchantButton" to="." method="_on_merchant_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MasonButton" to="." method="_on_mason_button_pressed"]
@@ -371,7 +414,9 @@ horizontal_alignment = 1
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/WarriorButton" to="." method="_on_warrior_button_pressed"]
 [connection signal="text_changed" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_code_textbox_text_changed"]
 [connection signal="text_submitted" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_line_edit_text_submitted"]
-[connection signal="value_changed" from="TabContainer/Settings/VolumeSliders/Sliders/MusicSlider" to="SoundManager" method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="TabContainer/Settings/VolumeSliders/Sliders/MusicSlider" to="TabContainer/Settings" method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="TabContainer/Settings/VolumeSliders/Sliders/SfxSlider" to="SoundManager" method="_on_sfx_slider_value_changed"]
-[connection signal="value_changed" from="TabContainer/Settings/VolumeSliders/Sliders/SfxSlider" to="TabContainer/Settings" method="_on_sfx_slider_value_changed"]
+[connection signal="drag_ended" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/MusicSlider" to="TabContainer/Settings" method="_on_volume_slider_drag_ended"]
+[connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/MusicSlider" to="SoundManager" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/MusicSlider" to="TabContainer/Settings" method="_on_music_slider_value_changed"]
+[connection signal="drag_ended" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/SfxSlider" to="TabContainer/Settings" method="_on_volume_slider_drag_ended"]
+[connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/SfxSlider" to="SoundManager" method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/SfxSlider" to="TabContainer/Settings" method="_on_sfx_slider_value_changed"]

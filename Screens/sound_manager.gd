@@ -1,7 +1,7 @@
 extends Node
 
-var musicVolume : float = 100 #percent, 0 - 200
-var sfxVolume : float = 100 #percent, 0 - 200
+var musicVolume : float = linear_to_db(SAVEOBJECT.saveData.getMusicVolume()) #percent, 0 - 200
+var sfxVolume : float = linear_to_db(SAVEOBJECT.saveData.getSfxVolume()) #percent, 0 - 200
 
 func play_effect(key : String):
 	key = key.to_lower()
@@ -22,3 +22,4 @@ func _on_music_slider_value_changed(value: float) -> void:
 func _on_sfx_slider_value_changed(value: float) -> void:
 	for s in $SFX.get_children():
 		s.volume_db = linear_to_db(value)
+		SAVEOBJECT.saveData.setSfxVolume(value)

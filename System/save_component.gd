@@ -19,7 +19,6 @@ func _load_data() -> void:
 func _save_data() -> void:
 	ResourceSaver.save(saveData,save_file_path + save_file_name)
 	print("saved")
-	print(saveData.getMusicVolume())
 
 func _reset() -> void:
 	saveData.resetAll()
