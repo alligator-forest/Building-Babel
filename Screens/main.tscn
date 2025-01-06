@@ -363,6 +363,7 @@ horizontal_alignment = 1
 
 [connection signal="pressed" from="Tower/Floors/TopFloor/Button" to="." method="new_floor"]
 [connection signal="timeout" from="ThiefTimer" to="." method="_on_thief_timer_timeout"]
+[connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/BuilderButton" to="." method="_on_builder_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MerchantButton" to="." method="_on_merchant_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MasonButton" to="." method="_on_mason_button_pressed"]

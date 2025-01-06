@@ -28,6 +28,8 @@ var resources : Dictionary = {
 
 func _ready():
 	update()
+	SAVEOBJECT._load_data()
+	$TabContainer/Settings/VolumeSliders/Sliders/MusicSlider.value = SAVEOBJECT.saveData.getMusicVolume()
 
 func _process(_delta):
 	if(Input.is_action_just_pressed("click_press")):
@@ -135,13 +137,13 @@ func _on_character_timer_timeout(c : Character):
 
 func add_resources(r : Dictionary):
 	for key in r:
+		resources[key] += r[key]
 		if(key != "hubris"): #hubris has no current sound effect
-			resources[key] += r[key]
 			if(r[key] < 0):
 				play_effect("steal")
 			elif(r[key] > 0):
 				play_effect(key)
-			resources[key] = clamp(resources[key],0,9999)
+		resources[key] = clamp(resources[key],0,9999)
 	update()
 
 func play_effect(n : String):
@@ -212,3 +214,7 @@ func _on_thief_timer_timeout() -> void:
 		for f in range(1,%Floors.get_child_count()):
 			if(rng.randi_range(1,100) <= 2 and !%Floors.get_child(f).has_warrior()):
 				log_in_console(console_logs.THIEF_ENTER,spawn_thief(%Floors.get_child(f)))
+
+
+func _on_tab_container_tab_changed(_tab: int) -> void:
+	SAVEOBJECT._save_data()

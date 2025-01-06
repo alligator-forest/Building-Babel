@@ -16,6 +16,10 @@ run/main_scene="res://Screens/home_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Assets/BuildingBabelLogo.png"
 
+[autoload]
+
+SAVEOBJECT="*res://System/save_component.gd"
+
 [display]
 
 window/stretch/mode="viewport"

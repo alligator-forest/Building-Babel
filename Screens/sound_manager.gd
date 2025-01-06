@@ -17,6 +17,7 @@ func play_effect(key : String):
 
 func _on_music_slider_value_changed(value: float) -> void:
 	$BGMusic.volume_db = linear_to_db(value)
+	SAVEOBJECT.saveData.setMusicVolume(value)
 
 func _on_sfx_slider_value_changed(value: float) -> void:
 	for s in $SFX.get_children():

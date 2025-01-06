@@ -4,6 +4,11 @@ extends Control
 @onready var sfxPercent = $VolumeSliders/PercentLabels/SfxPercent
 @onready var codeLabel = $HBoxContainer/BoxContainer/CodeLabel
 
+
+func _ready() -> void:
+	#$VolumeSliders/Sliders/MusicSlider.value = SAVEOBJECT.saveData.getMusicVolume()
+	$VolumeSliders/Sliders/SfxSlider.value = SAVEOBJECT.saveData.getSfxVolume()
+
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	new_text = new_text.to_lower()
 	match new_text:
