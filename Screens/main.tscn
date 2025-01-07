@@ -207,10 +207,9 @@ offset_left = 768.0
 offset_right = 1152.0
 offset_bottom = 648.0
 tab_alignment = 2
-current_tab = 1
+current_tab = 0
 
 [node name="Residents" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -275,6 +274,7 @@ position = Vector2(128, 64)
 shape = SubResource("RectangleShape2D_puaxa")
 
 [node name="Settings" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -369,30 +369,21 @@ horizontal_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="MerchantConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
+[node name="GoldConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
 clip_contents = true
 custom_minimum_size = Vector2(160, 128)
 layout_mode = 2
 button_pressed = true
-text = "Notify when a Merchant makes Gold"
+text = "Notify when a Resident makes Gold"
 alignment = 1
 autowrap_mode = 2
 
-[node name="MasonConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
+[node name="BrickConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
 clip_contents = true
 custom_minimum_size = Vector2(160, 128)
 layout_mode = 2
 button_pressed = true
-text = "Notify when a Mason makes Bricks"
-alignment = 1
-autowrap_mode = 2
-
-[node name="ThiefAppear" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-clip_contents = true
-custom_minimum_size = Vector2(160, 128)
-layout_mode = 2
-button_pressed = true
-text = "Notify when a Thief Enters or Leaves a Floor"
+text = "Notify when a Resident makes Bricks"
 alignment = 1
 autowrap_mode = 2
 
@@ -402,6 +393,15 @@ custom_minimum_size = Vector2(160, 128)
 layout_mode = 2
 button_pressed = true
 text = "Notify when a Thief steals"
+alignment = 1
+autowrap_mode = 2
+
+[node name="ThiefAppear" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
+clip_contents = true
+custom_minimum_size = Vector2(160, 128)
+layout_mode = 2
+button_pressed = true
+text = "Notify when a Thief enters or exits a Floor"
 alignment = 1
 autowrap_mode = 2
 
@@ -420,3 +420,7 @@ autowrap_mode = 2
 [connection signal="drag_ended" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/SfxSlider" to="TabContainer/Settings" method="_on_volume_slider_drag_ended"]
 [connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/SfxSlider" to="SoundManager" method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/SfxSlider" to="TabContainer/Settings" method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/GoldConsole" to="TabContainer/Settings" method="_on_gold_console_button_pressed"]
+[connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/BrickConsole" to="TabContainer/Settings" method="_on_brick_console_button_pressed"]
+[connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefSteal" to="TabContainer/Settings" method="_on_thief_steal_button_pressed"]
+[connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefAppear" to="TabContainer/Settings" method="_on_thief_appear_button_pressed"]

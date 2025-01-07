@@ -21,11 +21,17 @@ enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT}
 var currChar : Character = null
 
 var resources : Dictionary = {
-	"bricks" : 30,
+	"bricks" : 0,
 	"gold" : 30,
 	"hubris" : 0,
 }
 
+@onready var consoleNotifs : Dictionary = {
+	"gold" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/GoldConsole,
+	"bricks" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/BrickConsole,
+	"steal" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefSteal,
+	"thief" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefAppear,
+}
 func _ready():
 	update()
 	
@@ -69,13 +75,17 @@ func _process(_delta):
 func log_in_console(event : int, c : Character, resourceVal : int = 0, resourceName : String = ""):
 	match event:
 		console_logs.GAIN_RESOURCE:
-			$Console.text = str(str(c).to_pascal_case()," gained ",resourceVal," ",resourceName) + "\n" + $Console.text
+			if(consoleNotifs[resourceName].button_pressed):
+				$Console.text = str(str(c).to_pascal_case()," gained ",resourceVal," ",resourceName) + "\n" + $Console.text
 		console_logs.LOSE_RESOURCE:
-			$Console.text = str(str(c).to_pascal_case(), " stole ",abs(resourceVal), " ",resourceName) + "\n" + $Console.text
+			if(consoleNotifs["steal"].button_pressed):
+				$Console.text = str(str(c).to_pascal_case(), " stole ",abs(resourceVal), " ",resourceName) + "\n" + $Console.text
 		console_logs.THIEF_ENTER:
-			$Console.text = str(str(c).to_pascal_case(), " appeared (",c.get_current_floor(),")") + "\n" + $Console.text
+			if(consoleNotifs["thief"].button_pressed):
+				$Console.text = str(str(c).to_pascal_case(), " appeared (",c.get_current_floor(),")") + "\n" + $Console.text
 		console_logs.THIEF_EXIT:
-			$Console.text = str(str(c).to_pascal_case(), " left (",c.get_current_floor(),")") + "\n" + $Console.text
+			if(consoleNotifs["thief"].button_pressed):
+				$Console.text = str(str(c).to_pascal_case(), " left (",c.get_current_floor(),")") + "\n" + $Console.text
 
 func update():
 	$BrickLabel.text = str(resources["bricks"])
@@ -129,7 +139,7 @@ func _on_character_timer_timeout(c : Character):
 			if(rE != null):
 				$ResourceEffects.add_child(rE)
 				rE.global_position.x = c.global_position.x - (60 * numREs)
-				rE.global_position.y = c.global_position.y - 50
+				rE.global_position.y = c.global_position.y - 75
 				numREs += 1
 				rE.spawn()
 	add_resources(r)

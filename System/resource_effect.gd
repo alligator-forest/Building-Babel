@@ -22,7 +22,9 @@ func spawn() -> void:
 			$Label.text = "+"
 		$Label.text += str(amount)
 		var tween = create_tween()
-		tween.tween_property(self,"global_position:y",global_position.y - 30,$Timer.wait_time)
+		var tween2 = create_tween()
+		tween.tween_property(self,"global_position:y",global_position.y - 40,$Timer.wait_time).set_trans(Tween.TRANS_EXPO)
+		tween2.tween_property(self,"modulate:a",0.0,$Timer.wait_time).set_trans(Tween.TRANS_EXPO)
 	else:
 		queue_free()
 
