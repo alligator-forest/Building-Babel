@@ -107,10 +107,14 @@ func new_floor():
 		tier.change_name("Floor " + str(%Floors.get_child_count() - 1))
 		%Floors.add_child(tier)
 		%Floors.move_child(tier,1)
-		newFloorBricks *= 4
+		newFloorBricks *= 2
 		newFloorBuilders += 1
 		play_effect("new floor")
 		update()
+		
+		#win condition
+		if(%Floors.get_child_count() - 1 >= 10):
+			print("YOU WIN!!!")
 
 func _on_character_timer_timeout(c : Character):
 	var r : Dictionary = {

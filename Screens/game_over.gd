@@ -1,9 +1,9 @@
 extends Node2D
 
-func _on_animated_sprite_2d_animation_finished():
-	$AnimatedSprite2D.play("Game Over Loop")
-
 var languages := ["Fin del Juego","انتهت اللعبة","Jeu terminé","遊戲結束","Игра закончена","Oyun bitti","ゲームオーバー","Konec igre","Game Over"]
+
+func _ready() -> void:
+	$AnimationPlayer.play("game_over")
 
 var index := 0
 func _on_timer_timeout():

@@ -149,12 +149,10 @@ vertical_alignment = 1
 
 [node name="BrickIcon" type="Sprite2D" parent="."]
 position = Vector2(80, 160)
-scale = Vector2(2, 2)
 texture = ExtResource("4_l6brj")
 
 [node name="GoldIcon" type="Sprite2D" parent="."]
 position = Vector2(80, 296)
-scale = Vector2(2, 2)
 texture = ExtResource("5_x8i3h")
 
 [node name="ThiefTimer" type="Timer" parent="."]
