@@ -1,8 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=27 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" path="res://Screens/main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
-[ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Assets/UI/Marav2.ttf" id="3_qesbo"]
 [ext_resource type="Texture2D" uid="uid://c2nuxdwin3slv" path="res://Assets/UI/brickIcon.png" id="4_l6brj"]
 [ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/Builder/builder.tscn" id="4_r1sbw"]
 [ext_resource type="Texture2D" uid="uid://dj3lam7b5ypx" path="res://Assets/UI/goldIcon.png" id="5_x8i3h"]
@@ -95,24 +94,22 @@ FLOOR"
 
 [node name="NewFloorLabel" type="Label" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
-offset_left = 136.0
+offset_left = 128.0
 offset_top = -8.0
-offset_right = 352.0
+offset_right = 344.0
 offset_bottom = 40.0
-theme_override_fonts/font = ExtResource("3_qesbo")
-theme_override_font_sizes/font_size = 35
+theme = ExtResource("8_hphvt")
 text = "BRICKS NEEDED:
 "
 vertical_alignment = 1
 
 [node name="NewFloorLabel2" type="Label" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
-offset_left = 136.0
+offset_left = 128.0
 offset_top = 32.0
-offset_right = 352.0
+offset_right = 344.0
 offset_bottom = 80.0
-theme_override_fonts/font = ExtResource("3_qesbo")
-theme_override_font_sizes/font_size = 35
+theme = ExtResource("8_hphvt")
 text = "BUILDERS NEEDED:
 "
 vertical_alignment = 1
@@ -135,7 +132,7 @@ offset_left = 152.0
 offset_top = 96.0
 offset_right = 280.0
 offset_bottom = 224.0
-theme_override_fonts/font = ExtResource("3_qesbo")
+theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 100
 text = "0"
 vertical_alignment = 1
@@ -145,7 +142,7 @@ offset_left = 152.0
 offset_top = 232.0
 offset_right = 280.0
 offset_bottom = 360.0
-theme_override_fonts/font = ExtResource("3_qesbo")
+theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 100
 text = "0"
 vertical_alignment = 1
@@ -367,11 +364,11 @@ horizontal_alignment = 1
 
 [node name="ConsoleNotifications" type="VBoxContainer" parent="TabContainer/Settings/HBoxContainer2"]
 layout_mode = 2
+theme_override_constants/separation = -25
 alignment = 1
 
 [node name="GoldConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-clip_contents = true
-custom_minimum_size = Vector2(160, 128)
+custom_minimum_size = Vector2(150, 128)
 layout_mode = 2
 button_pressed = true
 text = "Notify when a Resident makes Gold"
@@ -379,7 +376,6 @@ alignment = 1
 autowrap_mode = 2
 
 [node name="BrickConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-clip_contents = true
 custom_minimum_size = Vector2(160, 128)
 layout_mode = 2
 button_pressed = true
@@ -388,7 +384,6 @@ alignment = 1
 autowrap_mode = 2
 
 [node name="ThiefSteal" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-clip_contents = true
 custom_minimum_size = Vector2(160, 128)
 layout_mode = 2
 button_pressed = true
@@ -397,7 +392,6 @@ alignment = 1
 autowrap_mode = 2
 
 [node name="ThiefAppear" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-clip_contents = true
 custom_minimum_size = Vector2(160, 128)
 layout_mode = 2
 button_pressed = true

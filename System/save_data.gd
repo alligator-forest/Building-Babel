@@ -3,8 +3,8 @@ class_name SaveData
 
 const SAVE_PATH := "user://savegame.tres"
 
-const STARTMUSICVOLUME = 100
-const STARTSFXVOLUME = 100
+const STARTMUSICVOLUME = 0.5
+const STARTSFXVOLUME = 0.5
 const STARTHIGHSCORE = 0
 
 @export var musicVolume : float = STARTMUSICVOLUME #linear volume, between 0 and 200

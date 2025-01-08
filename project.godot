@@ -20,11 +20,14 @@ config/icon="res://Assets/BuildingBabelLogo.png"
 
 SAVEOBJECT="*res://System/save_component.gd"
 
+[debug]
+
+gdscript/warnings/integer_division=0
+
 [display]
 
 window/stretch/mode="viewport"
-window/stretch/scale=1.25
-window/stretch/scale_mode="integer"
+window/stretch/aspect="ignore"
 
 [file_customization]
 

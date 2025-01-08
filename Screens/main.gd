@@ -16,6 +16,7 @@ var tween : Tween
 var newFloorBricks = 10
 var newFloorBuilders = 1
 var numBuilders = 0
+@onready var time = Time.get_ticks_msec()
 enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT}
 
 var currChar : Character = null
@@ -34,7 +35,6 @@ var resources : Dictionary = {
 }
 func _ready():
 	update()
-	
 
 func _process(_delta):
 	if(Input.is_action_just_pressed("click_press")):
