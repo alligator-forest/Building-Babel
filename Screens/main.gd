@@ -51,8 +51,10 @@ func _process(_delta):
 		if(currChar != null):
 			currChar.prepare_drag()
 			currChar.reparent($OutOfFloorCharacters, true)
-			sellBox.visible = true
-			sellBox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
+			if($TabContainer/Residents.visible):
+				sellBox.visible = true
+				sellBox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
+			
 	if(currChar != null):
 		if(Input.is_action_pressed("click_press")):
 			currChar.move()
@@ -111,7 +113,6 @@ func new_floor():
 		newFloorBuilders += 1
 		play_effect("new floor")
 		update()
-		
 		#win condition
 		if(%Floors.get_child_count() - 1 >= 10):
 			print("YOU WIN!!!")
@@ -183,13 +184,12 @@ func buy_character(c : Character, cLoader):
 	if(c.get_price() <= resources["gold"] and !%Floors/Lobby.is_full()):
 		resources["gold"] -= c.get_price()
 		var dChar = cLoader.instantiate()
-		
 		dChar.get_node("Area2D").area_entered.connect(on_character_area_2d_enter)
 		dChar.get_node("Area2D").area_exited.connect(on_character_area_2d_exit)
 		dChar.add_resource.connect(_on_character_timer_timeout)
-		
 		dChar.position = Vector2(296,0)
 		$%Floors/Lobby.add_character(dChar)
+		$Tower.scroll_vertical = 0
 		update()
 
 func spawn_thief(f : Floor) -> Thief:

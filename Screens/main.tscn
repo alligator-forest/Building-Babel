@@ -33,7 +33,7 @@ fill_from = Vector2(1, 0)
 fill_to = Vector2(0.0683761, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puaxa"]
-size = Vector2(256, 128)
+size = Vector2(352, 104)
 
 [node name="Main" type="Node2D"]
 process_mode = 1
@@ -92,27 +92,27 @@ offset_bottom = 80.0
 text = "BUILD NEW 
 FLOOR"
 
-[node name="NewFloorLabel" type="Label" parent="Tower/Floors/TopFloor"]
+[node name="NewFloorLabel" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
 offset_left = 128.0
-offset_top = -8.0
-offset_right = 344.0
-offset_bottom = 40.0
+offset_top = 16.0
+offset_right = 408.0
+offset_bottom = 64.0
 theme = ExtResource("8_hphvt")
-text = "BRICKS NEEDED:
-"
-vertical_alignment = 1
+bbcode_enabled = true
+text = "BRICKS NEEDED:"
+scroll_active = false
 
-[node name="NewFloorLabel2" type="Label" parent="Tower/Floors/TopFloor"]
+[node name="NewFloorLabel2" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
 offset_left = 128.0
-offset_top = 32.0
-offset_right = 344.0
-offset_bottom = 80.0
+offset_top = 56.0
+offset_right = 384.0
+offset_bottom = 104.0
 theme = ExtResource("8_hphvt")
 text = "BUILDERS NEEDED:
 "
-vertical_alignment = 1
+scroll_active = false
 
 [node name="Lobby" parent="Tower/Floors" instance=ExtResource("2_d85bv")]
 layout_mode = 2
@@ -120,11 +120,11 @@ texture = ExtResource("12_n0vtn")
 floorName = "Lobby"
 
 [node name="GodBar" type="ProgressBar" parent="."]
-modulate = Color(1, 0.966667, 0, 1)
 offset_left = 16.0
 offset_top = 16.0
 offset_right = 368.0
 offset_bottom = 80.0
+theme = ExtResource("8_hphvt")
 show_percentage = false
 
 [node name="BrickLabel" type="Label" parent="."]
@@ -188,13 +188,14 @@ offset_left = 16.0
 offset_top = 400.0
 offset_right = 384.0
 offset_bottom = 648.0
+theme = ExtResource("8_hphvt")
 bbcode_enabled = true
 scroll_active = false
 
 [node name="ConsoleGradient" type="Sprite2D" parent="."]
-position = Vector2(159.976, 515.878)
+position = Vector2(191.515, 515.878)
 rotation = 1.5708
-scale = Vector2(4.1255, 4.99935)
+scale = Vector2(4.1255, 5.98495)
 texture = SubResource("GradientTexture2D_5dr55")
 
 [node name="TabContainer" type="TabContainer" parent="."]
@@ -253,9 +254,9 @@ text = "Warrior
 
 [node name="SellDropbox" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 visible = false
+custom_minimum_size = Vector2(0, 112)
 layout_mode = 2
 theme = ExtResource("8_hphvt")
-theme_override_font_sizes/font_size = 100
 disabled = true
 text = "SELL"
 script = ExtResource("19_hyppe")
@@ -265,7 +266,7 @@ script = ExtResource("19_hyppe")
 [node name="Area2D" type="Area2D" parent="TabContainer/Residents/VBoxContainer/SellDropbox"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TabContainer/Residents/VBoxContainer/SellDropbox/Area2D"]
-position = Vector2(128, 64)
+position = Vector2(184, 57)
 shape = SubResource("RectangleShape2D_puaxa")
 
 [node name="Settings" type="MarginContainer" parent="TabContainer"]

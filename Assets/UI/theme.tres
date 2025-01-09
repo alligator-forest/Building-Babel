@@ -1,15 +1,22 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://xn2hdy3rgr76"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://xn2hdy3rgr76"]
 
-[ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Assets/UI/Marav2.ttf" id="1_t72pw"]
+[ext_resource type="FontFile" uid="uid://cckn6rmhljx22" path="res://Assets/UI/Roman SD.ttf" id="1_vqim0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sas17"]
 bg_color = Color(0.65, 0.494975, 0.3055, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5c4tk"]
+bg_color = Color(0.956863, 0.705882, 0.105882, 1)
+
 [resource]
-default_font = ExtResource("1_t72pw")
+default_font = ExtResource("1_vqim0")
 default_font_size = 30
 Button/font_sizes/font_size = 40
-Button/fonts/font = ExtResource("1_t72pw")
+Button/fonts/font = ExtResource("1_vqim0")
 Button/styles/normal = SubResource("StyleBoxFlat_sas17")
-Label/font_sizes/font_size = 35
-Label/fonts/font = ExtResource("1_t72pw")
+Label/font_sizes/font_size = 21
+Label/fonts/font = ExtResource("1_vqim0")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_5c4tk")
+RichTextLabel/font_sizes/bold_font_size = 23
+RichTextLabel/font_sizes/normal_font_size = 19
+RichTextLabel/fonts/normal_font = ExtResource("1_vqim0")

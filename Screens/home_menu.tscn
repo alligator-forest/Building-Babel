@@ -11,8 +11,8 @@ bg_color = Color(0.670588, 0.321569, 0.211765, 1)
 script = ExtResource("1_7atax")
 
 [node name="Mainmenu" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(2.25, 2.53125)
+position = Vector2(576, 323)
+scale = Vector2(4.5, 5.07813)
 texture = ExtResource("1_ukwnr")
 
 [node name="Label" type="Label" parent="."]
@@ -34,11 +34,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kuuvh")
 text = "PLAY"
 
 [node name="Label2" type="Label" parent="."]
-offset_top = 488.0
+offset_top = 336.0
 offset_right = 387.0
-offset_bottom = 648.0
+offset_bottom = 639.0
 theme = ExtResource("2_17r3x")
-theme_override_font_sizes/font_size = 50
 text = "Code: alligator_forest
 ASSETS: alligator_forest
 SFX: WobbliestGem"

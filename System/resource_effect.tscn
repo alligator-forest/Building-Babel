@@ -17,11 +17,13 @@ region_enabled = true
 region_rect = Rect2(0, 0, 12, 12)
 
 [node name="Label" type="Label" parent="."]
-offset_left = -26.0
-offset_top = -18.0
-offset_bottom = 18.0
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 4.0
+offset_bottom = 20.0
 theme = ExtResource("3_ekb68")
 text = "+10"
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="."]
