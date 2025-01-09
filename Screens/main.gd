@@ -84,10 +84,10 @@ func log_in_console(event : int, c : Character, resourceVal : int = 0, resourceN
 				$Console.text = str(str(c).to_pascal_case(), " stole ",abs(resourceVal), " ",resourceName) + "\n" + $Console.text
 		console_logs.THIEF_ENTER:
 			if(consoleNotifs["thief"].button_pressed):
-				$Console.text = str(str(c).to_pascal_case(), " appeared (",c.get_current_floor(),")") + "\n" + $Console.text
+				$Console.text = str(str(c).to_pascal_case(), " appeared ( ",c.get_current_floor()," )") + "\n" + $Console.text
 		console_logs.THIEF_EXIT:
 			if(consoleNotifs["thief"].button_pressed):
-				$Console.text = str(str(c).to_pascal_case(), " left (",c.get_current_floor(),")") + "\n" + $Console.text
+				$Console.text = str(str(c).to_pascal_case(), " left ( ",c.get_current_floor()," )") + "\n" + $Console.text
 
 func update():
 	$BrickLabel.text = str(resources["bricks"])
@@ -115,7 +115,7 @@ func new_floor():
 		update()
 		#win condition
 		if(%Floors.get_child_count() - 1 >= 10):
-			print("YOU WIN!!!")
+			get_tree().change_scene_to_file("res://Screens/win.tscn")
 
 func _on_character_timer_timeout(c : Character):
 	var r : Dictionary = {

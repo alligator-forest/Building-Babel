@@ -221,36 +221,36 @@ theme_override_constants/separation = 8
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
-text = "Builder
-10 Gold"
+text = "builder
+10 G"
 
 [node name="MerchantButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Merchant
-15 Gold"
+15 G"
 
 [node name="MasonButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Mason
-20 Gold"
+20 G"
 
 [node name="ShepherdButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Shepherd
-30 Gold"
+30 G"
 
 [node name="WarriorButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Warrior
-30 Gold"
+30 G"
 
 [node name="SellDropbox" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 visible = false

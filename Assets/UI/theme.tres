@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://cckn6rmhljx22" path="res://Assets/UI/Roman SD.ttf" id="1_vqim0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sas17"]
-bg_color = Color(0.65, 0.494975, 0.3055, 1)
+bg_color = Color(0.74902, 0.47451, 0.345098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5c4tk"]
 bg_color = Color(0.956863, 0.705882, 0.105882, 1)

@@ -14,7 +14,7 @@ config/name="Building Babel"
 config/version="1.1"
 run/main_scene="res://Screens/home_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://Assets/BuildingBabelLogo.png"
+config/icon="res://Assets/UI/BuildingBabelLogo.png"
 
 [autoload]
 
