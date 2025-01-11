@@ -81,8 +81,8 @@ wait_time = 0.75
 autostart = true
 
 [node name="Button" type="Button" parent="."]
-offset_left = 848.0
-offset_top = 568.0
+offset_left = 832.0
+offset_top = 560.0
 offset_right = 1134.0
 offset_bottom = 632.0
 theme = ExtResource("3_3w87l")

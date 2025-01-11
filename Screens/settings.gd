@@ -10,13 +10,13 @@ extends Control
 @onready var thiefConsoleButton = $HBoxContainer2/ConsoleNotifications/ThiefSteal
 
 func _ready() -> void:
-	$HBoxContainer2/VolumeSliders/Sliders/MusicSlider.value = SAVEOBJECT.saveData.getMusicVolume()
-	$HBoxContainer2/VolumeSliders/Sliders/SfxSlider.value = SAVEOBJECT.saveData.getSfxVolume()
+	$HBoxContainer2/VolumeSliders/Sliders/MusicSlider.value = SAVEOBJECT.saveData.get_music_volume()
+	$HBoxContainer2/VolumeSliders/Sliders/SfxSlider.value = SAVEOBJECT.saveData.get_sfx_volume()
 	
-	goldConsoleButton.button_pressed = SAVEOBJECT.saveData.getConsoleNotif("gold")
-	brickConsoleButton.button_pressed = SAVEOBJECT.saveData.getConsoleNotif("bricks")
-	stealConsoleButton.button_pressed = SAVEOBJECT.saveData.getConsoleNotif("thief")
-	thiefConsoleButton.button_pressed = SAVEOBJECT.saveData.getConsoleNotif("steal")
+	goldConsoleButton.button_pressed = SAVEOBJECT.saveData.get_console_notif("gold")
+	brickConsoleButton.button_pressed = SAVEOBJECT.saveData.get_console_notif("bricks")
+	stealConsoleButton.button_pressed = SAVEOBJECT.saveData.get_console_notif("thief")
+	thiefConsoleButton.button_pressed = SAVEOBJECT.saveData.get_console_notif("steal")
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	new_text = new_text.to_lower()
@@ -40,17 +40,17 @@ func _on_volume_slider_drag_ended(value_changed: bool) -> void:
 		SAVEOBJECT._save_data()
 
 func _on_gold_console_button_pressed() -> void:
-	SAVEOBJECT.saveData.setConsoleNotif("gold",goldConsoleButton.button_pressed)
+	SAVEOBJECT.saveData.set_console_notif("gold",goldConsoleButton.button_pressed)
 	SAVEOBJECT._save_data()
 
 func _on_brick_console_button_pressed() -> void:
-	SAVEOBJECT.saveData.setConsoleNotif("bricks",brickConsoleButton.button_pressed)
+	SAVEOBJECT.saveData.set_console_notif("bricks",brickConsoleButton.button_pressed)
 	SAVEOBJECT._save_data()
 
 func _on_thief_appear_button_pressed() -> void:
-	SAVEOBJECT.saveData.setConsoleNotif("thief",thiefConsoleButton.button_pressed)
+	SAVEOBJECT.saveData.set_console_notif("thief",thiefConsoleButton.button_pressed)
 	SAVEOBJECT._save_data()
 
 func _on_thief_steal_button_pressed() -> void:
-	SAVEOBJECT.saveData.setConsoleNotif("steal",stealConsoleButton.button_pressed)
+	SAVEOBJECT.saveData.set_console_notif("steal",stealConsoleButton.button_pressed)
 	SAVEOBJECT._save_data()

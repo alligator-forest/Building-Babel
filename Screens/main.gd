@@ -35,6 +35,9 @@ var resources : Dictionary = {
 }
 func _ready():
 	update()
+	SAVEOBJECT.saveData.new_score(500)
+	SAVEOBJECT.saveData.new_score(200)
+	print(SAVEOBJECT.saveData.get_scores())
 
 func _process(_delta):
 	if(Input.is_action_just_pressed("click_press")):
@@ -96,13 +99,15 @@ func update():
 	tween = create_tween()
 	tween.tween_property($GodBar,"value",resources["hubris"],0.5)
 	
-	%Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
-	%Floors/TopFloor/NewFloorLabel2.text = "BUILDERS NEEDED: " + str(newFloorBuilders)
+	#%Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
+	$Tower/Floors/TopFloor/NewFloorLabel.text = "[img=48]res://Assets/UI/brickIcon.png[/img] x" + str(newFloorBricks)
+	%Floors/TopFloor/NewFloorLabel2.text = "[img=48]res://Assets/UI/BuildingBabelLogo.png[/img] x" + str(newFloorBuilders)
 	
 	if($GodBar.value >= 100):
 		get_tree().change_scene_to_file("../Screens/game_over.tscn")
 
 func new_floor():
+	print(numBuilders)
 	if(resources["bricks"] >= newFloorBricks and numBuilders >= newFloorBuilders):
 		resources["bricks"] -= newFloorBricks
 		var tier = tiers.instantiate()
@@ -138,6 +143,7 @@ func _on_character_timer_timeout(c : Character):
 				var amtStole = clamp(abs(r[key]),0,resources[key])
 				if(amtStole > 0):
 					rE.set_values(key,-1 * clamp(abs(r[key]),0,resources[key]))
+					await get_tree().create_timer(0.01).timeout
 					log_in_console(console_logs.LOSE_RESOURCE,c,amtStole,key)
 				else:
 					rE = null

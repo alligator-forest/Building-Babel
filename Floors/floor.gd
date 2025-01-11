@@ -50,7 +50,7 @@ func add_character(c : Character):
 		c.reparent($Characters)
 	var yPos = 128
 	var xPos = c.position.x
-	xPos = clamp(c.position.x,LEFT,RIGHT)
+	xPos = clamp(c.position.x,LEFT + c.get_char_witdh(),RIGHT - c.get_char_witdh())
 	match str(c).to_lower():
 		"builder":
 			numBuilders += 1

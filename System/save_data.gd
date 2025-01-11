@@ -3,13 +3,14 @@ class_name SaveData
 
 const SAVE_PATH := "user://savegame.tres"
 
-const STARTMUSICVOLUME = 0.5
-const STARTSFXVOLUME = 0.5
-const STARTHIGHSCORE = 0
+#for all intents and purposes these are consts, was getting a read-only error w/ STARTSCORES
+var STARTMUSICVOLUME = 0.5
+var STARTSFXVOLUME = 0.5
+var STARTSCORES = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
 
 @export var musicVolume : float = STARTMUSICVOLUME #linear volume, between 0 and 200
 @export var sfxVolume : float = STARTSFXVOLUME #linear volume, between 0 and 200
-@export var highscore : int = STARTHIGHSCORE #the time it takes to beat the game, in seconds
+@export var scores : Array = STARTSCORES #the top ten scores on your leaderboard, in seconds. index 0 is highscore
 
 @export var consoleNotifs : Dictionary = {
 	"gold" : true,
@@ -18,48 +19,53 @@ const STARTHIGHSCORE = 0
 	"thief" : true,
 }
 
-func resetAll() -> void:
-	resetHighscore()
-	resetMusicVolume()
-	resetSfxVolume()
+func reset_all() -> void:
+	reset_music_volume()
+	reset_sfx_volume()
+	reset_scores()
+	reset_console_notifs()
 
-func getConsoleNotif(key : String) -> bool:
+func get_scores() -> Array:
+	return scores
+
+func new_score(seconds : int) -> void:
+	for i in range(scores.size()):
+		if(seconds < scores[i] or scores[i] < 0):
+			scores.insert(i,seconds)
+			scores = scores.slice(0,10)
+			return
+
+func reset_scores() -> void:
+	scores = STARTSCORES
+	scores.is_read_only()
+
+func get_console_notif(key : String) -> bool:
 	if key in consoleNotifs:
 		return consoleNotifs[key]
 	return false
 
-func setConsoleNotif(key : String, value : bool) -> void:
+func set_console_notif(key : String, value : bool) -> void:
 	if(key in consoleNotifs):
 		consoleNotifs[key] = value
 
-func resetConsoleNotifs() -> void:
+func reset_console_notifs() -> void:
 	for key in consoleNotifs:
 		consoleNotifs[key] = true
 
-func getMusicVolume() -> float:
+func get_music_volume() -> float:
 	return musicVolume
 
-func setMusicVolume(m : float) -> void:
+func set_music_volume(m : float) -> void:
 	musicVolume = m
 
-func resetMusicVolume() -> void:
+func reset_music_volume() -> void:
 	musicVolume = STARTMUSICVOLUME
 
-func getSfxVolume() -> float:
+func get_sfx_volume() -> float:
 	return sfxVolume
 
-func setSfxVolume(s : float) -> void:
+func set_sfx_volume(s : float) -> void:
 	sfxVolume = s
 
-func resetSfxVolume() -> void:
+func reset_sfx_volume() -> void:
 	sfxVolume = STARTSFXVOLUME
-
-func getHighscore() -> int:
-	return highscore
-
-func setHighscore(h : int) -> void:
-	if(h > highscore):
-		highscore = h
-
-func resetHighscore() -> void:
-	highscore = STARTHIGHSCORE

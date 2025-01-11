@@ -1,6 +1,9 @@
 extends Character
 class_name Shepherd
 
+func _ready() -> void:
+	charWidth = 12
+
 func get_hubris() -> int:
 	return rng.randi_range(-7,0)
 

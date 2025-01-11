@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjba3t1dbhmds"]
+
+[ext_resource type="Script" path="res://Screens/leaderboard.gd" id="1_tlbt4"]
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_23noj"]
+
+[node name="Leaderboard" type="Node2D"]
+script = ExtResource("1_tlbt4")
+
+[node name="Placements" type="Label" parent="."]
+offset_left = 256.0
+offset_right = 323.0
+offset_bottom = 507.0
+theme = ExtResource("2_23noj")
+theme_override_font_sizes/font_size = 50
+text = "1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10."
+horizontal_alignment = 2
+
+[node name="Scores" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_right = 1000.0
+offset_bottom = 640.0
+theme = ExtResource("2_23noj")
+theme_override_constants/line_separation = 3
+theme_override_font_sizes/normal_font_size = 50
+text = "1
+2
+3
+4
+5
+6
+7
+8
+9
+10"
+tab_size = 2
+
+[node name="Button" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 544.0
+offset_right = 248.0
+offset_bottom = 632.0
+theme = ExtResource("2_23noj")
+text = "Return"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -19,6 +19,7 @@ config/icon="res://Assets/UI/BuildingBabelLogo.png"
 [autoload]
 
 SAVEOBJECT="*res://System/save_component.gd"
+SCOREKEEPER="*res://System/score_keeper.gd"
 
 [debug]
 

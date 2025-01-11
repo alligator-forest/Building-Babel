@@ -10,6 +10,7 @@ var draggable = true
 var dragging = false
 var mouseWithin : bool = false
 var offset := Vector2(0,0)
+var charWidth = 0
 
 var floors : Array[Node]
 var currentFloor : Node
@@ -30,7 +31,7 @@ func _on_wait_timer_timeout():
 	if(self is Thief or !dragging):
 		tween = create_tween()
 		$AnimatedSprite2D.play()
-		var newPos = rng.randf_range(currentFloor.get_left_bound(),currentFloor.get_right_bound())
+		var newPos = rng.randf_range(currentFloor.get_left_bound() + charWidth,currentFloor.get_right_bound() - charWidth)
 		if(newPos > position.x):
 			$AnimatedSprite2D.flip_h = true
 		else:
@@ -99,6 +100,9 @@ func get_gold() -> int:
 
 func get_hubris() -> int:
 	return 0
+
+func get_char_witdh() -> int:
+	return charWidth
 
 func _to_string():
 	return ""

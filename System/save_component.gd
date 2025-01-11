@@ -15,11 +15,13 @@ func _load_data() -> void:
 	if ResourceLoader.exists(save_file_path + save_file_name):
 		saveData = ResourceLoader.load(save_file_path + save_file_name).duplicate(true)
 		print("loaded")
+	else:
+		_save_data()
 
 func _save_data() -> void:
 	ResourceSaver.save(saveData,save_file_path + save_file_name)
 	print("saved")
 
 func _reset() -> void:
-	saveData.resetAll()
+	saveData.reset_all()
 	_save_data()
