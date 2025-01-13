@@ -28,6 +28,9 @@ func reset_all() -> void:
 func get_scores() -> Array:
 	return scores
 
+func get_highscore() -> int:
+	return scores[0]
+
 func new_score(seconds : int) -> void:
 	for i in range(scores.size()):
 		if(seconds < scores[i] or scores[i] < 0):

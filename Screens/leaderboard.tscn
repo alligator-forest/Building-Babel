@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjba3t1dbhmds"]
+[gd_scene load_steps=6 format=3 uid="uid://cjba3t1dbhmds"]
 
 [ext_resource type="Script" path="res://Screens/leaderboard.gd" id="1_tlbt4"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_23noj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggbah"]
+bg_color = Color(0.352941, 0.32549, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjgx8"]
+bg_color = Color(0.490196, 0.439216, 0.443137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tap1d"]
+bg_color = Color(0.627451, 0.576471, 0.556863, 1)
 
 [node name="Leaderboard" type="Node2D"]
 script = ExtResource("1_tlbt4")
@@ -51,4 +60,29 @@ offset_bottom = 632.0
 theme = ExtResource("2_23noj")
 text = "Return"
 
+[node name="AreYouSure" type="Button" parent="."]
+offset_left = 760.0
+offset_top = 552.0
+offset_right = 1143.0
+offset_bottom = 640.0
+theme = ExtResource("2_23noj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ggbah")
+text = "Are you sure?"
+
+[node name="ResetScores" type="Button" parent="."]
+offset_left = 760.0
+offset_top = 552.0
+offset_right = 1143.0
+offset_bottom = 640.0
+theme = ExtResource("2_23noj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pjgx8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tap1d")
+text = "RESET SCORES"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="AreYouSure" to="." method="_on_are_you_sure_pressed"]
+[connection signal="pressed" from="ResetScores" to="." method="_on_reset_scores_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

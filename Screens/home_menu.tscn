@@ -15,15 +15,6 @@ position = Vector2(576, 323)
 scale = Vector2(4.5, 5.07813)
 texture = ExtResource("1_ukwnr")
 
-[node name="Label" type="Label" parent="."]
-visible = false
-offset_top = 344.0
-offset_right = 387.0
-offset_bottom = 504.0
-theme = ExtResource("2_17r3x")
-theme_override_font_sizes/font_size = 100
-text = "HIGH SCORE:"
-
 [node name="PlayButton" type="Button" parent="."]
 offset_left = 480.0
 offset_top = 384.0
@@ -50,16 +41,6 @@ offset_bottom = 448.0
 theme = ExtResource("2_17r3x")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kuuvh")
 text = "CREDITS"
-
-[node name="Label2" type="Label" parent="."]
-offset_top = 336.0
-offset_right = 387.0
-offset_bottom = 639.0
-theme = ExtResource("2_17r3x")
-text = "Code: alligator_forest
-ASSETS: alligator_forest
-SFX: WobbliestGem"
-autowrap_mode = 2
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]

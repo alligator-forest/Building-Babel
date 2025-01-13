@@ -16,7 +16,7 @@ var tween : Tween
 var newFloorBricks = 10
 var newFloorBuilders = 1
 var numBuilders = 0
-@onready var time = Time.get_ticks_msec()
+@onready var startTime = Time.get_unix_time_from_system()
 enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT}
 
 var currChar : Character = null
@@ -35,9 +35,6 @@ var resources : Dictionary = {
 }
 func _ready():
 	update()
-	SAVEOBJECT.saveData.new_score(500)
-	SAVEOBJECT.saveData.new_score(200)
-	print(SAVEOBJECT.saveData.get_scores())
 
 func _process(_delta):
 	if(Input.is_action_just_pressed("click_press")):
@@ -87,10 +84,10 @@ func log_in_console(event : int, c : Character, resourceVal : int = 0, resourceN
 				$Console.text = str(str(c).to_pascal_case(), " stole ",abs(resourceVal), " ",resourceName) + "\n" + $Console.text
 		console_logs.THIEF_ENTER:
 			if(consoleNotifs["thief"].button_pressed):
-				$Console.text = str(str(c).to_pascal_case(), " appeared ( ",c.get_current_floor()," )") + "\n" + $Console.text
+				$Console.text = str(str(c).to_pascal_case(), " entered ",c.get_current_floor()) + "\n" + $Console.text
 		console_logs.THIEF_EXIT:
 			if(consoleNotifs["thief"].button_pressed):
-				$Console.text = str(str(c).to_pascal_case(), " left ( ",c.get_current_floor()," )") + "\n" + $Console.text
+				$Console.text = str(str(c).to_pascal_case(), " left ",c.get_current_floor()) + "\n" + $Console.text
 
 func update():
 	$BrickLabel.text = str(resources["bricks"])
@@ -100,14 +97,13 @@ func update():
 	tween.tween_property($GodBar,"value",resources["hubris"],0.5)
 	
 	#%Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
-	$Tower/Floors/TopFloor/NewFloorLabel.text = "[img=48]res://Assets/UI/brickIcon.png[/img] x" + str(newFloorBricks)
-	%Floors/TopFloor/NewFloorLabel2.text = "[img=48]res://Assets/UI/BuildingBabelLogo.png[/img] x" + str(newFloorBuilders)
+	$Tower/Floors/TopFloor/NewFloorLabel.text = "[img=80]res://Assets/UI/brickIcon.png[/img]x" + str(newFloorBricks)
+	%Floors/TopFloor/NewFloorLabel2.text = "[img=56]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x" + str(newFloorBuilders)
 	
 	if($GodBar.value >= 100):
 		get_tree().change_scene_to_file("../Screens/game_over.tscn")
 
 func new_floor():
-	print(numBuilders)
 	if(resources["bricks"] >= newFloorBricks and numBuilders >= newFloorBuilders):
 		resources["bricks"] -= newFloorBricks
 		var tier = tiers.instantiate()
@@ -120,6 +116,7 @@ func new_floor():
 		update()
 		#win condition
 		if(%Floors.get_child_count() - 1 >= 10):
+			SCOREKEEPER.set_score(Time.get_unix_time_from_system() - startTime)
 			get_tree().change_scene_to_file("res://Screens/win.tscn")
 
 func _on_character_timer_timeout(c : Character):
@@ -143,7 +140,6 @@ func _on_character_timer_timeout(c : Character):
 				var amtStole = clamp(abs(r[key]),0,resources[key])
 				if(amtStole > 0):
 					rE.set_values(key,-1 * clamp(abs(r[key]),0,resources[key]))
-					await get_tree().create_timer(0.01).timeout
 					log_in_console(console_logs.LOSE_RESOURCE,c,amtStole,key)
 				else:
 					rE = null
@@ -195,7 +191,7 @@ func buy_character(c : Character, cLoader):
 		dChar.add_resource.connect(_on_character_timer_timeout)
 		dChar.position = Vector2(296,0)
 		$%Floors/Lobby.add_character(dChar)
-		$Tower.scroll_vertical = 0
+		$Tower.scroll_vertical = 9999999 #huge integer so it always goes to the bottom
 		update()
 
 func spawn_thief(f : Floor) -> Thief:
@@ -208,6 +204,8 @@ func spawn_thief(f : Floor) -> Thief:
 	return thief
 
 func despawn_thief(t : Thief) -> void:
+	t.hide()
+	await get_tree().create_timer(0.01).timeout #delay added so stealing would log before thief leaving
 	log_in_console(console_logs.THIEF_EXIT,t)
 	t.queue_free()
 

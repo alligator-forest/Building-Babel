@@ -87,33 +87,33 @@ texture = ExtResource("10_3tu5u")
 [node name="Button" type="Button" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
 offset_top = 16.0
-offset_right = 120.0
+offset_right = 96.0
 offset_bottom = 76.0
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 20
-text = "BUILD NEW 
+text = "NEW 
 FLOOR"
 
 [node name="NewFloorLabel" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
-offset_left = 256.0
-offset_top = 24.0
-offset_right = 384.0
-offset_bottom = 72.0
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 351.0
+offset_bottom = 87.0
 theme = ExtResource("8_hphvt")
 bbcode_enabled = true
-text = "[img=48]res://Assets/UI/brickIcon.png[/img] x"
+text = "[img=80]res://Assets/UI/brickIcon.png[/img]x"
 scroll_active = false
 
 [node name="NewFloorLabel2" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
-offset_left = 136.0
-offset_top = 24.0
-offset_right = 256.0
-offset_bottom = 72.0
+offset_left = 104.0
+offset_top = 22.0
+offset_right = 224.0
+offset_bottom = 77.0
 theme = ExtResource("8_hphvt")
 bbcode_enabled = true
-text = "[img=48]res://Assets/UI/BuildingBabelLogo.png[/img] x"
+text = "[img=56]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x"
 scroll_active = false
 
 [node name="Lobby" parent="Tower/Floors" instance=ExtResource("2_d85bv")]
@@ -135,7 +135,7 @@ offset_top = 96.0
 offset_right = 280.0
 offset_bottom = 224.0
 theme = ExtResource("8_hphvt")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 75
 text = "0"
 vertical_alignment = 1
 
@@ -145,7 +145,7 @@ offset_top = 232.0
 offset_right = 280.0
 offset_bottom = 360.0
 theme = ExtResource("8_hphvt")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 75
 text = "0"
 vertical_alignment = 1
 

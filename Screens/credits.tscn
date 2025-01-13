@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfpgxupd4uspl"]
+
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="1_660ld"]
+[ext_resource type="Script" path="res://Screens/credits.gd" id="1_tfs73"]
+
+[node name="Credits" type="Node2D"]
+script = ExtResource("1_tfs73")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_right = 832.0
+offset_bottom = 648.0
+theme = ExtResource("1_660ld")
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[wave amp=30][center][color=WHITE]
+--PROGRAMMING--
+alligator-forest
+
+--ASSETS--
+alligator-forest
+
+--MUSIC / SFX--
+WobbliestGem
+
+--BUG HUNTERS--
+Geeksworth98"
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 544.0
+offset_right = 248.0
+offset_bottom = 632.0
+theme = ExtResource("1_660ld")
+text = "Return"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
