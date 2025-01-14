@@ -1,13 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjba3t1dbhmds"]
+[gd_scene load_steps=9 format=3 uid="uid://cjba3t1dbhmds"]
 
 [ext_resource type="Script" path="res://Screens/leaderboard.gd" id="1_tlbt4"]
+[ext_resource type="Texture2D" uid="uid://survwd1n27xy" path="res://Assets/Screens/leaderboard.png" id="2_6wmdm"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_23noj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggbah"]
 bg_color = Color(0.352941, 0.32549, 0.32549, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ofr4"]
+bg_color = Color(0.352941, 0.32549, 0.32549, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjgx8"]
 bg_color = Color(0.490196, 0.439216, 0.443137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8t0w"]
+bg_color = Color(0.352941, 0.32549, 0.32549, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tap1d"]
 bg_color = Color(0.627451, 0.576471, 0.556863, 1)
@@ -15,11 +22,17 @@ bg_color = Color(0.627451, 0.576471, 0.556863, 1)
 [node name="Leaderboard" type="Node2D"]
 script = ExtResource("1_tlbt4")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 640.0
+texture = ExtResource("2_6wmdm")
+
 [node name="Placements" type="Label" parent="."]
 offset_left = 256.0
 offset_right = 323.0
 offset_bottom = 507.0
 theme = ExtResource("2_23noj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "1.
 2.
@@ -38,8 +51,10 @@ offset_left = 320.0
 offset_right = 1000.0
 offset_bottom = 640.0
 theme = ExtResource("2_23noj")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 3
 theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
 text = "1
 2
 3
@@ -75,7 +90,9 @@ offset_top = 552.0
 offset_right = 1143.0
 offset_bottom = 640.0
 theme = ExtResource("2_23noj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_4ofr4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pjgx8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r8t0w")
 theme_override_styles/normal = SubResource("StyleBoxFlat_tap1d")
 text = "RESET SCORES"
 

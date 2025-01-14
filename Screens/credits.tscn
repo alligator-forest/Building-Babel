@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfpgxupd4uspl"]
+[gd_scene load_steps=4 format=3 uid="uid://dfpgxupd4uspl"]
 
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="1_660ld"]
 [ext_resource type="Script" path="res://Screens/credits.gd" id="1_tfs73"]
+[ext_resource type="Texture2D" uid="uid://survwd1n27xy" path="res://Assets/Screens/leaderboard.png" id="2_hdcyt"]
 
 [node name="Credits" type="Node2D"]
 script = ExtResource("1_tfs73")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_hdcyt")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 320.0
@@ -13,7 +19,7 @@ offset_bottom = 648.0
 theme = ExtResource("1_660ld")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
-text = "[wave amp=30][center][color=WHITE]
+text = "[wave amp=30][center][color=BLACK]
 --PROGRAMMING--
 alligator-forest
 
