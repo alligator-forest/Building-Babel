@@ -16,9 +16,9 @@ scale = Vector2(4.5, 5.07813)
 texture = ExtResource("1_ukwnr")
 
 [node name="PlayButton" type="Button" parent="."]
-offset_left = 480.0
-offset_top = 384.0
-offset_right = 736.0
+offset_left = 496.0
+offset_top = 376.0
+offset_right = 752.0
 offset_bottom = 632.0
 theme = ExtResource("2_17r3x")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kuuvh")
@@ -26,7 +26,7 @@ text = "PLAY"
 
 [node name="LeaderboardButton" type="Button" parent="."]
 offset_left = 768.0
-offset_top = 568.0
+offset_top = 512.0
 offset_right = 1139.0
 offset_bottom = 632.0
 theme = ExtResource("2_17r3x")
@@ -35,9 +35,9 @@ text = "LEADERBOARD"
 
 [node name="CreditsButton" type="Button" parent="."]
 offset_left = 768.0
-offset_top = 384.0
+offset_top = 376.0
 offset_right = 1139.0
-offset_bottom = 448.0
+offset_bottom = 496.0
 theme = ExtResource("2_17r3x")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kuuvh")
 text = "CREDITS"

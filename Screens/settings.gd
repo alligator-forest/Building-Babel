@@ -54,3 +54,6 @@ func _on_thief_appear_button_pressed() -> void:
 func _on_thief_steal_button_pressed() -> void:
 	SAVEOBJECT.saveData.set_console_notif("steal",stealConsoleButton.button_pressed)
 	SAVEOBJECT._save_data()
+
+func _on_quit_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Screens/home_menu.tscn")

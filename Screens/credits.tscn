@@ -21,10 +21,10 @@ theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "[wave amp=30][center][color=BLACK]
 --PROGRAMMING--
-alligator-forest
+[color=FOREST_GREEN]alligator-forest[/color]
 
 --ASSETS--
-alligator-forest
+[color=FOREST_GREEN]alligator-forest[/color]
 
 --MUSIC / SFX--
 WobbliestGem

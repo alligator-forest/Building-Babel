@@ -22,8 +22,8 @@ enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT}
 var currChar : Character = null
 
 var resources : Dictionary = {
-	"bricks" : 0,
-	"gold" : 30,
+	"bricks" : 9000,
+	"gold" : 3000,
 	"hubris" : 0,
 }
 
@@ -37,6 +37,10 @@ func _ready():
 	update()
 
 func _process(_delta):
+	if(%Floors.get_child_count() > 5):
+		$Background.position.y =  - 760 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical - 640
+	
+	
 	if(Input.is_action_just_pressed("click_press")):
 		for f in range(1,%Floors.get_child_count()):
 			var charas = %Floors.get_child(f).find_child("Characters",false)
@@ -98,7 +102,7 @@ func update():
 	
 	#%Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
 	$Tower/Floors/TopFloor/NewFloorLabel.text = "[img=80]res://Assets/UI/brickIcon.png[/img]x" + str(newFloorBricks)
-	%Floors/TopFloor/NewFloorLabel2.text = "[img=56]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x" + str(newFloorBuilders)
+	%Floors/TopFloor/NewFloorLabel2.text = "[img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x" + str(newFloorBuilders)
 	
 	if($GodBar.value >= 100):
 		get_tree().change_scene_to_file("../Screens/game_over.tscn")
@@ -107,13 +111,15 @@ func new_floor():
 	if(resources["bricks"] >= newFloorBricks and numBuilders >= newFloorBuilders):
 		resources["bricks"] -= newFloorBricks
 		var tier = tiers.instantiate()
-		tier.change_name("Floor " + str(%Floors.get_child_count() - 1))
+		tier.change_name("Floor " + str(%Floors.get_child_count()))
 		%Floors.add_child(tier)
 		%Floors.move_child(tier,1)
 		newFloorBricks *= 2
 		newFloorBuilders += 1
 		play_effect("new floor")
 		update()
+		
+		print($Tower.get_v_scroll_bar().max_value)
 		#win condition
 		if(%Floors.get_child_count() - 1 >= 10):
 			SCOREKEEPER.set_score(Time.get_unix_time_from_system() - startTime)
@@ -231,3 +237,12 @@ func _on_thief_timer_timeout() -> void:
 		for f in range(1,%Floors.get_child_count()):
 			if(rng.randi_range(1,100) <= 2 and !%Floors.get_child(f).has_warrior()):
 				log_in_console(console_logs.THIEF_ENTER,spawn_thief(%Floors.get_child(f)))
+
+
+func _on_tower_scroll_ended() -> void:
+	print("AAA")
+	$Background.position.y = 1152 - $Tower.scroll_vertical
+
+
+func _on_tower_scroll_started() -> void:
+	print("BBB")

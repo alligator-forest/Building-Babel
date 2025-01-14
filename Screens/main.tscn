@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=28 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" path="res://Screens/main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="9_eoorw"]
 [ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/Thief/thief.tscn" id="9_m3587"]
 [ext_resource type="Texture2D" uid="uid://u8qrlqhbdaes" path="res://Assets/Floor/FloorRoof.png" id="10_3tu5u"]
+[ext_resource type="Texture2D" uid="uid://bkp606ho0to3e" path="res://Assets/Screens/BabelBackground.png" id="10_rlab4"]
 [ext_resource type="AudioStream" uid="uid://bscdbq8e1i213" path="res://Music/bgMusic.mp3" id="10_stmio"]
 [ext_resource type="AudioStream" uid="uid://du5co0mbv7ofb" path="res://Music/SFX/stone on stone action.wav" id="11_4l48r"]
 [ext_resource type="AudioStream" uid="uid://h7qk0fhjaaa7" path="res://Music/SFX/187 WOOSH B.wav" id="11_t20f0"]
@@ -25,7 +26,7 @@
 [ext_resource type="Script" path="res://Screens/settings.gd" id="24_8qx4t"]
 
 [sub_resource type="Gradient" id="Gradient_h608w"]
-colors = PackedColorArray(0.156863, 0.8, 0.87451, 1, 0.1566, 0.79866, 0.87, 0)
+colors = PackedColorArray(0.18, 0.18, 0.18, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5dr55"]
 gradient = SubResource("Gradient_h608w")
@@ -49,19 +50,12 @@ resourceEffects = ExtResource("9_eoorw")
 
 [node name="ResourceEffects" type="Node2D" parent="."]
 
-[node name="ColorRectLeft" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+offset_top = -760.0
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
-color = Color(0.156863, 0.8, 0.87451, 1)
-
-[node name="ColorRectRight" type="ColorRect" parent="."]
-visible = false
-offset_left = 768.0
-offset_right = 1152.0
-offset_bottom = 648.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
+texture = ExtResource("10_rlab4")
 
 [node name="Tower" type="ScrollContainer" parent="."]
 offset_left = 384.0
@@ -101,6 +95,8 @@ offset_top = 8.0
 offset_right = 351.0
 offset_bottom = 87.0
 theme = ExtResource("8_hphvt")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
 bbcode_enabled = true
 text = "[img=80]res://Assets/UI/brickIcon.png[/img]x"
 scroll_active = false
@@ -112,14 +108,16 @@ offset_top = 22.0
 offset_right = 224.0
 offset_bottom = 77.0
 theme = ExtResource("8_hphvt")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
 bbcode_enabled = true
-text = "[img=56]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x"
+text = "[img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x"
 scroll_active = false
 
 [node name="Lobby" parent="Tower/Floors" instance=ExtResource("2_d85bv")]
 layout_mode = 2
 texture = ExtResource("12_n0vtn")
-floorName = "Lobby"
+floorName = "Floor 1"
 
 [node name="GodBar" type="ProgressBar" parent="."]
 offset_left = 16.0
@@ -128,6 +126,16 @@ offset_right = 368.0
 offset_bottom = 80.0
 theme = ExtResource("8_hphvt")
 show_percentage = false
+
+[node name="GodBarLabel" type="RichTextLabel" parent="."]
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 368.0
+offset_bottom = 72.0
+theme = ExtResource("8_hphvt")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center][wave][color=yellow]HUBRIS"
 
 [node name="BrickLabel" type="Label" parent="."]
 offset_left = 152.0
@@ -209,7 +217,7 @@ current_tab = 0
 
 [node name="Residents" type="MarginContainer" parent="TabContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 8
+theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
@@ -316,6 +324,7 @@ layout_mode = 2
 [node name="Music" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/TopLabels"]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
+size_flags_vertical = 1
 text = "Music"
 horizontal_alignment = 1
 
@@ -365,12 +374,13 @@ horizontal_alignment = 1
 
 [node name="ConsoleNotifications" type="VBoxContainer" parent="TabContainer/Settings/HBoxContainer2"]
 layout_mode = 2
-theme_override_constants/separation = -25
+theme_override_constants/separation = -5
 alignment = 1
 
 [node name="GoldConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
 custom_minimum_size = Vector2(150, 128)
 layout_mode = 2
+size_flags_vertical = 0
 button_pressed = true
 text = "Notify when a Resident makes Gold"
 alignment = 1
@@ -400,6 +410,14 @@ text = "Notify when a Thief enters or exits a Floor"
 alignment = 1
 autowrap_mode = 2
 
+[node name="QuitButton" type="Button" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Abandon Run"
+
+[connection signal="scroll_ended" from="Tower" to="." method="_on_tower_scroll_ended"]
+[connection signal="scroll_started" from="Tower" to="." method="_on_tower_scroll_started"]
 [connection signal="pressed" from="Tower/Floors/TopFloor/Button" to="." method="new_floor"]
 [connection signal="timeout" from="ThiefTimer" to="." method="_on_thief_timer_timeout"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/BuilderButton" to="." method="_on_builder_button_pressed"]
@@ -419,3 +437,4 @@ autowrap_mode = 2
 [connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/BrickConsole" to="TabContainer/Settings" method="_on_brick_console_button_pressed"]
 [connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefSteal" to="TabContainer/Settings" method="_on_thief_steal_button_pressed"]
 [connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefAppear" to="TabContainer/Settings" method="_on_thief_appear_button_pressed"]
+[connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/QuitButton" to="TabContainer/Settings" method="_on_quit_button_pressed"]
