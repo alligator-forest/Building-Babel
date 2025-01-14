@@ -4,6 +4,21 @@
 [ext_resource type="Script" path="res://Screens/credits.gd" id="1_tfs73"]
 [ext_resource type="Texture2D" uid="uid://survwd1n27xy" path="res://Assets/Screens/leaderboard.png" id="2_hdcyt"]
 
+[sub_resource type="Animation" id="Animation_80qjh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_la24v"]
 resource_name = "leaderboard"
 length = 1.5
@@ -20,21 +35,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [1, 2, 0]
-}
-
-[sub_resource type="Animation" id="Animation_80qjh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Background:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a4p3n"]
@@ -70,7 +70,7 @@ text = "[wave amp=30][center][color=BLACK]
 [color=WEB_PURPLE]WobbliestGem[/color]
 
 --BUG HUNTERS--
-Geeksworth98"
+[color=DARK_GREEN]Geeksworth98[/color]"
 fit_content = true
 scroll_active = false
 

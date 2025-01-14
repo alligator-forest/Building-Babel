@@ -26,6 +26,7 @@ Button/fonts/font = ExtResource("1_vqim0")
 Button/styles/hover = SubResource("StyleBoxFlat_o2rk7")
 Button/styles/normal = SubResource("StyleBoxFlat_sas17")
 Button/styles/pressed = SubResource("StyleBoxFlat_gxce2")
+Label/colors/font_color = Color(0, 0, 0, 1)
 Label/font_sizes/font_size = 21
 Label/fonts/font = ExtResource("1_vqim0")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_5c4tk")

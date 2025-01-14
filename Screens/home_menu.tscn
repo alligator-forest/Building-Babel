@@ -56,8 +56,8 @@ texture = ExtResource("2_n71bs")
 hframes = 3
 
 [node name="PlayButton" type="Button" parent="."]
-offset_left = 496.0
-offset_top = 376.0
+offset_left = 504.0
+offset_top = 384.0
 offset_right = 752.0
 offset_bottom = 632.0
 theme = ExtResource("2_17r3x")
@@ -66,7 +66,7 @@ text = "PLAY"
 
 [node name="LeaderboardButton" type="Button" parent="."]
 offset_left = 768.0
-offset_top = 512.0
+offset_top = 560.0
 offset_right = 1139.0
 offset_bottom = 632.0
 theme = ExtResource("2_17r3x")
@@ -75,12 +75,21 @@ text = "LEADERBOARD"
 
 [node name="CreditsButton" type="Button" parent="."]
 offset_left = 768.0
-offset_top = 376.0
+offset_top = 384.0
 offset_right = 1139.0
-offset_bottom = 496.0
+offset_bottom = 456.0
 theme = ExtResource("2_17r3x")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kuuvh")
 text = "CREDITS"
+
+[node name="TutorialButton" type="Button" parent="."]
+offset_left = 768.0
+offset_top = 472.0
+offset_right = 1139.0
+offset_bottom = 544.0
+theme = ExtResource("2_17r3x")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kuuvh")
+text = "HOW TO PLAY"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -91,3 +100,4 @@ autoplay = "home"
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]

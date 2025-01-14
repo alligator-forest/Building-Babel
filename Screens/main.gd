@@ -238,11 +238,14 @@ func _on_thief_timer_timeout() -> void:
 			if(rng.randi_range(1,100) <= 2 and !%Floors.get_child(f).has_warrior()):
 				log_in_console(console_logs.THIEF_ENTER,spawn_thief(%Floors.get_child(f)))
 
-
 func _on_tower_scroll_ended() -> void:
 	print("AAA")
 	$Background.position.y = 1152 - $Tower.scroll_vertical
 
-
 func _on_tower_scroll_started() -> void:
 	print("BBB")
+
+func _input(event: InputEvent) -> void:
+	for i in range(1,10):
+		if(event.is_action_pressed(str(i))):
+			$Tower.scroll_vertical = 128 * (10 - i)

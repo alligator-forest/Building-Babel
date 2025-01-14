@@ -1,0 +1,169 @@
+[gd_scene load_steps=8 format=3 uid="uid://cc064u14w52mc"]
+
+[ext_resource type="Texture2D" uid="uid://bvhsmfgn8ug0p" path="res://Assets/Screens/howToPlay.png" id="1_2bflo"]
+[ext_resource type="Script" path="res://Screens/tutorial.gd" id="1_codhe"]
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_waamq"]
+[ext_resource type="Texture2D" uid="uid://dc8yy166akmc" path="res://Assets/UI/babelArrow.png" id="3_5mcku"]
+
+[sub_resource type="Animation" id="Animation_n4xuj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_giob8"]
+resource_name = "tutorial"
+length = 2.25
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wo0n2"]
+_data = {
+"RESET": SubResource("Animation_n4xuj"),
+"tutorial": SubResource("Animation_giob8")
+}
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_codhe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 320)
+scale = Vector2(4.5, 5.0625)
+texture = ExtResource("1_2bflo")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wo0n2")
+}
+autoplay = "tutorial"
+
+[node name="Pages" type="Node" parent="."]
+
+[node name="Page1" type="Node2D" parent="Pages"]
+
+[node name="Label" type="Label" parent="Pages/Page1"]
+offset_top = 112.0
+offset_right = 1152.0
+offset_bottom = 160.0
+theme = ExtResource("2_waamq")
+theme_override_font_sizes/font_size = 45
+text = "Welcome to Building Babel!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Pages/Page1"]
+offset_left = 128.0
+offset_top = 200.0
+offset_right = 1024.0
+offset_bottom = 504.0
+theme = ExtResource("2_waamq")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 25
+text = "In this game, you'll be building the biblical tower to the heavens!
+
+Buy residents to give you resources
+use those resources to build new floors!
+
+Build 10 floors and you've won!
+
+But if you fill up your hubris meter, it's game over!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Page2" type="Node2D" parent="Pages"]
+visible = false
+
+[node name="Label" type="Label" parent="Pages/Page2"]
+offset_top = 112.0
+offset_right = 1152.0
+offset_bottom = 160.0
+theme = ExtResource("2_waamq")
+theme_override_font_sizes/font_size = 45
+text = "On Residents"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Pages/Page2"]
+offset_left = 128.0
+offset_top = 200.0
+offset_right = 1024.0
+offset_bottom = 504.0
+theme = ExtResource("2_waamq")
+theme_override_font_sizes/font_size = 25
+text = "There are 6 different residents in building babel. Only 5 residents can be on a floor at any given time, but you can drag them to different floors."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Pages/Page2"]
+offset_left = 96.0
+offset_top = 320.0
+offset_right = 576.0
+offset_bottom = 552.0
+theme = ExtResource("2_waamq")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[right][img]Assets/UI/ShopIcons/BuilderShop.png[/img] Builders are required to build new floors
+
+[img]Assets/UI/ShopIcons/MerchantShop.png[/img] Merchants give gold, but also a lot of hubris!
+
+[img]Assets/UI/ShopIcons/MasonShop.png[/img] Masons give bricks and a little bit of hubris"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Pages/Page2"]
+offset_left = 568.0
+offset_top = 320.0
+offset_right = 1056.0
+offset_bottom = 544.0
+theme = ExtResource("2_waamq")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[right][img]Assets/UI/ShopIcons/ShepherdShop.png[/img] Shepherds greatly reduce your hubris
+
+[img]Assets/UI/ShopIcons/WarriorShop.png[/img] Warriors prevent thieves from spawning on their floor
+
+[img=56]Assets/UI/ShopIcons/ThiefShop.png[/img] Thieves appear randomly, and steal gold and bricks!"
+
+[node name="LeftButton" type="Button" parent="."]
+offset_top = 256.0
+offset_right = 128.0
+offset_bottom = 384.0
+icon = ExtResource("3_5mcku")
+flat = true
+expand_icon = true
+
+[node name="RightButton" type="Button" parent="."]
+offset_left = 1152.0
+offset_top = 384.0
+offset_right = 1280.0
+offset_bottom = 512.0
+rotation = 3.14159
+icon = ExtResource("3_5mcku")
+flat = true
+expand_icon = true
+
+[connection signal="pressed" from="LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="RightButton" to="." method="_on_right_button_pressed"]
