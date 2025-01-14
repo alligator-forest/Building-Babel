@@ -1,6 +1,6 @@
 extends Node2D
 
-var languages := ["Fin del Juego","انتهت اللعبة","Jeu terminé","遊戲結束","Игра закончена","Oyun bitti","ゲームオーバー","Konec igre","Game Over"]
+var languages := ["Fin del Juego","Kraj igre","Jeu terminé","Vége a játéknak","Игра закончена","Oyun bitti","Fim de jogo","Konec igre","Game Over"]
 
 var index := 0
 func _on_timer_timeout():
