@@ -22,8 +22,8 @@ enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT}
 var currChar : Character = null
 
 var resources : Dictionary = {
-	"bricks" : 9000,
-	"gold" : 3000,
+	"bricks" : 0,
+	"gold" : 30,
 	"hubris" : 0,
 }
 

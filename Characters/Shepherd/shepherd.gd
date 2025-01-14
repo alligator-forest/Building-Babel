@@ -5,7 +5,7 @@ func _ready() -> void:
 	charWidth = 12
 
 func get_hubris() -> int:
-	return rng.randi_range(-7,0)
+	return rng.randi_range(-10,-1)
 
 func get_price() -> int:
 	return 30

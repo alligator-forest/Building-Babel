@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/Mason/mason.tscn" id="5_7tadk"]
 [ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/Shepherd/shepherd.tscn" id="6_k1w4w"]
 [ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/Warrior/warrior.tscn" id="7_pa275"]
-[ext_resource type="FontFile" uid="uid://bgiywmusee28u" path="res://Assets/UI/Marav2.ttf" id="8_kxt1x"]
 [ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/Thief/thief.tscn" id="8_xcwqo"]
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="9_gp2pl"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="10_2ipyc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21dao"]
@@ -34,13 +34,14 @@ thieves = ExtResource("8_xcwqo")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 8.0
+offset_left = 12.0
 offset_right = 256.0
-offset_bottom = 32.0
+offset_bottom = 28.0
+theme = ExtResource("9_gp2pl")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_kxt1x")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "aaa"
+vertical_alignment = 1
 
 [node name="Characters" type="Node2D" parent="."]
 

@@ -1,16 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfpgxupd4uspl"]
+[gd_scene load_steps=7 format=3 uid="uid://dfpgxupd4uspl"]
 
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="1_660ld"]
 [ext_resource type="Script" path="res://Screens/credits.gd" id="1_tfs73"]
 [ext_resource type="Texture2D" uid="uid://survwd1n27xy" path="res://Assets/Screens/leaderboard.png" id="2_hdcyt"]
 
+[sub_resource type="Animation" id="Animation_la24v"]
+resource_name = "leaderboard"
+length = 1.5
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_80qjh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a4p3n"]
+_data = {
+"RESET": SubResource("Animation_80qjh"),
+"leaderboard": SubResource("Animation_la24v")
+}
+
 [node name="Credits" type="Node2D"]
 script = ExtResource("1_tfs73")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(4.5, 5.0625)
 texture = ExtResource("2_hdcyt")
+hframes = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 320.0
@@ -27,7 +67,7 @@ text = "[wave amp=30][center][color=BLACK]
 [color=FOREST_GREEN]alligator-forest[/color]
 
 --MUSIC / SFX--
-WobbliestGem
+[color=WEB_PURPLE]WobbliestGem[/color]
 
 --BUG HUNTERS--
 Geeksworth98"
@@ -41,5 +81,11 @@ offset_right = 248.0
 offset_bottom = 632.0
 theme = ExtResource("1_660ld")
 text = "Return"
+
+[node name="AnimationTree" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a4p3n")
+}
+autoplay = "leaderboard"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

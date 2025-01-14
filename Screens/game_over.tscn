@@ -93,6 +93,7 @@ text = "TRY AGAIN?"
 libraries = {
 "": SubResource("AnimationLibrary_25wht")
 }
+autoplay = "game_over"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
