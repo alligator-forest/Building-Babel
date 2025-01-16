@@ -4,18 +4,17 @@
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_xmyxk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6qbch"]
-radius = 13.0
-height = 35.0
+radius = 15.0
+height = 40.0
 
 [node name="Warrior" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-scale = Vector2(2, 2)
 mouse_filter = 1
 script = ExtResource("1_l2iy5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-6, -16.5)
+position = Vector2(-6, -16)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_xmyxk")
 animation = &"Warrior"
@@ -30,7 +29,8 @@ autostart = true
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1, -16.5)
+position = Vector2(-5, -15)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6qbch")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]

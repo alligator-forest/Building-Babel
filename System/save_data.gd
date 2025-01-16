@@ -1,18 +1,19 @@
 extends Resource
 class_name SaveData
 
-const SAVE_PATH := "user://savegame.tres"
+const SAVE_PATH := "user://savegame.save"
 
 #for all intents and purposes these are consts, was getting a read-only error w/ STARTSCORES
 var STARTMUSICVOLUME = 0.5
 var STARTSFXVOLUME = 0.5
-var STARTSCORES = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+var STARTSCORES = [-1,-1,-1,-1,-1]
 
 @export var musicVolume : float = STARTMUSICVOLUME #linear volume, between 0 and 200
 @export var sfxVolume : float = STARTSFXVOLUME #linear volume, between 0 and 200
 @export var scores : Array = STARTSCORES #the top ten scores on your leaderboard, in seconds. index 0 is highscore
 
 @export var consoleNotifs : Dictionary = {
+	"timer" : true,
 	"gold" : true,
 	"bricks" : true,
 	"steal" : true,
@@ -35,7 +36,7 @@ func new_score(seconds : int) -> void:
 	for i in range(scores.size()):
 		if(seconds < scores[i] or scores[i] < 0):
 			scores.insert(i,seconds)
-			scores = scores.slice(0,10)
+			scores = scores.slice(0,STARTSCORES.size())
 			return
 
 func reset_scores() -> void:

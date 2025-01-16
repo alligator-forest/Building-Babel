@@ -1,17 +1,14 @@
-[gd_scene load_steps=28 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=25 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" path="res://Screens/main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
-[ext_resource type="Texture2D" uid="uid://c2nuxdwin3slv" path="res://Assets/UI/brickIcon.png" id="4_l6brj"]
 [ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/Builder/builder.tscn" id="4_r1sbw"]
-[ext_resource type="Texture2D" uid="uid://dj3lam7b5ypx" path="res://Assets/UI/goldIcon.png" id="5_x8i3h"]
 [ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/Merchant/merchant.tscn" id="5_ycq4u"]
 [ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/Mason/mason.tscn" id="6_qu6a5"]
 [ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/Shepherd/shepherd.tscn" id="7_sbhwi"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="8_hphvt"]
 [ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/Warrior/warrior.tscn" id="8_xfuhw"]
 [ext_resource type="AudioStream" uid="uid://cbr620ywkvhpa" path="res://Music/SFX/layered sound.mp3" id="9_0wmer"]
-[ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="9_eoorw"]
 [ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/Thief/thief.tscn" id="9_m3587"]
 [ext_resource type="Texture2D" uid="uid://u8qrlqhbdaes" path="res://Assets/Floor/FloorRoof.png" id="10_3tu5u"]
 [ext_resource type="Texture2D" uid="uid://bkp606ho0to3e" path="res://Assets/Screens/BabelBackground.png" id="10_rlab4"]
@@ -46,7 +43,6 @@ masons = ExtResource("6_qu6a5")
 shepherds = ExtResource("7_sbhwi")
 warriors = ExtResource("8_xfuhw")
 thieves = ExtResource("9_m3587")
-resourceEffects = ExtResource("9_eoorw")
 
 [node name="ResourceEffects" type="Node2D" parent="."]
 
@@ -69,9 +65,9 @@ bbcode_enabled = true
 scroll_active = false
 
 [node name="ConsoleGradient" type="Sprite2D" parent="."]
-position = Vector2(576.589, 515.879)
+position = Vector2(199.765, 515.878)
 rotation = 1.5708
-scale = Vector2(4.1255, 18.0185)
+scale = Vector2(4.1255, 6.24274)
 texture = SubResource("GradientTexture2D_5dr55")
 
 [node name="Tower" type="ScrollContainer" parent="."]
@@ -97,6 +93,7 @@ texture = ExtResource("10_3tu5u")
 
 [node name="Button" type="Button" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
+offset_left = 2.0
 offset_top = 16.0
 offset_right = 96.0
 offset_bottom = 76.0
@@ -109,15 +106,14 @@ FLOOR"
 
 [node name="NewFloorLabel" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
-offset_left = 200.0
-offset_top = 8.0
-offset_right = 351.0
-offset_bottom = 87.0
+offset_left = 233.0
+offset_top = 25.0
+offset_right = 384.0
+offset_bottom = 85.0
 theme = ExtResource("8_hphvt")
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 1
+theme_override_constants/outline_size = 15
 bbcode_enabled = true
-text = "[img=80]res://Assets/UI/brickIcon.png[/img]x"
+text = "[b][color=RED][img=64]res://Assets/UI/brickIcon.png[/img] x"
 scroll_active = false
 
 [node name="NewFloorLabel2" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
@@ -127,10 +123,10 @@ offset_top = 22.0
 offset_right = 224.0
 offset_bottom = 77.0
 theme = ExtResource("8_hphvt")
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
 bbcode_enabled = true
-text = "[img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x"
+text = "[b][color=RED][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x"
 scroll_active = false
 
 [node name="Lobby" parent="Tower/Floors" instance=ExtResource("2_d85bv")]
@@ -156,35 +152,39 @@ theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[center][wave][color=yellow]HUBRIS"
 
-[node name="BrickLabel" type="Label" parent="."]
-offset_left = 152.0
+[node name="BrickLabel" type="RichTextLabel" parent="."]
+offset_left = 16.0
 offset_top = 96.0
-offset_right = 280.0
+offset_right = 384.0
 offset_bottom = 224.0
 theme = ExtResource("8_hphvt")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 75
-text = "0"
-vertical_alignment = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 65
+bbcode_enabled = true
+text = "[img=96]res://Assets/UI/brickIcon.png[/img] 0"
 
-[node name="GoldLabel" type="Label" parent="."]
-offset_left = 152.0
-offset_top = 232.0
-offset_right = 280.0
-offset_bottom = 360.0
+[node name="GoldLabel" type="RichTextLabel" parent="."]
+offset_left = 16.0
+offset_top = 192.0
+offset_right = 376.0
+offset_bottom = 320.0
 theme = ExtResource("8_hphvt")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 75
-text = "0"
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 65
+bbcode_enabled = true
+text = "[img=96]res://Assets/UI/goldIcon.png[/img] 0"
+
+[node name="SpeedrunTimer" type="Timer" parent="."]
+
+[node name="SpeedrunLabel" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 272.0
+offset_right = 296.0
+offset_bottom = 368.0
+theme = ExtResource("8_hphvt")
+theme_override_font_sizes/font_size = 40
+text = "00:00:00"
 vertical_alignment = 1
-
-[node name="BrickIcon" type="Sprite2D" parent="."]
-position = Vector2(80, 160)
-texture = ExtResource("4_l6brj")
-
-[node name="GoldIcon" type="Sprite2D" parent="."]
-position = Vector2(80, 296)
-texture = ExtResource("5_x8i3h")
 
 [node name="ThiefTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -219,9 +219,10 @@ offset_left = 768.0
 offset_right = 1152.0
 offset_bottom = 648.0
 tab_alignment = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Residents" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -286,7 +287,6 @@ position = Vector2(184, 57)
 shape = SubResource("RectangleShape2D_puaxa")
 
 [node name="Settings" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -296,6 +296,7 @@ script = ExtResource("24_8qx4t")
 metadata/_tab_index = 1
 
 [node name="HBoxContainer" type="BoxContainer" parent="TabContainer/Settings"]
+visible = false
 layout_mode = 2
 alignment = 2
 vertical = true
@@ -305,20 +306,20 @@ layout_mode = 2
 alignment = 2
 
 [node name="CodeLabel" type="Label" parent="TabContainer/Settings/HBoxContainer/BoxContainer"]
-visible = false
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CodeLine" type="LineEdit" parent="TabContainer/Settings/HBoxContainer/BoxContainer"]
-visible = false
 custom_minimum_size = Vector2(184, 32)
 layout_mode = 2
 placeholder_text = "Insert Code Here..."
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Settings"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 alignment = 1
 
 [node name="VolumeSliders" type="VBoxContainer" parent="TabContainer/Settings/HBoxContainer2"]
@@ -382,11 +383,19 @@ horizontal_alignment = 1
 
 [node name="ConsoleNotifications" type="VBoxContainer" parent="TabContainer/Settings/HBoxContainer2"]
 layout_mode = 2
-theme_override_constants/separation = -5
+theme_override_constants/separation = 5
+
+[node name="HideTimer" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
+custom_minimum_size = Vector2(150, 64)
+layout_mode = 2
+size_flags_vertical = 0
+button_pressed = true
+text = "Show Speedrun Clock"
 alignment = 1
+autowrap_mode = 2
 
 [node name="GoldConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-custom_minimum_size = Vector2(150, 128)
+custom_minimum_size = Vector2(150, 64)
 layout_mode = 2
 size_flags_vertical = 0
 button_pressed = true
@@ -395,7 +404,7 @@ alignment = 1
 autowrap_mode = 2
 
 [node name="BrickConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-custom_minimum_size = Vector2(160, 128)
+custom_minimum_size = Vector2(160, 64)
 layout_mode = 2
 button_pressed = true
 text = "Notify when a Resident makes Bricks"
@@ -403,15 +412,17 @@ alignment = 1
 autowrap_mode = 2
 
 [node name="ThiefSteal" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-custom_minimum_size = Vector2(160, 128)
+custom_minimum_size = Vector2(160, 64)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 button_pressed = true
 text = "Notify when a Thief steals"
 alignment = 1
 autowrap_mode = 2
 
 [node name="ThiefAppear" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-custom_minimum_size = Vector2(160, 128)
+custom_minimum_size = Vector2(160, 64)
 layout_mode = 2
 button_pressed = true
 text = "Notify when a Thief enters or exits a Floor"
@@ -424,9 +435,8 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "Abandon Run"
 
-[connection signal="scroll_ended" from="Tower" to="." method="_on_tower_scroll_ended"]
-[connection signal="scroll_started" from="Tower" to="." method="_on_tower_scroll_started"]
 [connection signal="pressed" from="Tower/Floors/TopFloor/Button" to="." method="new_floor"]
+[connection signal="timeout" from="SpeedrunTimer" to="." method="_on_speedrun_timer_timeout"]
 [connection signal="timeout" from="ThiefTimer" to="." method="_on_thief_timer_timeout"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/BuilderButton" to="." method="_on_builder_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MerchantButton" to="." method="_on_merchant_button_pressed"]
@@ -441,6 +451,7 @@ text = "Abandon Run"
 [connection signal="drag_ended" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/SfxSlider" to="TabContainer/Settings" method="_on_volume_slider_drag_ended"]
 [connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/SfxSlider" to="SoundManager" method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/SfxSlider" to="TabContainer/Settings" method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/HideTimer" to="." method="_on_hide_timer_pressed"]
 [connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/GoldConsole" to="TabContainer/Settings" method="_on_gold_console_button_pressed"]
 [connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/BrickConsole" to="TabContainer/Settings" method="_on_brick_console_button_pressed"]
 [connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefSteal" to="TabContainer/Settings" method="_on_thief_steal_button_pressed"]

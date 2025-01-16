@@ -22,6 +22,21 @@ bg_color = Color(0.352941, 0.32549, 0.32549, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tap1d"]
 bg_color = Color(0.627451, 0.576471, 0.556863, 1)
 
+[sub_resource type="Animation" id="Animation_ieu2q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bacground:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_lguw7"]
 resource_name = "credits"
 length = 1.5
@@ -40,21 +55,6 @@ tracks/0/keys = {
 "values": [0, 1, 2]
 }
 
-[sub_resource type="Animation" id="Animation_ieu2q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bacground:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vnvtf"]
 _data = {
 "RESET": SubResource("Animation_ieu2q"),
@@ -71,44 +71,33 @@ texture = ExtResource("2_6wmdm")
 hframes = 3
 
 [node name="Placements" type="Label" parent="."]
-offset_left = 384.0
-offset_right = 451.0
-offset_bottom = 507.0
+offset_left = 312.0
+offset_right = 420.0
+offset_bottom = 482.0
 theme = ExtResource("2_23noj")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 100
 text = "1.
 2.
 3.
 4.
-5.
-6.
-7.
-8.
-9.
-10."
+5."
 horizontal_alignment = 2
 
 [node name="Scores" type="RichTextLabel" parent="."]
-offset_left = 451.0
-offset_right = 768.0
+offset_left = 408.0
+offset_right = 944.0
 offset_bottom = 640.0
 theme = ExtResource("2_23noj")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 3
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
-text = "--:--:--
---:--:--
---:--:--
---:--:--
---:--:--
---:--:--
+text = "[center]--:--:--
 --:--:--
 --:--:--
 --:--:--
 --:--:--"
-tab_size = 2
 
 [node name="Button" type="Button" parent="."]
 offset_left = 16.0

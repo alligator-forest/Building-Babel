@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1gfra0m6i3kb"]
+[gd_scene load_steps=4 format=3 uid="uid://c1gfra0m6i3kb"]
 
 [ext_resource type="Script" path="res://Characters/Thief/thief.gd" id="1_tj37m"]
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_ng411"]
+[ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="3_alfq1"]
 
 [node name="Thief" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-scale = Vector2(2, 2)
 mouse_filter = 2
 script = ExtResource("1_tj37m")
 
@@ -22,6 +22,15 @@ one_shot = true
 [node name="WaitTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="BrickEffect" parent="." instance=ExtResource("3_alfq1")]
+visible = false
+position = Vector2(-12, -35)
+type = "bricks"
+
+[node name="GoldEffect" parent="." instance=ExtResource("3_alfq1")]
+visible = false
+position = Vector2(18, -35)
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

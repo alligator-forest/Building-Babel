@@ -69,8 +69,9 @@ text = "[wave amp=30][center][color=BLACK]
 --MUSIC / SFX--
 [color=WEB_PURPLE]WobbliestGem[/color]
 
---BUG HUNTERS--
-[color=DARK_GREEN]Geeksworth98[/color]"
+--CONTRIBUTORS--
+[color=DARK_GREEN]Geeksworth98[/color]
+[color=GRAY]ThreeDaysGuy[/color]"
 fit_content = true
 scroll_active = false
 
@@ -82,7 +83,7 @@ offset_bottom = 632.0
 theme = ExtResource("1_660ld")
 text = "Return"
 
-[node name="AnimationTree" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_a4p3n")
 }

@@ -2,7 +2,7 @@ extends Character
 class_name Merchant
 
 func get_gold() -> int:
-	return rng.randi_range(1,7)
+	return $GoldEffect.start_effect(rng.randi_range(1,7))
 
 func get_hubris() -> int:
 	return 2

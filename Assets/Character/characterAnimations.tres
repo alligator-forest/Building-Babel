@@ -51,11 +51,11 @@ region = Rect2(1, 17, 11, 15)
 atlas = ExtResource("5_5s5od")
 region = Rect2(14, 17, 11, 15)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eqg8d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2183"]
 atlas = ExtResource("6_uq23q")
 region = Rect2(1, 15, 11, 17)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yepwh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xok2v"]
 atlas = ExtResource("6_uq23q")
 region = Rect2(14, 15, 11, 17)
 
@@ -150,10 +150,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eqg8d")
+"texture": SubResource("AtlasTexture_x2183")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yepwh")
+"texture": SubResource("AtlasTexture_xok2v")
 }],
 "loop": true,
 "name": &"Merchant",

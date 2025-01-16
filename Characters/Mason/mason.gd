@@ -2,7 +2,7 @@ extends Character
 class_name Mason
 
 func get_bricks() -> int:
-	return rng.randi_range(1,7)
+	return $BrickEffect.start_effect(rng.randi_range(1,7))
 
 func get_hubris() -> int:
 	return 1

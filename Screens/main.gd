@@ -8,23 +8,26 @@ extends Node2D
 @export var shepherds: PackedScene
 @export var warriors: PackedScene
 @export var thieves: PackedScene
-@export var resourceEffects : PackedScene
 
 @onready var sellBox = $TabContainer/Residents/VBoxContainer/SellDropbox
 @onready var rng = RandomNumberGenerator.new()
+const THIEFCHANCE : int = 2 # % chance a thief will spawn
+const FLOORSTOWIN : int = 2 #the number of floors you need to win (excludeing the top floor)
+const HUBRISINCREASE : int = 600 #the number of secs it takes to increase hubrisMult
 var tween : Tween
 var newFloorBricks = 10
 var newFloorBuilders = 1
 var numBuilders = 0
-@onready var startTime = Time.get_unix_time_from_system()
-enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT}
+var hubrisMult : float = 1
+var seconds : int = 0
+enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT, HUBRIS_INCREASE}
 
 var currChar : Character = null
 
 var resources : Dictionary = {
 	"bricks" : 0,
 	"gold" : 30,
-	"hubris" : 0,
+	"hubris" : 0.0,
 }
 
 @onready var consoleNotifs : Dictionary = {
@@ -39,7 +42,6 @@ func _ready():
 func _process(_delta):
 	if(%Floors.get_child_count() > 5):
 		$Background.position.y =  - 760 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical - 640
-	
 	
 	if(Input.is_action_just_pressed("click_press")):
 		for f in range(1,%Floors.get_child_count()):
@@ -78,7 +80,7 @@ func _process(_delta):
 			sellBox.visible = false
 
 #console_logs{GAIN_GOLD, GAIN_BRICK, LOSE_GOLD, LOSE_BRICK, THIEF_ENTER, THIEF_EXIT}
-func log_in_console(event : int, c : Character, resourceVal : int = 0, resourceName : String = ""):
+func log_in_console(event : int, c : Character = null, resourceVal : int = 0, resourceName : String = ""):
 	match event:
 		console_logs.GAIN_RESOURCE:
 			if(consoleNotifs[resourceName].button_pressed):
@@ -92,17 +94,23 @@ func log_in_console(event : int, c : Character, resourceVal : int = 0, resourceN
 		console_logs.THIEF_EXIT:
 			if(consoleNotifs["thief"].button_pressed):
 				$Console.text = str(str(c).to_pascal_case(), " left ",c.get_current_floor()) + "\n" + $Console.text
+		console_logs.HUBRIS_INCREASE:
+			$Console.text = "All residents' hubris has increased\n" + $Console.text
 
 func update():
-	$BrickLabel.text = str(resources["bricks"])
-	$GoldLabel.text = str(resources["gold"])
+	$BrickLabel.text = str("[img=96]res://Assets/UI/brickIcon.png[/img] ",resources["bricks"])
+	$GoldLabel.text = str("[img=96]res://Assets/UI/goldIcon.png[/img] ",resources["gold"])
 	#$GodBar.value = resources["hubris"]
 	tween = create_tween()
 	tween.tween_property($GodBar,"value",resources["hubris"],0.5)
 	
 	#%Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
-	$Tower/Floors/TopFloor/NewFloorLabel.text = "[img=80]res://Assets/UI/brickIcon.png[/img]x" + str(newFloorBricks)
-	%Floors/TopFloor/NewFloorLabel2.text = "[img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x" + str(newFloorBuilders)
+	var newFloorBricksLabel = %Floors/TopFloor/NewFloorLabel
+	var newFloorBuildersLabel = %Floors/TopFloor/NewFloorLabel2
+	newFloorBricksLabel.text = "[color=GREEN]" if (resources["bricks"] >= newFloorBricks) else "[color=RED]"
+	newFloorBuildersLabel.text = "[color=GREEN]" if (numBuilders >= newFloorBuilders) else "[color=RED]"
+	newFloorBricksLabel.text += "[b][img=64]res://Assets/UI/brickIcon.png[/img] x" + str(newFloorBricks)
+	newFloorBuildersLabel.text += "[b][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x" + str(newFloorBuilders)
 	
 	if($GodBar.value >= 100):
 		get_tree().change_scene_to_file("../Screens/game_over.tscn")
@@ -118,11 +126,11 @@ func new_floor():
 		newFloorBuilders += 1
 		play_effect("new floor")
 		update()
+		hubrisMult += 0.1
 		
-		print($Tower.get_v_scroll_bar().max_value)
 		#win condition
-		if(%Floors.get_child_count() - 1 >= 10):
-			SCOREKEEPER.set_score(Time.get_unix_time_from_system() - startTime)
+		if(%Floors.get_child_count() - 1 >= FLOORSTOWIN):
+			SCOREKEEPER.set_score(seconds)
 			get_tree().change_scene_to_file("res://Screens/win.tscn")
 
 func _on_character_timer_timeout(c : Character):
@@ -133,28 +141,37 @@ func _on_character_timer_timeout(c : Character):
 	}
 	r["gold"] += c.get_gold()
 	r["bricks"] += c.get_bricks()
-	r["hubris"] += c.get_hubris()
+	var hubris = c.get_hubris()
+	r["hubris"] += (hubris * hubrisMult) if hubris > 0 else float(hubris)
 	
-	var numREs : int = 0
+	
 	for key in r:
 		if(key != "hubris" and r[key] != 0):
-			var rE : ResourceEffect = resourceEffects.instantiate()
 			if(r[key] > 0):
-				rE.set_values(key,r[key])
 				log_in_console(console_logs.GAIN_RESOURCE,c,r[key],key)
 			elif(r[key] < 0):
 				var amtStole = clamp(abs(r[key]),0,resources[key])
 				if(amtStole > 0):
-					rE.set_values(key,-1 * clamp(abs(r[key]),0,resources[key]))
 					log_in_console(console_logs.LOSE_RESOURCE,c,amtStole,key)
-				else:
-					rE = null
-			if(rE != null):
-				$ResourceEffects.add_child(rE)
-				rE.global_position.x = c.global_position.x - (60 * numREs)
-				rE.global_position.y = c.global_position.y - 75
-				numREs += 1
-				rE.spawn()
+	#var numREs : int = 0
+		#if(key != "hubris" and r[key] != 0):
+			#var rE : ResourceEffect = resourceEffects.instantiate()
+			#if(r[key] > 0):
+				#rE.set_values(key,r[key])
+				#log_in_console(console_logs.GAIN_RESOURCE,c,r[key],key)
+			#elif(r[key] < 0):
+				#var amtStole = clamp(abs(r[key]),0,resources[key])
+				#if(amtStole > 0):
+					#rE.set_values(key,-1 * clamp(abs(r[key]),0,resources[key]))
+					#log_in_console(console_logs.LOSE_RESOURCE,c,amtStole,key)
+				#else:
+					#rE = null
+			#if(rE != null):
+				#$ResourceEffects.add_child(rE)
+				#rE.global_position.x = c.global_position.x - (60 * numREs)
+				#rE.global_position.y = c.global_position.y - 75
+				#numREs += 1
+				#rE.spawn()
 	add_resources(r)
 
 func add_resources(r : Dictionary):
@@ -187,6 +204,8 @@ func _on_warrior_button_pressed():
 	buy_character(Warrior.new(), warriors)
 
 func buy_character(c : Character, cLoader):
+	if($SpeedrunTimer.is_stopped()):
+		$SpeedrunTimer.start()
 	if(c is Builder):
 		numBuilders += 1
 	if(c.get_price() <= resources["gold"] and !%Floors/Lobby.is_full()):
@@ -209,10 +228,10 @@ func spawn_thief(f : Floor) -> Thief:
 	update()
 	return thief
 
-func despawn_thief(t : Thief) -> void:
-	t.hide()
+func despawn_thief(t : Thief, waitTime : float) -> void:
 	await get_tree().create_timer(0.01).timeout #delay added so stealing would log before thief leaving
 	log_in_console(console_logs.THIEF_EXIT,t)
+	await get_tree().create_timer(waitTime).timeout
 	t.queue_free()
 
 func sell_character(c : Character):
@@ -235,17 +254,23 @@ func on_character_area_2d_exit(area : Area2D) -> void:
 func _on_thief_timer_timeout() -> void:
 	if(%Floors.get_child_count() >= 4):
 		for f in range(1,%Floors.get_child_count()):
-			if(rng.randi_range(1,100) <= 2 and !%Floors.get_child(f).has_warrior()):
+			if(rng.randi_range(1,100) <= THIEFCHANCE and !%Floors.get_child(f).has_warrior()):
 				log_in_console(console_logs.THIEF_ENTER,spawn_thief(%Floors.get_child(f)))
-
-func _on_tower_scroll_ended() -> void:
-	print("AAA")
-	$Background.position.y = 1152 - $Tower.scroll_vertical
-
-func _on_tower_scroll_started() -> void:
-	print("BBB")
 
 func _input(event: InputEvent) -> void:
 	for i in range(1,10):
 		if(event.is_action_pressed(str(i))):
 			$Tower.scroll_vertical = 128 * (10 - i)
+
+func _on_speedrun_timer_timeout() -> void:
+	seconds += 1
+	$SpeedrunLabel.text = SCOREKEEPER.format_time(seconds)
+	if(hubrisMult < 1 + floor(seconds/HUBRISINCREASE)):
+		hubrisMult = 1 + floor(seconds/HUBRISINCREASE)
+		log_in_console(console_logs.HUBRIS_INCREASE)
+		$GodBarLabel.text = "[center][wave][color=yellow]HUBRIS (x" + str(hubrisMult,")")
+
+func _on_hide_timer_pressed() -> void:
+	$SpeedrunLabel.visible = $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/HideTimer.button_pressed
+	SAVEOBJECT.data.set_console_notif("timer",$SpeedrunLabel.visible)
+	SAVEOBJECT._save_data()
