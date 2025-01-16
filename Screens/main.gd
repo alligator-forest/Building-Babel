@@ -260,7 +260,7 @@ func _on_thief_timer_timeout() -> void:
 func _input(event: InputEvent) -> void:
 	for i in range(1,10):
 		if(event.is_action_pressed(str(i))):
-			$Tower.scroll_vertical = 128 * (10 - i)
+			$Tower.scroll_vertical = 128 * (7 - i)
 
 func _on_speedrun_timer_timeout() -> void:
 	seconds += 1
