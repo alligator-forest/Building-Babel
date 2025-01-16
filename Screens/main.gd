@@ -12,7 +12,7 @@ extends Node2D
 @onready var sellBox = $TabContainer/Residents/VBoxContainer/SellDropbox
 @onready var rng = RandomNumberGenerator.new()
 const THIEFCHANCE : int = 2 # % chance a thief will spawn
-const FLOORSTOWIN : int = 2 #the number of floors you need to win (excludeing the top floor)
+const FLOORSTOWIN : int = 10 #the number of floors you need to win (excludeing the top floor)
 const HUBRISINCREASE : int = 600 #the number of secs it takes to increase hubrisMult
 var tween : Tween
 var newFloorBricks = 10
