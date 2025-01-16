@@ -95,7 +95,7 @@ texture = ExtResource("10_3tu5u")
 layout_mode = 0
 offset_left = 2.0
 offset_top = 16.0
-offset_right = 96.0
+offset_right = 80.0
 offset_bottom = 76.0
 theme = ExtResource("8_hphvt")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -106,27 +106,27 @@ FLOOR"
 
 [node name="NewFloorLabel" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
-offset_left = 233.0
+offset_left = 208.0
 offset_top = 25.0
 offset_right = 384.0
 offset_bottom = 85.0
 theme = ExtResource("8_hphvt")
 theme_override_constants/outline_size = 15
 bbcode_enabled = true
-text = "[b][color=RED][img=64]res://Assets/UI/brickIcon.png[/img] x"
+text = "[b][color=RED][img=64]res://Assets/UI/brickIcon.png[/img] x 2560"
 scroll_active = false
 
 [node name="NewFloorLabel2" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
-offset_left = 104.0
+offset_left = 88.0
 offset_top = 22.0
-offset_right = 224.0
+offset_right = 208.0
 offset_bottom = 77.0
 theme = ExtResource("8_hphvt")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 15
 bbcode_enabled = true
-text = "[b][color=RED][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x"
+text = "[b][color=RED][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x9"
 scroll_active = false
 
 [node name="Lobby" parent="Tower/Floors" instance=ExtResource("2_d85bv")]
