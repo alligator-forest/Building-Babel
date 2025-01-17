@@ -95,6 +95,9 @@ func get_sell_price() -> int:
 func get_bricks() -> int:
 	return 0
 
+func get_wood() -> int:
+	return 0
+
 func get_gold() -> int:
 	return 0
 

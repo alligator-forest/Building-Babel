@@ -5,6 +5,7 @@ extends Node2D
 @export var builders: PackedScene
 @export var merchants : PackedScene
 @export var masons: PackedScene
+@export var carpenters : PackedScene
 @export var shepherds: PackedScene
 @export var warriors: PackedScene
 @export var thieves: PackedScene
@@ -26,13 +27,15 @@ var currChar : Character = null
 
 var resources : Dictionary = {
 	"bricks" : 0,
+	"wood" : 0,
 	"gold" : 30,
-	"hubris" : 0.0,
+	"hubris" : 0,
 }
 
 @onready var consoleNotifs : Dictionary = {
 	"gold" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/GoldConsole,
 	"bricks" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/BrickConsole,
+	"wood" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/WoodConsole,
 	"steal" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefSteal,
 	"thief" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefAppear,
 }
@@ -99,6 +102,7 @@ func log_in_console(event : int, c : Character = null, resourceVal : int = 0, re
 
 func update():
 	$BrickLabel.text = str("[img=96]res://Assets/UI/brickIcon.png[/img] ",resources["bricks"])
+	$WoodLabel.text = str("[img=96]res://Assets/UI/woodIcon.png[/img] ",resources["wood"])
 	$GoldLabel.text = str("[img=96]res://Assets/UI/goldIcon.png[/img] ",resources["gold"])
 	#$GodBar.value = resources["hubris"]
 	tween = create_tween()
@@ -134,15 +138,12 @@ func new_floor():
 			get_tree().change_scene_to_file("res://Screens/win.tscn")
 
 func _on_character_timer_timeout(c : Character):
-	var r : Dictionary = {
-		"bricks" : 0,
-		"gold" : 0,
-		"hubris" : 0,
-	}
-	r["gold"] += c.get_gold()
-	r["bricks"] += c.get_bricks()
+	var r : Dictionary 
+	r["gold"] = c.get_gold()
+	r["bricks"] = c.get_bricks()
+	r["wood"] = c.get_wood()
 	var hubris = c.get_hubris()
-	r["hubris"] += (hubris * hubrisMult) if hubris > 0 else float(hubris)
+	r["hubris"] = floor(hubris * hubrisMult) if hubris > 0 else hubris
 	
 	
 	for key in r:
@@ -153,25 +154,6 @@ func _on_character_timer_timeout(c : Character):
 				var amtStole = clamp(abs(r[key]),0,resources[key])
 				if(amtStole > 0):
 					log_in_console(console_logs.LOSE_RESOURCE,c,amtStole,key)
-	#var numREs : int = 0
-		#if(key != "hubris" and r[key] != 0):
-			#var rE : ResourceEffect = resourceEffects.instantiate()
-			#if(r[key] > 0):
-				#rE.set_values(key,r[key])
-				#log_in_console(console_logs.GAIN_RESOURCE,c,r[key],key)
-			#elif(r[key] < 0):
-				#var amtStole = clamp(abs(r[key]),0,resources[key])
-				#if(amtStole > 0):
-					#rE.set_values(key,-1 * clamp(abs(r[key]),0,resources[key]))
-					#log_in_console(console_logs.LOSE_RESOURCE,c,amtStole,key)
-				#else:
-					#rE = null
-			#if(rE != null):
-				#$ResourceEffects.add_child(rE)
-				#rE.global_position.x = c.global_position.x - (60 * numREs)
-				#rE.global_position.y = c.global_position.y - 75
-				#numREs += 1
-				#rE.spawn()
 	add_resources(r)
 
 func add_resources(r : Dictionary):
@@ -196,6 +178,9 @@ func _on_merchant_button_pressed():
 
 func _on_mason_button_pressed():
 	buy_character(Mason.new(), masons)
+
+func _on_carpenter_button_pressed() -> void:
+	buy_character(Carpenter.new(),carpenters)
 
 func _on_shepherd_button_pressed():
 	buy_character(Shepherd.new(), shepherds)

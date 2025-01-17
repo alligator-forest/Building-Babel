@@ -16,6 +16,7 @@ var STARTSCORES = [-1,-1,-1,-1,-1]
 	"timer" : true,
 	"gold" : true,
 	"bricks" : true,
+	"wood" : true,
 	"steal" : true,
 	"thief" : true,
 }

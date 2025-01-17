@@ -7,6 +7,7 @@ extends Control
 @onready var timerButton = $HBoxContainer2/ConsoleNotifications/HideTimer
 @onready var goldConsoleButton = $HBoxContainer2/ConsoleNotifications/GoldConsole
 @onready var brickConsoleButton = $HBoxContainer2/ConsoleNotifications/BrickConsole
+@onready var woodConsoleButton = $HBoxContainer2/ConsoleNotifications/WoodConsole
 @onready var stealConsoleButton = $HBoxContainer2/ConsoleNotifications/ThiefSteal
 @onready var thiefConsoleButton = $HBoxContainer2/ConsoleNotifications/ThiefAppear
 
@@ -18,6 +19,7 @@ func _ready() -> void:
 	timerButton.pressed.emit()
 	goldConsoleButton.button_pressed = SAVEOBJECT.data.get_console_notif("gold")
 	brickConsoleButton.button_pressed = SAVEOBJECT.data.get_console_notif("bricks")
+	woodConsoleButton.button_pressed = SAVEOBJECT.data.get_console_notif("wood")
 	stealConsoleButton.button_pressed = SAVEOBJECT.data.get_console_notif("thief")
 	thiefConsoleButton.button_pressed = SAVEOBJECT.data.get_console_notif("steal")
 
@@ -48,6 +50,10 @@ func _on_gold_console_button_pressed() -> void:
 
 func _on_brick_console_button_pressed() -> void:
 	SAVEOBJECT.data.set_console_notif("bricks",brickConsoleButton.button_pressed)
+	SAVEOBJECT._save_data()
+
+func _on_wood_console_pressed() -> void:
+	SAVEOBJECT.data.set_console_notif("wood",woodConsoleButton.button_pressed)
 	SAVEOBJECT._save_data()
 
 func _on_thief_appear_button_pressed() -> void:

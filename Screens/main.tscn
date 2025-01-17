@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=26 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" path="res://Screens/main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
 [ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/Builder/builder.tscn" id="4_r1sbw"]
 [ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/Merchant/merchant.tscn" id="5_ycq4u"]
+[ext_resource type="PackedScene" uid="uid://b32i21uc4u25d" path="res://Characters/Carpenter/carpenter.tscn" id="6_nyx7j"]
 [ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/Mason/mason.tscn" id="6_qu6a5"]
 [ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/Shepherd/shepherd.tscn" id="7_sbhwi"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="8_hphvt"]
@@ -40,6 +41,7 @@ tiers = ExtResource("2_d85bv")
 builders = ExtResource("4_r1sbw")
 merchants = ExtResource("5_ycq4u")
 masons = ExtResource("6_qu6a5")
+carpenters = ExtResource("6_nyx7j")
 shepherds = ExtResource("7_sbhwi")
 warriors = ExtResource("8_xfuhw")
 thieves = ExtResource("9_m3587")
@@ -163,11 +165,22 @@ theme_override_font_sizes/normal_font_size = 65
 bbcode_enabled = true
 text = "[img=96]res://Assets/UI/brickIcon.png[/img] 0"
 
-[node name="GoldLabel" type="RichTextLabel" parent="."]
+[node name="WoodLabel" type="RichTextLabel" parent="."]
 offset_left = 16.0
-offset_top = 192.0
-offset_right = 376.0
-offset_bottom = 320.0
+offset_top = 176.0
+offset_right = 384.0
+offset_bottom = 328.0
+theme = ExtResource("8_hphvt")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 65
+bbcode_enabled = true
+text = "[img=96]res://Assets/UI/woodIcon.png[/img] 0"
+
+[node name="GoldLabel" type="RichTextLabel" parent="."]
+offset_left = 216.0
+offset_top = 88.0
+offset_right = 576.0
+offset_bottom = 216.0
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 65
@@ -178,9 +191,9 @@ text = "[img=96]res://Assets/UI/goldIcon.png[/img] 0"
 
 [node name="SpeedrunLabel" type="Label" parent="."]
 offset_left = 16.0
-offset_top = 272.0
+offset_top = 296.0
 offset_right = 296.0
-offset_bottom = 368.0
+offset_bottom = 392.0
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 40
 text = "00:00:00"
@@ -253,6 +266,13 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Mason
+20 G"
+
+[node name="CarpenterButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("8_hphvt")
+text = "Carpenter
 20 G"
 
 [node name="ShepherdButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
@@ -411,6 +431,14 @@ text = "Notify when a Resident makes Bricks"
 alignment = 1
 autowrap_mode = 2
 
+[node name="WoodConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
+custom_minimum_size = Vector2(160, 64)
+layout_mode = 2
+button_pressed = true
+text = "Notify when a Resident makes Wood"
+alignment = 1
+autowrap_mode = 2
+
 [node name="ThiefSteal" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
 custom_minimum_size = Vector2(160, 64)
 layout_mode = 2
@@ -441,6 +469,7 @@ text = "Abandon Run"
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/BuilderButton" to="." method="_on_builder_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MerchantButton" to="." method="_on_merchant_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MasonButton" to="." method="_on_mason_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/CarpenterButton" to="." method="_on_carpenter_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/ShepherdButton" to="." method="_on_shepherd_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/WarriorButton" to="." method="_on_warrior_button_pressed"]
 [connection signal="text_changed" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_code_textbox_text_changed"]
@@ -454,6 +483,7 @@ text = "Abandon Run"
 [connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/HideTimer" to="." method="_on_hide_timer_pressed"]
 [connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/GoldConsole" to="TabContainer/Settings" method="_on_gold_console_button_pressed"]
 [connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/BrickConsole" to="TabContainer/Settings" method="_on_brick_console_button_pressed"]
+[connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/WoodConsole" to="TabContainer/Settings" method="_on_wood_console_pressed"]
 [connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefSteal" to="TabContainer/Settings" method="_on_thief_steal_button_pressed"]
 [connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefAppear" to="TabContainer/Settings" method="_on_thief_appear_button_pressed"]
 [connection signal="pressed" from="TabContainer/Settings/HBoxContainer2/ConsoleNotifications/QuitButton" to="TabContainer/Settings" method="_on_quit_button_pressed"]

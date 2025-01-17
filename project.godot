@@ -34,8 +34,9 @@ window/stretch/aspect="keep_height"
 
 folder_colors={
 "res://Characters/Builder/": "orange",
+"res://Characters/Carpenter/": "green",
 "res://Characters/Mason/": "blue",
-"res://Characters/Merchant/": "green",
+"res://Characters/Merchant/": "teal",
 "res://Characters/Shepherd/": "pink",
 "res://Characters/Thief/": "gray",
 "res://Characters/Warrior/": "yellow"

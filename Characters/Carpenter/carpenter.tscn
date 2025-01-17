@@ -1,29 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://xh6tnfb71fbs"]
+[gd_scene load_steps=5 format=3 uid="uid://b32i21uc4u25d"]
 
-[ext_resource type="Script" path="res://Characters/Mason/mason.gd" id="1_b5g5f"]
-[ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_bjbag"]
-[ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="3_032tx"]
+[ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="1_q6qhk"]
+[ext_resource type="Script" path="res://Characters/Carpenter/carpenter.gd" id="1_ya0xa"]
+[ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="3_yb2ga"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_utyqc"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mr6n7"]
 radius = 13.0
 height = 35.0
 
-[node name="Mason" type="Control"]
+[node name="Carpenter" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-mouse_filter = 1
-script = ExtResource("1_b5g5f")
+script = ExtResource("1_ya0xa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(2, -16)
 scale = Vector2(2, 2)
-sprite_frames = ExtResource("2_bjbag")
-animation = &"Mason"
+sprite_frames = ExtResource("1_q6qhk")
+animation = &"Carpenter"
 
-[node name="BrickEffect" parent="." instance=ExtResource("3_032tx")]
+[node name="WoodEffect" parent="." instance=ExtResource("3_yb2ga")]
 visible = false
 position = Vector2(0, -35)
-type = "bricks"
+type = "wood"
 
 [node name="MoveTimer" type="Timer" parent="."]
 one_shot = true
@@ -35,8 +34,8 @@ autostart = true
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1, -16.5)
-shape = SubResource("CapsuleShape2D_utyqc")
+position = Vector2(1, -16)
+shape = SubResource("CapsuleShape2D_mr6n7")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

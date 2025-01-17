@@ -10,6 +10,8 @@ func _ready() -> void:
 			$Sprite2D.region_rect.position.x = 0
 		"bricks":
 			$Sprite2D.region_rect.position.x = 12
+		"wood":
+			$Sprite2D.region_rect.position.x = 24
 
 func get_effect_time() -> float:
 	return $Timer.wait_time
