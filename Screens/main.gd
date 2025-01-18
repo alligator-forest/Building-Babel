@@ -10,7 +10,7 @@ extends Node2D
 @export var warriors: PackedScene
 @export var thieves: PackedScene
 
-@onready var sellBox = $TabContainer/Residents/VBoxContainer/SellDropbox
+@onready var sellBox = $TabContainer/Residents/ScrollContainer/VBoxContainer/SellDropbox
 @onready var rng = RandomNumberGenerator.new()
 const THIEFCHANCE : int = 2 # % chance a thief will spawn
 const FLOORSTOWIN : int = 10 #the number of floors you need to win (excludeing the top floor)
@@ -144,7 +144,6 @@ func _on_character_timer_timeout(c : Character):
 	r["wood"] = c.get_wood()
 	var hubris = c.get_hubris()
 	r["hubris"] = floor(hubris * hubrisMult) if hubris > 0 else hubris
-	
 	
 	for key in r:
 		if(key != "hubris" and r[key] != 0):

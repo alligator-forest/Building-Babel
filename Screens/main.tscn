@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=28 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" path="res://Screens/main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
@@ -21,6 +21,8 @@
 [ext_resource type="Script" path="res://Screens/sound_manager.gd" id="15_lqehw"]
 [ext_resource type="Script" path="res://System/sell_dropbox.gd" id="19_hyppe"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="19_ufc1y"]
+[ext_resource type="Texture2D" uid="uid://dpd5p583xjif5" path="res://Assets/Floor/FloorBrick.png" id="22_6rnl4"]
+[ext_resource type="Texture2D" uid="uid://budb3me3teeet" path="res://Assets/Floor/FloorWood.png" id="23_by8fi"]
 [ext_resource type="Script" path="res://Screens/settings.gd" id="24_8qx4t"]
 
 [sub_resource type="Gradient" id="Gradient_h608w"]
@@ -109,9 +111,9 @@ FLOOR"
 [node name="NewFloorLabel" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
 offset_left = 208.0
-offset_top = 25.0
+offset_top = 17.0
 offset_right = 384.0
-offset_bottom = 85.0
+offset_bottom = 77.0
 theme = ExtResource("8_hphvt")
 theme_override_constants/outline_size = 15
 bbcode_enabled = true
@@ -163,18 +165,18 @@ theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 65
 bbcode_enabled = true
-text = "[img=96]res://Assets/UI/brickIcon.png[/img] 0"
+text = "[img=96x96]res://Assets/UI/brickIcon.png[/img] 0"
 
 [node name="WoodLabel" type="RichTextLabel" parent="."]
 offset_left = 16.0
-offset_top = 176.0
+offset_top = 200.0
 offset_right = 384.0
-offset_bottom = 328.0
+offset_bottom = 352.0
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 65
 bbcode_enabled = true
-text = "[img=96]res://Assets/UI/woodIcon.png[/img] 0"
+text = "[img=96x96]res://Assets/UI/woodIcon.png[/img] 0"
 
 [node name="GoldLabel" type="RichTextLabel" parent="."]
 offset_left = 216.0
@@ -232,10 +234,9 @@ offset_left = 768.0
 offset_right = 1152.0
 offset_bottom = 648.0
 tab_alignment = 2
-current_tab = 1
+current_tab = 0
 
 [node name="Residents" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -243,53 +244,57 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Residents"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Residents"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Residents/ScrollContainer"]
+custom_minimum_size = Vector2(384, 576)
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="BuilderButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
+[node name="BuilderButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "builder
 10 G"
 
-[node name="MerchantButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
+[node name="MerchantButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Merchant
 15 G"
 
-[node name="MasonButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
+[node name="MasonButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Mason
 20 G"
 
-[node name="CarpenterButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
+[node name="CarpenterButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Carpenter
 20 G"
 
-[node name="ShepherdButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
+[node name="ShepherdButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Shepherd
 30 G"
 
-[node name="WarriorButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
+[node name="WarriorButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Warrior
 30 G"
 
-[node name="SellDropbox" type="Button" parent="TabContainer/Residents/VBoxContainer"]
+[node name="SellDropbox" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 112)
 layout_mode = 2
@@ -298,22 +303,51 @@ disabled = true
 text = "SELL"
 script = ExtResource("19_hyppe")
 
-[node name="DropComponent" parent="TabContainer/Residents/VBoxContainer/SellDropbox" instance=ExtResource("19_ufc1y")]
+[node name="DropComponent" parent="TabContainer/Residents/ScrollContainer/VBoxContainer/SellDropbox" instance=ExtResource("19_ufc1y")]
 
-[node name="Area2D" type="Area2D" parent="TabContainer/Residents/VBoxContainer/SellDropbox"]
+[node name="Area2D" type="Area2D" parent="TabContainer/Residents/ScrollContainer/VBoxContainer/SellDropbox"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TabContainer/Residents/VBoxContainer/SellDropbox/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TabContainer/Residents/ScrollContainer/VBoxContainer/SellDropbox/Area2D"]
 position = Vector2(184, 57)
 shape = SubResource("RectangleShape2D_puaxa")
 
+[node name="Floors" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+metadata/_tab_index = 1
+
+[node name="BrickFloors" type="VBoxContainer" parent="TabContainer/Floors"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Floors/BrickFloors"]
+custom_minimum_size = Vector2(192, 64)
+layout_mode = 2
+texture = ExtResource("22_6rnl4")
+expand_mode = 1
+
+[node name="WoodFloors" type="VBoxContainer" parent="TabContainer/Floors"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Floors/WoodFloors"]
+custom_minimum_size = Vector2(192, 64)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("23_by8fi")
+
 [node name="Settings" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("24_8qx4t")
-metadata/_tab_index = 1
+metadata/_tab_index = 2
 
 [node name="HBoxContainer" type="BoxContainer" parent="TabContainer/Settings"]
 visible = false
@@ -466,12 +500,12 @@ text = "Abandon Run"
 [connection signal="pressed" from="Tower/Floors/TopFloor/Button" to="." method="new_floor"]
 [connection signal="timeout" from="SpeedrunTimer" to="." method="_on_speedrun_timer_timeout"]
 [connection signal="timeout" from="ThiefTimer" to="." method="_on_thief_timer_timeout"]
-[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/BuilderButton" to="." method="_on_builder_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MerchantButton" to="." method="_on_merchant_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MasonButton" to="." method="_on_mason_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/CarpenterButton" to="." method="_on_carpenter_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/ShepherdButton" to="." method="_on_shepherd_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/WarriorButton" to="." method="_on_warrior_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/BuilderButton" to="." method="_on_builder_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/MerchantButton" to="." method="_on_merchant_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/MasonButton" to="." method="_on_mason_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/CarpenterButton" to="." method="_on_carpenter_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/ShepherdButton" to="." method="_on_shepherd_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/WarriorButton" to="." method="_on_warrior_button_pressed"]
 [connection signal="text_changed" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_code_textbox_text_changed"]
 [connection signal="text_submitted" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_line_edit_text_submitted"]
 [connection signal="drag_ended" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/MusicSlider" to="TabContainer/Settings" method="_on_volume_slider_drag_ended"]

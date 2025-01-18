@@ -21,7 +21,7 @@ animation = &"Carpenter"
 
 [node name="WoodEffect" parent="." instance=ExtResource("3_yb2ga")]
 visible = false
-position = Vector2(0, -35)
+position = Vector2(4, -35)
 type = "wood"
 
 [node name="MoveTimer" type="Timer" parent="."]
