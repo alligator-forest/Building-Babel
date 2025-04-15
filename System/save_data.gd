@@ -38,7 +38,6 @@ func get_highscore() -> int:
 	return scores[0]
 
 func new_score(seconds : int, name : String) -> void:
-	print(name)
 	for i in range(scores.size()):
 		if(seconds < scores[i] or scores[i] < 0):
 			scores.insert(i,seconds)

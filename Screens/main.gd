@@ -12,7 +12,7 @@ extends Node2D
 @onready var sellBox = $TabContainer/Residents/VBoxContainer/SellDropbox
 @onready var rng = RandomNumberGenerator.new()
 const THIEFCHANCE : int = 2 # % chance a thief will spawn
-const FLOORSTOWIN : int = 2 #the number of floors you need to win (excludeing the top floor)
+const FLOORSTOWIN : int = 10 #the number of floors you need to win (excludeing the top floor)
 const HUBRISINCREASE : int = 600 #the number of secs it takes to increase hubrisMult
 var tween : Tween
 var newFloorBricks = 10
@@ -129,9 +129,9 @@ func new_floor():
 		hubrisMult += 0.1
 		
 		#win condition
-		if(%Floors.get_child_count() - 1 >= FLOORSTOWIN):
-			SCOREKEEPER.set_score(seconds)
-			get_tree().change_scene_to_file("res://Screens/win.tscn")
+	if(%Floors.get_child_count() - 1 >= FLOORSTOWIN):
+		SCOREKEEPER.set_score(seconds)
+		get_tree().change_scene_to_file("res://Screens/win.tscn")
 
 func _on_character_timer_timeout(c : Character):
 	var r : Dictionary = {
@@ -261,9 +261,6 @@ func _input(event: InputEvent) -> void:
 	for i in range(1,10):
 		if(event.is_action_pressed(str(i))):
 			$Tower.scroll_vertical = 128 * (10 - i)
-	if(event.is_action("ui_cancel")):
-		SCOREKEEPER.set_score(seconds)
-		get_tree().change_scene_to_file("res://Screens/win.tscn")
 
 func _on_speedrun_timer_timeout() -> void:
 	seconds += 1
