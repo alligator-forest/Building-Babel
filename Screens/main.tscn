@@ -219,10 +219,9 @@ offset_left = 768.0
 offset_right = 1152.0
 offset_bottom = 648.0
 tab_alignment = 2
-current_tab = 1
+current_tab = 0
 
 [node name="Residents" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -287,6 +286,7 @@ position = Vector2(184, 57)
 shape = SubResource("RectangleShape2D_puaxa")
 
 [node name="Settings" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8

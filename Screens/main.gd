@@ -261,6 +261,9 @@ func _input(event: InputEvent) -> void:
 	for i in range(1,10):
 		if(event.is_action_pressed(str(i))):
 			$Tower.scroll_vertical = 128 * (10 - i)
+	if(event.is_action("ui_cancel")):
+		SCOREKEEPER.set_score(seconds)
+		get_tree().change_scene_to_file("res://Screens/win.tscn")
 
 func _on_speedrun_timer_timeout() -> void:
 	seconds += 1

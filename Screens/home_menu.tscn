@@ -94,7 +94,7 @@ text = "HOW TO PLAY"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_x3nar")
+&"": SubResource("AnimationLibrary_x3nar")
 }
 autoplay = "home"
 
