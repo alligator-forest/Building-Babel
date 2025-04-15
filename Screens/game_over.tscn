@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c2fhhh5tia0q2"]
 
-[ext_resource type="Script" path="res://Screens/game_over.gd" id="1_r7w56"]
+[ext_resource type="Script" uid="uid://bk2gc8ssb5chs" path="res://Screens/game_over.gd" id="1_r7w56"]
 [ext_resource type="Texture2D" uid="uid://ciwpyu5jmj18p" path="res://Assets/Screens/BabelGameOver-Sheet.png" id="2_omij0"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="3_3w87l"]
 
@@ -40,8 +40,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_25wht"]
 _data = {
-"RESET": SubResource("Animation_u14dj"),
-"game_over": SubResource("Animation_tl3qs")
+&"RESET": SubResource("Animation_u14dj"),
+&"game_over": SubResource("Animation_tl3qs")
 }
 
 [node name="GameOver" type="Node2D"]

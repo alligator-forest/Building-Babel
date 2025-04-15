@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmqbb26365ban"]
 
 [ext_resource type="Texture2D" uid="uid://dlhh558nl26ea" path="res://Assets/Screens/BabelWin.png" id="1_gqb67"]
-[ext_resource type="Script" path="res://Screens/win.gd" id="1_plnjp"]
+[ext_resource type="Script" uid="uid://k8antprk22h" path="res://Screens/win.gd" id="1_plnjp"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_8nlkf"]
 
 [node name="Node2D" type="Node2D"]

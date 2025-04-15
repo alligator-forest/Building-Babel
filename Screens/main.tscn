@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://bkyl1jp3lj36v"]
 
-[ext_resource type="Script" path="res://Screens/main.gd" id="1_eqxpj"]
+[ext_resource type="Script" uid="uid://dk7gqmskok7f0" path="res://Screens/main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
 [ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/Builder/builder.tscn" id="4_r1sbw"]
 [ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/Merchant/merchant.tscn" id="5_ycq4u"]
@@ -17,10 +17,10 @@
 [ext_resource type="AudioStream" uid="uid://h7qk0fhjaaa7" path="res://Music/SFX/187 WOOSH B.wav" id="11_t20f0"]
 [ext_resource type="AudioStream" uid="uid://bshc5yp51en76" path="res://Music/SFX/money-pickup-2-89563.mp3" id="12_diw7j"]
 [ext_resource type="Texture2D" uid="uid://bf13ejbuol7vp" path="res://Assets/Floor/FloorLobby.png" id="12_n0vtn"]
-[ext_resource type="Script" path="res://Screens/sound_manager.gd" id="15_lqehw"]
-[ext_resource type="Script" path="res://System/sell_dropbox.gd" id="19_hyppe"]
+[ext_resource type="Script" uid="uid://dk8ncab7no6tj" path="res://Screens/sound_manager.gd" id="15_lqehw"]
+[ext_resource type="Script" uid="uid://dakm4sgsxb1l3" path="res://System/sell_dropbox.gd" id="19_hyppe"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="19_ufc1y"]
-[ext_resource type="Script" path="res://Screens/settings.gd" id="24_8qx4t"]
+[ext_resource type="Script" uid="uid://dqru7q312l7wy" path="res://Screens/settings.gd" id="24_8qx4t"]
 
 [sub_resource type="Gradient" id="Gradient_h608w"]
 colors = PackedColorArray(0.18, 0.18, 0.18, 1, 0, 0, 0, 0)

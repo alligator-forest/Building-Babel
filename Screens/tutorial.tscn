@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cc064u14w52mc"]
 
 [ext_resource type="Texture2D" uid="uid://bvhsmfgn8ug0p" path="res://Assets/Screens/howToPlay.png" id="1_2bflo"]
-[ext_resource type="Script" path="res://Screens/tutorial.gd" id="1_codhe"]
+[ext_resource type="Script" uid="uid://cb4kguxonl8ak" path="res://Screens/tutorial.gd" id="1_codhe"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_waamq"]
 [ext_resource type="Texture2D" uid="uid://dc8yy166akmc" path="res://Assets/UI/babelArrow.png" id="3_5mcku"]
 
@@ -40,8 +40,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wo0n2"]
 _data = {
-"RESET": SubResource("Animation_n4xuj"),
-"tutorial": SubResource("Animation_giob8")
+&"RESET": SubResource("Animation_n4xuj"),
+&"tutorial": SubResource("Animation_giob8")
 }
 
 [node name="Tutorial" type="Node2D"]

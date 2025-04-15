@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://butxgvvrm7hqp"]
 
-[ext_resource type="Script" path="res://Characters/Shepherd/shepherd.gd" id="1_khvea"]
+[ext_resource type="Script" uid="uid://c57o65mwl0lug" path="res://Characters/Shepherd/shepherd.gd" id="1_khvea"]
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_ccbcr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6qbch"]
