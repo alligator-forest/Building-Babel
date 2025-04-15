@@ -18,7 +18,7 @@ var tween : Tween
 var newFloorBricks = 10
 var newFloorBuilders = 1
 var numBuilders = 0
-var hubrisMult : float = 1
+var hubrisMult : int = 1
 var seconds : int = 0
 enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT, HUBRIS_INCREASE}
 
@@ -112,8 +112,8 @@ func update():
 	newFloorBricksLabel.text += "[b][img=64]res://Assets/UI/brickIcon.png[/img] x" + str(newFloorBricks)
 	newFloorBuildersLabel.text += "[b][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x" + str(newFloorBuilders)
 	
-	if($GodBar.value >= 100):
-		get_tree().change_scene_to_file("../Screens/game_over.tscn")
+	if($GodBar.value >= 99):
+		get_tree().change_scene_to_file("res://Screens/game_over.tscn")
 
 func new_floor():
 	if(resources["bricks"] >= newFloorBricks and numBuilders >= newFloorBuilders):
@@ -126,7 +126,6 @@ func new_floor():
 		newFloorBuilders += 1
 		play_effect("new floor")
 		update()
-		hubrisMult += 0.1
 		
 		#win condition
 	if(%Floors.get_child_count() - 1 >= FLOORSTOWIN):
@@ -142,7 +141,7 @@ func _on_character_timer_timeout(c : Character):
 	r["gold"] += c.get_gold()
 	r["bricks"] += c.get_bricks()
 	var hubris = c.get_hubris()
-	r["hubris"] += (hubris * hubrisMult) if hubris > 0 else float(hubris)
+	r["hubris"] += (hubris * hubrisMult) if hubris > 0 else int(hubris)
 	
 	
 	for key in r:
@@ -153,25 +152,6 @@ func _on_character_timer_timeout(c : Character):
 				var amtStole = clamp(abs(r[key]),0,resources[key])
 				if(amtStole > 0):
 					log_in_console(console_logs.LOSE_RESOURCE,c,amtStole,key)
-	#var numREs : int = 0
-		#if(key != "hubris" and r[key] != 0):
-			#var rE : ResourceEffect = resourceEffects.instantiate()
-			#if(r[key] > 0):
-				#rE.set_values(key,r[key])
-				#log_in_console(console_logs.GAIN_RESOURCE,c,r[key],key)
-			#elif(r[key] < 0):
-				#var amtStole = clamp(abs(r[key]),0,resources[key])
-				#if(amtStole > 0):
-					#rE.set_values(key,-1 * clamp(abs(r[key]),0,resources[key]))
-					#log_in_console(console_logs.LOSE_RESOURCE,c,amtStole,key)
-				#else:
-					#rE = null
-			#if(rE != null):
-				#$ResourceEffects.add_child(rE)
-				#rE.global_position.x = c.global_position.x - (60 * numREs)
-				#rE.global_position.y = c.global_position.y - 75
-				#numREs += 1
-				#rE.spawn()
 	add_resources(r)
 
 func add_resources(r : Dictionary):
@@ -268,7 +248,7 @@ func _on_speedrun_timer_timeout() -> void:
 	if(hubrisMult < 1 + floor(seconds/HUBRISINCREASE)):
 		hubrisMult = 1 + floor(seconds/HUBRISINCREASE)
 		log_in_console(console_logs.HUBRIS_INCREASE)
-		$GodBarLabel.text = "[center][wave][color=yellow]HUBRIS (x" + str(hubrisMult,")")
+		$GodBarLabel.text = "[center][wave][color=yellow]HUBRIS x" + str(hubrisMult,"")
 
 func _on_hide_timer_pressed() -> void:
 	$SpeedrunLabel.visible = $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/HideTimer.button_pressed
