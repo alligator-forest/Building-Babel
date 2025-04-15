@@ -18,8 +18,8 @@ func _ready() -> void:
 	timerButton.pressed.emit()
 	goldConsoleButton.button_pressed = SAVEOBJECT.data.get_console_notif("gold")
 	brickConsoleButton.button_pressed = SAVEOBJECT.data.get_console_notif("bricks")
-	stealConsoleButton.button_pressed = SAVEOBJECT.data.get_console_notif("thief")
-	thiefConsoleButton.button_pressed = SAVEOBJECT.data.get_console_notif("steal")
+	stealConsoleButton.button_pressed = SAVEOBJECT.data.get_console_notif("steal")
+	thiefConsoleButton.button_pressed = SAVEOBJECT.data.get_console_notif("thief")
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	new_text = new_text.to_lower()
