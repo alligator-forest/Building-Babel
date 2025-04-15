@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1gfra0m6i3kb"]
 
-[ext_resource type="Script" path="res://Characters/Thief/thief.gd" id="1_tj37m"]
+[ext_resource type="Script" uid="uid://qrccmwkyk5wm" path="res://Characters/Thief/thief.gd" id="1_tj37m"]
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_ng411"]
 [ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="3_alfq1"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b32i21uc4u25d"]
 
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="1_q6qhk"]
-[ext_resource type="Script" path="res://Characters/Carpenter/carpenter.gd" id="1_ya0xa"]
+[ext_resource type="Script" uid="uid://b8t7wcd4nkydg" path="res://Characters/Carpenter/carpenter.gd" id="1_ya0xa"]
 [ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="3_yb2ga"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mr6n7"]

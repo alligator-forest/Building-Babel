@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://br8j0dbxk0gmh"]
 
 [ext_resource type="Texture2D" uid="uid://dpd5p583xjif5" path="res://Assets/Floor/FloorBrick.png" id="1_2lidj"]
-[ext_resource type="Script" path="res://Floors/floor.gd" id="2_d1pa7"]
+[ext_resource type="Script" uid="uid://6ati0dpr68iq" path="res://Floors/floor.gd" id="2_d1pa7"]
 [ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/Builder/builder.tscn" id="3_mdsfx"]
 [ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/Merchant/merchant.tscn" id="4_e2g3y"]
 [ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/Mason/mason.tscn" id="5_7tadk"]

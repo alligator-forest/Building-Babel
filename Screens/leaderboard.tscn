@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cjba3t1dbhmds"]
 
-[ext_resource type="Script" path="res://Screens/leaderboard.gd" id="1_tlbt4"]
+[ext_resource type="Script" uid="uid://bevv3d7odhi2v" path="res://Screens/leaderboard.gd" id="1_tlbt4"]
 [ext_resource type="Texture2D" uid="uid://survwd1n27xy" path="res://Assets/Screens/leaderboard.png" id="2_6wmdm"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_23noj"]
 
@@ -57,8 +57,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vnvtf"]
 _data = {
-"RESET": SubResource("Animation_ieu2q"),
-"credits": SubResource("Animation_lguw7")
+&"RESET": SubResource("Animation_ieu2q"),
+&"credits": SubResource("Animation_lguw7")
 }
 
 [node name="Leaderboard" type="Node2D"]

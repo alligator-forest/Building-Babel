@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://xh6tnfb71fbs"]
 
-[ext_resource type="Script" path="res://Characters/Mason/mason.gd" id="1_b5g5f"]
+[ext_resource type="Script" uid="uid://cbjg0q4dqw35f" path="res://Characters/Mason/mason.gd" id="1_b5g5f"]
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_bjbag"]
 [ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="3_032tx"]
 

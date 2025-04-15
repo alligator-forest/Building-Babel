@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bytueg3x4ab36"]
 
-[ext_resource type="Script" path="res://Screens/home_menu.gd" id="1_7atax"]
+[ext_resource type="Script" uid="uid://mv68t70y76ss" path="res://Screens/home_menu.gd" id="1_7atax"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_17r3x"]
 [ext_resource type="Texture2D" uid="uid://dtlsyl6l734o" path="res://Assets/Screens/MainMenu-Sheet.png" id="2_n71bs"]
 
@@ -42,8 +42,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x3nar"]
 _data = {
-"RESET": SubResource("Animation_jpg0d"),
-"home": SubResource("Animation_0halc")
+&"RESET": SubResource("Animation_jpg0d"),
+&"home": SubResource("Animation_0halc")
 }
 
 [node name="HomeMenu" type="Node2D"]
@@ -94,7 +94,7 @@ text = "HOW TO PLAY"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_x3nar")
+&"": SubResource("AnimationLibrary_x3nar")
 }
 autoplay = "home"
 

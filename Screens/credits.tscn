@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfpgxupd4uspl"]
 
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="1_660ld"]
-[ext_resource type="Script" path="res://Screens/credits.gd" id="1_tfs73"]
+[ext_resource type="Script" uid="uid://dqobv4tk3qsa4" path="res://Screens/credits.gd" id="1_tfs73"]
 [ext_resource type="Texture2D" uid="uid://survwd1n27xy" path="res://Assets/Screens/leaderboard.png" id="2_hdcyt"]
 
 [sub_resource type="Animation" id="Animation_80qjh"]
@@ -39,8 +39,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a4p3n"]
 _data = {
-"RESET": SubResource("Animation_80qjh"),
-"leaderboard": SubResource("Animation_la24v")
+&"RESET": SubResource("Animation_80qjh"),
+&"leaderboard": SubResource("Animation_la24v")
 }
 
 [node name="Credits" type="Node2D"]

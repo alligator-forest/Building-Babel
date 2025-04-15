@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://j76tjb32kfks"]
 
-[ext_resource type="Script" path="res://Characters/Merchant/merchant.gd" id="1_fxlpp"]
+[ext_resource type="Script" uid="uid://b5dqaib24jmvb" path="res://Characters/Merchant/merchant.gd" id="1_fxlpp"]
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_r8w5k"]
 [ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="3_ivw0j"]
 

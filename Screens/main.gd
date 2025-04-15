@@ -42,7 +42,7 @@ var resources : Dictionary = {
 func _ready():
 	update()
 
-func _process(_delta):
+func _physics_process(_delta):
 	if(%Floors.get_child_count() > 5):
 		$Background.position.y =  - 760 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical - 640
 	
