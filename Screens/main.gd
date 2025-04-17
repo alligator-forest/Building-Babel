@@ -18,8 +18,9 @@ var tween : Tween
 var newFloorBricks = 10
 var newFloorBuilders = 1
 var numBuilders = 0
-var hubrisMult : int = 1
+var hubrisMult : float = 1.0
 var seconds : int = 0
+var brickCounts = [10,30,70,150,280,400,750,1300,2000]
 enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT, HUBRIS_INCREASE}
 
 var currChar : Character = null
@@ -56,7 +57,6 @@ func _process(_delta):
 					currChar = d
 		if(currChar != null):
 			currChar.prepare_drag()
-			currChar.reparent($OutOfFloorCharacters, true)
 			if($TabContainer/Residents.visible):
 				sellBox.visible = true
 				sellBox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
@@ -100,6 +100,7 @@ func log_in_console(event : int, c : Character = null, resourceVal : int = 0, re
 func update():
 	$BrickLabel.text = str("[img=96]res://Assets/UI/brickIcon.png[/img] ",resources["bricks"])
 	$GoldLabel.text = str("[img=96]res://Assets/UI/goldIcon.png[/img] ",resources["gold"])
+	$GodBarLabel.text = str("[center][wave][color=yellow]HUBRIS (x",hubrisMult,")")
 	#$GodBar.value = resources["hubris"]
 	tween = create_tween()
 	tween.tween_property($GodBar,"value",resources["hubris"],0.5)
@@ -119,10 +120,11 @@ func new_floor():
 	if(resources["bricks"] >= newFloorBricks and numBuilders >= newFloorBuilders):
 		resources["bricks"] -= newFloorBricks
 		var tier = tiers.instantiate()
+		hubrisMult += 0.1
 		tier.change_name("Floor " + str(%Floors.get_child_count()))
 		%Floors.add_child(tier)
 		%Floors.move_child(tier,1)
-		newFloorBricks *= 2
+		newFloorBricks = brickCounts[%Floors.get_child_count()-2]
 		newFloorBuilders += 1
 		play_effect("new floor")
 		update()
@@ -141,7 +143,7 @@ func _on_character_timer_timeout(c : Character):
 	r["gold"] += c.get_gold()
 	r["bricks"] += c.get_bricks()
 	var hubris = c.get_hubris()
-	r["hubris"] += (hubris * hubrisMult) if hubris > 0 else int(hubris)
+	r["hubris"] += (hubris * hubrisMult) if hubris > 0 else float(hubris)
 	
 	
 	for key in r:
@@ -186,16 +188,22 @@ func _on_warrior_button_pressed():
 func buy_character(c : Character, cLoader):
 	if($SpeedrunTimer.is_stopped()):
 		$SpeedrunTimer.start()
-	if(c is Builder):
-		numBuilders += 1
-	if(c.get_price() <= resources["gold"] and !%Floors/Lobby.is_full()):
+	var spawnfloor : Floor = null;
+	for i in range(%Floors.get_child_count()-1,0,-1):
+		if(!%Floors.get_child(i).is_full()):
+			spawnfloor = %Floors.get_child(i)
+			break
+	if(c.get_price() <= resources["gold"] and spawnfloor != null):
 		resources["gold"] -= c.get_price()
+		if(c is Builder):
+			numBuilders += 1
+			
 		var dChar = cLoader.instantiate()
 		dChar.get_node("Area2D").area_entered.connect(on_character_area_2d_enter)
 		dChar.get_node("Area2D").area_exited.connect(on_character_area_2d_exit)
 		dChar.add_resource.connect(_on_character_timer_timeout)
 		dChar.position = Vector2(296,0)
-		$%Floors/Lobby.add_character(dChar)
+		spawnfloor.add_character(dChar)
 		$Tower.scroll_vertical = 9999999 #huge integer so it always goes to the bottom
 		update()
 
@@ -246,9 +254,9 @@ func _on_speedrun_timer_timeout() -> void:
 	seconds += 1
 	$SpeedrunLabel.text = SCOREKEEPER.format_time(seconds)
 	if(hubrisMult < 1 + floor(seconds/HUBRISINCREASE)):
-		hubrisMult = 1 + floor(seconds/HUBRISINCREASE)
+		hubrisMult += 1.0
 		log_in_console(console_logs.HUBRIS_INCREASE)
-		$GodBarLabel.text = "[center][wave][color=yellow]HUBRIS x" + str(hubrisMult,"")
+		update()
 
 func _on_hide_timer_pressed() -> void:
 	$SpeedrunLabel.visible = $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/HideTimer.button_pressed

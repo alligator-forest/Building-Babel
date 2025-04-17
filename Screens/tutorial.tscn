@@ -55,7 +55,7 @@ hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_wo0n2")
+&"": SubResource("AnimationLibrary_wo0n2")
 }
 autoplay = "tutorial"
 
@@ -88,7 +88,9 @@ use those resources to build new floors!
 
 Build 10 floors and you've won!
 
-But if you fill up your hubris meter, it's game over!"
+But if you fill up your hubris meter, it's game over!
+
+Controls: Just your mouse!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -111,7 +113,7 @@ offset_right = 1024.0
 offset_bottom = 504.0
 theme = ExtResource("2_waamq")
 theme_override_font_sizes/font_size = 25
-text = "There are 6 different residents in building babel. Only 5 residents can be on a floor at any given time, but you can drag them to different floors."
+text = "There are 6 different residents in building babel. Only 5 residents can be on a floor at any given time. Residents always spawn in the bottom floor, but you can drag them to different floors."
 horizontal_alignment = 1
 autowrap_mode = 2
 

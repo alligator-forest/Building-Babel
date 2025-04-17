@@ -8,6 +8,7 @@ radius = 15.0
 height = 40.0
 
 [node name="Warrior" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1

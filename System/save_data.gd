@@ -6,8 +6,8 @@ const SAVE_PATH := "user://savegame.save"
 #for all intents and purposes these are consts, was getting a read-only error w/ STARTSCORES
 var STARTMUSICVOLUME = 0.5
 var STARTSFXVOLUME = 0.5
-var STARTSCORES = [-1,-1,-1,-1,-1,-1,-1]
-var STARTNAMES = ["___","___","___","___","___","___","___",]
+var STARTSCORES = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+var STARTNAMES = ["___","___","___","___","___","___","___","___","___","___",]
 
 @export var musicVolume : float = STARTMUSICVOLUME #linear volume, between 0 and 200
 @export var sfxVolume : float = STARTSFXVOLUME #linear volume, between 0 and 200

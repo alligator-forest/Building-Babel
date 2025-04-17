@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="3_alfq1"]
 
 [node name="Thief" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2

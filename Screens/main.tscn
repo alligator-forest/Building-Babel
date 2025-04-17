@@ -71,6 +71,7 @@ scale = Vector2(4.12805, 18.0049)
 texture = SubResource("GradientTexture2D_5dr55")
 
 [node name="Tower" type="ScrollContainer" parent="."]
+clip_contents = false
 offset_left = 384.0
 offset_right = 776.0
 offset_bottom = 648.0
@@ -148,9 +149,11 @@ offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 72.0
 theme = ExtResource("8_hphvt")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 45
 bbcode_enabled = true
-text = "[center][wave][color=yellow]HUBRIS"
+text = "[center][wave][color=yellow]HUBRIS (x1.0)"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="BrickLabel" type="RichTextLabel" parent="."]
 offset_left = 16.0
