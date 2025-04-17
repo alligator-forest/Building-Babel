@@ -58,6 +58,7 @@ offset_left = 16.0
 offset_top = 400.0
 offset_right = 376.0
 offset_bottom = 648.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
@@ -98,6 +99,7 @@ layout_mode = 0
 offset_top = 16.0
 offset_right = 80.0
 offset_bottom = 76.0
+mouse_filter = 1
 theme = ExtResource("8_hphvt")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
@@ -111,6 +113,7 @@ offset_left = 216.0
 offset_top = 25.0
 offset_right = 392.0
 offset_bottom = 85.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_constants/outline_size = 15
 bbcode_enabled = true
@@ -123,6 +126,7 @@ offset_left = 96.0
 offset_top = 22.0
 offset_right = 216.0
 offset_bottom = 77.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 15
@@ -140,6 +144,7 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 368.0
 offset_bottom = 80.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
 show_percentage = false
 
@@ -148,6 +153,7 @@ offset_left = 16.0
 offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 72.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/normal_font_size = 45
 bbcode_enabled = true
@@ -160,6 +166,7 @@ offset_left = 16.0
 offset_top = 96.0
 offset_right = 384.0
 offset_bottom = 224.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 65
@@ -171,6 +178,7 @@ offset_left = 16.0
 offset_top = 192.0
 offset_right = 376.0
 offset_bottom = 320.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 65
@@ -218,14 +226,19 @@ volume_db = 5.0
 stream = ExtResource("11_4l48r")
 
 [node name="TabContainer" type="TabContainer" parent="."]
+custom_minimum_size = Vector2(382, 648)
 offset_left = 768.0
 offset_right = 1152.0
 offset_bottom = 648.0
+mouse_filter = 2
 tab_alignment = 2
 current_tab = 0
+clip_tabs = false
+all_tabs_in_front = true
 
 [node name="Residents" type="MarginContainer" parent="TabContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -234,10 +247,12 @@ metadata/_tab_index = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Residents"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 8
 
 [node name="BuilderButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "builder
@@ -245,6 +260,7 @@ text = "builder
 
 [node name="MerchantButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Merchant
@@ -252,6 +268,7 @@ text = "Merchant
 
 [node name="MasonButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Mason
@@ -259,6 +276,7 @@ text = "Mason
 
 [node name="ShepherdButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Shepherd
@@ -266,6 +284,7 @@ text = "Shepherd
 
 [node name="WarriorButton" type="Button" parent="TabContainer/Residents/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Warrior
@@ -275,6 +294,7 @@ text = "Warrior
 visible = false
 custom_minimum_size = Vector2(0, 112)
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("8_hphvt")
 disabled = true
 text = "SELL"
@@ -291,6 +311,7 @@ shape = SubResource("RectangleShape2D_puaxa")
 [node name="Settings" type="MarginContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -311,12 +332,14 @@ alignment = 2
 [node name="CodeLabel" type="Label" parent="TabContainer/Settings/HBoxContainer/BoxContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
+mouse_filter = 1
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CodeLine" type="LineEdit" parent="TabContainer/Settings/HBoxContainer/BoxContainer"]
 custom_minimum_size = Vector2(184, 32)
 layout_mode = 2
+mouse_filter = 1
 placeholder_text = "Insert Code Here..."
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Settings"]
@@ -337,12 +360,14 @@ layout_mode = 2
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 size_flags_vertical = 1
+mouse_filter = 1
 text = "Music"
 horizontal_alignment = 1
 
 [node name="Sfx" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/TopLabels"]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
+mouse_filter = 1
 text = "SFX"
 horizontal_alignment = 1
 
@@ -354,6 +379,7 @@ theme_override_constants/separation = 0
 [node name="MusicSlider" type="VSlider" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders"]
 custom_minimum_size = Vector2(96, 448)
 layout_mode = 2
+mouse_filter = 1
 max_value = 1.0
 step = 0.05
 value = 0.5
@@ -363,6 +389,7 @@ ticks_on_borders = true
 [node name="SfxSlider" type="VSlider" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders"]
 custom_minimum_size = Vector2(96, 448)
 layout_mode = 2
+mouse_filter = 1
 max_value = 1.0
 step = 0.1
 value = 0.5
@@ -375,12 +402,14 @@ layout_mode = 2
 [node name="MusicPercent" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/PercentLabels"]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
+mouse_filter = 1
 text = "100%"
 horizontal_alignment = 1
 
 [node name="SfxPercent" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/PercentLabels"]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
+mouse_filter = 1
 text = "100%"
 horizontal_alignment = 1
 
@@ -392,6 +421,7 @@ theme_override_constants/separation = 5
 custom_minimum_size = Vector2(150, 64)
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 1
 button_pressed = true
 text = "Show Speedrun Clock"
 alignment = 1
@@ -401,6 +431,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(150, 64)
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 1
 button_pressed = true
 text = "Notify when a Resident makes Gold"
 alignment = 1
@@ -409,6 +440,7 @@ autowrap_mode = 2
 [node name="BrickConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
 custom_minimum_size = Vector2(160, 64)
 layout_mode = 2
+mouse_filter = 1
 button_pressed = true
 text = "Notify when a Resident makes Bricks"
 alignment = 1
@@ -419,6 +451,7 @@ custom_minimum_size = Vector2(160, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 1
 button_pressed = true
 text = "Notify when a Thief steals"
 alignment = 1
@@ -427,6 +460,7 @@ autowrap_mode = 2
 [node name="ThiefAppear" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
 custom_minimum_size = Vector2(160, 64)
 layout_mode = 2
+mouse_filter = 1
 button_pressed = true
 text = "Notify when a Thief enters or exits a Floor"
 alignment = 1
@@ -436,6 +470,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(64, 32)
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 1
 text = "Abandon Run"
 
 [connection signal="pressed" from="Tower/Floors/TopFloor/Button" to="." method="new_floor"]

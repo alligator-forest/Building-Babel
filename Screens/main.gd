@@ -15,12 +15,12 @@ const THIEFCHANCE : int = 2 # % chance a thief will spawn
 const FLOORSTOWIN : int = 10 #the number of floors you need to win (excludeing the top floor)
 const HUBRISINCREASE : int = 600 #the number of secs it takes to increase hubrisMult
 var tween : Tween
-var newFloorBricks = 10
+var brickCounts = [10,30,70,150,260,400,650,1000,1500]
+var newFloorBricks = brickCounts[0]
 var newFloorBuilders = 1
 var numBuilders = 0
 var hubrisMult : float = 1.0
 var seconds : int = 0
-var brickCounts = [10,30,70,150,280,400,750,1300,2000]
 enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT, HUBRIS_INCREASE}
 
 var currChar : Character = null
@@ -39,6 +39,7 @@ var resources : Dictionary = {
 }
 func _ready():
 	update()
+	$TabContainer/"@TabBar@8".mouse_filter = 1 #TabContainer makes a child, @TabBar@8, upon starting that cannot be scene from the Local node tree. This MUST be made to mouse filter Propogate Up in order to remove the bug where mouse_exit does not get run on residents when they finish dragging!!!
 
 func _process(_delta):
 	if(%Floors.get_child_count() > 5):
@@ -100,7 +101,7 @@ func log_in_console(event : int, c : Character = null, resourceVal : int = 0, re
 func update():
 	$BrickLabel.text = str("[img=96]res://Assets/UI/brickIcon.png[/img] ",resources["bricks"])
 	$GoldLabel.text = str("[img=96]res://Assets/UI/goldIcon.png[/img] ",resources["gold"])
-	$GodBarLabel.text = str("[center][wave][color=yellow]HUBRIS (x",hubrisMult,")")
+	$GodBarLabel.text = str("[center][wave][color=yellow]HUBRIS (x",snapped(hubrisMult,0.1),")")
 	#$GodBar.value = resources["hubris"]
 	tween = create_tween()
 	tween.tween_property($GodBar,"value",resources["hubris"],0.5)
@@ -120,19 +121,20 @@ func new_floor():
 	if(resources["bricks"] >= newFloorBricks and numBuilders >= newFloorBuilders):
 		resources["bricks"] -= newFloorBricks
 		var tier = tiers.instantiate()
-		hubrisMult += 0.1
+		hubrisMult += 0.125
 		tier.change_name("Floor " + str(%Floors.get_child_count()))
 		%Floors.add_child(tier)
 		%Floors.move_child(tier,1)
-		newFloorBricks = brickCounts[%Floors.get_child_count()-2]
-		newFloorBuilders += 1
-		play_effect("new floor")
-		update()
-		
 		#win condition
-	if(%Floors.get_child_count() - 1 >= FLOORSTOWIN):
-		SCOREKEEPER.set_score(seconds)
-		get_tree().change_scene_to_file("res://Screens/win.tscn")
+		if(%Floors.get_child_count() - 1 >= FLOORSTOWIN):
+			SCOREKEEPER.set_score(seconds)
+			get_tree().change_scene_to_file("res://Screens/win.tscn")
+		else:
+			newFloorBricks = brickCounts[%Floors.get_child_count()-2]
+			newFloorBuilders += 1
+			play_effect("new floor")
+			update()
+		
 
 func _on_character_timer_timeout(c : Character):
 	var r : Dictionary = {
@@ -188,10 +190,13 @@ func _on_warrior_button_pressed():
 func buy_character(c : Character, cLoader):
 	if($SpeedrunTimer.is_stopped()):
 		$SpeedrunTimer.start()
+		
 	var spawnfloor : Floor = null;
+	var spawnscroll : int = 9999999;
 	for i in range(%Floors.get_child_count()-1,0,-1):
 		if(!%Floors.get_child(i).is_full()):
 			spawnfloor = %Floors.get_child(i)
+			spawnscroll = i
 			break
 	if(c.get_price() <= resources["gold"] and spawnfloor != null):
 		resources["gold"] -= c.get_price()
@@ -204,7 +209,7 @@ func buy_character(c : Character, cLoader):
 		dChar.add_resource.connect(_on_character_timer_timeout)
 		dChar.position = Vector2(296,0)
 		spawnfloor.add_character(dChar)
-		$Tower.scroll_vertical = 9999999 #huge integer so it always goes to the bottom
+		$Tower.scroll_vertical = 128 * (spawnscroll-1)
 		update()
 
 func spawn_thief(f : Floor) -> Thief:
@@ -253,10 +258,10 @@ func _input(event: InputEvent) -> void:
 func _on_speedrun_timer_timeout() -> void:
 	seconds += 1
 	$SpeedrunLabel.text = SCOREKEEPER.format_time(seconds)
-	if(hubrisMult < 1 + floor(seconds/HUBRISINCREASE)):
-		hubrisMult += 1.0
-		log_in_console(console_logs.HUBRIS_INCREASE)
-		update()
+	#if(hubrisMult < 1 + floor(seconds/HUBRISINCREASE)):
+		#hubrisMult += 1.0
+		#log_in_console(console_logs.HUBRIS_INCREASE)
+		#update()
 
 func _on_hide_timer_pressed() -> void:
 	$SpeedrunLabel.visible = $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/HideTimer.button_pressed
