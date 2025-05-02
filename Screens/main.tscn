@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene load_steps=26 format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" uid="uid://c8l71h4xc2dgo" path="res://Screens/main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
@@ -21,8 +21,6 @@
 [ext_resource type="Script" uid="uid://dk8ncab7no6tj" path="res://Screens/sound_manager.gd" id="15_lqehw"]
 [ext_resource type="Script" uid="uid://dakm4sgsxb1l3" path="res://System/sell_dropbox.gd" id="19_hyppe"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="19_ufc1y"]
-[ext_resource type="Texture2D" uid="uid://dpd5p583xjif5" path="res://Assets/Floor/FloorBrick.png" id="22_6rnl4"]
-[ext_resource type="Texture2D" uid="uid://budb3me3teeet" path="res://Assets/Floor/FloorWood.png" id="23_by8fi"]
 [ext_resource type="Script" uid="uid://cmrn7qvvw73mr" path="res://Screens/settings.gd" id="24_8qx4t"]
 
 [sub_resource type="Gradient" id="Gradient_h608w"]
@@ -41,7 +39,7 @@ size = Vector2(352, 104)
 [node name="Main" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_eqxpj")
-tiers = ExtResource("2_d85bv")
+BrickBasic = ExtResource("2_d85bv")
 builders = ExtResource("4_r1sbw")
 merchants = ExtResource("5_ycq4u")
 masons = ExtResource("6_qu6a5")
@@ -96,6 +94,7 @@ layout_mode = 2
 texture = ExtResource("10_3tu5u")
 
 [node name="Button" type="Button" parent="Tower/Floors/TopFloor"]
+visible = false
 layout_mode = 0
 offset_left = 2.0
 offset_top = 16.0
@@ -320,25 +319,27 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 metadata/_tab_index = 1
 
-[node name="BrickFloors" type="VBoxContainer" parent="TabContainer/Floors"]
+[node name="WoodFloors" type="GridContainer" parent="TabContainer/Floors"]
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/h_separation = 96
+theme_override_constants/v_separation = 100
+columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Floors/BrickFloors"]
-custom_minimum_size = Vector2(192, 64)
+[node name="BrickBasic" type="Button" parent="TabContainer/Floors/WoodFloors"]
+custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
-texture = ExtResource("22_6rnl4")
-expand_mode = 1
+theme = ExtResource("8_hphvt")
+text = "BRICK BASIC"
+autowrap_mode = 3
 
-[node name="WoodFloors" type="VBoxContainer" parent="TabContainer/Floors"]
+[node name="WoodBasic" type="Button" parent="TabContainer/Floors/WoodFloors"]
+custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Floors/WoodFloors"]
-custom_minimum_size = Vector2(192, 64)
-layout_mode = 2
-size_flags_horizontal = 8
-texture = ExtResource("23_by8fi")
+theme = ExtResource("8_hphvt")
+text = "WOOD BASIC"
+autowrap_mode = 3
 
 [node name="Settings" type="MarginContainer" parent="TabContainer"]
 visible = false
@@ -507,6 +508,8 @@ text = "Abandon Run"
 [connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/CarpenterButton" to="." method="_on_carpenter_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/ShepherdButton" to="." method="_on_shepherd_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/WarriorButton" to="." method="_on_warrior_button_pressed"]
+[connection signal="pressed" from="TabContainer/Floors/WoodFloors/BrickBasic" to="." method="_on_brick_basic_pressed"]
+[connection signal="pressed" from="TabContainer/Floors/WoodFloors/WoodBasic" to="." method="_on_wood_basic_pressed"]
 [connection signal="text_changed" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_code_textbox_text_changed"]
 [connection signal="text_submitted" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_line_edit_text_submitted"]
 [connection signal="drag_ended" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/MusicSlider" to="TabContainer/Settings" method="_on_volume_slider_drag_ended"]

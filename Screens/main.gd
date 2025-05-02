@@ -1,7 +1,8 @@
 extends Node2D
 
 @export_category("Spawners")
-@export var tiers : PackedScene
+@export var BrickBasic : PackedScene
+@export var WoodBasic : PackedScene
 @export var builders: PackedScene
 @export var merchants : PackedScene
 @export var masons: PackedScene
@@ -16,14 +17,18 @@ const THIEFCHANCE : int = 2 # % chance a thief will spawn
 const FLOORSTOWIN : int = 10 #the number of floors you need to win (excludeing the top floor)
 const HUBRISINCREASE : int = 600 #the number of secs it takes to increase hubrisMult
 var tween : Tween
-var newFloorBricks = 10
-var newFloorBuilders = 1
 var numBuilders = 0
 var hubrisMult : float = 1
 var seconds : int = 0
 enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT, HUBRIS_INCREASE}
 
 var currChar : Character = null
+
+var neededResources : Dictionary = {
+	"bricks" : 10,
+	"wood" : 10,
+	"builders" : 1,
+}
 
 var resources : Dictionary = {
 	"bricks" : 0,
@@ -111,23 +116,23 @@ func update():
 	#%Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
 	var newFloorBricksLabel = %Floors/TopFloor/NewFloorLabel
 	var newFloorBuildersLabel = %Floors/TopFloor/NewFloorLabel2
-	newFloorBricksLabel.text = "[color=GREEN]" if (resources["bricks"] >= newFloorBricks) else "[color=RED]"
-	newFloorBuildersLabel.text = "[color=GREEN]" if (numBuilders >= newFloorBuilders) else "[color=RED]"
-	newFloorBricksLabel.text += "[b][img=64]res://Assets/UI/brickIcon.png[/img] x" + str(newFloorBricks)
-	newFloorBuildersLabel.text += "[b][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x" + str(newFloorBuilders)
+	newFloorBricksLabel.text = "[color=GREEN]" if (resources["bricks"] >= neededResources["bricks"]) else "[color=RED]"
+	newFloorBuildersLabel.text = "[color=GREEN]" if (numBuilders >= neededResources["builders"]) else "[color=RED]"
+	newFloorBricksLabel.text += "[b][img=64]res://Assets/UI/brickIcon.png[/img] x" + str(neededResources["bricks"])
+	newFloorBuildersLabel.text += "[b][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x" + str(neededResources["builders"])
 	
 	if($GodBar.value >= 100):
 		get_tree().change_scene_to_file("../Screens/game_over.tscn")
 
-func new_floor():
-	if(resources["bricks"] >= newFloorBricks and numBuilders >= newFloorBuilders):
-		resources["bricks"] -= newFloorBricks
-		var tier = tiers.instantiate()
+func new_floor(type : String, fLoader):
+	if(resources["bricks"] >= neededResources[type] and numBuilders >= neededResources["builders"]):
+		resources["bricks"] -= neededResources["bricks"]
+		var tier = fLoader.instantiate()
 		tier.change_name("Floor " + str(%Floors.get_child_count()))
 		%Floors.add_child(tier)
 		%Floors.move_child(tier,1)
-		newFloorBricks *= 2
-		newFloorBuilders += 1
+		neededResources["bricks"] *= 2
+		neededResources["builders"] += 1
 		play_effect("new floor")
 		update()
 		hubrisMult += 0.1
@@ -258,3 +263,11 @@ func _on_hide_timer_pressed() -> void:
 	$SpeedrunLabel.visible = $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/HideTimer.button_pressed
 	SAVEOBJECT.data.set_console_notif("timer",$SpeedrunLabel.visible)
 	SAVEOBJECT._save_data()
+
+
+func _on_brick_basic_pressed() -> void:
+	new_floor("bricks",BrickBasic)
+
+
+func _on_wood_basic_pressed() -> void:
+	new_floor("wood",BrickBasic)

@@ -1,13 +1,6 @@
 extends TextureRect
 class_name Floor
 
-@export var builders: PackedScene
-@export var merchants : PackedScene
-@export var masons: PackedScene
-@export var shepherds: PackedScene
-@export var warriors: PackedScene
-@export var thieves: PackedScene
-
 @export var floorName : String
 
 const LEFT = 68
