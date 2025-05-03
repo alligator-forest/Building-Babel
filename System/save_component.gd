@@ -2,7 +2,7 @@ extends Node
 class_name SaveObject
 
 var save_file_path = "user://save/"
-var save_file_name = "PlayerSave1.2.tres" #IMPORTANT!!!!! CHANGE FILE NAME FOR EVERY NEW VERSION!!!!!
+var save_file_name = "PlayerSave1.3.tres" #IMPORTANT!!!!! CHANGE FILE NAME FOR EVERY NEW VERSION!!!!!
 var data = SaveData.new()
 
 func _ready():

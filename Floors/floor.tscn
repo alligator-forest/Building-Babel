@@ -2,6 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://dpd5p583xjif5" path="res://Assets/Floor/FloorBrick.png" id="1_2lidj"]
 [ext_resource type="Script" uid="uid://6ati0dpr68iq" path="res://Floors/floor.gd" id="2_d1pa7"]
+[ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/Builder/builder.tscn" id="3_mdsfx"]
+[ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/Merchant/merchant.tscn" id="4_e2g3y"]
+[ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/Mason/mason.tscn" id="5_7tadk"]
+[ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/Shepherd/shepherd.tscn" id="6_k1w4w"]
+[ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/Warrior/warrior.tscn" id="7_pa275"]
+[ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/Thief/thief.tscn" id="8_xcwqo"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="9_gp2pl"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="10_2ipyc"]
 

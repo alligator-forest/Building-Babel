@@ -9,6 +9,7 @@ radius = 13.0
 height = 35.0
 
 [node name="Mason" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1

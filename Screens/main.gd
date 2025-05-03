@@ -17,8 +17,9 @@ const THIEFCHANCE : int = 2 # % chance a thief will spawn
 const FLOORSTOWIN : int = 10 #the number of floors you need to win (excludeing the top floor)
 const HUBRISINCREASE : int = 600 #the number of secs it takes to increase hubrisMult
 var tween : Tween
+var brickCounts = [10,30,70,150,260,400,650,1000,1500]
 var numBuilders = 0
-var hubrisMult : float = 1
+var hubrisMult : float = 1.0
 var seconds : int = 0
 enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT, HUBRIS_INCREASE}
 
@@ -31,8 +32,8 @@ var neededResources : Dictionary = {
 }
 
 var resources : Dictionary = {
-	"bricks" : 0,
-	"wood" : 0,
+	"bricks" : brickCounts[0],
+	"wood" : brickCounts[0],
 	"gold" : 30,
 	"hubris" : 0,
 }
@@ -46,6 +47,7 @@ var resources : Dictionary = {
 }
 func _ready():
 	update()
+	$TabContainer/"@TabBar@8".mouse_filter = 1 #TabContainer makes a child, @TabBar@8, upon starting that cannot be scene from the Local node tree. This MUST be made to mouse filter Propogate Up in order to remove the bug where mouse_exit does not get run on residents when they finish dragging!!!
 
 func _physics_process(_delta):
 	if(%Floors.get_child_count() > 5):
@@ -64,7 +66,6 @@ func _physics_process(_delta):
 					currChar = d
 		if(currChar != null):
 			currChar.prepare_drag()
-			currChar.reparent($OutOfFloorCharacters, true)
 			if($TabContainer/Residents.visible):
 				sellBox.visible = true
 				sellBox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
@@ -109,6 +110,7 @@ func update():
 	$BrickLabel.text = str("[img=96]res://Assets/UI/brickIcon.png[/img] ",resources["bricks"])
 	$WoodLabel.text = str("[img=96]res://Assets/UI/woodIcon.png[/img] ",resources["wood"])
 	$GoldLabel.text = str("[img=96]res://Assets/UI/goldIcon.png[/img] ",resources["gold"])
+	$GodBarLabel.text = str("[center][wave][color=yellow]HUBRIS (x",snapped(hubrisMult,0.1),")")
 	#$GodBar.value = resources["hubris"]
 	tween = create_tween()
 	tween.tween_property($GodBar,"value",resources["hubris"],0.5)
@@ -121,8 +123,8 @@ func update():
 	newFloorBricksLabel.text += "[b][img=64]res://Assets/UI/brickIcon.png[/img] x" + str(neededResources["bricks"])
 	newFloorBuildersLabel.text += "[b][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x" + str(neededResources["builders"])
 	
-	if($GodBar.value >= 100):
-		get_tree().change_scene_to_file("../Screens/game_over.tscn")
+	if($GodBar.value >= 99):
+		get_tree().change_scene_to_file("res://Screens/game_over.tscn")
 
 func new_floor(type : String, fLoader):
 	if(resources["bricks"] >= neededResources[type] and numBuilders >= neededResources["builders"]):
@@ -131,16 +133,18 @@ func new_floor(type : String, fLoader):
 		tier.change_name("Floor " + str(%Floors.get_child_count()))
 		%Floors.add_child(tier)
 		%Floors.move_child(tier,1)
-		neededResources["bricks"] *= 2
-		neededResources["builders"] += 1
-		play_effect("new floor")
-		update()
-		hubrisMult += 0.1
 		
 		#win condition
 		if(%Floors.get_child_count() - 1 >= FLOORSTOWIN):
 			SCOREKEEPER.set_score(seconds)
 			get_tree().change_scene_to_file("res://Screens/win.tscn")
+		else:
+			hubrisMult += 0.125
+			neededResources["bricks"] = brickCounts[%Floors.get_child_count()-2]
+			neededResources["builders"] += 1
+			play_effect("new floor")
+			update()
+		
 
 func _on_character_timer_timeout(c : Character):
 	var r : Dictionary 
@@ -195,17 +199,26 @@ func _on_warrior_button_pressed():
 func buy_character(c : Character, cLoader):
 	if($SpeedrunTimer.is_stopped()):
 		$SpeedrunTimer.start()
-	if(c is Builder):
-		numBuilders += 1
-	if(c.get_price() <= resources["gold"] and !%Floors/Lobby.is_full()):
+		
+	var spawnfloor : Floor = null;
+	var spawnscroll : int = 9999999;
+	for i in range(%Floors.get_child_count()-1,0,-1):
+		if(!%Floors.get_child(i).is_full()):
+			spawnfloor = %Floors.get_child(i)
+			spawnscroll = i
+			break
+	if(c.get_price() <= resources["gold"] and spawnfloor != null):
 		resources["gold"] -= c.get_price()
+		if(c is Builder):
+			numBuilders += 1
+			
 		var dChar = cLoader.instantiate()
 		dChar.get_node("Area2D").area_entered.connect(on_character_area_2d_enter)
 		dChar.get_node("Area2D").area_exited.connect(on_character_area_2d_exit)
 		dChar.add_resource.connect(_on_character_timer_timeout)
 		dChar.position = Vector2(296,0)
-		$%Floors/Lobby.add_character(dChar)
-		$Tower.scroll_vertical = 9999999 #huge integer so it always goes to the bottom
+		spawnfloor.add_character(dChar)
+		$Tower.scroll_vertical = 128 * (spawnscroll-1)
 		update()
 
 func spawn_thief(f : Floor) -> Thief:
@@ -254,10 +267,10 @@ func _input(event: InputEvent) -> void:
 func _on_speedrun_timer_timeout() -> void:
 	seconds += 1
 	$SpeedrunLabel.text = SCOREKEEPER.format_time(seconds)
-	if(hubrisMult < 1 + floor(seconds/HUBRISINCREASE)):
-		hubrisMult = 1 + floor(seconds/HUBRISINCREASE)
-		log_in_console(console_logs.HUBRIS_INCREASE)
-		$GodBarLabel.text = "[center][wave][color=yellow]HUBRIS (x" + str(hubrisMult,")")
+	#if(hubrisMult < 1 + floor(seconds/HUBRISINCREASE)):
+		#hubrisMult += 1.0
+		#log_in_console(console_logs.HUBRIS_INCREASE)
+		#update()
 
 func _on_hide_timer_pressed() -> void:
 	$SpeedrunLabel.visible = $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/HideTimer.button_pressed

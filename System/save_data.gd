@@ -6,11 +6,13 @@ const SAVE_PATH := "user://savegame.save"
 #for all intents and purposes these are consts, was getting a read-only error w/ STARTSCORES
 var STARTMUSICVOLUME = 0.5
 var STARTSFXVOLUME = 0.5
-var STARTSCORES = [-1,-1,-1,-1,-1]
+var STARTSCORES = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+var STARTNAMES = ["___","___","___","___","___","___","___","___","___","___",]
 
 @export var musicVolume : float = STARTMUSICVOLUME #linear volume, between 0 and 200
 @export var sfxVolume : float = STARTSFXVOLUME #linear volume, between 0 and 200
 @export var scores : Array = STARTSCORES #the top ten scores on your leaderboard, in seconds. index 0 is highscore
+@export var scoreNames : Array = STARTNAMES
 
 @export var consoleNotifs : Dictionary = {
 	"timer" : true,
@@ -29,20 +31,25 @@ func reset_all() -> void:
 
 func get_scores() -> Array:
 	return scores
+	
+func get_names() -> Array:
+	return scoreNames
 
 func get_highscore() -> int:
 	return scores[0]
 
-func new_score(seconds : int) -> void:
+func new_score(seconds : int, name : String) -> void:
 	for i in range(scores.size()):
 		if(seconds < scores[i] or scores[i] < 0):
 			scores.insert(i,seconds)
 			scores = scores.slice(0,STARTSCORES.size())
+			scoreNames.insert(i,name)
+			scoreNames = scoreNames.slice(0,STARTNAMES.size())
 			return
 
 func reset_scores() -> void:
 	scores = STARTSCORES
-	scores.is_read_only()
+	scoreNames = STARTNAMES
 
 func get_console_notif(key : String) -> bool:
 	if key in consoleNotifs:

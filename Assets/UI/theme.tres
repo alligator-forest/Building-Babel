@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://xn2hdy3rgr76"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://xn2hdy3rgr76"]
 
 [ext_resource type="FontFile" uid="uid://cckn6rmhljx22" path="res://Assets/UI/Roman SD.ttf" id="1_vqim0"]
 
@@ -9,7 +9,10 @@ bg_color = Color(0.627451, 0.356863, 0.32549, 1)
 bg_color = Color(0.74902, 0.47451, 0.345098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxce2"]
-bg_color = Color(0.627, 0.357, 0.325, 0.768)
+bg_color = Color(0.63, 0.35784, 0.3276, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qw6d"]
+bg_color = Color(0.74902, 0.47451, 0.345098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5c4tk"]
 bg_color = Color(0.956863, 0.705882, 0.105882, 1)
@@ -29,6 +32,8 @@ Button/styles/pressed = SubResource("StyleBoxFlat_gxce2")
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/font_sizes/font_size = 21
 Label/fonts/font = ExtResource("1_vqim0")
+LineEdit/font_sizes/font_size = 50
+LineEdit/styles/normal = SubResource("StyleBoxFlat_0qw6d")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_5c4tk")
 RichTextLabel/font_sizes/bold_font_size = 23
 RichTextLabel/font_sizes/normal_font_size = 19

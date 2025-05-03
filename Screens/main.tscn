@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://bkyl1jp3lj36v"]
 
-[ext_resource type="Script" uid="uid://c8l71h4xc2dgo" path="res://Screens/main.gd" id="1_eqxpj"]
+[ext_resource type="Script" uid="uid://dk7gqmskok7f0" path="res://Screens/main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/floor.tscn" id="2_d85bv"]
 [ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/Builder/builder.tscn" id="4_r1sbw"]
 [ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/Merchant/merchant.tscn" id="5_ycq4u"]
@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://dk8ncab7no6tj" path="res://Screens/sound_manager.gd" id="15_lqehw"]
 [ext_resource type="Script" uid="uid://dakm4sgsxb1l3" path="res://System/sell_dropbox.gd" id="19_hyppe"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="19_ufc1y"]
-[ext_resource type="Script" uid="uid://cmrn7qvvw73mr" path="res://Screens/settings.gd" id="24_8qx4t"]
+[ext_resource type="Script" uid="uid://dqru7q312l7wy" path="res://Screens/settings.gd" id="24_8qx4t"]
 
 [sub_resource type="Gradient" id="Gradient_h608w"]
 colors = PackedColorArray(0.18, 0.18, 0.18, 1, 0, 0, 0, 0)
@@ -60,8 +60,9 @@ texture = ExtResource("10_rlab4")
 [node name="Console" type="RichTextLabel" parent="."]
 offset_left = 16.0
 offset_top = 400.0
-offset_right = 384.0
+offset_right = 376.0
 offset_bottom = 648.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
@@ -69,16 +70,20 @@ bbcode_enabled = true
 scroll_active = false
 
 [node name="ConsoleGradient" type="Sprite2D" parent="."]
-position = Vector2(384, 520)
+position = Vector2(576.155, 515.961)
+rotation = 1.5708
+scale = Vector2(4.12805, 18.0049)
 texture = SubResource("GradientTexture2D_5dr55")
 
 [node name="Tower" type="ScrollContainer" parent="."]
+clip_contents = false
 offset_left = 384.0
 offset_right = 776.0
 offset_bottom = 648.0
 size_flags_vertical = 8
 follow_focus = true
 horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 
 [node name="Floors" type="VBoxContainer" parent="Tower"]
 unique_name_in_owner = true
@@ -96,35 +101,37 @@ texture = ExtResource("10_3tu5u")
 [node name="Button" type="Button" parent="Tower/Floors/TopFloor"]
 visible = false
 layout_mode = 0
-offset_left = 2.0
 offset_top = 16.0
 offset_right = 80.0
 offset_bottom = 76.0
+mouse_filter = 1
 theme = ExtResource("8_hphvt")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 20
-text = "NEW 
-FLOOR"
+theme_override_font_sizes/font_size = 21
+text = "NEW FLOOR"
+autowrap_mode = 3
 
 [node name="NewFloorLabel" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
-offset_left = 208.0
-offset_top = 17.0
-offset_right = 384.0
-offset_bottom = 77.0
+offset_left = 216.0
+offset_top = 25.0
+offset_right = 392.0
+offset_bottom = 85.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_constants/outline_size = 15
 bbcode_enabled = true
-text = "[b][color=RED][img=64]res://Assets/UI/brickIcon.png[/img] x 2560"
+text = "[b][color=RED][img=64]res://Assets/UI/brickIcon.png[/img] x2560"
 scroll_active = false
 
 [node name="NewFloorLabel2" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
 layout_mode = 0
-offset_left = 88.0
+offset_left = 96.0
 offset_top = 22.0
-offset_right = 208.0
+offset_right = 216.0
 offset_bottom = 77.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 15
@@ -142,6 +149,7 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 368.0
 offset_bottom = 80.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
 show_percentage = false
 
@@ -150,16 +158,20 @@ offset_left = 16.0
 offset_top = 24.0
 offset_right = 368.0
 offset_bottom = 72.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 45
 bbcode_enabled = true
-text = "[center][wave][color=yellow]HUBRIS"
+text = "[center][wave][color=yellow]HUBRIS (x1.0)"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="BrickLabel" type="RichTextLabel" parent="."]
 offset_left = 16.0
 offset_top = 96.0
 offset_right = 384.0
 offset_bottom = 224.0
+mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 65
@@ -229,15 +241,19 @@ volume_db = 5.0
 stream = ExtResource("11_4l48r")
 
 [node name="TabContainer" type="TabContainer" parent="."]
+custom_minimum_size = Vector2(382, 648)
 offset_left = 768.0
 offset_right = 1152.0
 offset_bottom = 648.0
+mouse_filter = 2
 tab_alignment = 2
-current_tab = 1
+current_tab = 0
+clip_tabs = false
+all_tabs_in_front = true
 
 [node name="Residents" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -250,10 +266,12 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Residents/ScrollContainer"]
 custom_minimum_size = Vector2(352, 576)
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 8
 
 [node name="BuilderButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "builder
@@ -261,6 +279,7 @@ text = "builder
 
 [node name="MerchantButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Merchant
@@ -268,6 +287,7 @@ text = "Merchant
 
 [node name="MasonButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Mason
@@ -282,6 +302,7 @@ text = "Carpenter
 
 [node name="ShepherdButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Shepherd
@@ -289,6 +310,7 @@ text = "Shepherd
 
 [node name="WarriorButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
 text = "Warrior
@@ -298,6 +320,7 @@ text = "Warrior
 visible = false
 custom_minimum_size = Vector2(0, 112)
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("8_hphvt")
 disabled = true
 text = "SELL"
@@ -344,6 +367,7 @@ autowrap_mode = 3
 [node name="Settings" type="MarginContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -364,12 +388,14 @@ alignment = 2
 [node name="CodeLabel" type="Label" parent="TabContainer/Settings/HBoxContainer/BoxContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
+mouse_filter = 1
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CodeLine" type="LineEdit" parent="TabContainer/Settings/HBoxContainer/BoxContainer"]
 custom_minimum_size = Vector2(184, 32)
 layout_mode = 2
+mouse_filter = 1
 placeholder_text = "Insert Code Here..."
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Settings"]
@@ -390,12 +416,14 @@ layout_mode = 2
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 size_flags_vertical = 1
+mouse_filter = 1
 text = "Music"
 horizontal_alignment = 1
 
 [node name="Sfx" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/TopLabels"]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
+mouse_filter = 1
 text = "SFX"
 horizontal_alignment = 1
 
@@ -407,6 +435,7 @@ theme_override_constants/separation = 0
 [node name="MusicSlider" type="VSlider" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders"]
 custom_minimum_size = Vector2(96, 448)
 layout_mode = 2
+mouse_filter = 1
 max_value = 1.0
 step = 0.05
 value = 0.5
@@ -416,6 +445,7 @@ ticks_on_borders = true
 [node name="SfxSlider" type="VSlider" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders"]
 custom_minimum_size = Vector2(96, 448)
 layout_mode = 2
+mouse_filter = 1
 max_value = 1.0
 step = 0.1
 value = 0.5
@@ -428,12 +458,14 @@ layout_mode = 2
 [node name="MusicPercent" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/PercentLabels"]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
+mouse_filter = 1
 text = "100%"
 horizontal_alignment = 1
 
 [node name="SfxPercent" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/PercentLabels"]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
+mouse_filter = 1
 text = "100%"
 horizontal_alignment = 1
 
@@ -445,6 +477,7 @@ theme_override_constants/separation = 5
 custom_minimum_size = Vector2(150, 64)
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 1
 button_pressed = true
 text = "Show Speedrun Clock"
 alignment = 1
@@ -454,6 +487,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(150, 64)
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 1
 button_pressed = true
 text = "Notify when a Resident makes Gold"
 alignment = 1
@@ -462,6 +496,7 @@ autowrap_mode = 2
 [node name="BrickConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
 custom_minimum_size = Vector2(160, 64)
 layout_mode = 2
+mouse_filter = 1
 button_pressed = true
 text = "Notify when a Resident makes Bricks"
 alignment = 1
@@ -480,6 +515,7 @@ custom_minimum_size = Vector2(160, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 1
 button_pressed = true
 text = "Notify when a Thief steals"
 alignment = 1
@@ -488,6 +524,7 @@ autowrap_mode = 2
 [node name="ThiefAppear" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
 custom_minimum_size = Vector2(160, 64)
 layout_mode = 2
+mouse_filter = 1
 button_pressed = true
 text = "Notify when a Thief enters or exits a Floor"
 alignment = 1
@@ -497,6 +534,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(64, 32)
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 1
 text = "Abandon Run"
 
 [connection signal="pressed" from="Tower/Floors/TopFloor/Button" to="." method="new_floor"]

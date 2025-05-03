@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cd7ocv71t8jvt"]
 
-[ext_resource type="Script" uid="uid://dohq8f04qmo0f" path="res://System/resource_effect.gd" id="1_811qx"]
+[ext_resource type="Script" uid="uid://c4oe0w5kwn0cs" path="res://System/resource_effect.gd" id="1_811qx"]
 [ext_resource type="Texture2D" uid="uid://b2fmc78g4e40s" path="res://Assets/UI/ResourseIcons.png" id="2_lny6r"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="3_ekb68"]
 
@@ -24,7 +24,7 @@ theme = ExtResource("3_ekb68")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 4
-text = "+9"
+text = "+10"
 horizontal_alignment = 2
 vertical_alignment = 1
 

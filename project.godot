@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Building Babel"
-config/version="1.1"
+config/version="1.3"
 run/main_scene="res://Screens/home_menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/UI/BuildingBabelLogo.png"
