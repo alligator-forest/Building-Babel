@@ -26,14 +26,14 @@ enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT, HUBRIS
 var currChar : Character = null
 
 var neededResources : Dictionary = {
-	"bricks" : 10,
-	"wood" : 10,
+	"bricks" : brickCounts[0],
+	"wood" : brickCounts[0],
 	"builders" : 1,
 }
 
 var resources : Dictionary = {
-	"bricks" : brickCounts[0],
-	"wood" : brickCounts[0],
+	"bricks" : 0,
+	"wood" : 0,
 	"gold" : 30,
 	"hubris" : 0,
 }
@@ -47,7 +47,7 @@ var resources : Dictionary = {
 }
 func _ready():
 	update()
-	$TabContainer/"@TabBar@8".mouse_filter = 1 #TabContainer makes a child, @TabBar@8, upon starting that cannot be scene from the Local node tree. This MUST be made to mouse filter Propogate Up in order to remove the bug where mouse_exit does not get run on residents when they finish dragging!!!
+	$TabContainer/"@TabBar@9".mouse_filter = 1 #TabContainer makes a child, @TabBar@8, upon starting that cannot be scene from the Local node tree. This MUST be made to mouse filter Propogate Up in order to remove the bug where mouse_exit does not get run on residents when they finish dragging!!!
 
 func _physics_process(_delta):
 	if(%Floors.get_child_count() > 5):
