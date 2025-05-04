@@ -11,6 +11,13 @@ var numBuilders = 0
 
 @onready var rng = RandomNumberGenerator.new()
 
+var floorBonus : Dictionary = {
+	"bricks" : 1,
+	"wood" : 1,
+	"gold" : 1,
+	"hubris" : 1,
+}
+
 func _ready():
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
 
@@ -52,6 +59,7 @@ func add_character(c : Character):
 	update()
 
 func update():
+	numChars = $Characters.get_child_count()
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
 	if(numChars >= maxChars):
 		$Label.add_theme_color_override("font_color",Color.RED)
@@ -65,8 +73,8 @@ func is_full():
 
 func _on_characters_child_order_changed():
 	if(find_child("Characters") != null):
-		numChars = $Characters.get_child_count()
-		update()
+		if(numChars >= $Characters.get_child_count()): #prevents double updating through add_character
+			update()
 
 func _to_string() -> String:
 	return floorName

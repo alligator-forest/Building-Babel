@@ -91,7 +91,7 @@ text = "TRY AGAIN?"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_25wht")
+&"": SubResource("AnimationLibrary_25wht")
 }
 autoplay = "game_over"
 

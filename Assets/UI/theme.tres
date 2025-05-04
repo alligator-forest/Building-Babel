@@ -1,15 +1,27 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://xn2hdy3rgr76"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://xn2hdy3rgr76"]
 
 [ext_resource type="FontFile" uid="uid://cckn6rmhljx22" path="res://Assets/UI/Roman SD.ttf" id="1_vqim0"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qw6d"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2rk7"]
-bg_color = Color(0.627451, 0.356863, 0.32549, 1)
+bg_color = Color(0.690196, 0.419608, 0.337255, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sas17"]
 bg_color = Color(0.74902, 0.47451, 0.345098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxce2"]
 bg_color = Color(0.63, 0.35784, 0.3276, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_0qw6d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sk3jv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t3oq6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_keseg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5u1tl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qw6d"]
 bg_color = Color(0.74902, 0.47451, 0.345098, 1)
@@ -24,11 +36,21 @@ corner_radius_bottom_left = 5
 [resource]
 default_font = ExtResource("1_vqim0")
 default_font_size = 30
+Button/colors/icon_focus_color = Color(1, 1, 1, 0)
+Button/colors/icon_hover_color = Color(1, 1, 1, 0)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 0)
 Button/font_sizes/font_size = 33
 Button/fonts/font = ExtResource("1_vqim0")
+Button/styles/focus = SubResource("StyleBoxEmpty_0qw6d")
 Button/styles/hover = SubResource("StyleBoxFlat_o2rk7")
 Button/styles/normal = SubResource("StyleBoxFlat_sas17")
 Button/styles/pressed = SubResource("StyleBoxFlat_gxce2")
+CheckBox/font_sizes/font_size = 16
+CheckBox/fonts/font = SubResource("SystemFont_0qw6d")
+CheckBox/styles/focus = SubResource("StyleBoxEmpty_sk3jv")
+CheckBox/styles/hover = SubResource("StyleBoxEmpty_t3oq6")
+CheckBox/styles/normal = SubResource("StyleBoxEmpty_keseg")
+CheckBox/styles/pressed = SubResource("StyleBoxEmpty_5u1tl")
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/font_sizes/font_size = 21
 Label/fonts/font = ExtResource("1_vqim0")

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://yrkpgyb3bkbn"]
+
+[ext_resource type="Texture2D" uid="uid://budb3me3teeet" path="res://Assets/Floor/FloorWood.png" id="1_g0e30"]
+[ext_resource type="Script" uid="uid://bkvn52p1lcmna" path="res://Floors/wood_floor.gd" id="2_0v6cn"]
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_gokip"]
+[ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="3_0v6cn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f28eb"]
+size = Vector2(340, 100)
+
+[node name="WoodFloor" type="TextureRect"]
+custom_minimum_size = Vector2(384, 128)
+offset_left = -128.0
+offset_top = -64.0
+offset_right = 256.0
+offset_bottom = 64.0
+pivot_offset = Vector2(128, 64)
+mouse_filter = 2
+texture = ExtResource("1_g0e30")
+script = ExtResource("2_0v6cn")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 12.0
+offset_right = 256.0
+offset_bottom = 28.0
+theme = ExtResource("2_gokip")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 25
+text = "Floor 1: 0/5"
+vertical_alignment = 1
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(214, 78)
+shape = SubResource("RectangleShape2D_f28eb")
+
+[node name="DropComponent" parent="." instance=ExtResource("3_0v6cn")]
+
+[connection signal="child_order_changed" from="Characters" to="." method="_on_characters_child_order_changed"]

@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://br8j0dbxk0gmh"]
 
 [ext_resource type="Texture2D" uid="uid://dpd5p583xjif5" path="res://Assets/Floor/FloorBrick.png" id="1_2lidj"]
-[ext_resource type="Script" uid="uid://6ati0dpr68iq" path="res://Floors/floor.gd" id="2_d1pa7"]
+[ext_resource type="Script" uid="uid://dauv2hsvvf0he" path="res://Floors/brick_floor.gd" id="2_4xn7w"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="9_gp2pl"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="10_2ipyc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21dao"]
 size = Vector2(340, 100)
 
-[node name="Floor" type="TextureRect"]
+[node name="BrickFloor" type="TextureRect"]
 custom_minimum_size = Vector2(384, 128)
 offset_left = -128.0
 offset_top = -64.0
@@ -18,7 +18,7 @@ pivot_offset = Vector2(128, 64)
 size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("1_2lidj")
-script = ExtResource("2_d1pa7")
+script = ExtResource("2_4xn7w")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

@@ -47,7 +47,7 @@ var resources : Dictionary = {
 }
 func _ready():
 	update()
-	$TabContainer/"@TabBar@9".mouse_filter = 1 #TabContainer makes a child, @TabBar@8, upon starting that cannot be scene from the Local node tree. This MUST be made to mouse filter Propogate Up in order to remove the bug where mouse_exit does not get run on residents when they finish dragging!!!
+	$TabContainer.get_tab_bar().mouse_filter = 1 #TabContainer makes a TabBar child upon running that cannot be seen from the Local node tree. This MUST be made to mouse filter Propogate Up in order to remove the bug where mouse_exit does not get run on residents when they finish dragging!!!
 
 func _physics_process(_delta):
 	if(%Floors.get_child_count() > 5):
@@ -107,9 +107,9 @@ func log_in_console(event : int, c : Character = null, resourceVal : int = 0, re
 			$Console.text = "All residents' hubris has increased\n" + $Console.text
 
 func update():
-	$BrickLabel.text = str("[img=96]res://Assets/UI/brickIcon.png[/img] ",resources["bricks"])
-	$WoodLabel.text = str("[img=96]res://Assets/UI/woodIcon.png[/img] ",resources["wood"])
-	$GoldLabel.text = str("[img=96]res://Assets/UI/goldIcon.png[/img] ",resources["gold"])
+	$BrickLabel.text = str("[center][img=96x96]res://Assets/UI/brickIcon.png[/img]\n",resources["bricks"])
+	$WoodLabel.text = str("[center][img=96x96]res://Assets/UI/woodIcon.png[/img]\n",resources["wood"])
+	$GoldLabel.text = str("[center][img=96x96]res://Assets/UI/goldIcon.png[/img]\n",resources["gold"])
 	$GodBarLabel.text = str("[center][wave][color=yellow]HUBRIS (x",snapped(hubrisMult,0.1),")")
 	#$GodBar.value = resources["hubris"]
 	tween = create_tween()
@@ -127,8 +127,8 @@ func update():
 		get_tree().change_scene_to_file("res://Screens/game_over.tscn")
 
 func new_floor(type : String, fLoader):
-	if(resources["bricks"] >= neededResources[type] and numBuilders >= neededResources["builders"]):
-		resources["bricks"] -= neededResources["bricks"]
+	if(resources[type] >= neededResources[type] and numBuilders >= neededResources["builders"]):
+		resources[type] -= neededResources[type]
 		var tier = fLoader.instantiate()
 		tier.change_name("Floor " + str(%Floors.get_child_count()))
 		%Floors.add_child(tier)
@@ -140,7 +140,7 @@ func new_floor(type : String, fLoader):
 			get_tree().change_scene_to_file("res://Screens/win.tscn")
 		else:
 			hubrisMult += 0.125
-			neededResources["bricks"] = brickCounts[%Floors.get_child_count()-2]
+			neededResources[type] = brickCounts[%Floors.get_child_count()-2]
 			neededResources["builders"] += 1
 			play_effect("new floor")
 			update()
@@ -277,10 +277,8 @@ func _on_hide_timer_pressed() -> void:
 	SAVEOBJECT.data.set_console_notif("timer",$SpeedrunLabel.visible)
 	SAVEOBJECT._save_data()
 
-
 func _on_brick_basic_pressed() -> void:
 	new_floor("bricks",BrickBasic)
 
-
 func _on_wood_basic_pressed() -> void:
-	new_floor("wood",BrickBasic)
+	new_floor("wood",WoodBasic)
