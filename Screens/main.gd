@@ -107,21 +107,24 @@ func log_in_console(event : int, c : Character = null, resourceVal : int = 0, re
 			$Console.text = "All residents' hubris has increased\n" + $Console.text
 
 func update():
-	$BrickLabel.text = str("[center][img=96x96]res://Assets/UI/brickIcon.png[/img]\n",resources["bricks"])
-	$WoodLabel.text = str("[center][img=96x96]res://Assets/UI/woodIcon.png[/img]\n",resources["wood"])
-	$GoldLabel.text = str("[center][img=96x96]res://Assets/UI/goldIcon.png[/img]\n",resources["gold"])
-	$GodBarLabel.text = str("[center][wave][color=yellow]HUBRIS (x",snapped(hubrisMult,0.1),")")
+	$BrickLabel.text = str("[img=96x96]res://Assets/UI/brickIcon.png[/img]\n",resources["bricks"])
+	$WoodLabel.text = str("[img=96x96]res://Assets/UI/woodIcon.png[/img]\n",resources["wood"])
+	$GoldLabel.text = str("[img=96x96]res://Assets/UI/goldIcon.png[/img]\n",resources["gold"])
+	$GodBarLabel.text = str("[wave][color=yellow]HUBRIS (x",snapped(hubrisMult,0.1),")")
 	#$GodBar.value = resources["hubris"]
 	tween = create_tween()
 	tween.tween_property($GodBar,"value",resources["hubris"],0.5)
 	
 	#%Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
-	var newFloorBricksLabel = %Floors/TopFloor/NewFloorLabel
-	var newFloorBuildersLabel = %Floors/TopFloor/NewFloorLabel2
+	var newFloorBricksLabel = %BrickLabel
+	var newFloorBuildersLabel = %BuilderLabel
+	var newFloorWoodLabel = %WoodLabel
 	newFloorBricksLabel.text = "[color=GREEN]" if (resources["bricks"] >= neededResources["bricks"]) else "[color=RED]"
 	newFloorBuildersLabel.text = "[color=GREEN]" if (numBuilders >= neededResources["builders"]) else "[color=RED]"
+	newFloorWoodLabel.text = "[color=GREEN]" if (resources["wood"] >= neededResources["wood"]) else "[color=RED]"
 	newFloorBricksLabel.text += "[b][img=64]res://Assets/UI/brickIcon.png[/img] x" + str(neededResources["bricks"])
-	newFloorBuildersLabel.text += "[b][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x" + str(neededResources["builders"])
+	newFloorBuildersLabel.text += "[b][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img]\nx" + str(neededResources["builders"])
+	newFloorWoodLabel.text += "[b][img=64]res://Assets/UI/woodIcon.png[/img] x" + str(neededResources["wood"])
 	
 	if($GodBar.value >= 99):
 		get_tree().change_scene_to_file("res://Screens/game_over.tscn")

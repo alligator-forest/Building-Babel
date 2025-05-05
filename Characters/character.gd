@@ -65,6 +65,7 @@ func move():
 	global_position = get_global_mouse_position() - offset
 
 func land_on_floor(f : Floor):
+	z_index = 1
 	scale = Vector2(2,2)
 	$AnimatedSprite2D.stop()
 	currentFloor = f

@@ -112,33 +112,6 @@ theme_override_font_sizes/font_size = 21
 text = "NEW FLOOR"
 autowrap_mode = 3
 
-[node name="NewFloorLabel" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
-layout_mode = 0
-offset_left = 216.0
-offset_top = 25.0
-offset_right = 392.0
-offset_bottom = 85.0
-mouse_filter = 2
-theme = ExtResource("8_hphvt")
-theme_override_constants/outline_size = 15
-bbcode_enabled = true
-text = "[b][color=RED][img=64]res://Assets/UI/brickIcon.png[/img] x2560"
-scroll_active = false
-
-[node name="NewFloorLabel2" type="RichTextLabel" parent="Tower/Floors/TopFloor"]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 22.0
-offset_right = 216.0
-offset_bottom = 77.0
-mouse_filter = 2
-theme = ExtResource("8_hphvt")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 15
-bbcode_enabled = true
-text = "[b][color=RED][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x9"
-scroll_active = false
-
 [node name="Lobby" parent="Tower/Floors" instance=ExtResource("2_d85bv")]
 layout_mode = 2
 texture = ExtResource("12_n0vtn")
@@ -165,6 +138,7 @@ bbcode_enabled = true
 text = "[center][wave][color=yellow]HUBRIS (x1.0)"
 scroll_active = false
 autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="BrickLabel" type="RichTextLabel" parent="."]
 offset_top = 88.0
@@ -176,9 +150,10 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center][img=112]res://Assets/UI/brickIcon.png[/img]
+text = "[img=112]res://Assets/UI/brickIcon.png[/img]
 0"
 autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="WoodLabel" type="RichTextLabel" parent="."]
 offset_left = 128.0
@@ -190,8 +165,9 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center][img=112]res://Assets/UI/woodIcon.png[/img]
+text = "[img=112]res://Assets/UI/woodIcon.png[/img]
 0"
+horizontal_alignment = 1
 
 [node name="GoldLabel" type="RichTextLabel" parent="."]
 offset_left = 256.0
@@ -203,8 +179,9 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center][img=112]res://Assets/UI/goldIcon.png[/img]
+text = "[img=112]res://Assets/UI/goldIcon.png[/img]
 30"
+horizontal_alignment = 1
 
 [node name="SpeedrunTimer" type="Timer" parent="."]
 
@@ -349,22 +326,67 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 metadata/_tab_index = 1
 
-[node name="WoodFloors" type="GridContainer" parent="TabContainer/Floors"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Floors"]
+layout_mode = 2
+alignment = 1
+
+[node name="BrickLabel" type="RichTextLabel" parent="TabContainer/Floors/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(112, 64)
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("8_hphvt")
+theme_override_constants/outline_size = 15
+theme_override_constants/line_separation = 10
+bbcode_enabled = true
+text = "[b][color=RED][img=64]res://Assets/UI/brickIcon.png[/img] x2560"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="BuilderLabel" type="RichTextLabel" parent="TabContainer/Floors/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(112, 64)
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("8_hphvt")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_constants/line_separation = 10
+bbcode_enabled = true
+text = "[b][color=RED][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] 
+x9"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="WoodLabel" type="RichTextLabel" parent="TabContainer/Floors/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(112, 64)
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("8_hphvt")
+theme_override_constants/outline_size = 15
+theme_override_constants/line_separation = 10
+bbcode_enabled = true
+text = "[b][color=RED][img=64]res://Assets/UI/woodIcon.png[/img] x2560"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="AllFloors" type="GridContainer" parent="TabContainer/Floors"]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 0
+size_flags_vertical = 4
 theme_override_constants/h_separation = 96
 theme_override_constants/v_separation = 100
 columns = 2
 
-[node name="BrickBasic" type="Button" parent="TabContainer/Floors/WoodFloors"]
+[node name="BrickBasic" type="Button" parent="TabContainer/Floors/AllFloors"]
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
 theme = ExtResource("8_hphvt")
 text = "BRICK BASIC"
 autowrap_mode = 3
 
-[node name="WoodBasic" type="Button" parent="TabContainer/Floors/WoodFloors"]
+[node name="WoodBasic" type="Button" parent="TabContainer/Floors/AllFloors"]
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
 theme = ExtResource("8_hphvt")
@@ -561,8 +583,8 @@ text = "Abandon Run"
 [connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/CarpenterButton" to="." method="_on_carpenter_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/ShepherdButton" to="." method="_on_shepherd_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/WarriorButton" to="." method="_on_warrior_button_pressed"]
-[connection signal="pressed" from="TabContainer/Floors/WoodFloors/BrickBasic" to="." method="_on_brick_basic_pressed"]
-[connection signal="pressed" from="TabContainer/Floors/WoodFloors/WoodBasic" to="." method="_on_wood_basic_pressed"]
+[connection signal="pressed" from="TabContainer/Floors/AllFloors/BrickBasic" to="." method="_on_brick_basic_pressed"]
+[connection signal="pressed" from="TabContainer/Floors/AllFloors/WoodBasic" to="." method="_on_wood_basic_pressed"]
 [connection signal="text_changed" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_code_textbox_text_changed"]
 [connection signal="text_submitted" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_line_edit_text_submitted"]
 [connection signal="drag_ended" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/MusicSlider" to="TabContainer/Settings" method="_on_volume_slider_drag_ended"]
