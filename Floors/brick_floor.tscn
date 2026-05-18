@@ -1,46 +1,45 @@
-[gd_scene load_steps=6 format=3 uid="uid://br8j0dbxk0gmh"]
+[gd_scene format=3 uid="uid://br8j0dbxk0gmh"]
 
 [ext_resource type="Texture2D" uid="uid://dpd5p583xjif5" path="res://Assets/Floor/FloorBrick.png" id="1_2lidj"]
 [ext_resource type="Script" uid="uid://dauv2hsvvf0he" path="res://Floors/brick_floor.gd" id="2_4xn7w"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="9_gp2pl"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="10_2ipyc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_21dao"]
-size = Vector2(340, 100)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xn7w"]
+size = Vector2(170, 50)
 
-[node name="BrickFloor" type="TextureRect"]
-custom_minimum_size = Vector2(384, 128)
-offset_left = -128.0
+[node name="BrickFloor" type="TextureRect" unique_id=1076295142]
+custom_minimum_size = Vector2(192, 64)
 offset_top = -64.0
-offset_right = 256.0
-offset_bottom = 64.0
-pivot_offset = Vector2(128, 64)
+offset_right = 192.0
 size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("1_2lidj")
+stretch_mode = 4
 script = ExtResource("2_4xn7w")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1731434313]
 layout_mode = 0
-offset_left = 12.0
-offset_right = 256.0
-offset_bottom = 28.0
+offset_left = 24.0
+offset_right = 120.0
+offset_bottom = 15.0
 theme = ExtResource("9_gp2pl")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 12
 text = "Floor 1: 0/5"
 vertical_alignment = 1
 
-[node name="Characters" type="Node2D" parent="."]
+[node name="Characters" type="Node2D" parent="." unique_id=1920220753]
+position = Vector2(0, 64)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1719993459]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(214, 78)
-shape = SubResource("RectangleShape2D_21dao")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=652991619]
+position = Vector2(107.17883, 38.507317)
+shape = SubResource("RectangleShape2D_4xn7w")
 
-[node name="DropComponent" parent="." instance=ExtResource("10_2ipyc")]
+[node name="DropComponent" parent="." unique_id=812106381 instance=ExtResource("10_2ipyc")]
 
 [connection signal="child_order_changed" from="Characters" to="." method="_on_characters_child_order_changed"]

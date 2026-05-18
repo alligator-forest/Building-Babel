@@ -3,11 +3,11 @@ class_name Floor
 
 @export var floorName : String
 
-const LEFT = 68
-const RIGHT = 356
-var numChars = 0
-var maxChars = 5
-var numBuilders = 0
+const LEFT : int = 34
+const RIGHT : int = 178
+var numChars : int = 0
+var maxChars : int = 5
+var mouseWithin : bool = false
 
 @onready var rng = RandomNumberGenerator.new()
 
@@ -48,12 +48,9 @@ func add_character(c : Character):
 			$Characters.add_child(c)
 	else:
 		c.reparent($Characters)
-	var yPos = 128
+	var yPos = 0 #128
 	var xPos = c.position.x
 	xPos = clamp(c.position.x,LEFT + c.get_char_witdh(),RIGHT - c.get_char_witdh())
-	match str(c).to_lower():
-		"builder":
-			numBuilders += 1
 	c.position = Vector2(xPos,yPos)
 	c.land_on_floor(self)
 	update()
@@ -78,3 +75,9 @@ func _on_characters_child_order_changed():
 
 func _to_string() -> String:
 	return floorName
+
+func _on_area_2d_mouse_entered():
+	mouseWithin = true
+
+func _on_area_2d_mouse_exited():
+	mouseWithin = false

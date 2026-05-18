@@ -1,26 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjba3t1dbhmds"]
+[gd_scene format=3 uid="uid://cjba3t1dbhmds"]
 
 [ext_resource type="Script" uid="uid://bevv3d7odhi2v" path="res://Screens/leaderboard.gd" id="1_tlbt4"]
 [ext_resource type="Texture2D" uid="uid://survwd1n27xy" path="res://Assets/Screens/leaderboard.png" id="2_6wmdm"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_23noj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22g44"]
-bg_color = Color(0.352941, 0.32549, 0.32549, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggbah"]
 bg_color = Color(0.352941, 0.32549, 0.32549, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ofr4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22g44"]
+bg_color = Color(0.352941, 0.32549, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tap1d"]
+bg_color = Color(0.627451, 0.576471, 0.556863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8t0w"]
 bg_color = Color(0.352941, 0.32549, 0.32549, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjgx8"]
 bg_color = Color(0.490196, 0.439216, 0.443137, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8t0w"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ofr4"]
 bg_color = Color(0.352941, 0.32549, 0.32549, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tap1d"]
-bg_color = Color(0.627451, 0.576471, 0.556863, 1)
 
 [sub_resource type="Animation" id="Animation_ieu2q"]
 length = 0.001
@@ -61,22 +61,23 @@ _data = {
 &"credits": SubResource("Animation_lguw7")
 }
 
-[node name="Leaderboard" type="Node2D"]
+[node name="Leaderboard" type="Node2D" unique_id=1095214034]
 script = ExtResource("1_tlbt4")
 
-[node name="Bacground" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(4.5, 5.0625)
+[node name="Bacground" type="Sprite2D" parent="." unique_id=1736261879]
+position = Vector2(320, 180.00002)
+scale = Vector2(2.5, 2.8125002)
 texture = ExtResource("2_6wmdm")
 hframes = 3
 
-[node name="Placements" type="Label" parent="."]
-offset_left = 208.0
-offset_right = 316.0
-offset_bottom = 537.0
+[node name="Placements" type="Label" parent="." unique_id=1554446591]
+offset_left = 176.0
+offset_top = 8.0
+offset_right = 220.0
+offset_bottom = 352.0
 theme = ExtResource("2_23noj")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 26
 text = "1.
 2.
 3.
@@ -89,14 +90,15 @@ text = "1.
 10."
 horizontal_alignment = 2
 
-[node name="Names" type="RichTextLabel" parent="."]
-offset_left = 320.0
-offset_right = 640.0
-offset_bottom = 640.0
+[node name="Names" type="RichTextLabel" parent="." unique_id=1122145492]
+offset_left = 248.0
+offset_top = 8.0
+offset_right = 320.0
+offset_bottom = 352.0
 theme = ExtResource("2_23noj")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 3
-theme_override_font_sizes/normal_font_size = 54
+theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "[center]___
 ___
@@ -109,14 +111,15 @@ ___
 ___
 ___"
 
-[node name="Scores" type="RichTextLabel" parent="."]
-offset_left = 504.0
-offset_right = 1040.0
-offset_bottom = 640.0
+[node name="Scores" type="RichTextLabel" parent="." unique_id=520099026]
+offset_left = 312.0
+offset_top = 8.0
+offset_right = 448.0
+offset_bottom = 352.0
 theme = ExtResource("2_23noj")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 3
-theme_override_font_sizes/normal_font_size = 54
+theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "[center]00:00:00
 00:00:00
@@ -129,44 +132,42 @@ text = "[center]00:00:00
 00:00:00
 00:00:00"
 
-[node name="Return" type="Button" parent="."]
-offset_left = 16.0
-offset_top = 544.0
-offset_right = 248.0
-offset_bottom = 632.0
+[node name="Return" type="Button" parent="." unique_id=285514106]
+offset_left = 8.0
+offset_top = 304.0
+offset_right = 152.0
+offset_bottom = 352.0
 theme = ExtResource("2_23noj")
 text = "Return"
 
-[node name="AreYouSure" type="Button" parent="."]
-offset_left = 752.0
-offset_top = 544.0
-offset_right = 1135.0
-offset_bottom = 632.0
+[node name="AreYouSure" type="Button" parent="." unique_id=1466323740]
+offset_left = 440.0
+offset_top = 304.0
+offset_right = 632.0
+offset_bottom = 352.0
 theme = ExtResource("2_23noj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_22g44")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ggbah")
+theme_override_styles/hover = SubResource("StyleBoxFlat_22g44")
 text = "Are you sure?"
 
-[node name="ResetScores" type="Button" parent="."]
-offset_left = 752.0
-offset_top = 544.0
-offset_right = 1135.0
-offset_bottom = 632.0
+[node name="ResetScores" type="Button" parent="." unique_id=1368245960]
+offset_left = 440.0
+offset_top = 304.0
+offset_right = 632.0
+offset_bottom = 352.0
 theme = ExtResource("2_23noj")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_4ofr4")
-theme_override_styles/hover = SubResource("StyleBoxFlat_pjgx8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_r8t0w")
 theme_override_styles/normal = SubResource("StyleBoxFlat_tap1d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r8t0w")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pjgx8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_4ofr4")
 text = "RESET SCORES"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=53133242]
 wait_time = 3.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_vnvtf")
-}
-autoplay = "credits"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1003941238]
+libraries/ = SubResource("AnimationLibrary_vnvtf")
+autoplay = &"credits"
 
 [connection signal="pressed" from="Return" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="AreYouSure" to="." method="_on_are_you_sure_pressed"]

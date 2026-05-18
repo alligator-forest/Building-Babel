@@ -8,10 +8,11 @@ extends Node2D
 @export var masons: PackedScene
 @export var carpenters : PackedScene
 @export var shepherds: PackedScene
+@export var scholars : PackedScene
 @export var warriors: PackedScene
 @export var thieves: PackedScene
 
-@onready var sellBox = $TabContainer/Residents/ScrollContainer/VBoxContainer/SellDropbox
+@onready var sellBox = $TabContainer/Residents/VBoxContainer/SellDropbox
 @onready var rng = RandomNumberGenerator.new()
 const THIEFCHANCE : int = 2 # % chance a thief will spawn
 const FLOORSTOWIN : int = 10 #the number of floors you need to win (excludeing the top floor)
@@ -38,13 +39,8 @@ var resources : Dictionary = {
 	"hubris" : 0,
 }
 
-@onready var consoleNotifs : Dictionary = {
-	"gold" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/GoldConsole,
-	"bricks" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/BrickConsole,
-	"wood" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/WoodConsole,
-	"steal" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefSteal,
-	"thief" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefAppear,
-}
+@export var consoleNotifs : Dictionary[String,Button]
+
 func _ready():
 	update()
 	$TabContainer.get_tab_bar().mouse_filter = 1 #TabContainer makes a TabBar child upon running that cannot be seen from the Local node tree. This MUST be made to mouse filter Propogate Up in order to remove the bug where mouse_exit does not get run on residents when they finish dragging!!!
@@ -67,8 +63,8 @@ func _physics_process(_delta):
 		if(currChar != null):
 			currChar.prepare_drag()
 			if($TabContainer/Residents.visible):
-				sellBox.visible = true
 				sellBox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
+				sellBox.visible = true
 			
 	if(currChar != null):
 		if(Input.is_action_pressed("click_press")):
@@ -107,11 +103,10 @@ func log_in_console(event : int, c : Character = null, resourceVal : int = 0, re
 			$Console.text = "All residents' hubris has increased\n" + $Console.text
 
 func update():
-	$BrickLabel.text = str("[img=96x96]res://Assets/UI/brickIcon.png[/img]\n",resources["bricks"])
-	$WoodLabel.text = str("[img=96x96]res://Assets/UI/woodIcon.png[/img]\n",resources["wood"])
-	$GoldLabel.text = str("[img=96x96]res://Assets/UI/goldIcon.png[/img]\n",resources["gold"])
-	$GodBarLabel.text = str("[wave][color=yellow]HUBRIS (x",snapped(hubrisMult,0.1),")")
-	#$GodBar.value = resources["hubris"]
+	$BrickLabel.text = str("[img=48x48]res://Assets/UI/brickIcon.png[/img] ",resources["bricks"])
+	$WoodLabel.text = str("[img=48x48]res://Assets/UI/woodIcon.png[/img] ",resources["wood"])
+	$GoldLabel.text = str("[img=48x48]res://Assets/UI/goldIcon.png[/img] ",resources["gold"])
+	$GodBarLabel.text = str("[wave][color=yellow]HUBRIS x",snapped(hubrisMult,0.1))
 	tween = create_tween()
 	tween.tween_property($GodBar,"value",resources["hubris"],0.5)
 	
@@ -122,9 +117,9 @@ func update():
 	newFloorBricksLabel.text = "[color=GREEN]" if (resources["bricks"] >= neededResources["bricks"]) else "[color=RED]"
 	newFloorBuildersLabel.text = "[color=GREEN]" if (numBuilders >= neededResources["builders"]) else "[color=RED]"
 	newFloorWoodLabel.text = "[color=GREEN]" if (resources["wood"] >= neededResources["wood"]) else "[color=RED]"
-	newFloorBricksLabel.text += "[b][img=64]res://Assets/UI/brickIcon.png[/img] x" + str(neededResources["bricks"])
-	newFloorBuildersLabel.text += "[b][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img]\nx" + str(neededResources["builders"])
-	newFloorWoodLabel.text += "[b][img=64]res://Assets/UI/woodIcon.png[/img] x" + str(neededResources["wood"])
+	newFloorBricksLabel.text += "[b][img=32]res://Assets/UI/brickIcon.png[/img]\nx" + str(neededResources["bricks"])
+	newFloorBuildersLabel.text += "[b][img=32]res://Assets/UI/ShopIcons/BuilderShop.png[/img]\nx" + str(neededResources["builders"])
+	newFloorWoodLabel.text += "[b][img=32]res://Assets/UI/woodIcon.png[/img]\nx" + str(neededResources["wood"])
 	
 	if($GodBar.value >= 99):
 		get_tree().change_scene_to_file("res://Screens/game_over.tscn")
@@ -219,9 +214,9 @@ func buy_character(c : Character, cLoader):
 		dChar.get_node("Area2D").area_entered.connect(on_character_area_2d_enter)
 		dChar.get_node("Area2D").area_exited.connect(on_character_area_2d_exit)
 		dChar.add_resource.connect(_on_character_timer_timeout)
-		dChar.position = Vector2(296,0)
+		dChar.position = Vector2(148,0)
 		spawnfloor.add_character(dChar)
-		$Tower.scroll_vertical = 128 * (spawnscroll-1)
+		$Tower.scroll_vertical = 64 * (spawnscroll-1)
 		update()
 
 func spawn_thief(f : Floor) -> Thief:

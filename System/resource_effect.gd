@@ -25,11 +25,10 @@ func start_effect(a : int) -> int:
 			$Label.text = "+"
 		$Label.text += str(amount)
 		var tween = create_tween()
-		var tween2 = create_tween()
 		show()
 		$Timer.start($Timer.wait_time)
 		tween.tween_property(self,"position:y",position.y - 20,$Timer.wait_time).set_trans(Tween.TRANS_EXPO)
-		tween2.tween_property(self,"modulate:a",0.0,$Timer.wait_time).set_trans(Tween.TRANS_EXPO)
+		tween.parallel().tween_property(self,"modulate:a",0.0,$Timer.wait_time).set_trans(Tween.TRANS_EXPO)
 	return self.amount
 
 func _on_timer_timeout() -> void:

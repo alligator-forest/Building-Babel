@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2fhhh5tia0q2"]
+[gd_scene format=3 uid="uid://c2fhhh5tia0q2"]
 
 [ext_resource type="Script" uid="uid://bk2gc8ssb5chs" path="res://Screens/game_over.gd" id="1_r7w56"]
 [ext_resource type="Texture2D" uid="uid://ciwpyu5jmj18p" path="res://Assets/Screens/BabelGameOver-Sheet.png" id="2_omij0"]
@@ -44,16 +44,16 @@ _data = {
 &"game_over": SubResource("Animation_tl3qs")
 }
 
-[node name="GameOver" type="Node2D"]
+[node name="GameOver" type="Node2D" unique_id=697602272]
 script = ExtResource("1_r7w56")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(4.5, 5.0625)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1796015925]
+position = Vector2(320, 180.00002)
+scale = Vector2(2.5, 2.8125002)
 texture = ExtResource("2_omij0")
 hframes = 11
 
-[node name="BibleQuote" type="Label" parent="."]
+[node name="BibleQuote" type="Label" parent="." unique_id=1555973527]
 offset_top = -96.0
 offset_right = 1152.0
 offset_bottom = 256.0
@@ -66,7 +66,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="GameOver" type="Label" parent="."]
+[node name="GameOver" type="Label" parent="." unique_id=270192733]
 offset_top = 264.0
 offset_right = 296.0
 offset_bottom = 447.0
@@ -76,24 +76,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=2013814247]
 wait_time = 0.75
 autostart = true
 
-[node name="Button" type="Button" parent="."]
-offset_left = 832.0
-offset_top = 560.0
-offset_right = 1134.0
-offset_bottom = 632.0
+[node name="Button" type="Button" parent="." unique_id=778498607]
+offset_left = 440.0
+offset_top = 280.0
+offset_right = 640.0
+offset_bottom = 360.0
 theme = ExtResource("3_3w87l")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_jr810")
 text = "TRY AGAIN?"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_25wht")
-}
-autoplay = "game_over"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1546067157]
+libraries/ = SubResource("AnimationLibrary_25wht")
+autoplay = &"game_over"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

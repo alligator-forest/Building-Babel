@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bkyl1jp3lj36v"]
+[gd_scene format=3 uid="uid://bkyl1jp3lj36v"]
 
 [ext_resource type="Script" uid="uid://dk7gqmskok7f0" path="res://Screens/main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/brick_floor.tscn" id="2_d85bv"]
@@ -11,8 +11,10 @@
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="8_hphvt"]
 [ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/Warrior/warrior.tscn" id="8_xfuhw"]
 [ext_resource type="AudioStream" uid="uid://cbr620ywkvhpa" path="res://Music/SFX/layered sound.mp3" id="9_0wmer"]
+[ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="9_gr1rk"]
 [ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/Thief/thief.tscn" id="9_m3587"]
 [ext_resource type="Texture2D" uid="uid://u8qrlqhbdaes" path="res://Assets/Floor/FloorRoof.png" id="10_3tu5u"]
+[ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="10_b7rxi"]
 [ext_resource type="Texture2D" uid="uid://bkp606ho0to3e" path="res://Assets/Screens/BabelBackground.png" id="10_rlab4"]
 [ext_resource type="AudioStream" uid="uid://bscdbq8e1i213" path="res://Music/bgMusic.mp3" id="10_stmio"]
 [ext_resource type="AudioStream" uid="uid://du5co0mbv7ofb" path="res://Music/SFX/stone on stone action.wav" id="11_4l48r"]
@@ -24,20 +26,56 @@
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="19_ufc1y"]
 [ext_resource type="Script" uid="uid://dqru7q312l7wy" path="res://Screens/settings.gd" id="24_8qx4t"]
 
+[sub_resource type="GDScript" id="GDScript_g1wvp"]
+script/source = "extends Character
+class_name Scholar
+
+func get_knowledge() -> int:
+	return $KnowledgeEffect.start_effect(rng.randi_range(1,7))
+
+func get_hubris() -> int:
+	return 2
+
+func get_price() -> int:
+	return 15
+
+func _to_string():
+	return \"scholar\"
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mr6n7"]
+radius = 13.0
+height = 35.0
+
+[sub_resource type="PackedScene" id="PackedScene_u3vds"]
+_bundled = {
+"conn_count": 4,
+"conns": PackedInt32Array(1073741831, 1073741830, 29, 28, 2, 0, 0, 1073741833, 1073741832, 31, 30, 2, 0, 0, 1073741835, 1073741834, 33, 32, 2, 0, 0, 1073741837, 1073741836, 35, 34, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("Scholar", "Control", "layout_mode", "anchors_preset", "script", "AnimatedSprite2D", "AnimatedSprite2D", "position", "scale", "sprite_frames", "animation", "KnowledgeEffect", "visible", "position", "type", "MoveTimer", "Timer", "one_shot", "WaitTimer", "Timer", "one_shot", "autostart", "Area2D", "Area2D", "CollisionShape2D", "CollisionShape2D", "position", "shape", "_on_move_timer_timeout", "timeout", "_on_wait_timer_timeout", "timeout", "_on_area_2d_mouse_entered", "mouse_entered", "_on_area_2d_mouse_exited", "mouse_exited"),
+"node_count": 7,
+"node_ids": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("./Area2D"), NodePath("."), NodePath("MoveTimer"), NodePath("."), NodePath("WaitTimer"), NodePath("."), NodePath("Area2D"), NodePath("."), NodePath("Area2D")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 1073741824, 0, 6, 5, -1, 4, 7, 3, 8, 4, 9, 5, 10, 6, 0, 1073741825, 0, 2147483647, 11, 7, 3, 12, 8, 13, 9, 14, 10, 0, 1073741826, 0, 16, 15, -1, 1, 17, 11, 0, 1073741827, 0, 19, 18, -1, 2, 20, 12, 21, 13, 0, 1073741828, 0, 23, 22, -1, 0, 0, 1073741829, 0, 25, 24, -1, 2, 26, 14, 27, 15, 0),
+"variants": [3, 0, SubResource("GDScript_g1wvp"), Vector2(2, -16), Vector2(2, 2), ExtResource("9_gr1rk"), &"Scholar", ExtResource("10_b7rxi"), false, Vector2(4, -35), "knowledge", true, true, true, Vector2(3, -16), SubResource("CapsuleShape2D_mr6n7")],
+"version": 3
+}
+
 [sub_resource type="Gradient" id="Gradient_h608w"]
 colors = PackedColorArray(0.18, 0.18, 0.18, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5dr55"]
 gradient = SubResource("Gradient_h608w")
-width = 1152
-height = 648
+width = 576
+height = 324
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0.0683761, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puaxa"]
-size = Vector2(352, 104)
+size = Vector2(216, 44)
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=582439884 node_paths=PackedStringArray("consoleNotifs")]
 process_mode = 1
 script = ExtResource("1_eqxpj")
 BrickBasic = ExtResource("2_d85bv")
@@ -47,19 +85,29 @@ merchants = ExtResource("5_ycq4u")
 masons = ExtResource("6_qu6a5")
 carpenters = ExtResource("6_nyx7j")
 shepherds = ExtResource("7_sbhwi")
+scholars = SubResource("PackedScene_u3vds")
 warriors = ExtResource("8_xfuhw")
 thieves = ExtResource("9_m3587")
+consoleNotifs = {
+"bricks": NodePath("TabContainer/Settings/HBoxContainer2/ConsoleNotifications/BrickConsole"),
+"gold": NodePath("TabContainer/Settings/HBoxContainer2/ConsoleNotifications/GoldConsole"),
+"steal": NodePath("TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefSteal"),
+"wood": NodePath("TabContainer/Settings/HBoxContainer2/ConsoleNotifications/WoodConsole")
+}
 
-[node name="ResourceEffects" type="Node2D" parent="."]
+[node name="ResourceEffects" type="Node2D" parent="." unique_id=554995671]
 
-[node name="Background" type="TextureRect" parent="."]
-offset_top = -760.0
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="Background" type="TextureRect" parent="." unique_id=887258449]
+offset_top = -424.0
+offset_right = 640.0
+offset_bottom = 360.0
 mouse_filter = 2
 texture = ExtResource("10_rlab4")
+expand_mode = 4
+stretch_mode = 4
 
-[node name="Console" type="RichTextLabel" parent="."]
+[node name="Console" type="RichTextLabel" parent="." unique_id=557689387]
+visible = false
 offset_left = 16.0
 offset_top = 400.0
 offset_right = 376.0
@@ -71,39 +119,40 @@ theme_override_constants/outline_size = 2
 bbcode_enabled = true
 scroll_active = false
 
-[node name="ConsoleGradient" type="Sprite2D" parent="."]
-position = Vector2(576, 328)
+[node name="ConsoleGradient" type="Sprite2D" parent="." unique_id=812546134]
+position = Vector2(320, 180)
+scale = Vector2(1.1111112, 1.1111112)
 texture = SubResource("GradientTexture2D_5dr55")
 
-[node name="Tower" type="ScrollContainer" parent="."]
+[node name="Tower" type="ScrollContainer" parent="." unique_id=1827591222]
 clip_contents = false
-offset_left = 384.0
-offset_right = 776.0
-offset_bottom = 648.0
+offset_left = 192.0
+offset_right = 392.0
+offset_bottom = 360.0
 size_flags_vertical = 8
 follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
-[node name="Floors" type="VBoxContainer" parent="Tower"]
+[node name="Floors" type="VBoxContainer" parent="Tower" unique_id=2101862049]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(384, 0)
+custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="TopFloor" type="TextureRect" parent="Tower/Floors"]
-custom_minimum_size = Vector2(384, 128)
+[node name="TopFloor" type="TextureRect" parent="Tower/Floors" unique_id=1031597940]
+custom_minimum_size = Vector2(192, 64)
 layout_mode = 2
 texture = ExtResource("10_3tu5u")
 
-[node name="Button" type="Button" parent="Tower/Floors/TopFloor"]
+[node name="Button" type="Button" parent="Tower/Floors/TopFloor" unique_id=2132423119]
 visible = false
 layout_mode = 0
 offset_top = 16.0
-offset_right = 80.0
-offset_bottom = 76.0
+offset_right = 104.0
+offset_bottom = 42.0
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -112,129 +161,130 @@ theme_override_font_sizes/font_size = 21
 text = "NEW FLOOR"
 autowrap_mode = 3
 
-[node name="Lobby" parent="Tower/Floors" instance=ExtResource("2_d85bv")]
+[node name="Lobby" parent="Tower/Floors" unique_id=874029283 instance=ExtResource("2_d85bv")]
 layout_mode = 2
 texture = ExtResource("12_n0vtn")
 floorName = "Floor 1"
 
-[node name="GodBar" type="ProgressBar" parent="."]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 368.0
-offset_bottom = 80.0
+[node name="GodBar" type="ProgressBar" parent="." unique_id=669313349]
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 128.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme = ExtResource("8_hphvt")
+value = 54.11
 show_percentage = false
 
-[node name="GodBarLabel" type="RichTextLabel" parent="."]
-offset_left = 16.0
-offset_top = 24.0
-offset_right = 368.0
-offset_bottom = 72.0
+[node name="GodBarLabel" type="RichTextLabel" parent="." unique_id=2097717139]
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 128.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme = ExtResource("8_hphvt")
-theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
-text = "[center][wave][color=yellow]HUBRIS (x1.0)"
+text = "[center][wave][color=yellow]HUBRIS x1.0"
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="BrickLabel" type="RichTextLabel" parent="."]
-offset_top = 88.0
-offset_right = 128.0
-offset_bottom = 296.0
+[node name="BrickLabel" type="RichTextLabel" parent="." unique_id=206632998]
+offset_top = 40.0
+offset_right = 104.0
+offset_bottom = 96.0
 mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[img=112]res://Assets/UI/brickIcon.png[/img]
-0"
+text = "[img=56]res://Assets/UI/brickIcon.png[/img] 0"
+scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="WoodLabel" type="RichTextLabel" parent="."]
-offset_left = 128.0
-offset_top = 88.0
-offset_right = 256.0
-offset_bottom = 272.0
+[node name="WoodLabel" type="RichTextLabel" parent="." unique_id=1060918055]
+offset_top = 91.0
+offset_right = 104.0
+offset_bottom = 147.0
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[img=112]res://Assets/UI/woodIcon.png[/img]
-0"
+text = "[img=56]res://Assets/UI/woodIcon.png[/img] 0"
+scroll_active = false
 horizontal_alignment = 1
 
-[node name="GoldLabel" type="RichTextLabel" parent="."]
-offset_left = 256.0
-offset_top = 88.0
-offset_right = 384.0
-offset_bottom = 288.0
+[node name="GoldLabel" type="RichTextLabel" parent="." unique_id=948733493]
+offset_top = 152.0
+offset_right = 120.0
+offset_bottom = 209.0
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[img=112]res://Assets/UI/goldIcon.png[/img]
-30"
+text = "[img=56]res://Assets/UI/goldIcon.png[/img] 30"
+scroll_active = false
 horizontal_alignment = 1
 
-[node name="SpeedrunTimer" type="Timer" parent="."]
+[node name="SpeedrunTimer" type="Timer" parent="." unique_id=889293904]
 
-[node name="SpeedrunLabel" type="Label" parent="."]
+[node name="SpeedrunLabel" type="Label" parent="." unique_id=666503923]
 offset_left = 16.0
-offset_top = 296.0
+offset_top = 184.0
 offset_right = 296.0
-offset_bottom = 392.0
+offset_bottom = 280.0
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 40
 text = "00:00:00"
 vertical_alignment = 1
 
-[node name="ThiefTimer" type="Timer" parent="."]
+[node name="ThiefTimer" type="Timer" parent="." unique_id=1277761456]
 wait_time = 5.0
 autostart = true
 
-[node name="OutOfFloorCharacters" type="Node" parent="."]
+[node name="OutOfFloorCharacters" type="Node" parent="." unique_id=2044210740]
 
-[node name="SoundManager" type="Node" parent="."]
+[node name="SoundManager" type="Node" parent="." unique_id=1500502277]
 script = ExtResource("15_lqehw")
 
-[node name="BGMusic" type="AudioStreamPlayer" parent="SoundManager"]
+[node name="BGMusic" type="AudioStreamPlayer" parent="SoundManager" unique_id=774599376]
 stream = ExtResource("10_stmio")
 autoplay = true
 
-[node name="SFX" type="Node" parent="SoundManager"]
+[node name="SFX" type="Node" parent="SoundManager" unique_id=1009187888]
 
-[node name="NewFloor" type="AudioStreamPlayer" parent="SoundManager/SFX"]
+[node name="NewFloor" type="AudioStreamPlayer" parent="SoundManager/SFX" unique_id=765062329]
 stream = ExtResource("9_0wmer")
 
-[node name="Steal" type="AudioStreamPlayer" parent="SoundManager/SFX"]
+[node name="Steal" type="AudioStreamPlayer" parent="SoundManager/SFX" unique_id=1383666441]
 stream = ExtResource("11_t20f0")
 
-[node name="Gold" type="AudioStreamPlayer" parent="SoundManager/SFX"]
+[node name="Gold" type="AudioStreamPlayer" parent="SoundManager/SFX" unique_id=1280971240]
 stream = ExtResource("12_diw7j")
 volume_db = 5.0
 
-[node name="Brick" type="AudioStreamPlayer" parent="SoundManager/SFX"]
+[node name="Brick" type="AudioStreamPlayer" parent="SoundManager/SFX" unique_id=1556831598]
 stream = ExtResource("11_4l48r")
 
-[node name="TabContainer" type="TabContainer" parent="."]
-custom_minimum_size = Vector2(382, 648)
-offset_left = 768.0
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1428112408]
+custom_minimum_size = Vector2(192, 324)
+offset_left = 392.0
+offset_right = 640.0
+offset_bottom = 360.0
 mouse_filter = 2
+theme = ExtResource("8_hphvt")
+theme_override_font_sizes/font_size = 20
 tab_alignment = 2
-current_tab = 0
-clip_tabs = false
+current_tab = 1
 all_tabs_in_front = true
 
-[node name="Residents" type="MarginContainer" parent="TabContainer"]
+[node name="Residents" type="MarginContainer" parent="TabContainer" unique_id=153931923]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 16
@@ -243,65 +293,59 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 metadata/_tab_index = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Residents"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Residents/ScrollContainer"]
-custom_minimum_size = Vector2(352, 576)
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Residents" unique_id=1758772816]
+custom_minimum_size = Vector2(176, 287.5)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 8
 
-[node name="BuilderButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
+[node name="BuilderButton" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=2030371048]
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
-text = "builder
-10 G"
+text = "Builder"
 
-[node name="MerchantButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
+[node name="MerchantButton" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=1760373703]
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
-text = "Merchant
-15 G"
+text = "Merchant"
 
-[node name="MasonButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
+[node name="MasonButton" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=2091759444]
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
-text = "Mason
-20 G"
+text = "Mason"
+expand_icon = true
 
-[node name="CarpenterButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
+[node name="CarpenterButton" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=737684533]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
-text = "Carpenter
-20 G"
+text = "Carpenter"
+expand_icon = true
 
-[node name="ShepherdButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-theme = ExtResource("8_hphvt")
-text = "Shepherd
-30 G"
-
-[node name="WarriorButton" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
+[node name="ShepherdButton" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=157242775]
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_hphvt")
-text = "Warrior
-30 G"
+text = "Shepherd"
+expand_icon = true
 
-[node name="SellDropbox" type="Button" parent="TabContainer/Residents/ScrollContainer/VBoxContainer"]
+[node name="WarriorButton" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=1051250511]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("8_hphvt")
+text = "Warrior"
+expand_icon = true
+
+[node name="SellDropbox" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=539380712]
 visible = false
-custom_minimum_size = Vector2(0, 112)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
@@ -309,16 +353,15 @@ disabled = true
 text = "SELL"
 script = ExtResource("19_hyppe")
 
-[node name="DropComponent" parent="TabContainer/Residents/ScrollContainer/VBoxContainer/SellDropbox" instance=ExtResource("19_ufc1y")]
+[node name="DropComponent" parent="TabContainer/Residents/VBoxContainer/SellDropbox" unique_id=1779151716 instance=ExtResource("19_ufc1y")]
 
-[node name="Area2D" type="Area2D" parent="TabContainer/Residents/ScrollContainer/VBoxContainer/SellDropbox"]
+[node name="Area2D" type="Area2D" parent="TabContainer/Residents/VBoxContainer/SellDropbox" unique_id=2121373780]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TabContainer/Residents/ScrollContainer/VBoxContainer/SellDropbox/Area2D"]
-position = Vector2(184, 57)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TabContainer/Residents/VBoxContainer/SellDropbox/Area2D" unique_id=884002820]
+position = Vector2(108, 21)
 shape = SubResource("RectangleShape2D_puaxa")
 
-[node name="Floors" type="MarginContainer" parent="TabContainer"]
-visible = false
+[node name="Floors" type="MarginContainer" parent="TabContainer" unique_id=1471429945]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -326,143 +369,150 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 metadata/_tab_index = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Floors"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Floors" unique_id=503179735]
 layout_mode = 2
 alignment = 1
 
-[node name="BrickLabel" type="RichTextLabel" parent="TabContainer/Floors/HBoxContainer"]
+[node name="BrickLabel" type="RichTextLabel" parent="TabContainer/Floors/HBoxContainer" unique_id=608658456]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(112, 64)
+custom_minimum_size = Vector2(64.605, 64)
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("8_hphvt")
+theme_override_constants/line_separation = 4
 theme_override_constants/outline_size = 15
-theme_override_constants/line_separation = 10
+theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
-text = "[b][color=RED][img=64]res://Assets/UI/brickIcon.png[/img] x2560"
+text = "[b][color=RED][img=32]res://Assets/UI/brickIcon.png[/img]
+x2560"
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="BuilderLabel" type="RichTextLabel" parent="TabContainer/Floors/HBoxContainer"]
+[node name="BuilderLabel" type="RichTextLabel" parent="TabContainer/Floors/HBoxContainer" unique_id=45388332]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(112, 64)
+custom_minimum_size = Vector2(64.605, 64)
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = 4
 theme_override_constants/outline_size = 15
-theme_override_constants/line_separation = 10
 bbcode_enabled = true
-text = "[b][color=RED][img=64]res://Assets/UI/ShopIcons/BuilderShop.png[/img] 
+text = "[b][color=RED][img=32]res://Assets/UI/ShopIcons/BuilderShop.png[/img]
 x9"
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="WoodLabel" type="RichTextLabel" parent="TabContainer/Floors/HBoxContainer"]
+[node name="WoodLabel" type="RichTextLabel" parent="TabContainer/Floors/HBoxContainer" unique_id=213588587]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(112, 64)
+custom_minimum_size = Vector2(64.605, 64)
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("8_hphvt")
+theme_override_constants/line_separation = 4
 theme_override_constants/outline_size = 15
-theme_override_constants/line_separation = 10
+theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
-text = "[b][color=RED][img=64]res://Assets/UI/woodIcon.png[/img] x2560"
+text = "[b][color=RED][img=32]res://Assets/UI/woodIcon.png[/img]
+x2560"
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="AllFloors" type="GridContainer" parent="TabContainer/Floors"]
+[node name="AllFloors" type="GridContainer" parent="TabContainer/Floors" unique_id=1084374163]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/h_separation = 96
-theme_override_constants/v_separation = 100
+theme_override_constants/h_separation = 16
 columns = 2
 
-[node name="BrickBasic" type="Button" parent="TabContainer/Floors/AllFloors"]
-custom_minimum_size = Vector2(128, 64)
+[node name="BrickBasic" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=140335057]
+custom_minimum_size = Vector2(90.65, 48.28)
 layout_mode = 2
 theme = ExtResource("8_hphvt")
+theme_override_font_sizes/font_size = 19
 text = "BRICK BASIC"
 autowrap_mode = 3
 
-[node name="WoodBasic" type="Button" parent="TabContainer/Floors/AllFloors"]
-custom_minimum_size = Vector2(128, 64)
+[node name="WoodBasic" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=633158177]
+custom_minimum_size = Vector2(90.65, 48.28)
 layout_mode = 2
 theme = ExtResource("8_hphvt")
+theme_override_font_sizes/font_size = 19
 text = "WOOD BASIC"
 autowrap_mode = 3
 
-[node name="Settings" type="MarginContainer" parent="TabContainer"]
+[node name="Settings" type="MarginContainer" parent="TabContainer" unique_id=1195950695]
 visible = false
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_bottom = 0
 script = ExtResource("24_8qx4t")
 metadata/_tab_index = 2
 
-[node name="HBoxContainer" type="BoxContainer" parent="TabContainer/Settings"]
+[node name="HBoxContainer" type="BoxContainer" parent="TabContainer/Settings" unique_id=2073225331]
 visible = false
 layout_mode = 2
 alignment = 2
 vertical = true
 
-[node name="BoxContainer" type="BoxContainer" parent="TabContainer/Settings/HBoxContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="TabContainer/Settings/HBoxContainer" unique_id=1240607066]
 layout_mode = 2
 alignment = 2
 
-[node name="CodeLabel" type="Label" parent="TabContainer/Settings/HBoxContainer/BoxContainer"]
+[node name="CodeLabel" type="Label" parent="TabContainer/Settings/HBoxContainer/BoxContainer" unique_id=2060730409]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 mouse_filter = 1
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CodeLine" type="LineEdit" parent="TabContainer/Settings/HBoxContainer/BoxContainer"]
+[node name="CodeLine" type="LineEdit" parent="TabContainer/Settings/HBoxContainer/BoxContainer" unique_id=345753005]
 custom_minimum_size = Vector2(184, 32)
 layout_mode = 2
 mouse_filter = 1
 placeholder_text = "Insert Code Here..."
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Settings"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Settings" unique_id=145891203]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="VolumeSliders" type="VBoxContainer" parent="TabContainer/Settings/HBoxContainer2"]
+[node name="VolumeSliders" type="VBoxContainer" parent="TabContainer/Settings/HBoxContainer2" unique_id=1803723321]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TopLabels" type="HBoxContainer" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders"]
+[node name="TopLabels" type="HBoxContainer" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders" unique_id=669839028]
 layout_mode = 2
+alignment = 1
 
-[node name="Music" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/TopLabels"]
-custom_minimum_size = Vector2(96, 0)
+[node name="Music" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/TopLabels" unique_id=476124192]
+custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 1
 text = "Music"
 horizontal_alignment = 1
 
-[node name="Sfx" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/TopLabels"]
-custom_minimum_size = Vector2(96, 0)
+[node name="Sfx" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/TopLabels" unique_id=518366199]
+custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_filter = 1
 text = "SFX"
 horizontal_alignment = 1
 
-[node name="Sliders" type="HBoxContainer" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders"]
+[node name="Sliders" type="HBoxContainer" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders" unique_id=1959222997]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
+alignment = 1
 
-[node name="MusicSlider" type="VSlider" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders"]
-custom_minimum_size = Vector2(96, 448)
+[node name="MusicSlider" type="VSlider" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders" unique_id=526537400]
+custom_minimum_size = Vector2(32, 191.12)
 layout_mode = 2
 mouse_filter = 1
 max_value = 1.0
@@ -471,8 +521,8 @@ value = 0.5
 tick_count = 5
 ticks_on_borders = true
 
-[node name="SfxSlider" type="VSlider" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders"]
-custom_minimum_size = Vector2(96, 448)
+[node name="SfxSlider" type="VSlider" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders" unique_id=2005010021]
+custom_minimum_size = Vector2(32, 191.12)
 layout_mode = 2
 mouse_filter = 1
 max_value = 1.0
@@ -481,108 +531,104 @@ value = 0.5
 tick_count = 5
 ticks_on_borders = true
 
-[node name="PercentLabels" type="HBoxContainer" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders"]
+[node name="PercentLabels" type="HBoxContainer" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders" unique_id=1345249946]
 layout_mode = 2
+theme_override_constants/separation = -59
 
-[node name="MusicPercent" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/PercentLabels"]
+[node name="MusicPercent" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/PercentLabels" unique_id=1114974955]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 mouse_filter = 1
 text = "100%"
 horizontal_alignment = 1
 
-[node name="SfxPercent" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/PercentLabels"]
+[node name="SfxPercent" type="Label" parent="TabContainer/Settings/HBoxContainer2/VolumeSliders/PercentLabels" unique_id=1342370033]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 mouse_filter = 1
 text = "100%"
 horizontal_alignment = 1
 
-[node name="ConsoleNotifications" type="VBoxContainer" parent="TabContainer/Settings/HBoxContainer2"]
+[node name="ConsoleNotifications" type="VBoxContainer" parent="TabContainer/Settings/HBoxContainer2" unique_id=1303433128]
 layout_mode = 2
-theme_override_constants/separation = 5
+theme_override_constants/separation = 0
 
-[node name="HideTimer" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-custom_minimum_size = Vector2(155, 80)
+[node name="HideTimer" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications" unique_id=135337366]
+custom_minimum_size = Vector2(103.095, 38.71)
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
 button_pressed = true
 text = "Show Speedrun Clock"
-alignment = 1
 autowrap_mode = 2
 
-[node name="GoldConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-custom_minimum_size = Vector2(155, 80)
+[node name="GoldConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications" unique_id=1692467389]
+custom_minimum_size = Vector2(103.095, 38.71)
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
 button_pressed = true
 text = "Notify when a Resident makes Gold"
-alignment = 1
 autowrap_mode = 2
 
-[node name="BrickConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-custom_minimum_size = Vector2(155, 80)
+[node name="BrickConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications" unique_id=1853228704]
+custom_minimum_size = Vector2(103.095, 38.71)
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
 button_pressed = true
 text = "Notify when a Resident makes Bricks"
-alignment = 1
 autowrap_mode = 2
 
-[node name="WoodConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-custom_minimum_size = Vector2(155, 80)
+[node name="WoodConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications" unique_id=440554069]
+custom_minimum_size = Vector2(103.095, 38.71)
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("8_hphvt")
 button_pressed = true
 text = "Notify when a Resident makes Wood"
-alignment = 1
 autowrap_mode = 2
 
-[node name="ThiefSteal" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-custom_minimum_size = Vector2(155, 80)
+[node name="ThiefSteal" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications" unique_id=1602740886]
+custom_minimum_size = Vector2(103.095, 38.71)
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
 button_pressed = true
 text = "Notify when a Thief steals"
-alignment = 1
 autowrap_mode = 2
 
-[node name="ThiefAppear" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-custom_minimum_size = Vector2(155, 80)
+[node name="ThiefAppear" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications" unique_id=888360523]
+custom_minimum_size = Vector2(103.095, 38.71)
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
 button_pressed = true
 text = "Notify when a Thief enters or exits a Floor"
-alignment = 1
 autowrap_mode = 2
 
-[node name="QuitButton" type="Button" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications"]
-custom_minimum_size = Vector2(64, 32)
+[node name="QuitButton" type="Button" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications" unique_id=1002546809]
+custom_minimum_size = Vector2(0, 30.56)
 layout_mode = 2
 size_flags_vertical = 8
 mouse_filter = 1
+theme_override_font_sizes/font_size = 17
 text = "Abandon Run"
 
 [connection signal="pressed" from="Tower/Floors/TopFloor/Button" to="." method="new_floor"]
 [connection signal="timeout" from="SpeedrunTimer" to="." method="_on_speedrun_timer_timeout"]
 [connection signal="timeout" from="ThiefTimer" to="." method="_on_thief_timer_timeout"]
-[connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/BuilderButton" to="." method="_on_builder_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/MerchantButton" to="." method="_on_merchant_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/MasonButton" to="." method="_on_mason_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/CarpenterButton" to="." method="_on_carpenter_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/ShepherdButton" to="." method="_on_shepherd_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/ScrollContainer/VBoxContainer/WarriorButton" to="." method="_on_warrior_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/BuilderButton" to="." method="_on_builder_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MerchantButton" to="." method="_on_merchant_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MasonButton" to="." method="_on_mason_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/CarpenterButton" to="." method="_on_carpenter_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/ShepherdButton" to="." method="_on_shepherd_button_pressed"]
+[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/WarriorButton" to="." method="_on_warrior_button_pressed"]
 [connection signal="pressed" from="TabContainer/Floors/AllFloors/BrickBasic" to="." method="_on_brick_basic_pressed"]
 [connection signal="pressed" from="TabContainer/Floors/AllFloors/WoodBasic" to="." method="_on_wood_basic_pressed"]
 [connection signal="text_changed" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_code_textbox_text_changed"]

@@ -66,7 +66,7 @@ func move():
 
 func land_on_floor(f : Floor):
 	z_index = 1
-	scale = Vector2(2,2)
+	scale = Vector2(1,1)
 	$AnimatedSprite2D.stop()
 	currentFloor = f
 	dragging = false
@@ -103,6 +103,9 @@ func get_wood() -> int:
 func get_gold() -> int:
 	return 0
 
+func get_knowledge() -> int:
+	return 0
+	
 func get_hubris() -> int:
 	return 0
 

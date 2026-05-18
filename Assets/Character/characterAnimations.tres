@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=31 format=3 uid="uid://df0ew23irc148"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://df0ew23irc148"]
 
 [ext_resource type="Texture2D" uid="uid://d0obfbd4bwdi" path="res://Assets/Character/AngelSpritesheet2.png" id="1_62nr4"]
 [ext_resource type="Texture2D" uid="uid://cepq7npd3ehuw" path="res://Assets/Character/BuilderSpritesheet2.png" id="2_fgq60"]
