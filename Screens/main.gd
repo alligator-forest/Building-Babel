@@ -1,5 +1,8 @@
 extends Node2D
 
+@export_category("Debug Tools")
+@export var usingDebug : bool = false
+
 @export_category("Spawners")
 @export var BrickBasic : PackedScene
 @export var WoodBasic : PackedScene
@@ -40,6 +43,13 @@ var resources : Dictionary = {
 }
 
 @export var consoleNotifs : Dictionary[String,Button]
+#  = {
+	#"gold" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/GoldConsole,
+	#"bricks" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/BrickConsole,
+	#"wood" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/WoodConsole,
+	#"steal" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefSteal,
+	#"thief" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefAppear,
+#}
 
 func _ready():
 	update()
@@ -47,7 +57,8 @@ func _ready():
 
 func _physics_process(_delta):
 	if(%Floors.get_child_count() > 5):
-		$Background.position.y =  - 760 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical - 640
+		$Background.position.y =  -784 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical
+		print($Background.position.y)
 	
 	if(Input.is_action_just_pressed("click_press")):
 		for f in range(1,%Floors.get_child_count()):
@@ -74,9 +85,9 @@ func _physics_process(_delta):
 			var closestDrop = currChar.get_current_floor()
 			var floors = currChar.get_floors()
 			for f in floors:
-				var distance = currChar.get_dragging_position().distance_to(f.get_global_center())
-				if(distance < currChar.get_dragging_position().distance_to(closestDrop.get_global_center())):
+				if(f.mouseWithin):
 					closestDrop = f
+					break
 			if(closestDrop is Floor):
 				closestDrop.add_character(currChar)
 			else: #makes the assumption that if closestDrop is not a floor, it (currently) MUST be a SellBox
@@ -103,9 +114,9 @@ func log_in_console(event : int, c : Character = null, resourceVal : int = 0, re
 			$Console.text = "All residents' hubris has increased\n" + $Console.text
 
 func update():
-	$BrickLabel.text = str("[img=48x48]res://Assets/UI/brickIcon.png[/img] ",resources["bricks"])
-	$WoodLabel.text = str("[img=48x48]res://Assets/UI/woodIcon.png[/img] ",resources["wood"])
-	$GoldLabel.text = str("[img=48x48]res://Assets/UI/goldIcon.png[/img] ",resources["gold"])
+	$BrickLabel.text = str("[img=56]res://Assets/UI/brickIcon.png[/img] ",resources["bricks"])
+	$WoodLabel.text = str("[img=56]res://Assets/UI/woodIcon.png[/img] ",resources["wood"])
+	$GoldLabel.text = str("[img=56]res://Assets/UI/goldIcon.png[/img] ",resources["gold"])
 	$GodBarLabel.text = str("[wave][color=yellow]HUBRIS x",snapped(hubrisMult,0.1))
 	tween = create_tween()
 	tween.tween_property($GodBar,"value",resources["hubris"],0.5)
@@ -260,7 +271,12 @@ func _on_thief_timer_timeout() -> void:
 func _input(event: InputEvent) -> void:
 	for i in range(1,10):
 		if(event.is_action_pressed(str(i))):
-			$Tower.scroll_vertical = 128 * (7 - i)
+			$Tower.scroll_vertical = 64 * (7 - i)
+	if(usingDebug and event.is_action_pressed("debug")):
+		var dict = {"gold" : 999, "wood" : 999, "bricks" : 999}
+		add_resources(dict)
+		for i in range(5):
+			buy_character(Builder.new(), builders)
 
 func _on_speedrun_timer_timeout() -> void:
 	seconds += 1
@@ -280,3 +296,7 @@ func _on_brick_basic_pressed() -> void:
 
 func _on_wood_basic_pressed() -> void:
 	new_floor("wood",WoodBasic)
+
+
+func _on_area_2d_mouse_entered() -> void:
+	pass # Replace with function body.

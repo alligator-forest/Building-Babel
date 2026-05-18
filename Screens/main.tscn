@@ -78,6 +78,7 @@ size = Vector2(216, 44)
 [node name="Main" type="Node2D" unique_id=582439884 node_paths=PackedStringArray("consoleNotifs")]
 process_mode = 1
 script = ExtResource("1_eqxpj")
+usingDebug = true
 BrickBasic = ExtResource("2_d85bv")
 WoodBasic = ExtResource("3_l5otw")
 builders = ExtResource("4_r1sbw")
@@ -92,6 +93,7 @@ consoleNotifs = {
 "bricks": NodePath("TabContainer/Settings/HBoxContainer2/ConsoleNotifications/BrickConsole"),
 "gold": NodePath("TabContainer/Settings/HBoxContainer2/ConsoleNotifications/GoldConsole"),
 "steal": NodePath("TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefSteal"),
+"thief": NodePath("TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefAppear"),
 "wood": NodePath("TabContainer/Settings/HBoxContainer2/ConsoleNotifications/WoodConsole")
 }
 
@@ -107,11 +109,9 @@ expand_mode = 4
 stretch_mode = 4
 
 [node name="Console" type="RichTextLabel" parent="." unique_id=557689387]
-visible = false
-offset_left = 16.0
-offset_top = 400.0
-offset_right = 376.0
-offset_bottom = 648.0
+offset_top = 239.0
+offset_right = 192.0
+offset_bottom = 360.0
 mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -191,53 +191,54 @@ autowrap_mode = 0
 horizontal_alignment = 1
 
 [node name="BrickLabel" type="RichTextLabel" parent="." unique_id=206632998]
+offset_left = 8.0
 offset_top = 40.0
-offset_right = 104.0
-offset_bottom = 96.0
+offset_right = 128.0
+offset_bottom = 88.0
 mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[img=56]res://Assets/UI/brickIcon.png[/img] 0"
 scroll_active = false
 autowrap_mode = 0
-horizontal_alignment = 1
 
 [node name="WoodLabel" type="RichTextLabel" parent="." unique_id=1060918055]
+offset_left = 8.0
 offset_top = 91.0
-offset_right = 104.0
-offset_bottom = 147.0
+offset_right = 128.0
+offset_bottom = 136.0
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[img=56]res://Assets/UI/woodIcon.png[/img] 0"
 scroll_active = false
-horizontal_alignment = 1
 
 [node name="GoldLabel" type="RichTextLabel" parent="." unique_id=948733493]
-offset_top = 152.0
-offset_right = 120.0
-offset_bottom = 209.0
+offset_left = 8.0
+offset_top = 144.0
+offset_right = 128.0
+offset_bottom = 192.0
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[img=56]res://Assets/UI/goldIcon.png[/img] 30"
 scroll_active = false
-horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SpeedrunTimer" type="Timer" parent="." unique_id=889293904]
 
 [node name="SpeedrunLabel" type="Label" parent="." unique_id=666503923]
-offset_left = 16.0
-offset_top = 184.0
-offset_right = 296.0
-offset_bottom = 280.0
+offset_left = 8.0
+offset_top = 192.0
+offset_right = 120.0
+offset_bottom = 241.0
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 40
 text = "00:00:00"
@@ -280,11 +281,10 @@ mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 20
 tab_alignment = 2
-current_tab = 1
+current_tab = 0
 all_tabs_in_front = true
 
 [node name="Residents" type="MarginContainer" parent="TabContainer" unique_id=153931923]
-visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 16
@@ -362,6 +362,7 @@ position = Vector2(108, 21)
 shape = SubResource("RectangleShape2D_puaxa")
 
 [node name="Floors" type="MarginContainer" parent="TabContainer" unique_id=1471429945]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -629,6 +630,8 @@ text = "Abandon Run"
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/CarpenterButton" to="." method="_on_carpenter_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/ShepherdButton" to="." method="_on_shepherd_button_pressed"]
 [connection signal="pressed" from="TabContainer/Residents/VBoxContainer/WarriorButton" to="." method="_on_warrior_button_pressed"]
+[connection signal="mouse_entered" from="TabContainer/Residents/VBoxContainer/SellDropbox/Area2D" to="TabContainer/Residents/VBoxContainer/SellDropbox" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="TabContainer/Residents/VBoxContainer/SellDropbox/Area2D" to="TabContainer/Residents/VBoxContainer/SellDropbox" method="_on_area_2d_mouse_exited"]
 [connection signal="pressed" from="TabContainer/Floors/AllFloors/BrickBasic" to="." method="_on_brick_basic_pressed"]
 [connection signal="pressed" from="TabContainer/Floors/AllFloors/WoodBasic" to="." method="_on_wood_basic_pressed"]
 [connection signal="text_changed" from="TabContainer/Settings/HBoxContainer/BoxContainer/CodeLine" to="TabContainer/Settings" method="_on_code_textbox_text_changed"]

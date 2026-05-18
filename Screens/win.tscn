@@ -1,35 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmqbb26365ban"]
+[gd_scene format=3 uid="uid://bmqbb26365ban"]
 
 [ext_resource type="Texture2D" uid="uid://dlhh558nl26ea" path="res://Assets/Screens/BabelWin.png" id="1_gqb67"]
 [ext_resource type="Script" uid="uid://k8antprk22h" path="res://Screens/win.gd" id="1_plnjp"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_8nlkf"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=1079179522]
 script = ExtResource("1_plnjp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(4.5, 5.0625)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1822754382]
+position = Vector2(320, 180.00002)
+scale = Vector2(2.5, 2.8125002)
 texture = ExtResource("1_gqb67")
 
-[node name="BibleQuote" type="Label" parent="."]
-offset_left = 24.0
-offset_top = 544.0
-offset_right = 1128.0
-offset_bottom = 633.0
+[node name="BibleQuote" type="Label" parent="." unique_id=2138042643]
+offset_left = 8.0
+offset_top = 296.0
+offset_right = 250.0
+offset_bottom = 349.0
 theme = ExtResource("2_8nlkf")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 20
 text = "\"The LORD said, 'what the Hell.' \"
 -Genesis 7:8"
 
-[node name="YouWin" type="RichTextLabel" parent="."]
-offset_left = 376.0
-offset_top = 264.0
-offset_right = 1080.0
-offset_bottom = 512.0
+[node name="YouWin" type="RichTextLabel" parent="." unique_id=1966784630]
+offset_left = 288.0
+offset_top = 16.0
+offset_right = 624.0
+offset_bottom = 224.0
 theme = ExtResource("2_8nlkf")
-theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center][wave][color=BLACK]YOU WIN!
 You reached heaven in "
@@ -37,7 +37,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=466716236]
 visible = false
 offset_left = 896.0
 offset_top = 536.0
@@ -46,11 +46,11 @@ offset_bottom = 632.0
 theme = ExtResource("2_8nlkf")
 text = "Return"
 
-[node name="LineEdit" type="LineEdit" parent="."]
-offset_left = 896.0
-offset_top = 536.0
-offset_right = 1136.0
-offset_bottom = 632.0
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1486783873]
+offset_left = 496.0
+offset_top = 296.0
+offset_right = 624.0
+offset_bottom = 348.0
 theme = ExtResource("2_8nlkf")
 placeholder_text = "Name"
 alignment = 1
