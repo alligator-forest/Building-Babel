@@ -1,0 +1,13 @@
+[gd_resource type="Theme" format=3 uid="uid://bo064dbmg8wij"]
+
+[ext_resource type="StyleBox" uid="uid://cr3lynu7u27pt" path="res://Assets/UI/TooltipOuter.tres" id="1_mptg8"]
+[ext_resource type="FontFile" uid="uid://c2grr826h7mau" path="res://Assets/UI/pixel-roman.otf" id="1_ndk5w"]
+[ext_resource type="StyleBox" uid="uid://thdx7u17dlig" path="res://Assets/UI/TooltipInner.tres" id="2_2lwe7"]
+
+[resource]
+default_font = ExtResource("1_ndk5w")
+AcceptDialog/styles/embedded_border = ExtResource("1_mptg8")
+AcceptDialog/styles/embedded_unfocused_border = ExtResource("1_mptg8")
+AcceptDialog/styles/panel = ExtResource("2_2lwe7")
+Label/constants/paragraph_spacing = 5
+Label/font_sizes/font_size = 16

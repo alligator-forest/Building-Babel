@@ -16,9 +16,8 @@ var STARTNAMES = ["___","___","___","___","___","___","___","___","___","___",]
 
 @export var consoleNotifs : Dictionary = {
 	"timer" : true,
-	"gold" : true,
-	"bricks" : true,
-	"wood" : true,
+	"tooltip" : true,
+	"resource" : true,
 	"steal" : true,
 	"thief" : true,
 }

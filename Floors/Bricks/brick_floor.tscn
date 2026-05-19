@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://br8j0dbxk0gmh"]
 
 [ext_resource type="Texture2D" uid="uid://dpd5p583xjif5" path="res://Assets/Floor/FloorBrick.png" id="1_2lidj"]
-[ext_resource type="Script" uid="uid://dauv2hsvvf0he" path="res://Floors/brick_floor.gd" id="2_4xn7w"]
+[ext_resource type="Script" uid="uid://dauv2hsvvf0he" path="res://Floors/Bricks/brick_floor.gd" id="2_4xn7w"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="9_gp2pl"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="10_2ipyc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xn7w"]
-size = Vector2(170, 50)
+size = Vector2(192.17883, 63.507317)
 
 [node name="BrickFloor" type="TextureRect" unique_id=1076295142]
 custom_minimum_size = Vector2(192, 64)
@@ -37,7 +37,7 @@ position = Vector2(0, 64)
 [node name="Area2D" type="Area2D" parent="." unique_id=1719993459]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=652991619]
-position = Vector2(107.17883, 38.507317)
+position = Vector2(96.08942, 31.753658)
 shape = SubResource("RectangleShape2D_4xn7w")
 
 [node name="DropComponent" parent="." unique_id=812106381 instance=ExtResource("10_2ipyc")]

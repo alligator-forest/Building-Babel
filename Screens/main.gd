@@ -21,17 +21,20 @@ const THIEFCHANCE : int = 2 # % chance a thief will spawn
 const FLOORSTOWIN : int = 10 #the number of floors you need to win (excludeing the top floor)
 const HUBRISINCREASE : int = 600 #the number of secs it takes to increase hubrisMult
 var tween : Tween
-var brickCounts = [10,30,70,150,260,400,650,1000,1500]
+var resourceCounts = [10,30,70,150,260,400,650,1000,1500]
+var brickCount : int = 0
+var woodCount : int = 0
 var numBuilders = 0
 var hubrisMult : float = 1.0
 var seconds : int = 0
 enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT, HUBRIS_INCREASE}
 
 var currChar : Character = null
+var closestDrop : Floor = null
 
 var neededResources : Dictionary = {
-	"bricks" : brickCounts[0],
-	"wood" : brickCounts[0],
+	"bricks" : resourceCounts[0],
+	"wood" : resourceCounts[0],
 	"builders" : 1,
 }
 
@@ -43,22 +46,17 @@ var resources : Dictionary = {
 }
 
 @export var consoleNotifs : Dictionary[String,Button]
-#  = {
-	#"gold" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/GoldConsole,
-	#"bricks" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/BrickConsole,
-	#"wood" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/WoodConsole,
-	#"steal" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefSteal,
-	#"thief" : $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefAppear,
-#}
 
 func _ready():
 	update()
 	$TabContainer.get_tab_bar().mouse_filter = 1 #TabContainer makes a TabBar child upon running that cannot be seen from the Local node tree. This MUST be made to mouse filter Propogate Up in order to remove the bug where mouse_exit does not get run on residents when they finish dragging!!!
+	var tabTooltips = ["Buy and sell Residents for the Tower!", "Build new floors with resources! 10 Floors to win!", "Customize the volume, console, and more!"]
+	for i in $TabContainer.get_tab_count():
+		$TabContainer.get_tab_bar().set_tab_tooltip(i, tabTooltips[i])
 
 func _physics_process(_delta):
 	if(%Floors.get_child_count() > 5):
 		$Background.position.y =  -784 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical
-		print($Background.position.y)
 	
 	if(Input.is_action_just_pressed("click_press")):
 		for f in range(1,%Floors.get_child_count()):
@@ -82,9 +80,8 @@ func _physics_process(_delta):
 			currChar.move()
 			
 		if(Input.is_action_just_released("click_press")):
-			var closestDrop = currChar.get_current_floor()
-			var floors = currChar.get_floors()
-			for f in floors:
+			closestDrop = currChar.get_current_floor()
+			for f in %Floors.get_children().slice(1):
 				if(f.mouseWithin):
 					closestDrop = f
 					break
@@ -99,7 +96,7 @@ func _physics_process(_delta):
 func log_in_console(event : int, c : Character = null, resourceVal : int = 0, resourceName : String = ""):
 	match event:
 		console_logs.GAIN_RESOURCE:
-			if(consoleNotifs[resourceName].button_pressed):
+			if(consoleNotifs["resource"].button_pressed):
 				$Console.text = str(str(c).to_pascal_case()," gained ",resourceVal," ",resourceName) + "\n" + $Console.text
 		console_logs.LOSE_RESOURCE:
 			if(consoleNotifs["steal"].button_pressed):
@@ -133,6 +130,7 @@ func update():
 	newFloorWoodLabel.text += "[b][img=32]res://Assets/UI/woodIcon.png[/img]\nx" + str(neededResources["wood"])
 	
 	if($GodBar.value >= 99):
+		SAVEOBJECT._save_data()
 		get_tree().change_scene_to_file("res://Screens/game_over.tscn")
 
 func new_floor(type : String, fLoader):
@@ -146,14 +144,19 @@ func new_floor(type : String, fLoader):
 		#win condition
 		if(%Floors.get_child_count() - 1 >= FLOORSTOWIN):
 			SCOREKEEPER.set_score(seconds)
+			SAVEOBJECT._save_data()
 			get_tree().change_scene_to_file("res://Screens/win.tscn")
 		else:
 			hubrisMult += 0.125
-			neededResources[type] = brickCounts[%Floors.get_child_count()-2]
+			if(type == "bricks"):
+				brickCount += 1
+				neededResources["bricks"] = resourceCounts[brickCount]
+			else:
+				woodCount += 1
+				neededResources["wood"] = resourceCounts[woodCount]
 			neededResources["builders"] += 1
 			play_effect("new floor")
 			update()
-		
 
 func _on_character_timer_timeout(c : Character):
 	var r : Dictionary 
@@ -296,7 +299,3 @@ func _on_brick_basic_pressed() -> void:
 
 func _on_wood_basic_pressed() -> void:
 	new_floor("wood",WoodBasic)
-
-
-func _on_area_2d_mouse_entered() -> void:
-	pass # Replace with function body.
