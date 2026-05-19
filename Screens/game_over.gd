@@ -1,10 +1,10 @@
 extends Node2D
 
-var languages := ["Fin del Juego","Kraj igre","Jeu terminé","Vége a játéknak","Игра закончена","Oyun bitti","Fim de jogo","Konec igre","Game Over"]
+var languages : Array[String] = ["Fin del kuego","Kraj igre","Jeu terminé","Vége a játéknak","Игра закончена","Oyun bitti","Fim de jogo","Konec igre","Game over"]
 
 var index := 0
 func _on_timer_timeout():
-	$GameOver.text = languages[index]
+	$GameOver.text = languages[index].capitalize()
 	index = (index + 1) % languages.size()
 
 func _on_button_pressed():

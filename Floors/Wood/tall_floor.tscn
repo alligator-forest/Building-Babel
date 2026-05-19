@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dxypj77gdl77y"]
+
+[ext_resource type="Texture2D" uid="uid://2m8pqef2ahkq" path="res://Assets/Floor/FloorTall.png" id="1_vcafx"]
+[ext_resource type="Script" uid="uid://6ati0dpr68iq" path="res://Floors/floor.gd" id="2_6gsoe"]
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="3_gocay"]
+[ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="4_blng0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcafx"]
+size = Vector2(96, 64)
+
+[node name="TallFloor" type="TextureRect" unique_id=1065232683]
+custom_minimum_size = Vector2(96, 64)
+offset_right = 96.0
+offset_bottom = 64.0
+pivot_offset = Vector2(128, 64)
+mouse_filter = 2
+texture = ExtResource("1_vcafx")
+expand_mode = 5
+script = ExtResource("2_6gsoe")
+floorIndex = 4
+value = 2
+
+[node name="Label" type="Label" parent="." unique_id=184282321]
+layout_mode = 0
+offset_left = 11.0
+offset_right = 35.0
+offset_bottom = 8.0
+theme = ExtResource("3_gocay")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 6
+text = "Floor 1: 0/5"
+vertical_alignment = 1
+
+[node name="Characters" type="Node2D" parent="." unique_id=33505100]
+position = Vector2(0, 64)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1802870588]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1988652922]
+position = Vector2(48, 32)
+shape = SubResource("RectangleShape2D_vcafx")
+
+[node name="DropComponent" parent="." unique_id=79973701 instance=ExtResource("4_blng0")]
+
+[connection signal="child_order_changed" from="Characters" to="." method="_on_characters_child_order_changed"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

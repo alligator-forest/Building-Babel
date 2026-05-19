@@ -3,9 +3,13 @@ extends Node2D
 @export_category("Debug Tools")
 @export var usingDebug : bool = false
 
-@export_category("Spawners")
+@export_category("Floors")
 @export var BrickBasic : PackedScene
 @export var WoodBasic : PackedScene
+@export var BrickWide : PackedScene
+@export var WoodTall : PackedScene
+
+@export_category("Residents")
 @export var builders: PackedScene
 @export var merchants : PackedScene
 @export var masons: PackedScene
@@ -24,6 +28,7 @@ var resourceCounts = [10,30,70,150,260,400,650,1000,1500]
 var brickCount : int = 0
 var woodCount : int = 0
 var numBuilders = 0
+var totalFloors : int = 0
 var hubrisMult : float = 1.0
 var seconds : int = 0
 enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT, HUBRIS_INCREASE}
@@ -54,8 +59,8 @@ func _ready():
 		$TabContainer.get_tab_bar().set_tab_tooltip(i, tabTooltips[i])
 
 func _physics_process(_delta):
-	if(%Floors.get_child_count() > 5):
-		$Background.position.y =  -784 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical
+	if(totalFloors >= 5):
+		$Background.position.y =  -352 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical
 	
 	if(Input.is_action_just_pressed("click_press")):
 		for f in range(1,%Floors.get_child_count()):
@@ -97,16 +102,16 @@ func log_in_console(event : int, c : Character = null, resourceVal : int = 0, re
 	match event:
 		console_logs.GAIN_RESOURCE:
 			if(consoleNotifs["resource"].button_pressed):
-				$Console.text = str(str(c).to_pascal_case()," gained ",resourceVal," ",resourceName) + "\n" + $Console.text
+				$Console.text = str(c.type," gained ",resourceVal," ",resourceName) + "\n" + $Console.text
 		console_logs.LOSE_RESOURCE:
 			if(consoleNotifs["steal"].button_pressed):
-				$Console.text = str(str(c).to_pascal_case(), " stole ",abs(resourceVal), " ",resourceName) + "\n" + $Console.text
+				$Console.text = str(c.type, " stole ",abs(resourceVal), " ",resourceName) + "\n" + $Console.text
 		console_logs.THIEF_ENTER:
 			if(consoleNotifs["thief"].button_pressed):
-				$Console.text = str(str(c).to_pascal_case(), " entered ",c.get_current_floor()) + "\n" + $Console.text
+				$Console.text = str(c.type, " entered ",c.get_current_floor()) + "\n" + $Console.text
 		console_logs.THIEF_EXIT:
 			if(consoleNotifs["thief"].button_pressed):
-				$Console.text = str(str(c).to_pascal_case(), " left ",c.get_current_floor()) + "\n" + $Console.text
+				$Console.text = str(c.type, " left ",c.get_current_floor()) + "\n" + $Console.text
 		console_logs.HUBRIS_INCREASE:
 			$Console.text = "All residents' hubris has increased\n" + $Console.text
 
@@ -136,13 +141,14 @@ func update():
 func new_floor(type : String, fLoader):
 	if(resources[type] >= neededResources[type] and numBuilders >= neededResources["builders"]):
 		resources[type] -= neededResources[type]
-		var tier = fLoader.instantiate()
+		var tier : Floor = fLoader.instantiate()
 		tier.change_name("Floor " + str(%Floors.get_child_count()))
+		totalFloors += tier.value
 		%Floors.add_child(tier)
 		%Floors.move_child(tier,1)
-		
+		log_in_console(console_logs.HUBRIS_INCREASE)
 		#win condition
-		if(%Floors.get_child_count() - 1 >= FLOORSTOWIN):
+		if(totalFloors >= FLOORSTOWIN):
 			SCOREKEEPER.set_score(seconds)
 			SAVEOBJECT._save_data()
 			get_tree().change_scene_to_file("res://Screens/win.tscn")
@@ -285,7 +291,7 @@ func _on_speedrun_timer_timeout() -> void:
 	$SpeedrunLabel.text = SCOREKEEPER.format_time(seconds)
 	#if(hubrisMult < 1 + floor(seconds/HUBRISINCREASE)):
 		#hubrisMult += 1.0
-		#log_in_console(console_logs.HUBRIS_INCREASE)
+		#
 		#update()
 
 func _on_hide_timer_pressed() -> void:
@@ -298,3 +304,9 @@ func _on_brick_basic_pressed() -> void:
 
 func _on_wood_basic_pressed() -> void:
 	new_floor("wood",WoodBasic)
+
+func _on_brick_wide_pressed() -> void:
+	new_floor("bricks", BrickWide)
+
+func _on_wood_tall_pressed() -> void:
+	new_floor("wood", WoodTall)
