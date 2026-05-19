@@ -12,6 +12,7 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_fq4ci")
+type = "Builder"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1574025421]
 position = Vector2(0, -18)

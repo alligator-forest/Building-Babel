@@ -3,8 +3,9 @@ class_name Floor
 
 @export var floorName : String
 @export var floorIndex : int #odd for bricks, even for wood
-const LEFT : int = 34
-const RIGHT : int = 178
+@export var value : int = 1 #the number of floors this one floor counts for!
+const LEFT : int = 17
+const RIGHT : int = 89
 var numChars : int = 0
 @export var maxChars : int = 5
 var mouseWithin : bool = false

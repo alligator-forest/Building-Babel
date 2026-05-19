@@ -11,6 +11,7 @@ size = Vector2(26, 32)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ntd7p")
+type = "Carpenter"
 resources = Array[String](["wood"])
 minResource = 1
 maxResource = 7

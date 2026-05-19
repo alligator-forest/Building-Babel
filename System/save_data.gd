@@ -7,7 +7,7 @@ const SAVE_PATH := "user://savegame.save"
 var STARTMUSICVOLUME = 0.5
 var STARTSFXVOLUME = 0.5
 var STARTSCORES = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
-var STARTNAMES = ["___","___","___","___","___","___","___","___","___","___",]
+var STARTNAMES = ["---","---","---","---","---","---","---","---","---","---",]
 
 @export var musicVolume : float = STARTMUSICVOLUME #linear volume, between 0 and 200
 @export var sfxVolume : float = STARTSFXVOLUME #linear volume, between 0 and 200

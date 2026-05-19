@@ -3,9 +3,10 @@ class_name Character
 
 signal add_resource(node : Character)
 
+@export var type : String = ""
 @onready var rng := RandomNumberGenerator.new()
 @onready var tween : Tween = null
-const VELOCITY = 30
+const VELOCITY = 20
 var draggable = true
 var dragging = false
 var mouseWithin : bool = false
@@ -66,14 +67,14 @@ func prepare_drag() -> void:
 	if(tween != null):
 		tween.pause()
 	dragging = true
-	scale = Vector2(3,3)
+	$AnimatedSprite2D.scale = Vector2(1.5,1.5)
 
 func move():
 	global_position = get_global_mouse_position() - offset
 
 func land_on_floor(f : Floor):
 	z_index = 1
-	scale = Vector2(1,1)
+	$AnimatedSprite2D.scale = Vector2(1,1)
 	$AnimatedSprite2D.stop()
 	currentFloor = f
 	dragging = false

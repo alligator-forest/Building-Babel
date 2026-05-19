@@ -10,6 +10,7 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("1_tj37m")
+type = "Thief"
 resources = Array[String](["gold", "bricks", "wood"])
 minResource = -10
 maxResource = -5

@@ -19,7 +19,7 @@ func _ready() -> void:
 				$Names.text += names[i] + "\n"
 		else:
 			$Scores.text += "--:--:--\n"
-			$Names.text += "___\n"
+			$Names.text += "---\n"
 
 
 func _on_button_pressed() -> void:

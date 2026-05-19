@@ -1,7 +1,7 @@
 extends Node
 
 var score : int = -1 #the most recent score achieved, in seconds
-var scorename : String = "___" #the most recent name, added when you win a run
+var scorename : String = "---" #the most recent name, added when you win a run
 
 func set_score(s : int) -> void:
 	score = s
