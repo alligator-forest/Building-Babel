@@ -67,14 +67,14 @@ func prepare_drag() -> void:
 	if(tween != null):
 		tween.pause()
 	dragging = true
-	$AnimatedSprite2D.scale = Vector2(1.5,1.5)
+	$AnimatedSprite2D.scale = Vector2(4,4)
 
 func move():
 	global_position = get_global_mouse_position() - offset
 
 func land_on_floor(f : Floor):
 	z_index = 1
-	$AnimatedSprite2D.scale = Vector2(1,1)
+	$AnimatedSprite2D.scale = Vector2(2,2)
 	$AnimatedSprite2D.stop()
 	currentFloor = f
 	dragging = false

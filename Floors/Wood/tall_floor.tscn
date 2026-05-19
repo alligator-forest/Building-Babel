@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="4_blng0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcafx"]
-size = Vector2(96, 64)
+size = Vector2(192, 127)
 
 [node name="TallFloor" type="TextureRect" unique_id=1065232683]
-custom_minimum_size = Vector2(96, 64)
+custom_minimum_size = Vector2(192, 128)
 offset_right = 96.0
 offset_bottom = 64.0
 pivot_offset = Vector2(128, 64)
@@ -20,24 +20,26 @@ script = ExtResource("2_6gsoe")
 floorIndex = 4
 value = 2
 
-[node name="Label" type="Label" parent="." unique_id=184282321]
+[node name="Label" type="Label" parent="." unique_id=1911366645]
 layout_mode = 0
-offset_left = 11.0
-offset_right = 35.0
-offset_bottom = 8.0
+offset_left = 24.0
+offset_right = 120.0
+offset_bottom = 15.0
 theme = ExtResource("3_gocay")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 6
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 12
 text = "Floor 1: 0/5"
 vertical_alignment = 1
 
 [node name="Characters" type="Node2D" parent="." unique_id=33505100]
-position = Vector2(0, 64)
+position = Vector2(0, 128)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1802870588]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1988652922]
-position = Vector2(48, 32)
+position = Vector2(96, 64.5)
 shape = SubResource("RectangleShape2D_vcafx")
 
 [node name="DropComponent" parent="." unique_id=79973701 instance=ExtResource("4_blng0")]

@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="3_0v6cn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f28eb"]
-size = Vector2(192, 64)
+size = Vector2(192, 62)
 
 [node name="WoodFloor" type="TextureRect" unique_id=1065232683]
 custom_minimum_size = Vector2(192, 64)
-offset_top = -64.0
 offset_right = 192.0
+offset_bottom = 64.0
 pivot_offset = Vector2(128, 64)
 mouse_filter = 2
 texture = ExtResource("1_g0e30")
@@ -37,7 +37,7 @@ position = Vector2(0, 64)
 [node name="Area2D" type="Area2D" parent="." unique_id=1802870588]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1988652922]
-position = Vector2(96, 32)
+position = Vector2(96, 33)
 shape = SubResource("RectangleShape2D_f28eb")
 
 [node name="DropComponent" parent="." unique_id=79973701 instance=ExtResource("3_0v6cn")]

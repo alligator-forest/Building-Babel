@@ -60,7 +60,7 @@ func _ready():
 
 func _physics_process(_delta):
 	if(totalFloors >= 5):
-		$Background.position.y =  -352 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical
+		$Background.position.y =  -704 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical
 	
 	if(Input.is_action_just_pressed("click_press")):
 		for f in range(1,%Floors.get_child_count()):

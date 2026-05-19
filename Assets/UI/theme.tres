@@ -8,81 +8,57 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2rk7"]
 bg_color = Color(0.690196, 0.419608, 0.337255, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sas17"]
 bg_color = Color(0.74902, 0.47451, 0.345098, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-corner_detail = 4
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxce2"]
 bg_color = Color(0.63, 0.35784, 0.3276, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sk3jv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t3oq6"]
-content_margin_left = 4.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_keseg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5u1tl"]
-content_margin_left = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qw6d"]
 bg_color = Color(0.74902, 0.47451, 0.345098, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3oq6"]
-bg_color = Color(0.96, 0.70368, 0.105600014, 0.3647059)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-corner_detail = 4
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5c4tk"]
 bg_color = Color(0.956863, 0.705882, 0.105882, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3oq6"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.19, 0.1748, 0.18239999, 0.7254902)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
 corner_detail = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_keseg"]
-bg_color = Color(0.1882353, 0.17254902, 0.18039216, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.3529412, 0.3254902, 0.3254902, 0.7254902)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
 corner_detail = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5u1tl"]
-content_margin_left = 4.0
-content_margin_right = 4.0
-bg_color = Color(0.49019608, 0.4392157, 0.44313726, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_detail = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejlxd"]
-content_margin_left = 4.0
-content_margin_right = 4.0
-bg_color = Color(0.3529412, 0.3254902, 0.3254902, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_detail = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a67o8"]
-content_margin_left = 4.0
-content_margin_right = 4.0
-bg_color = Color(0.1882353, 0.17254902, 0.18039216, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.49019608, 0.4392157, 0.44313726, 0.7254902)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
 corner_detail = 4
 
 [resource]
@@ -98,24 +74,25 @@ Button/styles/focus = SubResource("StyleBoxEmpty_0qw6d")
 Button/styles/hover = SubResource("StyleBoxFlat_o2rk7")
 Button/styles/normal = SubResource("StyleBoxFlat_sas17")
 Button/styles/pressed = SubResource("StyleBoxFlat_gxce2")
-CheckBox/constants/h_separation = 3
-CheckBox/constants/icon_max_width = 10
+CheckBox/constants/align_to_largest_stylebox = 1
+CheckBox/constants/h_separation = 0
+CheckBox/constants/icon_max_width = 14
 CheckBox/font_sizes/font_size = 12
 CheckBox/styles/focus = SubResource("StyleBoxEmpty_sk3jv")
 CheckBox/styles/hover = SubResource("StyleBoxEmpty_t3oq6")
 CheckBox/styles/normal = SubResource("StyleBoxEmpty_keseg")
 CheckBox/styles/pressed = SubResource("StyleBoxEmpty_5u1tl")
 Label/colors/font_color = Color(1, 1, 1, 1)
-Label/font_sizes/font_size = 8
+Label/font_sizes/font_size = 16
+LineEdit/font_sizes/font_size = 28
 LineEdit/styles/normal = SubResource("StyleBoxFlat_0qw6d")
-ProgressBar/styles/background = SubResource("StyleBoxFlat_t3oq6")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_5c4tk")
 RichTextLabel/font_sizes/bold_font_size = 23
 RichTextLabel/font_sizes/normal_font_size = 19
-TabContainer/styles/panel = SubResource("StyleBoxFlat_keseg")
-TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_5u1tl")
-TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_ejlxd")
-TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_a67o8")
+TabContainer/styles/panel = SubResource("StyleBoxFlat_t3oq6")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_keseg")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_5u1tl")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_t3oq6")
 TooltipLabel/colors/font_color = Color(0.875, 0.875, 0.875, 1)
-TooltipLabel/font_sizes/font_size = 8
+TooltipLabel/font_sizes/font_size = 15
 TooltipPanel/styles/panel = ExtResource("2_t3oq6")

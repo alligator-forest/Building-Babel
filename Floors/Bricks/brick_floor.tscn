@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="10_2ipyc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xn7w"]
-size = Vector2(192.17883, 63.507317)
+size = Vector2(192, 63)
 
 [node name="BrickFloor" type="TextureRect" unique_id=1076295142]
 custom_minimum_size = Vector2(192, 64)
-offset_top = -64.0
 offset_right = 192.0
+offset_bottom = 64.0
 size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("1_2lidj")
@@ -38,7 +38,7 @@ position = Vector2(0, 64)
 [node name="Area2D" type="Area2D" parent="." unique_id=1719993459]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=652991619]
-position = Vector2(96.08942, 31.753658)
+position = Vector2(96, 32.5)
 shape = SubResource("RectangleShape2D_4xn7w")
 
 [node name="DropComponent" parent="." unique_id=812106381 instance=ExtResource("10_2ipyc")]
