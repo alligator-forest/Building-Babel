@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://dx2m410fn5f6t"]
 
-[ext_resource type="Script" uid="uid://ckmfvk886pi6o" path="res://Characters/Builder/builder.gd" id="1_ppahy"]
+[ext_resource type="Script" uid="uid://70nsred1orae" path="res://Characters/character.gd" id="1_fq4ci"]
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_k73id"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fq4ci"]
-size = Vector2(26, 38)
+size = Vector2(26, 36)
 
 [node name="Builder" type="Control" unique_id=1950084687]
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
-script = ExtResource("1_ppahy")
+script = ExtResource("1_fq4ci")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1574025421]
 position = Vector2(0, -18)

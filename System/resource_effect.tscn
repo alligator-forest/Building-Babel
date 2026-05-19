@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="3_ekb68"]
 
 [node name="ResourceEffect" type="Node2D" unique_id=842060896]
+top_level = true
 z_index = 5
 script = ExtResource("1_811qx")
 

@@ -10,7 +10,14 @@ var draggable = true
 var dragging = false
 var mouseWithin : bool = false
 var offset := Vector2(0,0)
-var charWidth = 0
+
+@export var resources : Array[String]
+@export var minResource : int = 0
+@export var maxResource : int = 0
+@export var numHubris : int = 0
+@export var resourceEffect : ResourceEffect
+@export var price : int = 10
+@export var charWidth = 0
 
 var floors : Array[Node]
 var currentFloor : Node
@@ -89,24 +96,18 @@ func get_floors() -> Array[Node]:
 	return floors
 
 func get_price() -> int:
-	return 0
+	return price
 
 func get_sell_price() -> int:
-	return round(get_price()/2.0)
+	return round(price/2.0)
 
-func get_bricks() -> int:
-	return 0
-
-func get_wood() -> int:
-	return 0
-
-func get_gold() -> int:
-	return 0
-
-func get_knowledge() -> int:
-	return 0
-	
-func get_hubris() -> int:
+func get_resource(r : String) -> int:
+	if(r in resources):
+		if(resourceEffect == null):
+			return rng.randi_range(minResource,maxResource)
+		return resourceEffect.start_effect(rng.randi_range(minResource,maxResource), global_position)
+	elif(r == "hubris"):
+		return numHubris
 	return 0
 
 func get_char_witdh() -> int:

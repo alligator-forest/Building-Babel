@@ -11,7 +11,6 @@ extends Node2D
 @export var masons: PackedScene
 @export var carpenters : PackedScene
 @export var shepherds: PackedScene
-@export var scholars : PackedScene
 @export var warriors: PackedScene
 @export var thieves: PackedScene
 
@@ -30,7 +29,7 @@ var seconds : int = 0
 enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT, HUBRIS_INCREASE}
 
 var currChar : Character = null
-var closestDrop : Floor = null
+var closestDrop = null
 
 var neededResources : Dictionary = {
 	"bricks" : resourceCounts[0],
@@ -81,10 +80,11 @@ func _physics_process(_delta):
 			
 		if(Input.is_action_just_released("click_press")):
 			closestDrop = currChar.get_current_floor()
-			for f in %Floors.get_children().slice(1):
+			for f in currChar.get_floors():
 				if(f.mouseWithin):
 					closestDrop = f
 					break
+			print(closestDrop)
 			if(closestDrop is Floor):
 				closestDrop.add_character(currChar)
 			else: #makes the assumption that if closestDrop is not a floor, it (currently) MUST be a SellBox
@@ -159,12 +159,11 @@ func new_floor(type : String, fLoader):
 			update()
 
 func _on_character_timer_timeout(c : Character):
-	var r : Dictionary 
-	r["gold"] = c.get_gold()
-	r["bricks"] = c.get_bricks()
-	r["wood"] = c.get_wood()
-	var hubris = c.get_hubris()
-	r["hubris"] = floor(hubris * hubrisMult) if hubris > 0 else hubris
+	var r : Dictionary
+	r["gold"] = c.get_resource("gold")
+	r["bricks"] = c.get_resource("bricks")
+	r["wood"] = c.get_resource("wood")
+	r["hubris"] = floor(c.get_resource("hubris") * hubrisMult)
 	
 	for key in r:
 		if(key != "hubris" and r[key] != 0):
@@ -191,24 +190,24 @@ func play_effect(n : String):
 	$SoundManager.play_effect(n)
 
 func _on_builder_button_pressed():
-	buy_character(Builder.new(), builders)
+	buy_character(builders)
 
 func _on_merchant_button_pressed():
-	buy_character(Merchant.new(), merchants)
+	buy_character(merchants)
 
 func _on_mason_button_pressed():
-	buy_character(Mason.new(), masons)
+	buy_character(masons)
 
 func _on_carpenter_button_pressed() -> void:
-	buy_character(Carpenter.new(),carpenters)
+	buy_character(carpenters)
 
 func _on_shepherd_button_pressed():
-	buy_character(Shepherd.new(), shepherds)
+	buy_character(shepherds)
 
 func _on_warrior_button_pressed():
-	buy_character(Warrior.new(), warriors)
+	buy_character(warriors)
 
-func buy_character(c : Character, cLoader):
+func buy_character(cLoader : PackedScene):
 	if($SpeedrunTimer.is_stopped()):
 		$SpeedrunTimer.start()
 		
@@ -219,12 +218,12 @@ func buy_character(c : Character, cLoader):
 			spawnfloor = %Floors.get_child(i)
 			spawnscroll = i
 			break
-	if(c.get_price() <= resources["gold"] and spawnfloor != null):
-		resources["gold"] -= c.get_price()
-		if(c is Builder):
+	var dChar = cLoader.instantiate()
+	if(dChar.get_price() <= resources["gold"] and spawnfloor != null):
+		resources["gold"] -= dChar.get_price()
+		if(dChar.name == "Builder"):
 			numBuilders += 1
 			
-		var dChar = cLoader.instantiate()
 		dChar.get_node("Area2D").area_entered.connect(on_character_area_2d_enter)
 		dChar.get_node("Area2D").area_exited.connect(on_character_area_2d_exit)
 		dChar.add_resource.connect(_on_character_timer_timeout)
@@ -249,7 +248,7 @@ func despawn_thief(t : Thief, waitTime : float) -> void:
 	t.queue_free()
 
 func sell_character(c : Character):
-	if(c is Builder):
+	if(c.name == "Builder"):
 		numBuilders -= 1
 	var d : Dictionary = {"gold" : currChar.get_sell_price()}
 	add_resources(d)
@@ -279,7 +278,7 @@ func _input(event: InputEvent) -> void:
 		var dict = {"gold" : 999, "wood" : 999, "bricks" : 999}
 		add_resources(dict)
 		for i in range(5):
-			buy_character(Builder.new(), builders)
+			buy_character(builders)
 
 func _on_speedrun_timer_timeout() -> void:
 	seconds += 1

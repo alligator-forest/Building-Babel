@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://yrkpgyb3bkbn"]
 
 [ext_resource type="Texture2D" uid="uid://budb3me3teeet" path="res://Assets/Floor/FloorWood.png" id="1_g0e30"]
-[ext_resource type="Script" uid="uid://bkvn52p1lcmna" path="res://Floors/Wood/wood_floor.gd" id="2_0v6cn"]
+[ext_resource type="Script" uid="uid://6ati0dpr68iq" path="res://Floors/floor.gd" id="2_48gc2"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_gokip"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="3_0v6cn"]
 
@@ -15,7 +15,8 @@ offset_right = 192.0
 pivot_offset = Vector2(128, 64)
 mouse_filter = 2
 texture = ExtResource("1_g0e30")
-script = ExtResource("2_0v6cn")
+script = ExtResource("2_48gc2")
+floorIndex = 2
 
 [node name="Label" type="Label" parent="." unique_id=2099914832]
 layout_mode = 0

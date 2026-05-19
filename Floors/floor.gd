@@ -2,16 +2,16 @@ extends TextureRect
 class_name Floor
 
 @export var floorName : String
-
+@export var floorIndex : int #odd for bricks, even for wood
 const LEFT : int = 34
 const RIGHT : int = 178
 var numChars : int = 0
-var maxChars : int = 5
+@export var maxChars : int = 5
 var mouseWithin : bool = false
 
 @onready var rng = RandomNumberGenerator.new()
 
-var floorBonus : Dictionary = {
+@export var floorBonus : Dictionary = {
 	"bricks" : 1,
 	"wood" : 1,
 	"gold" : 1,
@@ -36,7 +36,7 @@ func change_name(n : String):
 
 func has_warrior() -> bool:
 	for c in $Characters.get_children():
-		if(c is Warrior):
+		if(c.name == "Warrior"):
 			return true
 	return false
 

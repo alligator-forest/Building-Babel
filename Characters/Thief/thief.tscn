@@ -1,35 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1gfra0m6i3kb"]
+[gd_scene format=3 uid="uid://c1gfra0m6i3kb"]
 
 [ext_resource type="Script" uid="uid://qrccmwkyk5wm" path="res://Characters/Thief/thief.gd" id="1_tj37m"]
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_ng411"]
 [ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="3_alfq1"]
 
-[node name="Thief" type="Control"]
+[node name="Thief" type="Control" unique_id=1875429781]
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("1_tj37m")
+resources = Array[String](["gold", "bricks", "wood"])
+minResource = -10
+maxResource = -5
+price = 0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1827425375]
 position = Vector2(4, -16)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_ng411")
 animation = &"Thief"
 
-[node name="BrickEffect" parent="." instance=ExtResource("3_alfq1")]
+[node name="BrickEffect" parent="." unique_id=798005565 instance=ExtResource("3_alfq1")]
 visible = false
 position = Vector2(-12, -35)
 type = "bricks"
+offset = Vector2(-12, -35)
 
-[node name="GoldEffect" parent="." instance=ExtResource("3_alfq1")]
+[node name="WoodEffect" parent="." unique_id=842060896 instance=ExtResource("3_alfq1")]
+visible = false
+position = Vector2(-12, -35)
+type = "wood"
+offset = Vector2(-12, -35)
+
+[node name="GoldEffect" parent="." unique_id=1102807706 instance=ExtResource("3_alfq1")]
 visible = false
 position = Vector2(18, -35)
+offset = Vector2(18, -35)
 
-[node name="MoveTimer" type="Timer" parent="."]
+[node name="MoveTimer" type="Timer" parent="." unique_id=480508069]
 one_shot = true
 
-[node name="WaitTimer" type="Timer" parent="."]
+[node name="WaitTimer" type="Timer" parent="." unique_id=32737113]
 one_shot = true
 autostart = true
 

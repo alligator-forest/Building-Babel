@@ -10,10 +10,9 @@ func _ready() -> void:
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Screens/home_menu.tscn")
 
-
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	if(new_text.length() == 3):
-		SCOREKEEPER.set_score_name(new_text)
+		SCOREKEEPER.set_score_name(new_text.to_upper())
 		SCOREKEEPER.update_save_data()
 		get_tree().change_scene_to_file("res://Screens/home_menu.tscn")
 	

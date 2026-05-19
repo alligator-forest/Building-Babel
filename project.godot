@@ -43,13 +43,7 @@ mouse_cursor/tooltip_position_offset=Vector2(0, 10)
 [file_customization]
 
 folder_colors={
-"res://Characters/Builder/": "orange",
-"res://Characters/Carpenter/": "green",
-"res://Characters/Mason/": "blue",
-"res://Characters/Merchant/": "teal",
-"res://Characters/Shepherd/": "pink",
 "res://Characters/Thief/": "gray",
-"res://Characters/Warrior/": "yellow",
 "res://Floors/Bricks/": "red",
 "res://Floors/Wood/": "orange"
 }

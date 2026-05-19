@@ -3,18 +3,16 @@
 [ext_resource type="Script" uid="uid://dk7gqmskok7f0" path="res://Screens/main.gd" id="1_eqxpj"]
 [ext_resource type="PackedScene" uid="uid://br8j0dbxk0gmh" path="res://Floors/Bricks/brick_floor.tscn" id="2_d85bv"]
 [ext_resource type="PackedScene" uid="uid://yrkpgyb3bkbn" path="res://Floors/Wood/wood_floor.tscn" id="3_l5otw"]
-[ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/Builder/builder.tscn" id="4_r1sbw"]
-[ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/Merchant/merchant.tscn" id="5_ycq4u"]
-[ext_resource type="PackedScene" uid="uid://b32i21uc4u25d" path="res://Characters/Carpenter/carpenter.tscn" id="6_nyx7j"]
-[ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/Mason/mason.tscn" id="6_qu6a5"]
-[ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/Shepherd/shepherd.tscn" id="7_sbhwi"]
+[ext_resource type="PackedScene" uid="uid://dx2m410fn5f6t" path="res://Characters/builder.tscn" id="4_r1sbw"]
+[ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/merchant.tscn" id="5_ycq4u"]
+[ext_resource type="PackedScene" uid="uid://b32i21uc4u25d" path="res://Characters/carpenter.tscn" id="6_nyx7j"]
+[ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/mason.tscn" id="6_qu6a5"]
+[ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/shepherd.tscn" id="7_sbhwi"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="8_hphvt"]
-[ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/Warrior/warrior.tscn" id="8_xfuhw"]
+[ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/warrior.tscn" id="8_xfuhw"]
 [ext_resource type="AudioStream" uid="uid://cbr620ywkvhpa" path="res://Music/SFX/layered sound.mp3" id="9_0wmer"]
-[ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="9_gr1rk"]
 [ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/Thief/thief.tscn" id="9_m3587"]
 [ext_resource type="Texture2D" uid="uid://u8qrlqhbdaes" path="res://Assets/Floor/FloorRoof.png" id="10_3tu5u"]
-[ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="10_b7rxi"]
 [ext_resource type="Texture2D" uid="uid://bkp606ho0to3e" path="res://Assets/Screens/BabelBackground.png" id="10_rlab4"]
 [ext_resource type="AudioStream" uid="uid://bscdbq8e1i213" path="res://Music/bgMusic.mp3" id="10_stmio"]
 [ext_resource type="AudioStream" uid="uid://du5co0mbv7ofb" path="res://Music/SFX/stone on stone action.wav" id="11_4l48r"]
@@ -28,42 +26,6 @@
 [ext_resource type="Script" uid="uid://dqru7q312l7wy" path="res://System/settings.gd" id="24_8qx4t"]
 [ext_resource type="Theme" uid="uid://bo064dbmg8wij" path="res://Assets/UI/Popups.tres" id="26_b7rxi"]
 [ext_resource type="StyleBox" uid="uid://dck4df518c1x5" path="res://Assets/UI/tooltip.tres" id="28_u3vds"]
-
-[sub_resource type="GDScript" id="GDScript_g1wvp"]
-script/source = "extends Character
-class_name Scholar
-
-func get_knowledge() -> int:
-	return $KnowledgeEffect.start_effect(rng.randi_range(1,7))
-
-func get_hubris() -> int:
-	return 2
-
-func get_price() -> int:
-	return 15
-
-func _to_string():
-	return \"scholar\"
-"
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mr6n7"]
-radius = 13.0
-height = 35.0
-
-[sub_resource type="PackedScene" id="PackedScene_u3vds"]
-_bundled = {
-"conn_count": 4,
-"conns": PackedInt32Array(1073741831, 1073741830, 29, 28, 2, 0, 0, 1073741833, 1073741832, 31, 30, 2, 0, 0, 1073741835, 1073741834, 33, 32, 2, 0, 0, 1073741837, 1073741836, 35, 34, 2, 0, 0),
-"editable_instances": [],
-"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
-"names": PackedStringArray("Scholar", "Control", "layout_mode", "anchors_preset", "script", "AnimatedSprite2D", "AnimatedSprite2D", "position", "scale", "sprite_frames", "animation", "KnowledgeEffect", "visible", "position", "type", "MoveTimer", "Timer", "one_shot", "WaitTimer", "Timer", "one_shot", "autostart", "Area2D", "Area2D", "CollisionShape2D", "CollisionShape2D", "position", "shape", "_on_move_timer_timeout", "timeout", "_on_wait_timer_timeout", "timeout", "_on_area_2d_mouse_entered", "mouse_entered", "_on_area_2d_mouse_exited", "mouse_exited"),
-"node_count": 7,
-"node_ids": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
-"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("./Area2D"), NodePath("."), NodePath("MoveTimer"), NodePath("."), NodePath("WaitTimer"), NodePath("."), NodePath("Area2D"), NodePath("."), NodePath("Area2D")],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 1073741824, 0, 6, 5, -1, 4, 7, 3, 8, 4, 9, 5, 10, 6, 0, 1073741825, 0, 2147483647, 11, 7, 3, 12, 8, 13, 9, 14, 10, 0, 1073741826, 0, 16, 15, -1, 1, 17, 11, 0, 1073741827, 0, 19, 18, -1, 2, 20, 12, 21, 13, 0, 1073741828, 0, 23, 22, -1, 0, 0, 1073741829, 0, 25, 24, -1, 2, 26, 14, 27, 15, 0),
-"variants": [3, 0, SubResource("GDScript_g1wvp"), Vector2(2, -16), Vector2(2, 2), ExtResource("9_gr1rk"), &"Scholar", ExtResource("10_b7rxi"), false, Vector2(4, -35), "knowledge", true, true, true, Vector2(3, -16), SubResource("CapsuleShape2D_mr6n7")],
-"version": 3
-}
 
 [sub_resource type="Gradient" id="Gradient_h608w"]
 colors = PackedColorArray(0.18, 0.18, 0.18, 1, 0, 0, 0, 0)
@@ -89,7 +51,6 @@ merchants = ExtResource("5_ycq4u")
 masons = ExtResource("6_qu6a5")
 carpenters = ExtResource("6_nyx7j")
 shepherds = ExtResource("7_sbhwi")
-scholars = SubResource("PackedScene_u3vds")
 warriors = ExtResource("8_xfuhw")
 thieves = ExtResource("9_m3587")
 consoleNotifs = {

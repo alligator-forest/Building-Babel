@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://xh6tnfb71fbs"]
+
+[ext_resource type="Script" uid="uid://70nsred1orae" path="res://Characters/character.gd" id="1_58vd2"]
+[ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_bjbag"]
+[ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="3_032tx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gh0q"]
+size = Vector2(22, 30)
+
+[node name="Mason" type="Control" unique_id=1811404210 node_paths=PackedStringArray("resourceEffect")]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_58vd2")
+resources = Array[String](["bricks"])
+minResource = 1
+maxResource = 7
+numHubris = 1
+resourceEffect = NodePath("BrickEffect")
+price = 20
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=918935161]
+position = Vector2(0, -16)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_bjbag")
+animation = &"Mason"
+
+[node name="BrickEffect" parent="." unique_id=65417495 instance=ExtResource("3_032tx")]
+visible = false
+position = Vector2(2, -35)
+type = "bricks"
+offset = Vector2(2, -35)
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=1559988882]
+one_shot = true
+
+[node name="WaitTimer" type="Timer" parent="." unique_id=1623900201]
+one_shot = true
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1806271943]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1434395803]
+position = Vector2(1, -15)
+shape = SubResource("RectangleShape2D_8gh0q")
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

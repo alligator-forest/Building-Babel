@@ -1,36 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqf5bqdtxntlp"]
+[gd_scene format=3 uid="uid://cqf5bqdtxntlp"]
 
-[ext_resource type="Script" uid="uid://cpwdlkowtf3y3" path="res://Characters/Warrior/warrior.gd" id="1_l2iy5"]
+[ext_resource type="Script" uid="uid://70nsred1orae" path="res://Characters/character.gd" id="1_yl63d"]
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_xmyxk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6qbch"]
 radius = 15.0
-height = 40.0
+height = 38.0
 
-[node name="Warrior" type="Control"]
+[node name="Warrior" type="Control" unique_id=198305021]
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
-script = ExtResource("1_l2iy5")
+script = ExtResource("1_yl63d")
+price = 30
+charWidth = 20
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1384054193]
 position = Vector2(-6, -16)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_xmyxk")
 animation = &"Warrior"
 
-[node name="MoveTimer" type="Timer" parent="."]
+[node name="MoveTimer" type="Timer" parent="." unique_id=799365308]
 one_shot = true
 
-[node name="WaitTimer" type="Timer" parent="."]
+[node name="WaitTimer" type="Timer" parent="." unique_id=1327225775]
 one_shot = true
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=808292329]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-5, -15)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=2043765221]
+position = Vector2(-3, -15)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6qbch")
 

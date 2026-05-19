@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://b32i21uc4u25d"]
+
+[ext_resource type="Script" uid="uid://70nsred1orae" path="res://Characters/character.gd" id="1_ntd7p"]
+[ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="1_q6qhk"]
+[ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="3_yb2ga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6wqh"]
+size = Vector2(26, 32)
+
+[node name="Carpenter" type="Control" unique_id=595344210 node_paths=PackedStringArray("resourceEffect")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ntd7p")
+resources = Array[String](["wood"])
+minResource = 1
+maxResource = 7
+numHubris = 1
+resourceEffect = NodePath("WoodEffect")
+price = 20
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1224450577]
+position = Vector2(2, -16)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("1_q6qhk")
+animation = &"Carpenter"
+
+[node name="WoodEffect" parent="." unique_id=353967434 instance=ExtResource("3_yb2ga")]
+visible = false
+position = Vector2(4, -35)
+type = "wood"
+offset = Vector2(4, -35)
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=2058076335]
+one_shot = true
+
+[node name="WaitTimer" type="Timer" parent="." unique_id=1269977116]
+one_shot = true
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1169847751]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=187819673]
+position = Vector2(3, -16)
+shape = SubResource("RectangleShape2D_y6wqh")
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
