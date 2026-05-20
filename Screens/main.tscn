@@ -77,16 +77,59 @@ consoleNotifs = {
 script = ExtResource("13_g1wvp")
 tooltipCheck = NodePath("../TabContainer/Settings/HBoxContainer2/ConsoleNotifications/HideTooltip")
 
-[node name="TutorialInfo" type="AcceptDialog" parent="PopupManager" unique_id=461763925]
+[node name="TutorialInfo1" type="AcceptDialog" parent="PopupManager" unique_id=461763925]
 oversampling_override = 1.0
-title = "Tutorial"
+title = "Tutorial (1/X)"
 initial_position = 1
-size = Vector2i(315, 166)
+size = Vector2i(214, 150)
 theme = ExtResource("26_b7rxi")
 ok_button_text = "Next"
 dialog_text = "Welcome to Building Babel!
-In this game, you'll be building up the biblical tower to reach the heavans!
-To stop seeing this popup, disable \"Display Tooltips\" in Settings."
+In this game, you'll be building up the biblical tower to reach the heavans!"
+dialog_hide_on_ok = false
+dialog_autowrap = true
+
+[node name="TutorialInfo2" type="AcceptDialog" parent="PopupManager" unique_id=1126474738]
+oversampling_override = 1.0
+title = "Tutorial (1/X): Resources"
+position = Vector2i(150, 38)
+size = Vector2i(313, 222)
+theme = ExtResource("26_b7rxi")
+ok_button_text = "Next"
+dialog_text = "In order to build floors, you'll need RESIDENTS.
+These residents produce various RESOURCES:
+- Bricks and Wood, used to build new floors
+- Gold, used to hire new Residents
+Hubris is a byproduct, but watch out! If the Hubris Meter fills up completely, God Almighty will smite you down for your lack of piety."
+dialog_hide_on_ok = false
+dialog_autowrap = true
+
+[node name="TutorialInfo3" type="AcceptDialog" parent="PopupManager" unique_id=656613799]
+oversampling_override = 1.0
+title = "Tutorial (1/X): Residents"
+position = Vector2i(47, 71)
+size = Vector2i(313, 222)
+theme = ExtResource("26_b7rxi")
+ok_button_text = "Next"
+dialog_text = "The first tab contains the RESIDENTS
+Hover over any button to see what that resident does!
+You can drag residents to different floors, and you can even sell residents by dragging them to the SELL box.
+Each floor can usually hold up to 5 Residents at one time"
+dialog_hide_on_ok = false
+dialog_autowrap = true
+
+[node name="TutorialInfo4" type="AcceptDialog" parent="PopupManager" unique_id=1091168396]
+oversampling_override = 1.0
+title = "Tutorial (1/X): Floors"
+position = Vector2i(47, 71)
+size = Vector2i(313, 222)
+theme = ExtResource("26_b7rxi")
+ok_button_text = "Next"
+dialog_text = "The second tab contains the FLOOTS
+Again, hover over any button to see what that floor offers.
+Some floors have special effects that boost the Residents that live there
+To win, you have to build 10 floors."
+dialog_hide_on_ok = false
 dialog_autowrap = true
 
 [node name="ResourceEffects" type="Node2D" parent="." unique_id=554995671]
@@ -151,7 +194,8 @@ offset_left = 8.0
 offset_top = 4.0
 offset_right = 128.0
 offset_bottom = 32.0
-mouse_filter = 2
+tooltip_text = "If the Hubris Meter fills up, it's Game Over!"
+mouse_filter = 1
 theme = ExtResource("8_hphvt")
 value = 54.11
 show_percentage = false
@@ -175,7 +219,8 @@ offset_left = 8.0
 offset_top = 40.0
 offset_right = 128.0
 offset_bottom = 88.0
-mouse_filter = 2
+tooltip_text = "Bricks are produced by Masons and are used to build new Floors"
+mouse_filter = 1
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
@@ -190,6 +235,8 @@ offset_left = 8.0
 offset_top = 91.0
 offset_right = 128.0
 offset_bottom = 136.0
+tooltip_text = "Wood is produced by Carpenters and is used to build new Floors"
+mouse_filter = 1
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
@@ -203,6 +250,7 @@ offset_left = 8.0
 offset_top = 144.0
 offset_right = 128.0
 offset_bottom = 192.0
+tooltip_text = "Gold is produced by Merchants and is used to hire new Residents"
 theme = ExtResource("8_hphvt")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
@@ -219,6 +267,8 @@ offset_left = 8.0
 offset_top = 192.0
 offset_right = 120.0
 offset_bottom = 241.0
+tooltip_text = "The Speedrun Clock shows you how long you've been playing this attempt"
+mouse_filter = 1
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 40
 text = "00:00:00"
@@ -264,11 +314,10 @@ offset_bottom = 360.0
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 20
 tab_alignment = 2
-current_tab = 1
+current_tab = 0
 all_tabs_in_front = true
 
 [node name="Residents" type="MarginContainer" parent="TabContainer" unique_id=153931923]
-visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 16
@@ -341,7 +390,6 @@ text = "Warrior"
 expand_icon = true
 
 [node name="SellDropbox" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=539380712]
-visible = false
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
@@ -358,6 +406,7 @@ position = Vector2(100, 21)
 shape = SubResource("RectangleShape2D_puaxa")
 
 [node name="Floors" type="MarginContainer" parent="TabContainer" unique_id=1471429945]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -419,6 +468,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 8
 columns = 2
 
 [node name="BrickBasic" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=140335057]
@@ -639,6 +689,14 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 17
 text = "Abandon Run"
 
+[connection signal="canceled" from="PopupManager/TutorialInfo1" to="PopupManager" method="_on_tutorial_info_canceled"]
+[connection signal="confirmed" from="PopupManager/TutorialInfo1" to="PopupManager" method="_on_tutorial_info_confirmed"]
+[connection signal="canceled" from="PopupManager/TutorialInfo2" to="PopupManager" method="_on_tutorial_info_canceled"]
+[connection signal="confirmed" from="PopupManager/TutorialInfo2" to="PopupManager" method="_on_tutorial_info_confirmed"]
+[connection signal="canceled" from="PopupManager/TutorialInfo3" to="PopupManager" method="_on_tutorial_info_canceled"]
+[connection signal="confirmed" from="PopupManager/TutorialInfo3" to="PopupManager" method="_on_tutorial_info_confirmed"]
+[connection signal="canceled" from="PopupManager/TutorialInfo4" to="PopupManager" method="_on_tutorial_info_canceled"]
+[connection signal="confirmed" from="PopupManager/TutorialInfo4" to="PopupManager" method="_on_tutorial_info_confirmed"]
 [connection signal="timeout" from="SpeedrunTimer" to="." method="_on_speedrun_timer_timeout"]
 [connection signal="timeout" from="ThiefTimer" to="." method="_on_thief_timer_timeout"]
 [connection signal="tab_hovered" from="TabContainer" to="PopupManager" method="_on_tab_container_tab_hovered"]

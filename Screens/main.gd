@@ -99,7 +99,7 @@ func _physics_process(_delta):
 			else: #makes the assumption that if closestDrop is not a floor, it (currently) MUST be a SellBox
 				sell_character(currChar)
 			currChar = null
-			sellBox.visible = false
+			sellBox.text = "SELL"
 
 #console_logs{GAIN_GOLD, GAIN_BRICK, LOSE_GOLD, LOSE_BRICK, THIEF_ENTER, THIEF_EXIT}
 func log_in_console(event : int, c : Character = null, resourceVal : int = 0, resourceName : String = ""):
