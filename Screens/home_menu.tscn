@@ -6,6 +6,11 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kuuvh"]
 bg_color = Color(0.670588, 0.321569, 0.211765, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
 
 [sub_resource type="Animation" id="Animation_jpg0d"]
 length = 0.001

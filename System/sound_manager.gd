@@ -8,6 +8,8 @@ func play_effect(key : String):
 	match key:
 		"bricks":
 			$SFX/Brick.play(55)
+		"wood":
+			$SFX/Wood.play()
 		"gold":
 			$SFX/Gold.play()
 		"steal":

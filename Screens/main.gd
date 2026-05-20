@@ -2,12 +2,17 @@ extends Node2D
 
 @export_category("Debug Tools")
 @export var usingDebug : bool = false
+@export var usingHubris : bool = true
 
 @export_category("Floors")
 @export var BrickBasic : PackedScene
 @export var WoodBasic : PackedScene
 @export var BrickWide : PackedScene
 @export var WoodTall : PackedScene
+@export var BrickMason : PackedScene
+@export var WoodCarp : PackedScene
+@export var BrickCoffer : PackedScene
+@export var WoodAltar : PackedScene
 
 @export_category("Residents")
 @export var builders: PackedScene
@@ -42,7 +47,7 @@ var neededResources : Dictionary = {
 	"builders" : 1,
 }
 
-var resources : Dictionary = {
+var resources : Dictionary[String, int] = {
 	"bricks" : 0,
 	"wood" : 0,
 	"gold" : 30,
@@ -89,7 +94,6 @@ func _physics_process(_delta):
 				if(f.mouseWithin):
 					closestDrop = f
 					break
-			print(closestDrop)
 			if(closestDrop is Floor):
 				closestDrop.add_character(currChar)
 			else: #makes the assumption that if closestDrop is not a floor, it (currently) MUST be a SellBox
@@ -134,7 +138,7 @@ func update():
 	newFloorBuildersLabel.text += "[b][img=32]res://Assets/UI/ShopIcons/BuilderShop.png[/img]\nx" + str(neededResources["builders"])
 	newFloorWoodLabel.text += "[b][img=32]res://Assets/UI/woodIcon.png[/img]\nx" + str(neededResources["wood"])
 	
-	if($GodBar.value >= 99):
+	if($GodBar.value >= 99 and (!usingDebug or usingHubris)):
 		SAVEOBJECT._save_data()
 		get_tree().change_scene_to_file("res://Screens/game_over.tscn")
 
@@ -166,10 +170,15 @@ func new_floor(type : String, fLoader):
 
 func _on_character_timer_timeout(c : Character):
 	var r : Dictionary
-	r["gold"] = c.get_resource("gold")
-	r["bricks"] = c.get_resource("bricks")
-	r["wood"] = c.get_resource("wood")
-	r["hubris"] = floor(c.get_resource("hubris") * hubrisMult)
+	var floorBonus = c.get_current_floor().get_bonuses()
+	for key in resources.keys():
+		r[key] = int(floor(c.get_resource(key) * floorBonus[key]))
+		if(r[key] != 0 and key != "hubris"):
+			c.start_effect(key, r[key])
+	if(r["hubris"] > 0):
+		r["hubris"] = int(floor(r["hubris"] * hubrisMult))
+	
+	print("hubris: ", r["hubris"])
 	
 	for key in r:
 		if(key != "hubris" and r[key] != 0):
@@ -310,3 +319,15 @@ func _on_brick_wide_pressed() -> void:
 
 func _on_wood_tall_pressed() -> void:
 	new_floor("wood", WoodTall)
+
+func _on_brick_mason_pressed() -> void:
+	new_floor("bricks", BrickMason)
+
+func _on_wood_carp_pressed() -> void:
+	new_floor("wood", WoodCarp)
+
+func _on_brick_coffer_pressed() -> void:
+	new_floor("bricks", BrickCoffer)
+
+func _on_wood_altar_pressed() -> void:
+	new_floor("wood", WoodAltar)

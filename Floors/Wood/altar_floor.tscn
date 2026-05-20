@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bgjxc511380y6"]
+
+[ext_resource type="Texture2D" uid="uid://dnlvwy5mtxum4" path="res://Assets/Floor/FloorAltar.png" id="1_x0bi1"]
+[ext_resource type="Script" uid="uid://6ati0dpr68iq" path="res://Floors/floor.gd" id="2_7hevf"]
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="3_aemeo"]
+[ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="4_m57v3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f28eb"]
+size = Vector2(192, 62)
+
+[node name="AltarFloor" type="TextureRect" unique_id=1065232683]
+custom_minimum_size = Vector2(192, 64)
+offset_right = 192.0
+offset_bottom = 64.0
+pivot_offset = Vector2(128, 64)
+mouse_filter = 2
+texture = ExtResource("1_x0bi1")
+script = ExtResource("2_7hevf")
+floorIndex = 6
+floorBonus = Dictionary[String, float]({
+"bricks": 1.0,
+"gold": 1.0,
+"hubris": 0.5,
+"wood": 1.0
+})
+
+[node name="Label" type="Label" parent="." unique_id=2099914832]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 120.0
+offset_bottom = 15.0
+theme = ExtResource("3_aemeo")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 12
+text = "Floor 1: 0/5"
+vertical_alignment = 1
+
+[node name="Characters" type="Node2D" parent="." unique_id=33505100]
+position = Vector2(0, 64)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1802870588]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1988652922]
+position = Vector2(96, 33)
+shape = SubResource("RectangleShape2D_f28eb")
+
+[node name="DropComponent" parent="." unique_id=79973701 instance=ExtResource("4_m57v3")]
+
+[connection signal="child_order_changed" from="Characters" to="." method="_on_characters_child_order_changed"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

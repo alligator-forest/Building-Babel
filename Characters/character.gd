@@ -104,12 +104,14 @@ func get_sell_price() -> int:
 
 func get_resource(r : String) -> int:
 	if(r in resources):
-		if(resourceEffect == null):
-			return rng.randi_range(minResource,maxResource)
-		return resourceEffect.start_effect(rng.randi_range(minResource,maxResource), global_position)
+		return rng.randi_range(minResource,maxResource)
 	elif(r == "hubris"):
 		return numHubris
 	return 0
+
+func start_effect(resource : String, value : int) -> void:
+	if(resource in resources):
+		resourceEffect.start_effect(value, global_position)
 
 func get_char_witdh() -> int:
 	return charWidth

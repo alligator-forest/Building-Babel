@@ -12,15 +12,18 @@ var mouseWithin : bool = false
 
 @onready var rng = RandomNumberGenerator.new()
 
-@export var floorBonus : Dictionary = {
-	"bricks" : 1,
-	"wood" : 1,
-	"gold" : 1,
-	"hubris" : 1,
+@export var floorBonus : Dictionary[String, float] = {
+	"bricks" : 1.0,
+	"wood" : 1.0,
+	"gold" : 1.0,
+	"hubris" : 1.0,
 }
 
 func _ready():
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
+
+func get_bonuses() -> Dictionary:
+	return floorBonus
 
 func get_global_center() -> Vector2:
 	return global_position + pivot_offset

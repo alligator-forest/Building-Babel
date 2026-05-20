@@ -7,13 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://b7kbop02nkn0s" path="res://Floors/Bricks/wide_floor.tscn" id="4_u3vds"]
 [ext_resource type="PackedScene" uid="uid://dxypj77gdl77y" path="res://Floors/Wood/tall_floor.tscn" id="5_2px56"]
 [ext_resource type="PackedScene" uid="uid://j76tjb32kfks" path="res://Characters/merchant.tscn" id="5_ycq4u"]
+[ext_resource type="PackedScene" uid="uid://xjeka5ojb6h5" path="res://Floors/Bricks/mason_floor.tscn" id="6_m3eub"]
 [ext_resource type="PackedScene" uid="uid://b32i21uc4u25d" path="res://Characters/carpenter.tscn" id="6_nyx7j"]
 [ext_resource type="PackedScene" uid="uid://xh6tnfb71fbs" path="res://Characters/mason.tscn" id="6_qu6a5"]
+[ext_resource type="PackedScene" uid="uid://c1bxs7pdbf5s" path="res://Floors/Wood/carp_floor.tscn" id="7_mw6pn"]
 [ext_resource type="PackedScene" uid="uid://butxgvvrm7hqp" path="res://Characters/shepherd.tscn" id="7_sbhwi"]
+[ext_resource type="PackedScene" uid="uid://dor5icfvhwl7i" path="res://Floors/Bricks/coffer_floor.tscn" id="8_5oyvg"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="8_hphvt"]
 [ext_resource type="PackedScene" uid="uid://cqf5bqdtxntlp" path="res://Characters/warrior.tscn" id="8_xfuhw"]
 [ext_resource type="AudioStream" uid="uid://cbr620ywkvhpa" path="res://Music/SFX/layered sound.mp3" id="9_0wmer"]
 [ext_resource type="PackedScene" uid="uid://c1gfra0m6i3kb" path="res://Characters/Thief/thief.tscn" id="9_m3587"]
+[ext_resource type="PackedScene" uid="uid://bgjxc511380y6" path="res://Floors/Wood/altar_floor.tscn" id="9_w0y2t"]
 [ext_resource type="Texture2D" uid="uid://u8qrlqhbdaes" path="res://Assets/Floor/FloorRoof.png" id="10_3tu5u"]
 [ext_resource type="Texture2D" uid="uid://bkp606ho0to3e" path="res://Assets/Screens/BabelBackground.png" id="10_rlab4"]
 [ext_resource type="AudioStream" uid="uid://bscdbq8e1i213" path="res://Music/bgMusic.mp3" id="10_stmio"]
@@ -27,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="19_ufc1y"]
 [ext_resource type="Script" uid="uid://dqru7q312l7wy" path="res://System/settings.gd" id="24_8qx4t"]
 [ext_resource type="Theme" uid="uid://bo064dbmg8wij" path="res://Assets/UI/Popups.tres" id="26_b7rxi"]
+[ext_resource type="AudioStream" uid="uid://bhd2s7e35g6do" path="res://Music/SFX/yodguard-giant-axe-strike-hitting-solid-wood-3-450247.mp3" id="27_mw6pn"]
 [ext_resource type="StyleBox" uid="uid://dck4df518c1x5" path="res://Assets/UI/tooltip.tres" id="28_u3vds"]
 
 [sub_resource type="Gradient" id="Gradient_h608w"]
@@ -46,10 +51,15 @@ size = Vector2(200, 44)
 process_mode = 1
 script = ExtResource("1_eqxpj")
 usingDebug = true
+usingHubris = false
 BrickBasic = ExtResource("2_d85bv")
 WoodBasic = ExtResource("3_l5otw")
 BrickWide = ExtResource("4_u3vds")
 WoodTall = ExtResource("5_2px56")
+BrickMason = ExtResource("6_m3eub")
+WoodCarp = ExtResource("7_mw6pn")
+BrickCoffer = ExtResource("8_5oyvg")
+WoodAltar = ExtResource("9_w0y2t")
 builders = ExtResource("4_r1sbw")
 merchants = ExtResource("5_ycq4u")
 masons = ExtResource("6_qu6a5")
@@ -242,6 +252,10 @@ volume_db = 5.0
 [node name="Brick" type="AudioStreamPlayer" parent="SoundManager/SFX" unique_id=1556831598]
 stream = ExtResource("11_4l48r")
 
+[node name="Wood" type="AudioStreamPlayer" parent="SoundManager/SFX" unique_id=1388100377]
+stream = ExtResource("27_mw6pn")
+pitch_scale = 0.39
+
 [node name="TabContainer" type="TabContainer" parent="." unique_id=1428112408]
 custom_minimum_size = Vector2(192, 324)
 offset_left = 392.0
@@ -250,10 +264,11 @@ offset_bottom = 360.0
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 20
 tab_alignment = 2
-current_tab = 0
+current_tab = 1
 all_tabs_in_front = true
 
 [node name="Residents" type="MarginContainer" parent="TabContainer" unique_id=153931923]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 16
@@ -343,7 +358,6 @@ position = Vector2(100, 21)
 shape = SubResource("RectangleShape2D_puaxa")
 
 [node name="Floors" type="MarginContainer" parent="TabContainer" unique_id=1471429945]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -403,13 +417,14 @@ horizontal_alignment = 1
 [node name="AllFloors" type="GridContainer" parent="TabContainer/Floors" unique_id=1084374163]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 theme_override_constants/h_separation = 16
 columns = 2
 
 [node name="BrickBasic" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=140335057]
 custom_minimum_size = Vector2(90.65, 48.28)
 layout_mode = 2
+tooltip_text = "Standard Brick Floor"
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 19
 text = "BRICK BASIC"
@@ -418,6 +433,7 @@ autowrap_mode = 3
 [node name="WoodBasic" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=633158177]
 custom_minimum_size = Vector2(90.65, 48.28)
 layout_mode = 2
+tooltip_text = "Standard Wood Floor"
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 19
 text = "WOOD BASIC"
@@ -426,6 +442,7 @@ autowrap_mode = 3
 [node name="BrickWide" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=366795607]
 custom_minimum_size = Vector2(90.65, 48.28)
 layout_mode = 2
+tooltip_text = "Holds double the Residents"
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 19
 text = "BRICK WIDE"
@@ -434,9 +451,46 @@ autowrap_mode = 3
 [node name="WoodTall" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=1543532417]
 custom_minimum_size = Vector2(90.65, 48.28)
 layout_mode = 2
+tooltip_text = "Counts as two floors"
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 19
 text = "WOOD TALL"
+autowrap_mode = 3
+
+[node name="BrickMason" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=1244258321]
+custom_minimum_size = Vector2(90.65, 48.28)
+layout_mode = 2
+tooltip_text = "Increases all Brick Production on the floor"
+theme = ExtResource("8_hphvt")
+theme_override_font_sizes/font_size = 19
+text = "MASON WORKSHOP"
+autowrap_mode = 3
+
+[node name="WoodCarp" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=1764821521]
+custom_minimum_size = Vector2(90.65, 48.28)
+layout_mode = 2
+tooltip_text = "Increases all Wood Production on the floor"
+theme = ExtResource("8_hphvt")
+theme_override_font_sizes/font_size = 19
+text = "CARPENTER WORKSHOP"
+autowrap_mode = 3
+
+[node name="BrickCoffer" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=1611685131]
+custom_minimum_size = Vector2(90.65, 48.28)
+layout_mode = 2
+tooltip_text = "Increases all Gold Production on the floor"
+theme = ExtResource("8_hphvt")
+theme_override_font_sizes/font_size = 19
+text = "COFFERS"
+autowrap_mode = 3
+
+[node name="WoodAltar" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=1221260477]
+custom_minimum_size = Vector2(90.65, 48.28)
+layout_mode = 2
+tooltip_text = "Reduces all Hubris production on the floor"
+theme = ExtResource("8_hphvt")
+theme_override_font_sizes/font_size = 19
+text = "ALTAR"
 autowrap_mode = 3
 
 [node name="Settings" type="MarginContainer" parent="TabContainer" unique_id=1195950695]
@@ -528,7 +582,7 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="HideTimer" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications" unique_id=135337366]
-custom_minimum_size = Vector2(122.01, 50.34)
+custom_minimum_size = Vector2(122, 32)
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
@@ -538,7 +592,7 @@ text = "Show Speedrun Clock"
 autowrap_mode = 2
 
 [node name="HideTooltip" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications" unique_id=541870379]
-custom_minimum_size = Vector2(122.01, 50.34)
+custom_minimum_size = Vector2(122, 32)
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
@@ -548,7 +602,7 @@ text = "Display Tooltips"
 autowrap_mode = 2
 
 [node name="ResourceConsole" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications" unique_id=1692467389]
-custom_minimum_size = Vector2(122.01, 50.34)
+custom_minimum_size = Vector2(122, 32)
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
@@ -558,7 +612,7 @@ text = "Notify when a Resource is produced"
 autowrap_mode = 2
 
 [node name="ThiefSteal" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications" unique_id=1602740886]
-custom_minimum_size = Vector2(122.01, 50.34)
+custom_minimum_size = Vector2(122, 32)
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
@@ -568,7 +622,7 @@ text = "Notify when a Thief steals"
 autowrap_mode = 2
 
 [node name="ThiefAppear" type="CheckBox" parent="TabContainer/Settings/HBoxContainer2/ConsoleNotifications" unique_id=888360523]
-custom_minimum_size = Vector2(122.01, 50.34)
+custom_minimum_size = Vector2(122, 32)
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
@@ -600,6 +654,10 @@ text = "Abandon Run"
 [connection signal="pressed" from="TabContainer/Floors/AllFloors/WoodBasic" to="." method="_on_wood_basic_pressed"]
 [connection signal="pressed" from="TabContainer/Floors/AllFloors/BrickWide" to="." method="_on_brick_wide_pressed"]
 [connection signal="pressed" from="TabContainer/Floors/AllFloors/WoodTall" to="." method="_on_wood_tall_pressed"]
+[connection signal="pressed" from="TabContainer/Floors/AllFloors/BrickMason" to="." method="_on_brick_mason_pressed"]
+[connection signal="pressed" from="TabContainer/Floors/AllFloors/WoodCarp" to="." method="_on_wood_carp_pressed"]
+[connection signal="pressed" from="TabContainer/Floors/AllFloors/BrickCoffer" to="." method="_on_brick_coffer_pressed"]
+[connection signal="pressed" from="TabContainer/Floors/AllFloors/WoodAltar" to="." method="_on_wood_altar_pressed"]
 [connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/MusicSlider" to="SoundManager" method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/MusicSlider" to="TabContainer/Settings" method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/SfxSlider" to="SoundManager" method="_on_sfx_slider_value_changed"]
