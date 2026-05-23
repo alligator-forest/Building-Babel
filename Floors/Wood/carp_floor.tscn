@@ -17,6 +17,7 @@ mouse_filter = 2
 texture = ExtResource("1_gyhpb")
 script = ExtResource("2_boxxe")
 floorIndex = 6
+resourceMultiplier = 1.75
 floorBonus = Dictionary[String, float]({
 "bricks": 1.0,
 "gold": 1.0,

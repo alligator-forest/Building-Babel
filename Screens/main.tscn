@@ -33,6 +33,9 @@
 [ext_resource type="Theme" uid="uid://bo064dbmg8wij" path="res://Assets/UI/Popups.tres" id="26_b7rxi"]
 [ext_resource type="AudioStream" uid="uid://bhd2s7e35g6do" path="res://Music/SFX/yodguard-giant-axe-strike-hitting-solid-wood-3-450247.mp3" id="27_mw6pn"]
 [ext_resource type="StyleBox" uid="uid://dck4df518c1x5" path="res://Assets/UI/tooltip.tres" id="28_u3vds"]
+[ext_resource type="PackedScene" uid="uid://ro5ylcdegl0o" path="res://System/shop_button_gold.tscn" id="30_uoeln"]
+[ext_resource type="PackedScene" uid="uid://d0lpi5mer6xdy" path="res://System/shop_button_brick.tscn" id="32_w0y2t"]
+[ext_resource type="PackedScene" uid="uid://cuci1wcy7ehcc" path="res://System/shop_button_wood.tscn" id="33_1mip0"]
 
 [sub_resource type="Gradient" id="Gradient_h608w"]
 colors = PackedColorArray(0.18, 0.18, 0.18, 1, 0, 0, 0, 0)
@@ -45,7 +48,7 @@ fill_from = Vector2(0, 1)
 fill_to = Vector2(0.0683761, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puaxa"]
-size = Vector2(200, 44)
+size = Vector2(202, 42)
 
 [node name="Main" type="Node2D" unique_id=582439884 node_paths=PackedStringArray("consoleNotifs")]
 process_mode = 1
@@ -73,9 +76,11 @@ consoleNotifs = {
 "thief": NodePath("TabContainer/Settings/HBoxContainer2/ConsoleNotifications/ThiefAppear")
 }
 
-[node name="PopupManager" type="Node2D" parent="." unique_id=1575492553 node_paths=PackedStringArray("tooltipCheck")]
+[node name="PopupManager" type="Node2D" parent="." unique_id=1575492553 node_paths=PackedStringArray("tooltipCheck", "screen1", "screen2")]
 script = ExtResource("13_g1wvp")
 tooltipCheck = NodePath("../TabContainer/Settings/HBoxContainer2/ConsoleNotifications/HideTooltip")
+screen1 = NodePath("../TabContainer/Residents")
+screen2 = NodePath("../TabContainer/Floors")
 
 [node name="TutorialInfo1" type="AcceptDialog" parent="PopupManager" unique_id=461763925]
 oversampling_override = 1.0
@@ -108,7 +113,7 @@ dialog_autowrap = true
 oversampling_override = 1.0
 title = "Tutorial (1/X): Residents"
 position = Vector2i(47, 71)
-size = Vector2i(313, 222)
+size = Vector2i(313, 240)
 theme = ExtResource("26_b7rxi")
 ok_button_text = "Next"
 dialog_text = "The first tab contains the RESIDENTS
@@ -218,7 +223,7 @@ horizontal_alignment = 1
 offset_left = 8.0
 offset_top = 40.0
 offset_right = 128.0
-offset_bottom = 88.0
+offset_bottom = 95.0
 tooltip_text = "Bricks are produced by Masons and are used to build new Floors"
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
@@ -226,7 +231,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "[img=56]res://Assets/UI/brickIcon.png[/img] 0"
+text = "[img=55]res://Assets/UI/brickIcon.png[/img] 0"
 scroll_active = false
 autowrap_mode = 0
 
@@ -234,7 +239,7 @@ autowrap_mode = 0
 offset_left = 8.0
 offset_top = 91.0
 offset_right = 128.0
-offset_bottom = 136.0
+offset_bottom = 146.0
 tooltip_text = "Wood is produced by Carpenters and is used to build new Floors"
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
@@ -242,7 +247,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 10
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "[img=56]res://Assets/UI/woodIcon.png[/img] 0"
+text = "[img=55]res://Assets/UI/woodIcon.png[/img] 0"
 scroll_active = false
 
 [node name="GoldLabel" type="RichTextLabel" parent="." unique_id=948733493]
@@ -313,9 +318,10 @@ offset_right = 640.0
 offset_bottom = 360.0
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 20
-tab_alignment = 2
+tab_alignment = 1
 current_tab = 0
 all_tabs_in_front = true
+switch_on_drag_hover = false
 
 [node name="Residents" type="MarginContainer" parent="TabContainer" unique_id=153931923]
 layout_mode = 2
@@ -326,222 +332,168 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Residents" unique_id=1758772816]
+[node name="AllResidents" type="VBoxContainer" parent="TabContainer/Residents" unique_id=1758772816]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(176, 287.5)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 6
 
-[node name="BuilderButton" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=2030371048]
-custom_minimum_size = Vector2(0, 36.675)
+[node name="BuilderButton" parent="TabContainer/Residents/AllResidents" unique_id=1908867287 instance=ExtResource("30_uoeln")]
 layout_mode = 2
-tooltip_text = "Builders are required to build new Floors"
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-theme = ExtResource("8_hphvt")
-text = "Builder"
+size_flags_horizontal = 4
+text = "         Builder"
+scene = ExtResource("4_r1sbw")
+price = 10
 
-[node name="MerchantButton" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=1760373703]
-custom_minimum_size = Vector2(0, 36.675)
+[node name="MerchantButton" parent="TabContainer/Residents/AllResidents" unique_id=1684704104 instance=ExtResource("30_uoeln")]
 layout_mode = 2
-tooltip_text = "Merchants produce Gold and major Hubris"
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-theme = ExtResource("8_hphvt")
-text = "Merchant"
+size_flags_horizontal = 4
+text = "         Merchant"
+scene = ExtResource("5_ycq4u")
+price = 15
 
-[node name="MasonButton" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=2091759444]
-custom_minimum_size = Vector2(0, 36.675)
+[node name="MasonButton" parent="TabContainer/Residents/AllResidents" unique_id=569275683 instance=ExtResource("30_uoeln")]
 layout_mode = 2
-tooltip_text = "Masons produce Bricks and minor Hubris"
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-theme = ExtResource("8_hphvt")
-text = "Mason"
-expand_icon = true
+size_flags_horizontal = 4
+text = "         Mason"
+scene = ExtResource("6_qu6a5")
+price = 20
 
-[node name="CarpenterButton" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=737684533]
-custom_minimum_size = Vector2(0, 36.675)
+[node name="CarpButton" parent="TabContainer/Residents/AllResidents" unique_id=1735915747 instance=ExtResource("30_uoeln")]
 layout_mode = 2
-tooltip_text = "Carpenters produce Wood and minor Hubris"
-mouse_default_cursor_shape = 2
-theme = ExtResource("8_hphvt")
-text = "Carpenter"
-expand_icon = true
+size_flags_horizontal = 4
+text = "         Carpenter"
+scene = ExtResource("6_nyx7j")
+price = 20
 
-[node name="ShepherdButton" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=157242775]
-custom_minimum_size = Vector2(0, 36.675)
+[node name="ShepButton" parent="TabContainer/Residents/AllResidents" unique_id=1513971632 instance=ExtResource("30_uoeln")]
 layout_mode = 2
-tooltip_text = "Shepherd greatly reduce Hubris"
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-theme = ExtResource("8_hphvt")
-text = "Shepherd"
-expand_icon = true
+size_flags_horizontal = 4
+text = "         Shepherd"
+scene = ExtResource("7_sbhwi")
+price = 30
 
-[node name="WarriorButton" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=1051250511]
-custom_minimum_size = Vector2(0, 36.675)
+[node name="WarButton" parent="TabContainer/Residents/AllResidents" unique_id=589998443 instance=ExtResource("30_uoeln")]
 layout_mode = 2
-tooltip_text = "Warriors prevent Thieves from appearing on their floors"
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-theme = ExtResource("8_hphvt")
-text = "Warrior"
-expand_icon = true
+size_flags_horizontal = 4
+text = "         Warrior"
+scene = ExtResource("8_xfuhw")
+price = 30
 
-[node name="SellDropbox" type="Button" parent="TabContainer/Residents/VBoxContainer" unique_id=539380712]
+[node name="SellDropbox" type="Button" parent="TabContainer/Residents/AllResidents" unique_id=539380712]
+custom_minimum_size = Vector2(200, 42)
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
 disabled = true
 text = "SELL"
 script = ExtResource("19_hyppe")
 
-[node name="DropComponent" parent="TabContainer/Residents/VBoxContainer/SellDropbox" unique_id=1779151716 instance=ExtResource("19_ufc1y")]
+[node name="DropComponent" parent="TabContainer/Residents/AllResidents/SellDropbox" unique_id=1779151716 instance=ExtResource("19_ufc1y")]
 
-[node name="Area2D" type="Area2D" parent="TabContainer/Residents/VBoxContainer/SellDropbox" unique_id=2121373780]
+[node name="Area2D" type="Area2D" parent="TabContainer/Residents/AllResidents/SellDropbox" unique_id=2121373780]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TabContainer/Residents/VBoxContainer/SellDropbox/Area2D" unique_id=884002820]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TabContainer/Residents/AllResidents/SellDropbox/Area2D" unique_id=884002820]
 position = Vector2(100, 21)
 shape = SubResource("RectangleShape2D_puaxa")
 
 [node name="Floors" type="MarginContainer" parent="TabContainer" unique_id=1471429945]
 visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 16
+theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 20
 metadata/_tab_index = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Floors" unique_id=503179735]
-layout_mode = 2
-alignment = 1
-
-[node name="BrickLabel" type="RichTextLabel" parent="TabContainer/Floors/HBoxContainer" unique_id=608658456]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64.605, 64)
-layout_mode = 2
-mouse_filter = 2
-theme = ExtResource("8_hphvt")
-theme_override_constants/line_separation = 4
-theme_override_constants/outline_size = 15
-theme_override_font_sizes/bold_font_size = 16
-bbcode_enabled = true
-text = "[b][color=RED][img=32]res://Assets/UI/brickIcon.png[/img]
-x2560"
-scroll_active = false
-horizontal_alignment = 1
-
-[node name="BuilderLabel" type="RichTextLabel" parent="TabContainer/Floors/HBoxContainer" unique_id=45388332]
+[node name="BuilderLabel" type="RichTextLabel" parent="TabContainer/Floors" unique_id=45388332]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64.605, 64)
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("8_hphvt")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/line_separation = 4
 theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "[b][color=RED][img=32]res://Assets/UI/ShopIcons/BuilderShop.png[/img]
-x9"
+text = "[color=RED][img=32]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x9"
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="WoodLabel" type="RichTextLabel" parent="TabContainer/Floors/HBoxContainer" unique_id=213588587]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Floors" unique_id=108038621]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BrickFloors" type="VBoxContainer" parent="TabContainer/Floors/HBoxContainer2" unique_id=1301048207]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(64.605, 64)
 layout_mode = 2
-mouse_filter = 2
-theme = ExtResource("8_hphvt")
-theme_override_constants/line_separation = 4
-theme_override_constants/outline_size = 15
-theme_override_font_sizes/bold_font_size = 16
-bbcode_enabled = true
-text = "[b][color=RED][img=32]res://Assets/UI/woodIcon.png[/img]
-x2560"
-scroll_active = false
-horizontal_alignment = 1
+theme_override_constants/separation = 8
+alignment = 2
 
-[node name="AllFloors" type="GridContainer" parent="TabContainer/Floors" unique_id=1084374163]
+[node name="BrickBasic" parent="TabContainer/Floors/HBoxContainer2/BrickFloors" unique_id=1023444484 instance=ExtResource("32_w0y2t")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_constants/h_separation = 16
-theme_override_constants/v_separation = 8
-columns = 2
+resource = "wood"
+scene = ExtResource("2_d85bv")
+price = 10
 
-[node name="BrickBasic" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=140335057]
-custom_minimum_size = Vector2(90.65, 48.28)
+[node name="BrickWide" parent="TabContainer/Floors/HBoxContainer2/BrickFloors" unique_id=1942283101 instance=ExtResource("32_w0y2t")]
 layout_mode = 2
-tooltip_text = "Standard Brick Floor"
-theme = ExtResource("8_hphvt")
-theme_override_font_sizes/font_size = 19
-text = "BRICK BASIC"
-autowrap_mode = 3
+text = "BRICK
+WIDE"
+resource = "wood"
+scene = ExtResource("4_u3vds")
+price = 13
 
-[node name="WoodBasic" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=633158177]
-custom_minimum_size = Vector2(90.65, 48.28)
+[node name="BrickMason" parent="TabContainer/Floors/HBoxContainer2/BrickFloors" unique_id=822095956 instance=ExtResource("32_w0y2t")]
 layout_mode = 2
-tooltip_text = "Standard Wood Floor"
-theme = ExtResource("8_hphvt")
-theme_override_font_sizes/font_size = 19
-text = "WOOD BASIC"
-autowrap_mode = 3
+text = "BRICK
+WKSHP"
+resource = "wood"
+scene = ExtResource("2_d85bv")
+price = 18
 
-[node name="BrickWide" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=366795607]
-custom_minimum_size = Vector2(90.65, 48.28)
+[node name="BrickCoffer" parent="TabContainer/Floors/HBoxContainer2/BrickFloors" unique_id=954510252 instance=ExtResource("32_w0y2t")]
 layout_mode = 2
-tooltip_text = "Holds double the Residents"
-theme = ExtResource("8_hphvt")
-theme_override_font_sizes/font_size = 19
-text = "BRICK WIDE"
-autowrap_mode = 3
+text = "BRICK
+COFFR"
+resource = "wood"
+scene = ExtResource("8_5oyvg")
+price = 20
 
-[node name="WoodTall" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=1543532417]
-custom_minimum_size = Vector2(90.65, 48.28)
+[node name="WoodFloors" type="VBoxContainer" parent="TabContainer/Floors/HBoxContainer2" unique_id=184688894]
+unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "Counts as two floors"
-theme = ExtResource("8_hphvt")
-theme_override_font_sizes/font_size = 19
-text = "WOOD TALL"
-autowrap_mode = 3
+theme_override_constants/separation = 8
+alignment = 2
 
-[node name="BrickMason" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=1244258321]
-custom_minimum_size = Vector2(90.65, 48.28)
+[node name="WoodBasic" parent="TabContainer/Floors/HBoxContainer2/WoodFloors" unique_id=1754260167 instance=ExtResource("33_1mip0")]
 layout_mode = 2
-tooltip_text = "Increases all Brick Production on the floor"
-theme = ExtResource("8_hphvt")
-theme_override_font_sizes/font_size = 19
-text = "MASON WORKSHOP"
-autowrap_mode = 3
+scene = ExtResource("3_l5otw")
+price = 10
 
-[node name="WoodCarp" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=1764821521]
-custom_minimum_size = Vector2(90.65, 48.28)
+[node name="WoodTall" parent="TabContainer/Floors/HBoxContainer2/WoodFloors" unique_id=1888696443 instance=ExtResource("33_1mip0")]
 layout_mode = 2
-tooltip_text = "Increases all Wood Production on the floor"
-theme = ExtResource("8_hphvt")
-theme_override_font_sizes/font_size = 19
-text = "CARPENTER WORKSHOP"
-autowrap_mode = 3
+text = "WOOD
+TALL"
+scene = ExtResource("5_2px56")
+price = 13
 
-[node name="BrickCoffer" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=1611685131]
-custom_minimum_size = Vector2(90.65, 48.28)
+[node name="WoodCarp" parent="TabContainer/Floors/HBoxContainer2/WoodFloors" unique_id=1558028766 instance=ExtResource("33_1mip0")]
 layout_mode = 2
-tooltip_text = "Increases all Gold Production on the floor"
-theme = ExtResource("8_hphvt")
-theme_override_font_sizes/font_size = 19
-text = "COFFERS"
-autowrap_mode = 3
+text = "WOOD
+WKSHP"
+scene = ExtResource("7_mw6pn")
+price = 18
 
-[node name="WoodAltar" type="Button" parent="TabContainer/Floors/AllFloors" unique_id=1221260477]
-custom_minimum_size = Vector2(90.65, 48.28)
+[node name="WoodAltar" parent="TabContainer/Floors/HBoxContainer2/WoodFloors" unique_id=1675988782 instance=ExtResource("33_1mip0")]
 layout_mode = 2
-tooltip_text = "Reduces all Hubris production on the floor"
-theme = ExtResource("8_hphvt")
-theme_override_font_sizes/font_size = 19
-text = "ALTAR"
-autowrap_mode = 3
+text = "WOOD
+CHRCH"
+scene = ExtResource("9_w0y2t")
+price = 20
 
 [node name="Settings" type="MarginContainer" parent="TabContainer" unique_id=1195950695]
 visible = false
@@ -700,22 +652,22 @@ text = "Abandon Run"
 [connection signal="timeout" from="SpeedrunTimer" to="." method="_on_speedrun_timer_timeout"]
 [connection signal="timeout" from="ThiefTimer" to="." method="_on_thief_timer_timeout"]
 [connection signal="tab_hovered" from="TabContainer" to="PopupManager" method="_on_tab_container_tab_hovered"]
-[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/BuilderButton" to="." method="_on_builder_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MerchantButton" to="." method="_on_merchant_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/MasonButton" to="." method="_on_mason_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/CarpenterButton" to="." method="_on_carpenter_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/ShepherdButton" to="." method="_on_shepherd_button_pressed"]
-[connection signal="pressed" from="TabContainer/Residents/VBoxContainer/WarriorButton" to="." method="_on_warrior_button_pressed"]
-[connection signal="mouse_entered" from="TabContainer/Residents/VBoxContainer/SellDropbox/Area2D" to="TabContainer/Residents/VBoxContainer/SellDropbox" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="TabContainer/Residents/VBoxContainer/SellDropbox/Area2D" to="TabContainer/Residents/VBoxContainer/SellDropbox" method="_on_area_2d_mouse_exited"]
-[connection signal="pressed" from="TabContainer/Floors/AllFloors/BrickBasic" to="." method="_on_brick_basic_pressed"]
-[connection signal="pressed" from="TabContainer/Floors/AllFloors/WoodBasic" to="." method="_on_wood_basic_pressed"]
-[connection signal="pressed" from="TabContainer/Floors/AllFloors/BrickWide" to="." method="_on_brick_wide_pressed"]
-[connection signal="pressed" from="TabContainer/Floors/AllFloors/WoodTall" to="." method="_on_wood_tall_pressed"]
-[connection signal="pressed" from="TabContainer/Floors/AllFloors/BrickMason" to="." method="_on_brick_mason_pressed"]
-[connection signal="pressed" from="TabContainer/Floors/AllFloors/WoodCarp" to="." method="_on_wood_carp_pressed"]
-[connection signal="pressed" from="TabContainer/Floors/AllFloors/BrickCoffer" to="." method="_on_brick_coffer_pressed"]
-[connection signal="pressed" from="TabContainer/Floors/AllFloors/WoodAltar" to="." method="_on_wood_altar_pressed"]
+[connection signal="buy" from="TabContainer/Residents/AllResidents/BuilderButton" to="." method="buy_character"]
+[connection signal="buy" from="TabContainer/Residents/AllResidents/MerchantButton" to="." method="buy_character"]
+[connection signal="buy" from="TabContainer/Residents/AllResidents/MasonButton" to="." method="buy_character"]
+[connection signal="buy" from="TabContainer/Residents/AllResidents/CarpButton" to="." method="buy_character"]
+[connection signal="buy" from="TabContainer/Residents/AllResidents/ShepButton" to="." method="buy_character"]
+[connection signal="buy" from="TabContainer/Residents/AllResidents/WarButton" to="." method="buy_character"]
+[connection signal="mouse_entered" from="TabContainer/Residents/AllResidents/SellDropbox/Area2D" to="TabContainer/Residents/AllResidents/SellDropbox" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="TabContainer/Residents/AllResidents/SellDropbox/Area2D" to="TabContainer/Residents/AllResidents/SellDropbox" method="_on_area_2d_mouse_exited"]
+[connection signal="buy" from="TabContainer/Floors/HBoxContainer2/BrickFloors/BrickBasic" to="." method="new_floor"]
+[connection signal="buy" from="TabContainer/Floors/HBoxContainer2/BrickFloors/BrickWide" to="." method="new_floor"]
+[connection signal="buy" from="TabContainer/Floors/HBoxContainer2/BrickFloors/BrickMason" to="." method="new_floor"]
+[connection signal="buy" from="TabContainer/Floors/HBoxContainer2/BrickFloors/BrickCoffer" to="." method="new_floor"]
+[connection signal="buy" from="TabContainer/Floors/HBoxContainer2/WoodFloors/WoodBasic" to="." method="new_floor"]
+[connection signal="buy" from="TabContainer/Floors/HBoxContainer2/WoodFloors/WoodTall" to="." method="new_floor"]
+[connection signal="buy" from="TabContainer/Floors/HBoxContainer2/WoodFloors/WoodCarp" to="." method="new_floor"]
+[connection signal="buy" from="TabContainer/Floors/HBoxContainer2/WoodFloors/WoodAltar" to="." method="new_floor"]
 [connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/MusicSlider" to="SoundManager" method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/MusicSlider" to="TabContainer/Settings" method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Settings/HBoxContainer2/VolumeSliders/Sliders/SfxSlider" to="SoundManager" method="_on_sfx_slider_value_changed"]

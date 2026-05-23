@@ -18,6 +18,7 @@ texture = ExtResource("1_x02kk")
 stretch_mode = 4
 script = ExtResource("2_q16r2")
 floorIndex = 5
+resourceMultiplier = 1.75
 floorBonus = Dictionary[String, float]({
 "bricks": 1.5,
 "gold": 1.0,

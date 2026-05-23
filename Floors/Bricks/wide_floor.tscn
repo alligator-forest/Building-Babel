@@ -17,6 +17,7 @@ mouse_filter = 2
 texture = ExtResource("1_6i2q3")
 script = ExtResource("2_a8jmr")
 floorIndex = 3
+resourceMultiplier = 1.25
 maxChars = 10
 
 [node name="Label" type="Label" parent="." unique_id=592710185]

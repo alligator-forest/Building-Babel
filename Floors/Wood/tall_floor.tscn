@@ -18,6 +18,7 @@ texture = ExtResource("1_vcafx")
 expand_mode = 5
 script = ExtResource("2_6gsoe")
 floorIndex = 4
+resourceMultiplier = 1.25
 value = 2
 
 [node name="Label" type="Label" parent="." unique_id=1911366645]

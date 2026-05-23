@@ -8,6 +8,7 @@ var STARTMUSICVOLUME = 0.5
 var STARTSFXVOLUME = 0.5
 var STARTSCORES = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
 var STARTNAMES = ["---","---","---","---","---","---","---","---","---","---",]
+var seenTutorial : bool = false
 
 @export var musicVolume : float = STARTMUSICVOLUME #linear volume, between 0 and 200
 @export var sfxVolume : float = STARTSFXVOLUME #linear volume, between 0 and 200
@@ -80,3 +81,9 @@ func set_sfx_volume(s : float) -> void:
 
 func reset_sfx_volume() -> void:
 	sfxVolume = STARTSFXVOLUME
+	
+func seen_tutorial() -> bool:
+	return seenTutorial
+
+func set_seen_tutorial(s : bool) -> void:
+	seenTutorial = s

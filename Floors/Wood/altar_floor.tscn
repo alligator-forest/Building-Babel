@@ -16,7 +16,8 @@ pivot_offset = Vector2(128, 64)
 mouse_filter = 2
 texture = ExtResource("1_x0bi1")
 script = ExtResource("2_7hevf")
-floorIndex = 6
+floorIndex = 8
+resourceMultiplier = 2.0
 floorBonus = Dictionary[String, float]({
 "bricks": 1.0,
 "gold": 1.0,

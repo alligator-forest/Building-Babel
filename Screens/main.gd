@@ -23,7 +23,7 @@ extends Node2D
 @export var warriors: PackedScene
 @export var thieves: PackedScene
 
-@onready var sellBox = $TabContainer/Residents/VBoxContainer/SellDropbox
+@onready var sellBox = %AllResidents/SellDropbox
 @onready var rng = RandomNumberGenerator.new()
 const THIEFCHANCE : int = 2 # % chance a thief will spawn
 const FLOORSTOWIN : int = 10 #the number of floors you need to win (excludeing the top floor)
@@ -80,6 +80,7 @@ func _physics_process(_delta):
 					currChar = d
 		if(currChar != null):
 			currChar.prepare_drag()
+			$TabContainer.current_tab = 0
 			if($TabContainer/Residents.visible):
 				sellBox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
 				sellBox.visible = true
@@ -128,24 +129,26 @@ func update():
 	tween.tween_property($GodBar,"value",resources["hubris"],0.5)
 	
 	#%Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
-	var newFloorBricksLabel = %BrickLabel
 	var newFloorBuildersLabel = %BuilderLabel
-	var newFloorWoodLabel = %WoodLabel
-	newFloorBricksLabel.text = "[color=GREEN]" if (resources["bricks"] >= neededResources["bricks"]) else "[color=RED]"
 	newFloorBuildersLabel.text = "[color=GREEN]" if (numBuilders >= neededResources["builders"]) else "[color=RED]"
-	newFloorWoodLabel.text = "[color=GREEN]" if (resources["wood"] >= neededResources["wood"]) else "[color=RED]"
-	newFloorBricksLabel.text += "[b][img=32]res://Assets/UI/brickIcon.png[/img]\nx" + str(neededResources["bricks"])
-	newFloorBuildersLabel.text += "[b][img=32]res://Assets/UI/ShopIcons/BuilderShop.png[/img]\nx" + str(neededResources["builders"])
-	newFloorWoodLabel.text += "[b][img=32]res://Assets/UI/woodIcon.png[/img]\nx" + str(neededResources["wood"])
+	newFloorBuildersLabel.text += "[img=32]res://Assets/UI/ShopIcons/BuilderShop.png[/img] x" + str(neededResources["builders"])
+	
+	for button : ShopButton in %AllResidents.get_children().slice(0,%AllResidents.get_child_count()-1):
+		button.update_text(resources["gold"])
+	for button : ShopButton in %BrickFloors.get_children():
+		button.update_text(resources["bricks"])
+	for button : ShopButton in %WoodFloors.get_children():
+		button.update_text(resources["wood"])
 	
 	if($GodBar.value >= 99 and (!usingDebug or usingHubris)):
 		SAVEOBJECT._save_data()
 		get_tree().change_scene_to_file("res://Screens/game_over.tscn")
 
-func new_floor(type : String, fLoader):
-	if(resources[type] >= neededResources[type] and numBuilders >= neededResources["builders"]):
-		resources[type] -= neededResources[type]
+func new_floor(fLoader : PackedScene):
+	if(numBuilders >= neededResources["builders"]):
 		var tier : Floor = fLoader.instantiate()
+		var type = "bricks" if tier.floorIndex % 2 == 1 else "wood"
+		resources[type] -= int(floor(neededResources[type] * tier.resourceMultiplier))
 		tier.change_name("Floor " + str(%Floors.get_child_count()))
 		totalFloors += tier.value
 		%Floors.add_child(tier)
@@ -178,8 +181,6 @@ func _on_character_timer_timeout(c : Character):
 	if(r["hubris"] > 0):
 		r["hubris"] = int(floor(r["hubris"] * hubrisMult))
 	
-	print("hubris: ", r["hubris"])
-	
 	for key in r:
 		if(key != "hubris" and r[key] != 0):
 			if(r[key] > 0):
@@ -204,24 +205,6 @@ func add_resources(r : Dictionary):
 func play_effect(n : String):
 	$SoundManager.play_effect(n)
 
-func _on_builder_button_pressed():
-	buy_character(builders)
-
-func _on_merchant_button_pressed():
-	buy_character(merchants)
-
-func _on_mason_button_pressed():
-	buy_character(masons)
-
-func _on_carpenter_button_pressed() -> void:
-	buy_character(carpenters)
-
-func _on_shepherd_button_pressed():
-	buy_character(shepherds)
-
-func _on_warrior_button_pressed():
-	buy_character(warriors)
-
 func buy_character(cLoader : PackedScene):
 	if($SpeedrunTimer.is_stopped()):
 		$SpeedrunTimer.start()
@@ -233,8 +216,8 @@ func buy_character(cLoader : PackedScene):
 			spawnfloor = %Floors.get_child(i)
 			spawnscroll = i
 			break
-	var dChar = cLoader.instantiate()
-	if(dChar.get_price() <= resources["gold"] and spawnfloor != null):
+	if(spawnfloor != null):
+		var dChar = cLoader.instantiate()
 		resources["gold"] -= dChar.get_price()
 		if(dChar.name == "Builder"):
 			numBuilders += 1
@@ -307,27 +290,3 @@ func _on_hide_timer_pressed() -> void:
 	$SpeedrunLabel.visible = $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/HideTimer.button_pressed
 	SAVEOBJECT.data.set_console_notif("timer",$SpeedrunLabel.visible)
 	SAVEOBJECT._save_data()
-
-func _on_brick_basic_pressed() -> void:
-	new_floor("bricks",BrickBasic)
-
-func _on_wood_basic_pressed() -> void:
-	new_floor("wood",WoodBasic)
-
-func _on_brick_wide_pressed() -> void:
-	new_floor("bricks", BrickWide)
-
-func _on_wood_tall_pressed() -> void:
-	new_floor("wood", WoodTall)
-
-func _on_brick_mason_pressed() -> void:
-	new_floor("bricks", BrickMason)
-
-func _on_wood_carp_pressed() -> void:
-	new_floor("wood", WoodCarp)
-
-func _on_brick_coffer_pressed() -> void:
-	new_floor("bricks", BrickCoffer)
-
-func _on_wood_altar_pressed() -> void:
-	new_floor("wood", WoodAltar)

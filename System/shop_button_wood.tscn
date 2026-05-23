@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cuci1wcy7ehcc"]
+
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="1_0c3i3"]
+[ext_resource type="StyleBox" uid="uid://0rxy7wdao36y" path="res://Assets/UI/WoodStylebox.tres" id="2_0c3i3"]
+[ext_resource type="Script" uid="uid://p34h22wmeh70" path="res://System/shop_button.gd" id="3_fqidn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0p0mb"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color(0.627451, 0.35686275, 0.3254902, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+
+[node name="ShopButton" type="Button" unique_id=1023444484]
+custom_minimum_size = Vector2(95, 56)
+offset_right = 86.0
+offset_bottom = 50.0
+tooltip_text = "Standard Brick Floor
+Worth x1 the Base Cost"
+theme = ExtResource("1_0c3i3")
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = ExtResource("2_0c3i3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0p0mb")
+disabled = true
+text = "WOOD
+BASIC"
+alignment = 0
+autowrap_mode = 3
+script = ExtResource("3_fqidn")
+resource = "wood"
+BBCode = "[img=32]res://Assets/UI/woodIcon.png[/img]"
+
+[node name="ResourceLabel" type="RichTextLabel" parent="." unique_id=1210498712]
+custom_minimum_size = Vector2(32, 50)
+layout_mode = 0
+offset_left = 59.0
+offset_right = 94.0
+offset_bottom = 56.0
+mouse_filter = 2
+theme = ExtResource("1_0c3i3")
+theme_override_colors/default_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_constants/line_separation = -4
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[img=32]res://Assets/UI/woodIcon.png[/img]x2560"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

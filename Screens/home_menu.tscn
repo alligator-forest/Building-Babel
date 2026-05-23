@@ -4,14 +4,6 @@
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_17r3x"]
 [ext_resource type="Texture2D" uid="uid://dtlsyl6l734o" path="res://Assets/Screens/MainMenu-Sheet.png" id="2_n71bs"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kuuvh"]
-bg_color = Color(0.670588, 0.321569, 0.211765, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-corner_detail = 4
-
 [sub_resource type="Animation" id="Animation_jpg0d"]
 length = 0.001
 tracks/0/type = "value"
@@ -68,7 +60,6 @@ offset_right = 424.0
 offset_bottom = 344.0
 theme = ExtResource("2_17r3x")
 theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_kuuvh")
 text = "PLAY"
 
 [node name="LeaderboardButton" type="Button" parent="." unique_id=54968905]
@@ -77,7 +68,6 @@ offset_top = 280.0
 offset_right = 624.0
 offset_bottom = 344.0
 theme = ExtResource("2_17r3x")
-theme_override_styles/normal = SubResource("StyleBoxFlat_kuuvh")
 text = "LEADERBOARD"
 
 [node name="CreditsButton" type="Button" parent="." unique_id=258750851]
@@ -86,7 +76,6 @@ offset_top = 208.0
 offset_right = 624.0
 offset_bottom = 272.0
 theme = ExtResource("2_17r3x")
-theme_override_styles/normal = SubResource("StyleBoxFlat_kuuvh")
 text = "CREDITS"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=542993786]

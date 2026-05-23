@@ -1,11 +1,13 @@
 extends Node2D
 
 @export var tooltipCheck : CheckBox
+@export var screen1 : MarginContainer
+@export var screen2 : MarginContainer
 
 var counter : int = 0
 
 func _ready() -> void:
-	$TutorialInfo1.visible = SAVEOBJECT.data.get_console_notif("tooltip")
+	$TutorialInfo1.visible = !SAVEOBJECT.data.seenTutorial
 
 func _on_tutorial_info_confirmed() -> void:
 	get_child(counter).hide()
@@ -16,4 +18,5 @@ func _on_tutorial_info_confirmed() -> void:
 		_on_tutorial_info_canceled()
 
 func _on_tutorial_info_canceled() -> void:
-	pass # Replace with function body.
+	SAVEOBJECT.data.set_seen_tutorial(true)
+	SAVEOBJECT._save_data()

@@ -3,6 +3,7 @@ class_name Floor
 
 @export var floorName : String
 @export var floorIndex : int #odd for bricks, even for wood
+@export var resourceMultiplier : float = 1.0
 @export var value : int = 1 #the number of floors this one floor counts for!
 const LEFT : int = 34
 const RIGHT : int = 178
