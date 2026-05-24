@@ -53,8 +53,6 @@ size = Vector2(202, 42)
 [node name="Main" type="Node2D" unique_id=582439884 node_paths=PackedStringArray("consoleNotifs")]
 process_mode = 1
 script = ExtResource("1_eqxpj")
-usingDebug = true
-cheatHubris = true
 BrickBasic = ExtResource("2_d85bv")
 WoodBasic = ExtResource("3_l5otw")
 BrickWide = ExtResource("4_u3vds")
@@ -320,12 +318,11 @@ offset_bottom = 360.0
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 20
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 all_tabs_in_front = true
 switch_on_drag_hover = false
 
 [node name="Residents" type="MarginContainer" parent="TabContainer" unique_id=153931923]
-visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 16
@@ -401,6 +398,7 @@ position = Vector2(100, 21)
 shape = SubResource("RectangleShape2D_puaxa")
 
 [node name="Floors" type="MarginContainer" parent="TabContainer" unique_id=1471429945]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 16
@@ -435,11 +433,13 @@ alignment = 2
 
 [node name="BrickBasic" parent="TabContainer/Floors/HBoxContainer2/BrickFloors" unique_id=1023444484 instance=ExtResource("32_w0y2t")]
 layout_mode = 2
+disabled = false
 resource = "wood"
 scene = ExtResource("2_d85bv")
 
 [node name="BrickWide" parent="TabContainer/Floors/HBoxContainer2/BrickFloors" unique_id=1942283101 instance=ExtResource("32_w0y2t")]
 layout_mode = 2
+disabled = false
 text = "BRICK
 WIDE"
 resource = "wood"
@@ -448,14 +448,16 @@ multiplier = 1.25
 
 [node name="BrickMason" parent="TabContainer/Floors/HBoxContainer2/BrickFloors" unique_id=822095956 instance=ExtResource("32_w0y2t")]
 layout_mode = 2
+disabled = false
 text = "BRICK
 WKSHP"
 resource = "wood"
-scene = ExtResource("2_d85bv")
+scene = ExtResource("6_m3eub")
 multiplier = 1.75
 
 [node name="BrickCoffer" parent="TabContainer/Floors/HBoxContainer2/BrickFloors" unique_id=954510252 instance=ExtResource("32_w0y2t")]
 layout_mode = 2
+disabled = false
 text = "BRICK
 COFFR"
 resource = "wood"

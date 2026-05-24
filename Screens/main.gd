@@ -29,7 +29,7 @@ const THIEFCHANCE : int = 2 # % chance a thief will spawn
 const FLOORSTOWIN : int = 10 #the number of floors you need to win (excludeing the top floor)
 const HUBRISINCREASE : int = 600 #the number of secs it takes to increase hubrisMult
 var tween : Tween
-var resourceCounts = [10,30,70,150,260,400,650,1000,1500]
+var resourceCounts = [30,70,150,320,650,1000,1500,2000,2500,3777]
 var brickCount : int = 0
 var woodCount : int = 0
 var numBuilders = 0
@@ -62,6 +62,12 @@ func _ready():
 	var tabTooltips = ["Buy and sell Residents for the Tower!", "Build new floors with resources! 10 Floors to win!", "Customize the volume, console, and more!"]
 	for i in $TabContainer.get_tab_count():
 		$TabContainer.get_tab_bar().set_tab_tooltip(i, tabTooltips[i])
+	for button : ShopButton in %WoodFloors.get_children():
+		button.set_price(resourceCounts[0])
+		button.update_text(0)
+	for button : ShopButton in %BrickFloors.get_children():
+		button.set_price(resourceCounts[0])
+		button.update_text(0)
 
 func _physics_process(_delta):
 	if(totalFloors >= 5):
@@ -122,33 +128,27 @@ func log_in_console(event : int, c : Character = null, resourceVal : int = 0, re
 
 func update(resourcesChanged : Array[String] = ["hubris", "bricks", "wood", "gold", "builders"]):
 	if("hubris" in resourcesChanged):
-		print("updated HUBRIS")
 		$GodBarLabel.text = str("[wave][color=yellow]HUBRIS x",snapped(hubrisMult,0.1))
 		tween = create_tween()
 		tween.tween_property($GodBar,"value",resources["hubris"],0.5)
 	if("bricks" in resourcesChanged):
-		print("updated BRICKS")
 		$BrickLabel.text = str("[img=56]res://Assets/Resources/brickIcon.png[/img] ",resources["bricks"])
 		for button : ShopButton in %BrickFloors.get_children():
 			button.update_text(resources["bricks"])
 	if("wood" in resourcesChanged):
-		print("updated WOOD")
 		$WoodLabel.text = str("[img=56]res://Assets/Resources/woodIcon.png[/img] ",resources["wood"])
 		for button : ShopButton in %WoodFloors.get_children():
 			button.update_text(resources["wood"])
 	if("gold" in resourcesChanged):
-		print("updated GOLD")
 		$GoldLabel.text = str("[img=56]res://Assets/Resources/goldIcon.png[/img] ",resources["gold"])
 		for button : ShopButton in %AllResidents.get_children().slice(0,%AllResidents.get_child_count()-1):
 			button.update_text(resources["gold"])
 	if("builders" in resourcesChanged):
-		print("updated BUILDERS")
 		%BuilderLabel.text = "[color=GREEN]" if (numBuilders >= neededResources["builders"]) else "[color=RED]"
 		%BuilderLabel.text += "[img=42]res://Assets/BuildingBabelLogo.png[/img] x" + str(neededResources["builders"])
 	if($GodBar.value >= 99 and (!usingDebug or !cheatHubris)):
 		SAVEOBJECT._save_data()
 		get_tree().change_scene_to_file("res://Screens/game_over.tscn")
-	print("--------------")
 
 func new_floor(fLoader : PackedScene):
 	if(numBuilders >= neededResources["builders"]):
@@ -228,7 +228,7 @@ func buy_character(cLoader : PackedScene):
 			spawnscroll = i
 			break
 	if(spawnfloor != null):
-		var dChar = cLoader.instantiate()
+		var dChar : Character = cLoader.instantiate()
 		resources["gold"] -= dChar.get_price()
 			
 		dChar.get_node("Area2D").area_entered.connect(on_character_area_2d_enter)
@@ -237,7 +237,7 @@ func buy_character(cLoader : PackedScene):
 		dChar.position = Vector2(148,0)
 		spawnfloor.add_character(dChar)
 		$Tower.scroll_vertical = 64 * (spawnscroll-1)
-		if(dChar.name == "Builder"):
+		if(dChar.type == "Builder"):
 			numBuilders += 1
 			update(["gold", "builders"])
 		else:
