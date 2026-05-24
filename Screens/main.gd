@@ -259,8 +259,9 @@ func despawn_thief(t : Thief, waitTime : float) -> void:
 	t.queue_free()
 
 func sell_character(c : Character):
-	if(c.name == "Builder"):
+	if(c.type == "Builder"):
 		numBuilders -= 1
+		update(["builders"])
 	var d : Dictionary[String,int] = {"gold" : currChar.get_sell_price()}
 	add_resources(d)
 	c.queue_free()

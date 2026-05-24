@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var showTutorial : bool = false
 @export var tooltipCheck : CheckBox
 @export var screen1 : MarginContainer
 @export var screen2 : MarginContainer
@@ -7,7 +8,7 @@ extends Node2D
 var counter : int = 0
 
 func _ready() -> void:
-	$TutorialInfo1.visible = !SAVEOBJECT.data.seen_tutorial()
+	$TutorialInfo1.visible = !SAVEOBJECT.data.seen_tutorial() or showTutorial
 
 func _on_tutorial_info_confirmed() -> void:
 	get_child(counter).hide()
