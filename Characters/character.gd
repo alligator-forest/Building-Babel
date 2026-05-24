@@ -103,10 +103,10 @@ func get_sell_price() -> int:
 	return round(price/2.0)
 
 func get_resource(r : String) -> int:
-	if(r in resources):
-		return rng.randi_range(minResource,maxResource)
-	elif(r == "hubris"):
+	if(r == "hubris" and numHubris > 0):
 		return numHubris
+	elif(r in resources):
+		return rng.randi_range(minResource,maxResource)
 	return 0
 
 func start_effect(resource : String, value : int) -> void:

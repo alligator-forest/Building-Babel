@@ -143,10 +143,8 @@ func update(resourcesChanged : Array[String] = ["hubris", "bricks", "wood", "gol
 			button.update_text(resources["gold"])
 	if("builders" in resourcesChanged):
 		print("updated BUILDERS")
-		#%Floors/TopFloor/NewFloorLabel.text = "BRICKS NEEDED: " + str(newFloorBricks)
-		var newFloorBuildersLabel = %BuilderLabel
-		newFloorBuildersLabel.text = "[color=GREEN]" if (numBuilders >= neededResources["builders"]) else "[color=RED]"
-		newFloorBuildersLabel.text += "[img=42]res://Assets/BuildingBabelLogo.png[/img] x" + str(neededResources["builders"])
+		%BuilderLabel.text = "[color=GREEN]" if (numBuilders >= neededResources["builders"]) else "[color=RED]"
+		%BuilderLabel.text += "[img=42]res://Assets/BuildingBabelLogo.png[/img] x" + str(neededResources["builders"])
 	if($GodBar.value >= 99 and (!usingDebug or !cheatHubris)):
 		SAVEOBJECT._save_data()
 		get_tree().change_scene_to_file("res://Screens/game_over.tscn")

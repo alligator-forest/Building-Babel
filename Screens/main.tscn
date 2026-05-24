@@ -53,6 +53,8 @@ size = Vector2(202, 42)
 [node name="Main" type="Node2D" unique_id=582439884 node_paths=PackedStringArray("consoleNotifs")]
 process_mode = 1
 script = ExtResource("1_eqxpj")
+usingDebug = true
+cheatHubris = true
 BrickBasic = ExtResource("2_d85bv")
 WoodBasic = ExtResource("3_l5otw")
 BrickWide = ExtResource("4_u3vds")

@@ -17,6 +17,7 @@ type = "Shepherd"
 resources = Array[String](["hubris"])
 minResource = -10
 maxResource = -1
+numHubris = -1
 price = 30
 charWidth = 12
 
