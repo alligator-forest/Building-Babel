@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cd7ocv71t8jvt"]
 
 [ext_resource type="Script" uid="uid://c4oe0w5kwn0cs" path="res://System/resource_effect.gd" id="1_811qx"]
-[ext_resource type="Texture2D" uid="uid://jnyb2isij3bo" path="res://Assets/UI/BabelResourseIcons.png" id="2_lny6r"]
+[ext_resource type="Texture2D" uid="uid://jnyb2isij3bo" path="res://Assets/Resources/BabelResourseIcons.png" id="2_lny6r"]
 [ext_resource type="Theme" uid="uid://bo064dbmg8wij" path="res://Assets/UI/Popups.tres" id="3_ekb68"]
 
 [node name="ResourceEffect" type="Node2D" unique_id=842060896]

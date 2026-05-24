@@ -7,7 +7,8 @@ signal buy(scene : PackedScene)
 @export var BBCode : String
 const ENABLED_COLOR := Color("dfdfdf")
 const DISABLED_COLOR := Color("8e8e8e")
-@export var price : int
+@export var price : int = 10
+@export var multiplier : float = 1.0
 
 func _ready() -> void:
 	set_price(price)
@@ -16,7 +17,7 @@ func _on_pressed() -> void:
 	buy.emit(scene)
 
 func set_price(p : int) -> void:
-	price = p
+	price = ceil(p * multiplier)
 
 func update_text(rCount : int) -> void:
 	disabled = (price > rCount)

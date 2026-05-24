@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d36eyclfc42jc"
-path="res://.godot/imported/woodIcon.png-4cd12ff58d8afd612be02e18f3857c91.ctex"
+uid="uid://dpafrk5oj6hja"
+path="res://.godot/imported/goldIcon.png-dee24f2ac05be7abe493e4d5a722f65b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/woodIcon.png"
-dest_files=["res://.godot/imported/woodIcon.png-4cd12ff58d8afd612be02e18f3857c91.ctex"]
+source_file="res://Assets/Resources/goldIcon.png"
+dest_files=["res://.godot/imported/goldIcon.png-dee24f2ac05be7abe493e4d5a722f65b.ctex"]
 
 [params]
 

@@ -2,7 +2,6 @@
 
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="1_yfoml"]
 [ext_resource type="Script" uid="uid://p34h22wmeh70" path="res://System/shop_button.gd" id="2_1683s"]
-[ext_resource type="StyleBox" uid="uid://djvfvbivswxl2" path="res://disabled_stylebox.tres" id="2_e5xca"]
 
 [node name="ShopButton" type="Button" unique_id=1908867287]
 custom_minimum_size = Vector2(200, 36)
@@ -12,12 +11,11 @@ tooltip_text = "Builders are required to build new Floors"
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_yfoml")
-theme_override_styles/disabled = ExtResource("2_e5xca")
 text = "        Carpenter"
 alignment = 0
 script = ExtResource("2_1683s")
 resource = "gold"
-BBCode = "[img=32]res://Assets/UI/goldIcon.png[/img]"
+BBCode = "[img=32]res://Assets/Resources/goldIcon.png[/img]"
 
 [node name="ResourceLabel" type="RichTextLabel" parent="." unique_id=1268954017]
 custom_minimum_size = Vector2(32, 36)
@@ -30,7 +28,7 @@ theme = ExtResource("1_yfoml")
 theme_override_colors/default_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
-text = "[img=32]res://Assets/UI/goldIcon.png[/img]x30"
+text = "[img=32]res://Assets/Resources/goldIcon.png[/img]x30"
 fit_content = true
 scroll_active = false
 vertical_alignment = 1

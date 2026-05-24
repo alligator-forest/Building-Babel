@@ -9,7 +9,7 @@ func play_effect(key : String):
 		"bricks":
 			$SFX/Brick.play(55)
 		"wood":
-			$SFX/Wood.play()
+			$SFX/Wood.play(0.5)
 		"gold":
 			$SFX/Gold.play()
 		"steal":

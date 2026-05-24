@@ -7,7 +7,7 @@ extends Node2D
 var counter : int = 0
 
 func _ready() -> void:
-	$TutorialInfo1.visible = !SAVEOBJECT.data.seenTutorial
+	$TutorialInfo1.visible = !SAVEOBJECT.data.seen_tutorial()
 
 func _on_tutorial_info_confirmed() -> void:
 	get_child(counter).hide()

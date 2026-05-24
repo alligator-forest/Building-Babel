@@ -2,8 +2,11 @@
 
 [ext_resource type="FontFile" uid="uid://c2grr826h7mau" path="res://Assets/UI/pixel-roman.otf" id="1_sk3jv"]
 [ext_resource type="StyleBox" uid="uid://cr3lynu7u27pt" path="res://Assets/UI/TooltipOuter.tres" id="1_t3oq6"]
-[ext_resource type="StyleBox" uid="uid://djvfvbivswxl2" path="res://disabled_stylebox.tres" id="2_keseg"]
+[ext_resource type="StyleBox" uid="uid://djvfvbivswxl2" path="res://Assets/UI/disabled_stylebox.tres" id="2_keseg"]
 [ext_resource type="StyleBox" uid="uid://dck4df518c1x5" path="res://Assets/UI/tooltip.tres" id="2_t3oq6"]
+[ext_resource type="Texture2D" uid="uid://bavssbppofu1q" path="res://Assets/UI/check1.png" id="3_a67o8"]
+[ext_resource type="Texture2D" uid="uid://cktc0qmdowl45" path="res://Assets/UI/slider.png" id="4_5u1tl"]
+[ext_resource type="Texture2D" uid="uid://btjkn63s7qtrj" path="res://Assets/UI/check0.png" id="4_n0q6p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qw6d"]
 
@@ -30,14 +33,6 @@ corner_detail = 4
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_keseg"]
 content_margin_left = 4.0
 content_margin_right = 4.0
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-corner_detail = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejlxd"]
-bg_color = Color(0.6, 0.6, 0.6, 0.33333334)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -72,6 +67,42 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_detail = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejlxd"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.37, 0.2109, 0.26128167, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0q6p"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.47843137, 0.26666668, 0.2901961, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a67o8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.49, 0.44099998, 0.44508335, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
 [resource]
 default_font = ExtResource("1_sk3jv")
 default_font_size = 28
@@ -90,11 +121,13 @@ CheckBox/constants/align_to_largest_stylebox = 1
 CheckBox/constants/h_separation = 0
 CheckBox/constants/icon_max_width = 14
 CheckBox/font_sizes/font_size = 12
-CheckBox/styles/focus = SubResource("StyleBoxFlat_ejlxd")
-CheckBox/styles/hover = SubResource("StyleBoxFlat_ejlxd")
-CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_ejlxd")
+CheckBox/icons/checked = ExtResource("3_a67o8")
+CheckBox/icons/unchecked = ExtResource("4_n0q6p")
+CheckBox/styles/focus = SubResource("StyleBoxEmpty_keseg")
+CheckBox/styles/hover = SubResource("StyleBoxEmpty_keseg")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_keseg")
 CheckBox/styles/normal = SubResource("StyleBoxEmpty_keseg")
-CheckBox/styles/pressed = SubResource("StyleBoxFlat_ejlxd")
+CheckBox/styles/pressed = SubResource("StyleBoxEmpty_keseg")
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/font_sizes/font_size = 16
 LineEdit/font_sizes/font_size = 28
@@ -109,3 +142,8 @@ TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_5u1tl")
 TooltipLabel/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 TooltipLabel/font_sizes/font_size = 15
 TooltipPanel/styles/panel = ExtResource("2_t3oq6")
+VSlider/icons/grabber = ExtResource("4_5u1tl")
+VSlider/icons/grabber_highlight = ExtResource("4_5u1tl")
+VSlider/styles/grabber_area = SubResource("StyleBoxFlat_ejlxd")
+VSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_n0q6p")
+VSlider/styles/slider = SubResource("StyleBoxFlat_a67o8")

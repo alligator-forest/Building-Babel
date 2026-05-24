@@ -8,8 +8,8 @@ var STARTMUSICVOLUME = 0.5
 var STARTSFXVOLUME = 0.5
 var STARTSCORES = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
 var STARTNAMES = ["---","---","---","---","---","---","---","---","---","---",]
-var seenTutorial : bool = false
 
+@export var seenTutorial : bool = false
 @export var musicVolume : float = STARTMUSICVOLUME #linear volume, between 0 and 200
 @export var sfxVolume : float = STARTSFXVOLUME #linear volume, between 0 and 200
 @export var scores : Array = STARTSCORES #the top ten scores on your leaderboard, in seconds. index 0 is highscore
@@ -28,6 +28,7 @@ func reset_all() -> void:
 	reset_sfx_volume()
 	reset_scores()
 	reset_console_notifs()
+	seenTutorial = false
 
 func get_scores() -> Array:
 	return scores

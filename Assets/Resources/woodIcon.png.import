@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbund7mnu2ik3"
-path="res://.godot/imported/MerchantShop.png-e042c6c8cd6bb7b828efaf0bb5b33cfd.ctex"
+uid="uid://d36eyclfc42jc"
+path="res://.godot/imported/woodIcon.png-058955164a998b8d86af588c7d98c713.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/ShopIcons/MerchantShop.png"
-dest_files=["res://.godot/imported/MerchantShop.png-e042c6c8cd6bb7b828efaf0bb5b33cfd.ctex"]
+source_file="res://Assets/Resources/woodIcon.png"
+dest_files=["res://.godot/imported/woodIcon.png-058955164a998b8d86af588c7d98c713.ctex"]
 
 [params]
 

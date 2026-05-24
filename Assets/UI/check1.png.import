@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jnyb2isij3bo"
-path="res://.godot/imported/BabelResourseIcons.png-2ebb606ab15778c1b153fca645195cd0.ctex"
+uid="uid://bavssbppofu1q"
+path="res://.godot/imported/check1.png-8481d26af67fba38a205df9c5216691f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/BabelResourseIcons.png"
-dest_files=["res://.godot/imported/BabelResourseIcons.png-2ebb606ab15778c1b153fca645195cd0.ctex"]
+source_file="res://Assets/UI/check1.png"
+dest_files=["res://.godot/imported/check1.png-8481d26af67fba38a205df9c5216691f.ctex"]
 
 [params]
 

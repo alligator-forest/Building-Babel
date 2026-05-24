@@ -24,14 +24,13 @@ theme = ExtResource("1_0c3i3")
 theme_override_font_sizes/font_size = 19
 theme_override_styles/normal = ExtResource("2_0c3i3")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0p0mb")
-disabled = true
 text = "WOOD
 BASIC"
 alignment = 0
 autowrap_mode = 3
 script = ExtResource("3_fqidn")
 resource = "wood"
-BBCode = "[img=32]res://Assets/UI/woodIcon.png[/img]"
+BBCode = "[img=32]res://Assets/Resources/woodIcon.png[/img]"
 
 [node name="ResourceLabel" type="RichTextLabel" parent="." unique_id=1210498712]
 custom_minimum_size = Vector2(32, 50)
@@ -45,7 +44,7 @@ theme_override_colors/default_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
 theme_override_constants/line_separation = -4
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
-text = "[img=32]res://Assets/UI/woodIcon.png[/img]x2560"
+text = "[img=32]res://Assets/Resources/woodIcon.png[/img]x2560"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1

@@ -2,11 +2,12 @@ extends Node
 class_name SaveObject
 
 var save_file_path = "user://save/"
-var save_file_name = "PlayerSave1.3.2.tres" #IMPORTANT!!!!! CHANGE FILE NAME FOR EVERY NEW VERSION!!!!!
+var save_file_name = "PlayerSave1.3.4.tres" #IMPORTANT!!!!! CHANGE FILE NAME FOR EVERY NEW VERSION!!!!!
 var data = SaveData.new()
 
 func _ready():
 	verify_save_directory(save_file_path)
+	_load_data()
 
 func verify_save_directory(filePath : String):
 	DirAccess.make_dir_absolute(filePath)

@@ -31,7 +31,7 @@ alignment = 2
 autowrap_mode = 3
 script = ExtResource("2_lo6r2")
 resource = "bricks"
-BBCode = "[img=32]res://Assets/UI/brickIcon.png[/img]"
+BBCode = "[img=32]res://Assets/Resources/brickIcon.png[/img]"
 
 [node name="ResourceLabel" type="RichTextLabel" parent="." unique_id=98418194]
 custom_minimum_size = Vector2(32, 50)
@@ -45,7 +45,7 @@ theme_override_colors/default_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
 theme_override_constants/line_separation = -4
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
-text = "[img=32]res://Assets/UI/brickIcon.png[/img]x2560"
+text = "[img=32]res://Assets/Resources/brickIcon.png[/img]x2560"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1

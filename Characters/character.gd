@@ -110,7 +110,7 @@ func get_resource(r : String) -> int:
 	return 0
 
 func start_effect(resource : String, value : int) -> void:
-	if(resource in resources):
+	if(resource != "hubris" and resource in resources ):
 		resourceEffect.start_effect(value, global_position)
 
 func get_char_witdh() -> int:
