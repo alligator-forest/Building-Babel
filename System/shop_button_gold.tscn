@@ -7,7 +7,6 @@
 custom_minimum_size = Vector2(200, 36)
 offset_right = 153.0
 offset_bottom = 36.0
-tooltip_text = "Builders are required to build new Floors"
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_yfoml")

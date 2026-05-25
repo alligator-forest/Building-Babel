@@ -47,7 +47,3 @@ func _on_tooltip_button_pressed() -> void:
 		tooltipTheme.set_theme_item(Theme.DATA_TYPE_COLOR, "font_color", "TooltipLabel", Color.WHITE);
 		tooltipTheme.set_theme_item(Theme.DATA_TYPE_STYLEBOX, "panel", "TooltipPanel", tooltipStylebox);
 	SAVEOBJECT.data.set_console_notif("tooltip",tooltipButton.button_pressed)
-
-func _on_quit_button_pressed() -> void:
-	SAVEOBJECT._save_data()
-	get_tree().change_scene_to_file("res://Screens/home_menu.tscn")

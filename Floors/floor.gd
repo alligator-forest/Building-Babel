@@ -40,8 +40,10 @@ func change_name(n : String):
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
 
 func has_warrior() -> bool:
+	if(floorIndex == 7):
+		return true
 	for c in $Characters.get_children():
-		if(c.name == "Warrior"):
+		if(c.type == "Warrior"):
 			return true
 	return false
 

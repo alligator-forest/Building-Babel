@@ -23,7 +23,7 @@ func _ready() -> void:
 
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Screens/home_menu.tscn")
+	$SceneManager.change_scene("res://Screens/home_menu.tscn")
 
 
 func _on_reset_scores_pressed() -> void:

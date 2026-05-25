@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="1_660ld"]
 [ext_resource type="Script" uid="uid://dqobv4tk3qsa4" path="res://Screens/credits.gd" id="1_tfs73"]
 [ext_resource type="Texture2D" uid="uid://survwd1n27xy" path="res://Assets/Screens/leaderboard.png" id="2_hdcyt"]
+[ext_resource type="PackedScene" uid="uid://c3fnkwr8iff0h" path="res://System/scene_manager.tscn" id="4_x6dtr"]
 
 [sub_resource type="Animation" id="Animation_80qjh"]
 length = 0.001
@@ -86,5 +87,7 @@ text = "Return"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1526860144]
 libraries/ = SubResource("AnimationLibrary_a4p3n")
 autoplay = &"leaderboard"
+
+[node name="SceneManager" parent="." unique_id=1066791913 instance=ExtResource("4_x6dtr")]
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

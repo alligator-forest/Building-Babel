@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bevv3d7odhi2v" path="res://Screens/leaderboard.gd" id="1_tlbt4"]
 [ext_resource type="Texture2D" uid="uid://survwd1n27xy" path="res://Assets/Screens/leaderboard.png" id="2_6wmdm"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_23noj"]
+[ext_resource type="PackedScene" uid="uid://c3fnkwr8iff0h" path="res://System/scene_manager.tscn" id="4_c6bml"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggbah"]
 bg_color = Color(0.352941, 0.32549, 0.32549, 1)
@@ -168,6 +169,8 @@ wait_time = 3.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1003941238]
 libraries/ = SubResource("AnimationLibrary_vnvtf")
 autoplay = &"credits"
+
+[node name="SceneManager" parent="." unique_id=1066791913 instance=ExtResource("4_c6bml")]
 
 [connection signal="pressed" from="Return" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="AreYouSure" to="." method="_on_are_you_sure_pressed"]

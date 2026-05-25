@@ -4,29 +4,12 @@ extends Node2D
 @export var usingDebug : bool = false
 @export var cheatHubris : bool = false
 
-@export_category("Floors")
-@export var BrickBasic : PackedScene
-@export var WoodBasic : PackedScene
-@export var BrickWide : PackedScene
-@export var WoodTall : PackedScene
-@export var BrickMason : PackedScene
-@export var WoodCarp : PackedScene
-@export var BrickCoffer : PackedScene
-@export var WoodAltar : PackedScene
-
-@export_category("Residents")
-@export var builders: PackedScene
-@export var merchants : PackedScene
-@export var masons: PackedScene
-@export var carpenters : PackedScene
-@export var shepherds: PackedScene
-@export var warriors: PackedScene
 @export var thieves: PackedScene
 
 @onready var sellBox = %AllResidents/SellDropbox
 @onready var rng = RandomNumberGenerator.new()
 const THIEFCHANCE : int = 2 # % chance a thief will spawn
-const FLOORSTOWIN : int = 10 #the number of floors you need to win (excludeing the top floor)
+const FLOORSTOWIN : int = 9 #the number of floors you need to win (excludeing the top floor)
 const HUBRISINCREASE : int = 600 #the number of secs it takes to increase hubrisMult
 var tween : Tween
 var resourceCounts = [30,70,150,320,650,1000,1500,2000,2500,3777]
@@ -57,21 +40,19 @@ var resources : Dictionary[String, int] = {
 @export var consoleNotifs : Dictionary[String,Button]
 
 func _ready():
-	update()
 	$TabContainer.get_tab_bar().mouse_filter = 1 #TabContainer makes a TabBar child upon running that cannot be seen from the Local node tree. This MUST be made to mouse filter Propogate Up in order to remove the bug where mouse_exit does not get run on residents when they finish dragging!!!
 	var tabTooltips = ["Buy and sell Residents for the Tower!", "Build new floors with resources! 10 Floors to win!", "Customize the volume, console, and more!"]
 	for i in $TabContainer.get_tab_count():
 		$TabContainer.get_tab_bar().set_tab_tooltip(i, tabTooltips[i])
 	for button : ShopButton in %WoodFloors.get_children():
 		button.set_price(resourceCounts[0])
-		button.update_text(0)
 	for button : ShopButton in %BrickFloors.get_children():
 		button.set_price(resourceCounts[0])
-		button.update_text(0)
+	update()
 
 func _physics_process(_delta):
-	if(totalFloors >= 5):
-		$Background.position.y =  -704 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical
+	if(totalFloors >= 4):
+		$Background.position.y =  -994 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical
 	
 	if(Input.is_action_just_pressed("click_press")):
 		for f in range(1,%Floors.get_child_count()):
@@ -87,9 +68,8 @@ func _physics_process(_delta):
 		if(currChar != null):
 			currChar.prepare_drag()
 			$TabContainer.current_tab = 0
-			if($TabContainer/Residents.visible):
-				sellBox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
-				sellBox.visible = true
+			sellBox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
+			sellBox.visible = true
 			
 	if(currChar != null):
 		if(Input.is_action_pressed("click_press")):
@@ -148,7 +128,7 @@ func update(resourcesChanged : Array[String] = ["hubris", "bricks", "wood", "gol
 		%BuilderLabel.text += "[img=42]res://Assets/BuildingBabelLogo.png[/img] x" + str(neededResources["builders"])
 	if($GodBar.value >= 99 and (!usingDebug or !cheatHubris)):
 		SAVEOBJECT._save_data()
-		get_tree().change_scene_to_file("res://Screens/game_over.tscn")
+		$SceneManager.change_scene("res://Screens/game_over.tscn")
 
 func new_floor(fLoader : PackedScene):
 	if(numBuilders >= neededResources["builders"]):
@@ -164,7 +144,7 @@ func new_floor(fLoader : PackedScene):
 		if(totalFloors >= FLOORSTOWIN):
 			SCOREKEEPER.set_score(seconds)
 			SAVEOBJECT._save_data()
-			get_tree().change_scene_to_file("res://Screens/win.tscn")
+			$SceneManager.change_scene("res://Screens/win.tscn")
 		else:
 			hubrisMult += 0.125
 			if(type == "bricks"):
@@ -179,7 +159,7 @@ func new_floor(fLoader : PackedScene):
 					button.set_price(neededResources["wood"])
 			neededResources["builders"] += 1
 			play_effect("new floor")
-			update([type, "builders"])
+			update([type, "builders", "hubris"])
 
 func _on_character_timer_timeout(c : Character):
 	if(!c.resources.is_empty()):
@@ -187,6 +167,9 @@ func _on_character_timer_timeout(c : Character):
 		var floorBonus = c.get_current_floor().get_bonuses()
 		for key : String in c.resources:
 			r[key] = int(floor(c.get_resource(key) * floorBonus[key]))
+			if(c is Thief):
+				r[key] = ceil(r[key] * hubrisMult * hubrisMult)
+				print("thief expanded!")
 			if(r[key] != 0 and key != "hubris"):
 				c.start_effect(key, r[key])
 		if(r.has("hubris") and r["hubris"] > 0):
@@ -287,15 +270,19 @@ func _input(event: InputEvent) -> void:
 		if(event.is_action_pressed(str(i))):
 			$Tower.scroll_vertical = 64 * (7 - i)
 	if(usingDebug and event.is_action_pressed("debug")):
-		var dict : Dictionary[String,int]= {"gold" : 999, "wood" : 999, "bricks" : 999}
+		var dict : Dictionary[String,int]= {"gold" : 9999, "wood" : 9999, "bricks" : 9999}
 		add_resources(dict)
 		for i in range(5):
-			buy_character(builders)
+			$TabContainer/ResidentsTab/AllResidents/BuilderButton.pressed.emit()
 
 func _on_speedrun_timer_timeout() -> void:
 	seconds += 1
 	$SpeedrunLabel.text = SCOREKEEPER.format_time(seconds)
 
 func _on_hide_timer_pressed() -> void:
-	$SpeedrunLabel.visible = $TabContainer/Settings/HBoxContainer2/ConsoleNotifications/HideTimer.button_pressed
+	$SpeedrunLabel.visible = %SettingsTab/HBoxContainer2/ConsoleNotifications/HideTimer.button_pressed
 	SAVEOBJECT.data.set_console_notif("timer",$SpeedrunLabel.visible)
+
+func _on_quit_button_pressed() -> void:
+	SAVEOBJECT._save_data()
+	$SceneManager.change_scene("res://Screens/home_menu.tscn")

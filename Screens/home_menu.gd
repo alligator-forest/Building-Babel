@@ -1,10 +1,10 @@
 extends Node2D
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_file("res://Screens/main.tscn")
+	$SceneManager.change_scene("res://Screens/main.tscn")
 
 func _on_leaderboard_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Screens/leaderboard.tscn")
+	$SceneManager.change_scene("res://Screens/leaderboard.tscn")
 
 func _on_credits_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Screens/credits.tscn")
+	$SceneManager.change_scene("res://Screens/credits.tscn")

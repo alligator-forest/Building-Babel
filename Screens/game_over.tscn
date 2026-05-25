@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bk2gc8ssb5chs" path="res://Screens/game_over.gd" id="1_r7w56"]
 [ext_resource type="Texture2D" uid="uid://ciwpyu5jmj18p" path="res://Assets/Screens/BabelGameOver-Sheet.png" id="2_omij0"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="3_3w87l"]
+[ext_resource type="PackedScene" uid="uid://c3fnkwr8iff0h" path="res://System/scene_manager.tscn" id="4_5dqdo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jr810"]
 
@@ -94,6 +95,8 @@ text = "TRY AGAIN?"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1546067157]
 libraries/ = SubResource("AnimationLibrary_25wht")
 autoplay = &"game_over"
+
+[node name="SceneManager" parent="." unique_id=1066791913 instance=ExtResource("4_5dqdo")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

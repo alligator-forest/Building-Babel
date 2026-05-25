@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c58ebsxucfv4i"
-path="res://.godot/imported/FloorCoffer.png-421c548e4fe991d18eca6b692f9c5a0e.ctex"
+uid="uid://dr6d74icyjs2n"
+path="res://.godot/imported/FloorArmory.png-de3c5d200a6af04d2ec4bc79b20aa41a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Floor/FloorCoffer.png"
-dest_files=["res://.godot/imported/FloorCoffer.png-421c548e4fe991d18eca6b692f9c5a0e.ctex"]
+source_file="res://Assets/Floor/FloorArmory.png"
+dest_files=["res://.godot/imported/FloorArmory.png-de3c5d200a6af04d2ec4bc79b20aa41a.ctex"]
 
 [params]
 

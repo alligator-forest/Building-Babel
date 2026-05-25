@@ -8,4 +8,4 @@ func _on_timer_timeout():
 	index = (index + 1) % languages.size()
 
 func _on_button_pressed():
-	get_tree().change_scene_to_file("res://Screens/home_menu.tscn")
+	$SceneManager.change_scene("res://Screens/home_menu.tscn")

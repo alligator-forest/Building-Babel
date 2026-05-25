@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dor5icfvhwl7i"]
 
-[ext_resource type="Texture2D" uid="uid://c58ebsxucfv4i" path="res://Assets/Floor/FloorCoffer.png" id="1_r1mac"]
+[ext_resource type="Texture2D" uid="uid://dr6d74icyjs2n" path="res://Assets/Floor/FloorArmory.png" id="1_e4o4i"]
 [ext_resource type="Script" uid="uid://6ati0dpr68iq" path="res://Floors/floor.gd" id="2_lxg7q"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="3_mb4h1"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="4_jjq6o"]
@@ -8,22 +8,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f28eb"]
 size = Vector2(192, 62)
 
-[node name="CofferFloor" type="TextureRect" unique_id=1065232683]
+[node name="ArmoryFloor" type="TextureRect" unique_id=1065232683]
 custom_minimum_size = Vector2(192, 64)
 offset_right = 192.0
 offset_bottom = 64.0
 pivot_offset = Vector2(128, 64)
 mouse_filter = 2
-texture = ExtResource("1_r1mac")
+texture = ExtResource("1_e4o4i")
 script = ExtResource("2_lxg7q")
 floorIndex = 7
 resourceMultiplier = 2.0
-floorBonus = Dictionary[String, float]({
-"bricks": 1.0,
-"gold": 2.0,
-"hubris": 1.0,
-"wood": 1.0
-})
 
 [node name="Label" type="Label" parent="." unique_id=2099914832]
 layout_mode = 0

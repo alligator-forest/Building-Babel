@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dlhh558nl26ea" path="res://Assets/Screens/BabelWin.png" id="1_gqb67"]
 [ext_resource type="Script" uid="uid://k8antprk22h" path="res://Screens/win.gd" id="1_plnjp"]
 [ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_8nlkf"]
+[ext_resource type="PackedScene" uid="uid://c3fnkwr8iff0h" path="res://System/scene_manager.tscn" id="4_jt31u"]
 
 [node name="Node2D" type="Node2D" unique_id=1079179522]
 script = ExtResource("1_plnjp")
@@ -37,15 +38,6 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 2
 
-[node name="Button" type="Button" parent="." unique_id=466716236]
-visible = false
-offset_left = 896.0
-offset_top = 536.0
-offset_right = 1136.0
-offset_bottom = 632.0
-theme = ExtResource("2_8nlkf")
-text = "Return"
-
 [node name="LineEdit" type="LineEdit" parent="." unique_id=1486783873]
 offset_left = 496.0
 offset_top = 296.0
@@ -56,5 +48,6 @@ placeholder_text = "Name"
 alignment = 1
 max_length = 3
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="SceneManager" parent="." unique_id=1066791913 instance=ExtResource("4_jt31u")]
+
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]

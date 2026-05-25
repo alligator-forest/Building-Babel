@@ -8,13 +8,17 @@ extends Node2D
 var counter : int = 0
 
 func _ready() -> void:
-	$TutorialInfo1.visible = !SAVEOBJECT.data.seen_tutorial() or showTutorial
+	$TutorialInfo0.visible = !SAVEOBJECT.data.seen_tutorial() or showTutorial
 
 func _on_tutorial_info_confirmed() -> void:
 	get_child(counter).hide()
 	counter += 1
 	if(counter < get_child_count()):
 		get_child(counter).show()
+		if(counter == 3):
+			%FloorsTab.show()
+		if(counter == 4):
+			%ResidentsTab.show()
 	else:
 		_on_tutorial_info_canceled()
 
