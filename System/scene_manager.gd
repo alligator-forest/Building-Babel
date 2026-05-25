@@ -1,10 +1,12 @@
 extends Node2D
 
+@onready var root = get_tree()
+
 func change_scene(path : String):
 	show()
 	$AnimationPlayer.play("exit_scene")
 	await $AnimationPlayer.animation_finished
-	get_tree().change_scene_to_file(path)
+	root.change_scene_to_file(path)
 	hide()
 
 func _ready() -> void:

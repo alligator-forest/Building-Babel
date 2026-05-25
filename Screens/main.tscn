@@ -54,7 +54,6 @@ size = Vector2(202, 42)
 [node name="Main" type="Node2D" unique_id=582439884 node_paths=PackedStringArray("consoleNotifs")]
 process_mode = 1
 script = ExtResource("1_eqxpj")
-usingDebug = true
 thieves = ExtResource("9_m3587")
 consoleNotifs = {
 "resource": NodePath("TabContainer/SettingsTab/HBoxContainer2/ConsoleNotifications/ResourceConsole"),
@@ -65,7 +64,6 @@ consoleNotifs = {
 [node name="PopupManager" type="Node2D" parent="." unique_id=1575492553 node_paths=PackedStringArray("tooltipCheck", "screen1", "screen2")]
 visible = false
 script = ExtResource("13_g1wvp")
-showTutorial = true
 tooltipCheck = NodePath("../TabContainer/SettingsTab/HBoxContainer2/ConsoleNotifications/HideTooltip")
 screen1 = NodePath("../TabContainer/ResidentsTab")
 screen2 = NodePath("../TabContainer/FloorsTab")
@@ -84,7 +82,7 @@ dialog_autowrap = true
 
 [node name="TutorialInfo1" type="AcceptDialog" parent="PopupManager" unique_id=1126474738]
 oversampling_override = 1.0
-title = "Tutorial (1/6): Resources"
+title = "Tutorial (2/6): Resources"
 position = Vector2i(150, 38)
 size = Vector2i(313, 222)
 theme = ExtResource("26_b7rxi")
@@ -99,7 +97,7 @@ dialog_autowrap = true
 
 [node name="TutorialInfo2" type="AcceptDialog" parent="PopupManager" unique_id=656613799]
 oversampling_override = 1.0
-title = "Tutorial (1/6): Residents"
+title = "Tutorial (3/6): Residents"
 position = Vector2i(47, 71)
 size = Vector2i(313, 222)
 theme = ExtResource("26_b7rxi")
@@ -113,7 +111,7 @@ dialog_autowrap = true
 
 [node name="TutorialInfo3" type="AcceptDialog" parent="PopupManager" unique_id=1091168396]
 oversampling_override = 1.0
-title = "Tutorial (1/6): Floors"
+title = "Tutorial (4/6): Floors"
 position = Vector2i(47, 71)
 size = Vector2i(313, 245)
 theme = ExtResource("26_b7rxi")
@@ -128,7 +126,7 @@ dialog_autowrap = true
 
 [node name="TutorialInfo4" type="AcceptDialog" parent="PopupManager" unique_id=1211764167]
 oversampling_override = 1.0
-title = "Tutorial (1/6): Thieves"
+title = "Tutorial (5/6): Thieves"
 initial_position = 1
 size = Vector2i(313, 222)
 theme = ExtResource("26_b7rxi")
@@ -142,7 +140,7 @@ dialog_autowrap = true
 
 [node name="TutorialInfo5" type="AcceptDialog" parent="PopupManager" unique_id=819579091]
 oversampling_override = 1.0
-title = "Tutorial (1/6): End"
+title = "Tutorial (6/6): End"
 position = Vector2i(163, 146)
 size = Vector2i(313, 115)
 theme = ExtResource("26_b7rxi")

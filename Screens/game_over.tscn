@@ -7,6 +7,13 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jr810"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dqdo"]
+bg_color = Color(0.19, 0.19, 0.19, 0.16078432)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="Animation" id="Animation_u14dj"]
 length = 0.001
 tracks/0/type = "value"
@@ -90,6 +97,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 theme = ExtResource("3_3w87l")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_jr810")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5dqdo")
 text = "TRY AGAIN?"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1546067157]
