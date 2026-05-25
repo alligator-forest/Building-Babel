@@ -54,6 +54,7 @@ size = Vector2(202, 42)
 [node name="Main" type="Node2D" unique_id=582439884 node_paths=PackedStringArray("consoleNotifs")]
 process_mode = 1
 script = ExtResource("1_eqxpj")
+usingDebug = true
 thieves = ExtResource("9_m3587")
 consoleNotifs = {
 "resource": NodePath("TabContainer/SettingsTab/HBoxContainer2/ConsoleNotifications/ResourceConsole"),
@@ -161,6 +162,15 @@ mouse_filter = 2
 texture = ExtResource("10_rlab4")
 expand_mode = 4
 stretch_mode = 4
+
+[node name="BackgroundOverlay" type="ColorRect" parent="." unique_id=1885418690]
+z_index = 10
+custom_minimum_size = Vector2(640, 994)
+offset_top = -634.0
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [node name="Console" type="RichTextLabel" parent="." unique_id=557689387]
 offset_left = 2.0

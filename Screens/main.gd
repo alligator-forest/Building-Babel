@@ -111,6 +111,7 @@ func update(resourcesChanged : Array[String] = ["hubris", "bricks", "wood", "gol
 		$GodBarLabel.text = str("[wave][color=yellow]HUBRIS x",snapped(hubrisMult,0.1))
 		tween = create_tween()
 		tween.tween_property($GodBar,"value",resources["hubris"],0.5)
+		tween.parallel().tween_property($BackgroundOverlay, "color:a", resources["hubris"] / 150.0, 0.5)
 	if("bricks" in resourcesChanged):
 		$BrickLabel.text = str("[img=56]res://Assets/Resources/brickIcon.png[/img] ",resources["bricks"])
 		for button : ShopButton in %BrickFloors.get_children():
