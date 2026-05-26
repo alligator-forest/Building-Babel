@@ -12,8 +12,6 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 		SCOREKEEPER.set_score_name(new_text.to_upper())
 		SCOREKEEPER.update_save_data()
 		$SceneManager.change_scene("res://Screens/home_menu.tscn")
-	
-
 
 func _on_line_edit_text_changed(new_text: String) -> void:
 	$LineEdit.text = new_text.to_upper()

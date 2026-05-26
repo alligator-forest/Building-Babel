@@ -4,7 +4,7 @@ class_name SaveData
 const SAVE_PATH := "user://savegame.save"
 
 #for all intents and purposes these are consts, was getting a read-only error w/ STARTSCORES
-var STARTMUSICVOLUME = 0.5
+var STARTMUSICVOLUME = 0.125
 var STARTSFXVOLUME = 0.5
 var STARTSCORES = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
 var STARTNAMES = ["---","---","---","---","---","---","---","---","---","---",]

@@ -111,6 +111,7 @@ ___
 ___
 ___
 ___"
+scroll_active = false
 
 [node name="Scores" type="RichTextLabel" parent="." unique_id=520099026]
 offset_left = 312.0
@@ -132,6 +133,7 @@ text = "[center]00:00:00
 00:00:00
 00:00:00
 00:00:00"
+scroll_active = false
 
 [node name="Return" type="Button" parent="." unique_id=285514106]
 offset_left = 8.0

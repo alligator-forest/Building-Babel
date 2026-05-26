@@ -152,12 +152,12 @@ func new_floor(fLoader : PackedScene):
 		else:
 			hubrisMult += 0.125
 			if(type == "bricks"):
-				brickCount += 1
+				brickCount += tier.value
 				neededResources["bricks"] = resourceCounts[brickCount]
 				for button : ShopButton in %BrickFloors.get_children():
 					button.set_price(neededResources["bricks"])
 			else:
-				woodCount += 1
+				woodCount += tier.value
 				neededResources["wood"] = resourceCounts[woodCount]
 				for button : ShopButton in %WoodFloors.get_children():
 					button.set_price(neededResources["wood"])

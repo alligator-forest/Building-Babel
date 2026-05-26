@@ -25,7 +25,7 @@ func _ready() -> void:
 	thiefConsoleButton.button_pressed = SAVEOBJECT.data.get_console_notif("thief")
 
 func _on_music_slider_value_changed(value: float) -> void:
-	musicPercent.text = str(int(value * 200),"%")
+	musicPercent.text = str(int(value * 800),"%")
 
 func _on_sfx_slider_value_changed(value: float) -> void:
 	sfxPercent.text = str(int(value * 200),"%")

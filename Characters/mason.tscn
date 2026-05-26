@@ -18,8 +18,8 @@ resources = Array[String](["bricks", "hubris"])
 minResource = 1
 maxResource = 7
 numHubris = 1
-resourceEffect = NodePath("BrickEffect")
 price = 20
+resourceEffect = NodePath("BrickEffect")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=918935161]
 position = Vector2(0, -16)
@@ -41,6 +41,7 @@ one_shot = true
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1806271943]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1434395803]
 position = Vector2(1, -15)
