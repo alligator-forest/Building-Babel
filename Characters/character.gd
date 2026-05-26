@@ -62,7 +62,7 @@ func is_mouse_within() -> bool:
 
 func prepare_drag() -> void:
 	$AnimatedSprite2D.play()
-	z_index = RenderingServer.CANVAS_ITEM_Z_MAX;
+	z_index = 9;
 	offset = get_global_mouse_position() - global_position
 	if(tween != null):
 		tween.pause()

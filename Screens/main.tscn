@@ -49,12 +49,11 @@ fill_from = Vector2(0, 1)
 fill_to = Vector2(0.0683761, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puaxa"]
-size = Vector2(202, 42)
+size = Vector2(239, 321)
 
 [node name="Main" type="Node2D" unique_id=582439884 node_paths=PackedStringArray("consoleNotifs")]
 process_mode = 1
 script = ExtResource("1_eqxpj")
-usingDebug = true
 thieves = ExtResource("9_m3587")
 consoleNotifs = {
 "resource": NodePath("TabContainer/SettingsTab/HBoxContainer2/ConsoleNotifications/ResourceConsole"),
@@ -63,7 +62,6 @@ consoleNotifs = {
 }
 
 [node name="PopupManager" type="Node2D" parent="." unique_id=1575492553 node_paths=PackedStringArray("tooltipCheck", "screen1", "screen2")]
-visible = false
 script = ExtResource("13_g1wvp")
 tooltipCheck = NodePath("../TabContainer/SettingsTab/HBoxContainer2/ConsoleNotifications/HideTooltip")
 screen1 = NodePath("../TabContainer/ResidentsTab")
@@ -74,6 +72,7 @@ oversampling_override = 1.0
 title = "Tutorial (1/6): Start"
 initial_position = 1
 size = Vector2i(214, 150)
+visible = true
 theme = ExtResource("26_b7rxi")
 ok_button_text = "Next"
 dialog_text = "Welcome to Building Babel!
@@ -170,7 +169,7 @@ offset_top = -634.0
 offset_right = 640.0
 offset_bottom = 360.0
 mouse_filter = 2
-color = Color(1, 0.8000001, 0, 0)
+color = Color(0.96, 0.70368, 0.105600014, 0)
 
 [node name="Console" type="RichTextLabel" parent="." unique_id=557689387]
 offset_left = 2.0
@@ -346,7 +345,7 @@ current_tab = 0
 all_tabs_in_front = true
 switch_on_drag_hover = false
 tab_0/title = "Residents"
-tab_1/title = "Floors"
+tab_1/title = " Floors "
 tab_2/title = "Settings"
 
 [node name="ResidentsTab" type="MarginContainer" parent="TabContainer" unique_id=153931923]
@@ -430,7 +429,7 @@ script = ExtResource("19_hyppe")
 [node name="Area2D" type="Area2D" parent="TabContainer/ResidentsTab/AllResidents/SellDropbox" unique_id=2121373780]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TabContainer/ResidentsTab/AllResidents/SellDropbox/Area2D" unique_id=884002820]
-position = Vector2(100, 21)
+position = Vector2(99.5, -103.5)
 shape = SubResource("RectangleShape2D_puaxa")
 
 [node name="FloorsTab" type="MarginContainer" parent="TabContainer" unique_id=1471429945]
@@ -442,7 +441,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 20
 metadata/_tab_index = 1
-metadata/_tab_name = "Floors"
+metadata/_tab_name = " Floors "
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/FloorsTab" unique_id=108038621]
 layout_mode = 2
@@ -521,7 +520,7 @@ multiplier = 2.0
 
 [node name="WoodAltar" parent="TabContainer/FloorsTab/HBoxContainer2/WoodFloors" unique_id=1675988782 instance=ExtResource("33_1mip0")]
 layout_mode = 2
-tooltip_text = "Floor built with Wood. Nullifies all Hubris production"
+tooltip_text = "Floor built with Wood. Nullifies all Hubris production on the Floor"
 text = "WOOD
 CHRCH"
 scene = ExtResource("9_w0y2t")
@@ -595,6 +594,7 @@ alignment = 1
 [node name="MusicSlider" type="VSlider" parent="TabContainer/SettingsTab/HBoxContainer2/VolumeSliders/Sliders" unique_id=526537400]
 custom_minimum_size = Vector2(32, 192)
 layout_mode = 2
+tooltip_text = "Control the volume of the Background Music"
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
 max_value = 1.0
@@ -606,6 +606,7 @@ ticks_on_borders = true
 [node name="SfxSlider" type="VSlider" parent="TabContainer/SettingsTab/HBoxContainer2/VolumeSliders/Sliders" unique_id=2005010021]
 custom_minimum_size = Vector2(32, 192)
 layout_mode = 2
+tooltip_text = "Control the volume of the Sound Effects"
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
 max_value = 1.0
@@ -640,6 +641,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(122, 32)
 layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "Controls whether"
 mouse_filter = 1
 theme = ExtResource("8_hphvt")
 button_pressed = true

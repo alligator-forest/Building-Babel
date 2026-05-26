@@ -85,6 +85,25 @@ autoplay = &"home"
 
 [node name="SceneManager" parent="." unique_id=1066791913 instance=ExtResource("4_5r5fn")]
 
+[node name="QuitButton" type="Button" parent="." unique_id=1254616997]
+offset_left = 3.0
+offset_top = 323.0
+offset_right = 87.0
+offset_bottom = 357.0
+theme = ExtResource("2_17r3x")
+theme_override_font_sizes/font_size = 14
+text = "QUIT"
+
+[node name="CheckBox" type="CheckBox" parent="." unique_id=1246188700]
+offset_left = 4.0
+offset_top = 296.0
+offset_right = 87.0
+offset_bottom = 320.0
+theme = ExtResource("2_17r3x")
+text = "See Tutorial?"
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]

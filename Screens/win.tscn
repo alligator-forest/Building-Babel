@@ -50,4 +50,5 @@ max_length = 3
 
 [node name="SceneManager" parent="." unique_id=1066791913 instance=ExtResource("4_jt31u")]
 
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]

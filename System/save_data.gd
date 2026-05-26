@@ -16,7 +16,7 @@ var STARTNAMES = ["---","---","---","---","---","---","---","---","---","---",]
 @export var scoreNames : Array = STARTNAMES
 
 @export var consoleNotifs : Dictionary = {
-	"timer" : true,
+	"timer" : false,
 	"tooltip" : true,
 	"resource" : true,
 	"steal" : true,
