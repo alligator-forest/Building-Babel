@@ -35,9 +35,12 @@ func get_left_bound() -> int:
 func get_right_bound() -> int:
 	return RIGHT
 
-func change_name(n : String):
-	floorName = n
-	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
+func change_name(n : int):
+	if(floorIndex == 4):
+		floorName = str("Floor: ", n-1, "+", n)
+	else:
+		floorName = str("Floor: ", n)
+	$Label.text = floorName + str(": ", numChars, "/", maxChars)
 
 func has_warrior() -> bool:
 	if(floorIndex == 7):

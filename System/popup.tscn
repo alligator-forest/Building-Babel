@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bma7kl67fkgff"]
+
+[ext_resource type="Theme" uid="uid://bo064dbmg8wij" path="res://Assets/UI/Popups.tres" id="1_dfufj"]
+[ext_resource type="Theme" uid="uid://xn2hdy3rgr76" path="res://Assets/UI/theme.tres" id="2_cewd8"]
+
+[node name="Popup" type="Popup" unique_id=1778870592]
+oversampling_override = 1.0
+title = "Title"
+visible = true
+theme = ExtResource("1_dfufj")
+
+[node name="Label" type="Label" parent="." unique_id=1257171077]
+offset_right = 40.0
+offset_bottom = 20.0
+theme = ExtResource("2_cewd8")
+text = "hello :)"

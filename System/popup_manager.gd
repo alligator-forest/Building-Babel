@@ -9,6 +9,7 @@ var counter : int = 0
 
 func _ready() -> void:
 	$TutorialInfo0.visible = !SAVEOBJECT.data.seen_tutorial()
+	show()
 
 func _on_tutorial_info_confirmed() -> void:
 	get_child(counter).hide()
@@ -25,3 +26,4 @@ func _on_tutorial_info_confirmed() -> void:
 func _on_tutorial_info_canceled() -> void:
 	SAVEOBJECT.data.set_seen_tutorial(true)
 	SAVEOBJECT._save_data()
+	hide()

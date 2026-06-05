@@ -4,6 +4,9 @@
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_ng411"]
 [ext_resource type="PackedScene" uid="uid://cd7ocv71t8jvt" path="res://System/resource_effect.tscn" id="3_alfq1"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikljd"]
+size = Vector2(28, 30)
+
 [node name="Thief" type="Control" unique_id=1875429781]
 z_index = 1
 layout_mode = 3
@@ -46,5 +49,12 @@ one_shot = true
 one_shot = true
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="." unique_id=2115022435]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1170295078]
+position = Vector2(4, -15)
+shape = SubResource("RectangleShape2D_ikljd")
+
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

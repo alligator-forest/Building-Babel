@@ -13,7 +13,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2rk7"]
 content_margin_left = 4.0
 content_margin_right = 4.0
-bg_color = Color(0.7882353, 0.4862745, 0.3019608, 1)
+bg_color = Color(0.79, 0.48795667, 0.30020002, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -110,9 +110,6 @@ default_font = ExtResource("1_sk3jv")
 default_font_size = 28
 AcceptDialog/colors/title_color = Color(1, 1, 1, 1)
 AcceptDialog/styles/panel = ExtResource("1_t3oq6")
-Button/colors/icon_focus_color = Color(1, 1, 1, 0)
-Button/colors/icon_hover_color = Color(1, 1, 1, 0)
-Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 0)
 Button/font_sizes/font_size = 28
 Button/styles/disabled = ExtResource("2_keseg")
 Button/styles/focus = SubResource("StyleBoxEmpty_0qw6d")

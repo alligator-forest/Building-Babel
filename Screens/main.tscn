@@ -27,7 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://bf13ejbuol7vp" path="res://Assets/Floor/FloorLobby.png" id="12_n0vtn"]
 [ext_resource type="Script" uid="uid://qm28u8vasqyh" path="res://System/popup_manager.gd" id="13_g1wvp"]
 [ext_resource type="Script" uid="uid://dk8ncab7no6tj" path="res://System/sound_manager.gd" id="15_lqehw"]
-[ext_resource type="Texture2D" uid="uid://lhpnav15c60s" path="res://Assets/UI/ShopIcons1.png" id="18_6c3ru"]
 [ext_resource type="Script" uid="uid://dakm4sgsxb1l3" path="res://System/sell_dropbox.gd" id="19_hyppe"]
 [ext_resource type="PackedScene" uid="uid://ec1qcbsk35qb" path="res://System/drop_component.tscn" id="19_ufc1y"]
 [ext_resource type="Texture2D" uid="uid://c5t5bc217yd66" path="res://Assets/UI/ShopIcons2.png" id="20_0u2hl"]
@@ -60,6 +59,8 @@ size = Vector2(239, 321)
 [node name="Main" type="Node2D" unique_id=582439884 node_paths=PackedStringArray("consoleNotifs")]
 process_mode = 1
 script = ExtResource("1_eqxpj")
+usingDebug = true
+cheatHubris = true
 thieves = ExtResource("9_m3587")
 consoleNotifs = {
 "resource": NodePath("TabContainer/SettingsTab/HBoxContainer2/ConsoleNotifications/ResourceConsole"),
@@ -78,6 +79,10 @@ oversampling_override = 1.0
 title = "Tutorial (1/6): Start"
 initial_position = 1
 size = Vector2i(214, 150)
+transient_to_focused = true
+unresizable = true
+always_on_top = true
+mouse_passthrough = true
 theme = ExtResource("26_b7rxi")
 ok_button_text = "Next"
 dialog_text = "Welcome to Building Babel!
@@ -346,7 +351,7 @@ offset_bottom = 360.0
 theme = ExtResource("8_hphvt")
 theme_override_font_sizes/font_size = 20
 tab_alignment = 1
-current_tab = 2
+current_tab = 0
 all_tabs_in_front = true
 switch_on_drag_hover = false
 tab_0/title = "Residents"
@@ -355,7 +360,6 @@ tab_2/title = "Settings"
 
 [node name="ResidentsTab" type="MarginContainer" parent="TabContainer" unique_id=153931923]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
@@ -377,7 +381,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "Builders are required to build new Floors"
 text = "         Builder"
-icon = ExtResource("18_6c3ru")
 scene = ExtResource("4_r1sbw")
 
 [node name="MerchantButton" parent="TabContainer/ResidentsTab/AllResidents" unique_id=1684704104 instance=ExtResource("30_uoeln")]
@@ -557,6 +560,7 @@ horizontal_alignment = 1
 
 [node name="SettingsTab" type="MarginContainer" parent="TabContainer" unique_id=1195950695]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_top = 8

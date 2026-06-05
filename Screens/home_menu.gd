@@ -20,7 +20,7 @@ func _on_quit_button_pressed() -> void:
 func _on_check_box_toggled(toggled_on: bool) -> void:
 	SAVEOBJECT.data.set_seen_tutorial(!toggled_on)
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if(Input.is_key_pressed(KEY_R) and allowReset):
 		SAVEOBJECT.data.reset_all()
 		SAVEOBJECT._save_data()

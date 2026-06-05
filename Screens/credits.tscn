@@ -53,7 +53,7 @@ scale = Vector2(2.5, 2.8125002)
 texture = ExtResource("2_hdcyt")
 hframes = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1699397317]
+[node name="Developers" type="RichTextLabel" parent="." unique_id=1699397317]
 offset_left = 128.0
 offset_right = 320.0
 offset_bottom = 360.0
@@ -76,6 +76,21 @@ text = "[wave amp=30][center][color=BLACK]
 fit_content = true
 scroll_active = false
 
+[node name="Playtesters" type="RichTextLabel" parent="." unique_id=1829017477]
+offset_left = 320.0
+offset_right = 512.0
+offset_bottom = 360.0
+theme = ExtResource("1_660ld")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "[wave amp=30][center][color=BLACK]
+--PLAYTESTING--
+[color=DARK_ORCHID]ThatMysticShadow
+[color=DARK_RED]Shadow329
+[color=BLUE_VIOLET]EthanolSpill"
+fit_content = true
+scroll_active = false
+
 [node name="Button" type="Button" parent="." unique_id=1865282412]
 offset_left = 8.0
 offset_top = 296.0
@@ -89,20 +104,5 @@ libraries/ = SubResource("AnimationLibrary_a4p3n")
 autoplay = &"leaderboard"
 
 [node name="SceneManager" parent="." unique_id=1066791913 instance=ExtResource("4_x6dtr")]
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="." unique_id=1829017477]
-offset_left = 320.0
-offset_right = 512.0
-offset_bottom = 360.0
-theme = ExtResource("1_660ld")
-theme_override_font_sizes/normal_font_size = 22
-bbcode_enabled = true
-text = "[wave amp=30][center][color=BLACK]
---PLAYTESTING--
-[color=DARK_ORCHID]ThatMysticShaddow
-[color=DARK_RED]Shadow329
-"
-fit_content = true
-scroll_active = false
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

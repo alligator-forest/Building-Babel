@@ -32,3 +32,8 @@ func stolen_enough() -> bool:
 
 func _to_string():
 	return "thief"
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if(area.get_parent() is Character and area.get_parent().type == "Warrior"):
+		$AnimatedSprite2D.hide()
+		thief_exited.emit(self,$BrickEffect.get_effect_time())

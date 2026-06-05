@@ -9,14 +9,14 @@ extends Node2D
 @onready var sellBox = %AllResidents/SellDropbox
 @onready var rng = RandomNumberGenerator.new()
 const THIEFCHANCE : int = 2 # % chance a thief will spawn
-const FLOORSTOWIN : int = 9 #the number of floors you need to win (excludeing the top floor)
+const FLOORSTOWIN : int = 10 #the number of floors you need to win (excludeing the top floor)
 const HUBRISINCREASE : int = 600 #the number of secs it takes to increase hubrisMult
 var tween : Tween
 var resourceCounts = [30,70,150,320,650,1000,1500,2000,2500,3777]
 var brickCount : int = 0
 var woodCount : int = 0
 var numBuilders = 0
-var totalFloors : int = 0
+var totalFloors : int = 1
 var hubrisMult : float = 1.0
 var seconds : int = 0
 enum console_logs {GAIN_RESOURCE, LOSE_RESOURCE, THIEF_ENTER, THIEF_EXIT, HUBRIS_INCREASE}
@@ -51,7 +51,7 @@ func _ready():
 	update()
 
 func _physics_process(_delta):
-	if(totalFloors >= 4):
+	if(totalFloors >= 5):
 		$Background.position.y =  -994 + $Tower.get_v_scroll_bar().max_value - $Tower.scroll_vertical
 	
 	if(Input.is_action_just_pressed("click_press")):
@@ -139,8 +139,8 @@ func new_floor(fLoader : PackedScene):
 		var tier : Floor = fLoader.instantiate()
 		var type = "bricks" if tier.floorIndex % 2 == 1 else "wood"
 		resources[type] -= int(floor(neededResources[type] * tier.resourceMultiplier))
-		tier.change_name("Floor " + str(%Floors.get_child_count()))
 		totalFloors += tier.value
+		tier.change_name(totalFloors)
 		%Floors.add_child(tier)
 		%Floors.move_child(tier,1)
 		log_in_console(console_logs.HUBRIS_INCREASE)
