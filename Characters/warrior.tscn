@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://70nsred1orae" path="res://Characters/character.gd" id="1_yl63d"]
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_xmyxk"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6qbch"]
-radius = 15.0
-height = 38.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aujne"]
+size = Vector2(30.000011, 33.999996)
 
 [node name="Warrior" type="Control" unique_id=198305021]
 z_index = 1
@@ -19,7 +18,7 @@ minResource = null
 maxResource = null
 numHubris = null
 price = 40
-charWidth = 20
+charWidth = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1384054193]
 position = Vector2(-6, -16)
@@ -36,11 +35,12 @@ one_shot = true
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=808292329]
+monitorable = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=2043765221]
-position = Vector2(1, -15)
+position = Vector2(0.9999871, -15.000006)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_6qbch")
+shape = SubResource("RectangleShape2D_aujne")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

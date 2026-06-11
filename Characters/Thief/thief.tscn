@@ -50,6 +50,7 @@ one_shot = true
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2115022435]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1170295078]
 position = Vector2(4, -15)

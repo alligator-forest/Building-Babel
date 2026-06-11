@@ -3,6 +3,7 @@ extends Node2D
 @export_category("Debug Tools")
 @export var usingDebug : bool = false
 @export var cheatHubris : bool = false
+@export var tonsOfThieves : bool = false
 
 @export var thieves: PackedScene
 
@@ -61,15 +62,11 @@ func _physics_process(_delta):
 				if(c.is_mouse_within()):
 					if(currChar == null or c.get_index() > currChar.get_index()):
 						currChar = c
-		for d in $OutOfFloorCharacters.get_children():
-			if(d.is_mouse_within()):
-				if(currChar == null or d.get_index() > currChar.get_index()):
-					currChar = d
 		if(currChar != null):
 			currChar.prepare_drag()
+			currChar.reparent($OutOfFloorCharacters)
 			$TabContainer.current_tab = 0
 			sellBox.text = "SELL: " + str(currChar.get_sell_price()) + " G"
-			sellBox.visible = true
 			
 	if(currChar != null):
 		if(Input.is_action_pressed("click_press")):
@@ -173,7 +170,6 @@ func _on_character_timer_timeout(c : Character):
 			r[key] = int(floor(c.get_resource(key) * floorBonus[key]))
 			if(c is Thief):
 				r[key] = ceil(r[key] * hubrisMult * hubrisMult)
-				print("thief expanded!")
 			if(r[key] != 0 and key != "hubris"):
 				c.start_effect(key, r[key])
 		if(r.has("hubris") and r["hubris"] > 0):
@@ -234,7 +230,7 @@ func spawn_thief(f : Floor) -> Thief:
 	var thief = thieves.instantiate()
 	thief.add_resource.connect(_on_character_timer_timeout)
 	thief.thief_exited.connect(despawn_thief)
-	thief.position = Vector2(rng.randf_range(384,768),0)
+	thief.position = Vector2(rng.randf_range(87,192),0)
 	f.add_character(thief)
 	#update()
 	return thief
@@ -266,7 +262,7 @@ func on_character_area_2d_exit(area : Area2D) -> void:
 func _on_thief_timer_timeout() -> void:
 	if(%Floors.get_child_count() >= 4):
 		for f in range(1,%Floors.get_child_count()):
-			if(rng.randi_range(1,100) <= THIEFCHANCE and !%Floors.get_child(f).has_warrior()):
+			if(rng.randi_range(1,100) <= THIEFCHANCE or (usingDebug and tonsOfThieves)): # and !%Floors.get_child(f).has_warrior()):
 				log_in_console(console_logs.THIEF_ENTER,spawn_thief(%Floors.get_child(f)))
 
 func _input(event: InputEvent) -> void:

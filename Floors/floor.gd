@@ -68,7 +68,7 @@ func add_character(c : Character):
 func update():
 	numChars = $Characters.get_child_count()
 	$Label.text = floorName + ": " + str(numChars) + "/" + str(maxChars)
-	if(numChars >= maxChars):
+	if(is_full()):
 		$Label.add_theme_color_override("font_color",Color.RED)
 		$Label.add_theme_color_override("font_outline_color",Color.RED)
 	else:

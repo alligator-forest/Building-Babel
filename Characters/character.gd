@@ -68,6 +68,9 @@ func prepare_drag() -> void:
 		tween.pause()
 	dragging = true
 	$AnimatedSprite2D.scale = Vector2(4,4)
+	$Area2D.monitorable = false;
+	print("monitor off ", type)
+	#make it so area cant be monitored here, and make it so at land on floor
 
 func move():
 	global_position = get_global_mouse_position() - offset
@@ -78,6 +81,9 @@ func land_on_floor(f : Floor):
 	$AnimatedSprite2D.stop()
 	currentFloor = f
 	dragging = false
+	$Area2D.monitorable = true;
+	
+	print("monitor on ", type)
 
 func _on_area_2d_mouse_entered():
 	mouseWithin = true

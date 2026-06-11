@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://70nsred1orae" path="res://Characters/character.gd" id="1_rmi7y"]
 [ext_resource type="SpriteFrames" uid="uid://df0ew23irc148" path="res://Assets/Character/characterAnimations.tres" id="2_ccbcr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6qbch"]
-radius = 15.0
-height = 38.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mgu0"]
+size = Vector2(29.99995, 29.999998)
 
 [node name="Shepherd" type="Control" unique_id=1483261957]
 z_index = 1
@@ -19,7 +18,7 @@ minResource = -10
 maxResource = -1
 numHubris = -1
 price = 30
-charWidth = 12
+charWidth = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=539830284]
 position = Vector2(-4, -16)
@@ -27,7 +26,6 @@ scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_ccbcr")
 animation = &"Shepherd"
 offset = Vector2(1.5, 0)
-flip_h = true
 
 [node name="MoveTimer" type="Timer" parent="." unique_id=367994046]
 one_shot = true
@@ -37,11 +35,12 @@ one_shot = true
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=643233716]
+monitorable = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1251303585]
-position = Vector2(0, -15)
+position = Vector2(-1.0000005, -15.000014)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_6qbch")
+shape = SubResource("RectangleShape2D_5mgu0")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

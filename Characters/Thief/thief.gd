@@ -28,12 +28,15 @@ func start_effect(resource : String, value : int) -> void:
 			$WoodEffect.start_effect(value, global_position)
 
 func stolen_enough() -> bool:
-	return (numSteals >= maxSteals) or (currentFloor.has_warrior())
+	return (numSteals >= maxSteals) and $AnimatedSprite2D.visible
 
 func _to_string():
 	return "thief"
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if(area.get_parent() is Character and area.get_parent().type == "Warrior"):
+	var parent = area.get_parent()
+	print("SOMETHING HIT MY AREA!!!!")
+	if($AnimatedSprite2D.visible and parent is Character and parent.type == "Warrior" and !parent.dragging):
 		$AnimatedSprite2D.hide()
 		thief_exited.emit(self,$BrickEffect.get_effect_time())
+		add_resource.emit(self)
