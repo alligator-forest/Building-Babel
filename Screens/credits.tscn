@@ -56,12 +56,11 @@ hframes = 3
 [node name="Developers" type="RichTextLabel" parent="." unique_id=1699397317]
 offset_left = 128.0
 offset_right = 320.0
-offset_bottom = 360.0
+offset_bottom = 364.0
 theme = ExtResource("1_660ld")
 theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
-text = "[wave amp=30][center][color=BLACK]
---PROGRAMMING--
+text = "[wave amp=30][center][color=BLACK]--PROGRAMMING--
 [color=FOREST_GREEN]alligator-forest[/color]
 
 --ASSETS--
@@ -83,8 +82,7 @@ offset_bottom = 360.0
 theme = ExtResource("1_660ld")
 theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
-text = "[wave amp=30][center][color=BLACK]
---PLAYTESTING--
+text = "[wave amp=30][center][color=BLACK]--PLAYTESTING--
 [color=DARK_ORCHID]ThatMysticShadow
 [color=DARK_RED]Shadow329
 [color=BLUE_VIOLET]EthanolSpill"

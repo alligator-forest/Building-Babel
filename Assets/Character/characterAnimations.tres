@@ -73,7 +73,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s1idf")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Builder",
 "speed": 5.0
 }, {
@@ -84,7 +84,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jhw7c")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Carpenter",
 "speed": 5.0
 }, {
@@ -95,7 +95,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h23gs")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Mason",
 "speed": 5.0
 }, {
@@ -106,7 +106,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xok2v")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Merchant",
 "speed": 5.0
 }, {
@@ -117,7 +117,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iec7e")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Shepherd",
 "speed": 5.0
 }, {
@@ -128,7 +128,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hcgei")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Thief",
 "speed": 5.0
 }, {
@@ -139,7 +139,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0icof")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Warrior",
 "speed": 5.0
 }]

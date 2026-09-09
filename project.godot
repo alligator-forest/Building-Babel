@@ -22,7 +22,7 @@ config/name="Building Babel"
 config/description="Build the biblical  tower to ascend to the heavens, but keep your hubris low, as to avoid the divine wrath of God!"
 config/version="1.4"
 run/main_scene="res://Screens/home_menu.tscn"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://Assets/BuildingBabelLogo.png"
 
 [autoload]
